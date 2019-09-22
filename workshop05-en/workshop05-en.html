@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="Québec Centre for Biodiversity Science" />
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/academicons-1.8.1/css/academicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
     <link rel="stylesheet" href="qcbsR.css" type="text/css" />
     <link rel="stylesheet" href="qcbsR-fonts.css" type="text/css" />
   </head>
@@ -611,13 +611,13 @@ lapply(SimulatedData, mean)
 # [1] 2.5
 # 
 # $Norm10
-# [1] -0.62401
+# [1] 0.3595919
 # 
 # $Norm20
-# [1] 0.9525858
+# [1] 1.122445
 # 
 # $Norm100
-# [1] 4.986406
+# [1] 5.13847
 ```
 ]
 ]
@@ -643,7 +643,7 @@ SimulatedData &lt;- list(SimpleSequence = 1:4,
 # Apply mean to each element of the list
 sapply(SimulatedData, mean)
 # SimpleSequence         Norm10         Norm20        Norm100 
-#     2.50000000    -0.05844218     1.46710577     4.95452346
+#     2.50000000     0.07119658     0.77761658     5.00424572
 ```
 ]
 
@@ -1556,7 +1556,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
