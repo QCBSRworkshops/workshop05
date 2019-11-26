@@ -452,7 +452,7 @@ for (i in 1:nrow(CO2)) { # for each row in the CO2 dataset
 .alert[Tip 2]. If we want to perform operations on the elements of one column, we can directly iterate over it
 
 ```r
-for (p in 1:CO2$conc) { # for each row of the column "conc"of the CO2 df
+for (p in CO2$conc) { # for each element of the column "conc" of the CO2 df
   print(p) # print the p-th element
 }
 ```
