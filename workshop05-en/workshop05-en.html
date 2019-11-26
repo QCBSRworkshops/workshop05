@@ -492,7 +492,7 @@ for (i in 1:nrow(CO2)) { # for each row in the CO2 dataset
 .alert[Tip 2]. If we want to perform operations on the elements of one column, we can directly iterate over it
 
 ```r
-for (p in 1:CO2$conc) { # for each row of the column "conc"of the CO2 df
+for (p in CO2$conc) { # for each element of the column "conc" of the CO2 df
   print(p) # print the p-th element
 }
 ```
@@ -611,13 +611,13 @@ lapply(SimulatedData, mean)
 # [1] 2.5
 # 
 # $Norm10
-# [1] 0.3595919
+# [1] 0.2654913
 # 
 # $Norm20
-# [1] 1.122445
+# [1] 0.9254224
 # 
 # $Norm100
-# [1] 5.13847
+# [1] 5.078787
 ```
 ]
 ]
@@ -643,7 +643,7 @@ SimulatedData &lt;- list(SimpleSequence = 1:4,
 # Apply mean to each element of the list
 sapply(SimulatedData, mean)
 # SimpleSequence         Norm10         Norm20        Norm100 
-#     2.50000000     0.07119658     0.77761658     5.00424572
+#      2.5000000      0.2684117      1.0018123      5.0063723
 ```
 ]
 

@@ -279,7 +279,7 @@ for(val in 1:3) {
 Les accolades `{}` indiquent à R d'exécuter une expression au complet. Par exemple:
 
 ```r
-if ((2 + 1) == 4) print("Les maths, c'est logique!.") 
+if ((2 + 1) == 4) print("Les maths, c'est logique!.")
 else print("Houston, on a un problème.")
 ```
 
@@ -340,13 +340,13 @@ for(i in séquence) {
 ---
 ## `for` loop
 
-La lettre `i` peut être remplacée par n'importe quelle nom de variable, liste de vecteurs, etc. 
+La lettre `i` peut être remplacée par n'importe quelle nom de variable, liste de vecteurs, etc.
 
 ```r
 # Essayez les commandes ci-dessous et observez les résultats:
 
 for (a in c("Bonjour", "programmeurs", "en R")) {
-  print(a) 
+  print(a)
 }
 
 for (z in 1:30) {
@@ -397,7 +397,7 @@ for(m in 6:10) {
 ]
 ]
 ---
-## Boucle `for` 
+## Boucle `for`
 
 .small[
 ```r
@@ -450,7 +450,7 @@ for (i in 1:nrow(CO2)) { # pour chaque ligne du jeu de données CO2
 .alert[Truc 2]. On peut aussi itérer des opérations sur les éléments d'une colonne.
 
 ```r
-for (p in 1:CO2$conc) { # pour chacune des valeurs de concentration de CO2
+for (p in CO2$conc) { # pour chacune des valeurs de concentration de CO2
   print(p) # afficher cette valeur
 }
 ```
@@ -463,7 +463,7 @@ L'expression dans la boucle peut peut contenir plusieurs lignes de commandes dif
 ```r
 for (i in 4:5) { # pour i de 4 à 5
   print(colnames(CO2)[i])
-  print(mean(CO2[,i])) # affiche les moyennes de cette colonne 
+  print(mean(CO2[,i])) # affiche les moyennes de cette colonne
 }
 ```
 
@@ -471,7 +471,7 @@ Sortie:
 ```{r echo = FALSE}
 for (i in 4:5) { # pour i de 4 à 5
   print(colnames(CO2)[i])
-  print(mean(CO2[,i])) # affiche les moyennes de cette colonne 
+  print(mean(CO2[,i])) # affiche les moyennes de cette colonne
 }
 ```
 ---
@@ -543,7 +543,7 @@ SimulatedData <- list(
   Norm20 = rnorm(20, 1),
   Norm100 = rnorm(100, 5))
 
-# Applique mean() sur chaque élément de la liste 
+# Applique mean() sur chaque élément de la liste
 lapply(SimulatedData, mean)
 ```
 ]
@@ -984,7 +984,7 @@ L'argument spécial `...` vous permet de passer des arguments à une autre fonct
 
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
-  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) # On utilise ... pour passer les arguments a plot(). 
+  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) # On utilise ... pour passer les arguments a plot().
   for (i in 1:length(CO2[,1])){
      if (CO2$Type[i] == "Quebec") {
        points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
@@ -1023,7 +1023,7 @@ plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ---
 ## Argument `...`
 
-L'argument spécial `...` permet d'entrer un nombre indéfini d'arguments. 
+L'argument spécial `...` permet d'entrer un nombre indéfini d'arguments.
 
 ```{r}
 sum2 <- function(...){
@@ -1162,7 +1162,7 @@ vartest <- function() {
   print(var1) # affiche 'var1'
 }
 
-a             # on ne peut pas afficher 'a', car 'a' n'existe qu'à l'intérieur de la fonction 
+a             # on ne peut pas afficher 'a', car 'a' n'existe qu'à l'intérieur de la fonction
 
 vartest()     # cvartest() affiche 'a' et 'var1'
 
@@ -1197,7 +1197,7 @@ var1          # var1 a toujours la même valeur à l'extérieur de la fonction
 <br>
 <br>
 <br>
-.alert[Truc.] Une bonne pratique serait de définir les variables à l'extérieur de la condition, puis ensuite de modifier leurs valeurs pour éviter ces problèmes. 
+.alert[Truc.] Une bonne pratique serait de définir les variables à l'extérieur de la condition, puis ensuite de modifier leurs valeurs pour éviter ces problèmes.
 ]
 .small[
 .pull-right[
@@ -1256,7 +1256,7 @@ Les indentations et les espaces sont une première étape vers un code lisible:
 
 ## Gardez un code beau et propre
 
-À gauche, le code n'est pas espacé. Tous les crochets sont sur une ligne, et le code paraît malpropre. 
+À gauche, le code n'est pas espacé. Tous les crochets sont sur une ligne, et le code paraît malpropre.
 
 .small[
 .pull-left[
@@ -1315,7 +1315,7 @@ Ceci vous aidera à réduire le nombre d'erreurs de copier/coller, et réduira l
 
 ## Utilisez des fonctions pour simplifier le code
 
-Modifions l'exemple de l'**Exercice #3** et supposons que toutes les concentrations de $CO_2$ du Mississipi étaient surestimées de 20 et que celles du Québec étaient sous-estimées de 50. 
+Modifions l'exemple de l'**Exercice #3** et supposons que toutes les concentrations de $CO_2$ du Mississipi étaient surestimées de 20 et que celles du Québec étaient sous-estimées de 50.
 
 .small[ .pull-left[
  On pourrait écrire ceci:
