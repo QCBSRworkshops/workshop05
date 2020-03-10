@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Workshop 5: Programming in R</title>
     <meta charset="utf-8" />
@@ -24,12 +24,19 @@ class: center, middle, inverse, title-slide
 
 
 
-## Outline
+class: inverse, center, middle
 
-1. Learning what is **control flow**
-2. Writing your first functions in R
-3. Speeding up your code
-4. Useful R packages for biologists
+# About this workshop
+
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=wiki&amp;message=05&amp;logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=05&amp;color=red&amp;logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=05&amp;color=red&amp;logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=script&amp;message=05&amp;color=2a50b8&amp;logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)
+
+---
+# Outline
+
+##### 1. Learning what is **control flow**
+##### 2. Writing your first functions in R
+##### 3. Speeding up your code
+##### 4. Useful R packages for biologists
 
 ---
 class: inverse, center, middle
@@ -37,12 +44,12 @@ class: inverse, center, middle
 # Review
 
 ---
-## Objects
+# Objects
 
-![](images/matrix.png)
+![:scale 90%](images/matrix.png)
 
 ---
-## Vectors
+# Vectors
 
 Numeric vectors
 
@@ -57,7 +64,7 @@ Numeric vectors
 ```
 
 ---
-## Data frames
+# Data frames
 
 vectors
 
@@ -86,7 +93,7 @@ We then combine them using the function `data.frame`
 ```
 
 ---
-## Lists
+# Lists
 
 
 ```r
@@ -115,7 +122,7 @@ class: inverse, center, middle
 # Control flow
 
 ---
-## Control flow
+# Control flow
 
 Program flow control can be simply defined as the order in which a program is executed.
 
@@ -128,7 +135,7 @@ Program flow control can be simply defined as the order in which a program is ex
 .large[.center[**This means increased productivity**]]
 
 ---
-## Control flow
+# Control flow
 
 Flowcharts can be used to plan programs and represent their structure
 
@@ -137,7 +144,7 @@ Flowcharts can be used to plan programs and represent their structure
 ![](images/flowchart1.png)
 
 ---
-## Representing structure
+# Representing structure
 
 The two basic building blocks of codes are the following:
 
@@ -168,7 +175,7 @@ repeat
 ]
 
 ---
-## Decision making
+# Decision making
 
 .pull-left[
 
@@ -201,7 +208,7 @@ if(condition) {
 ]
 
 ---
-#### What if you want to test more than one condition?
+### What if you want to test more than one condition?
 
 - `if` and `if` `else` test a single condition
 - You can also use `ifelse` function to:
@@ -217,7 +224,7 @@ sqrt(ifelse(a &gt;= 0, a, NA))
 ```
 
 ---
-## Nested `if` `else` statement
+# Nested `if` `else` statement
 
 .small[
 ```r
@@ -234,10 +241,10 @@ statement4
 ]
 
 .center[
-![:scale 68%](images/nested_ifelse.png)]
+![:scale 60%](images/nested_ifelse.png)]
 
 ---
-## Challenge 1 ![:cube]()
+# Challenge 1 ![:cube]()
 
 
 ```r
@@ -252,7 +259,7 @@ animals &lt;- c(Paws, Scruffy, Sassy)
 3. Use the `ifelse` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 ---
-## Challenge 1 - Solution ![:cube]()
+# Challenge 1 - Solution ![:cube]()
 
 1- Use an `if` statement to print “meow” if `Paws` is a “cat”.
 
@@ -279,7 +286,7 @@ if(x == 'cat') {
 ```
 
 ---
-## Challenge 1 - Solution ![:cube]()
+# Challenge 1 - Solution ![:cube]()
 
 3- Use the `ifelse` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
@@ -308,7 +315,7 @@ for(val in 1:3) {
 ```
 
 ---
-## Beware of R’s expression parsing!
+# Beware of R’s expression parsing!
 
 Use curly brackets `{}` so that R knows to expect more input. Try:
 
@@ -331,7 +338,8 @@ Instead use:
 # [1] "Arithmetic works."
 ```
 ---
-## Remember the logical operators
+# Remember the logical operators
+&lt;br&gt;
 
 | Command | Meaning |
 | :-------------: | :-------------: |
@@ -347,7 +355,7 @@ Instead use:
 
 
 ---
-## Iteration
+# Iteration
 
 Every time some operations have to be repeated, a loop may come in handy
 
@@ -359,7 +367,7 @@ Loops are good for:
 - iterating a calculation until it converges
 
 ---
-## `for` loop
+# `for` loop
 
 A `for` loop works in the following way:
 
@@ -374,7 +382,7 @@ for(val in sequence) {
 ]
 
 ---
-## `for` loop
+# `for` loop
 The letter `i` can be replaced with any variable name and the sequence can be almost anything, even a list of vectors.
 
 ```r
@@ -396,7 +404,7 @@ for (element in elements) {
 ```
 
 ---
-## `for` loop
+# `for` loop
 
 In the example below, R would evaluate the expression 5 times:
 
@@ -439,7 +447,7 @@ for(m in 1:10) {
 ]
 ]
 ---
-## `for` loop
+# `for` loop
 
 .small[
 ```r
@@ -455,12 +463,12 @@ print(count)
 ]
 
 .center[
-![:scale 60%](images/forexample.png)
+![:scale 50%](images/forexample.png)
 ]
 
 
 ---
-## `for` loop
+# `for` loop
 
 For loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in R.
 
@@ -479,7 +487,7 @@ for (i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
 ```
 
 ---
-## `for` loop
+# `for` loop
 
 .alert[Tip 1]. To loop over the number of rows of a data frame, we can use the function `nrow()`
 
@@ -498,7 +506,7 @@ for (p in CO2$conc) { # for each element of the column "conc" of the CO2 df
 ```
 
 ---
-## `for` loop
+# `for` loop
 
 The expression within the loop can be almost anything and is usually a compound statement containing many commands.
 
@@ -518,7 +526,7 @@ Output:
 # [1] 27.2131
 ```
 ---
-## `for` loops within `for` loops
+# `for` loops within `for` loops
 
 In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
 .pull-left[
@@ -547,7 +555,7 @@ for (i in 1:3) {
 ]
 
 ---
-## Getting good: using the `apply()` family
+# Getting good: using the `apply()` family
 
 R disposes of the `apply()` function family, which consists of vectorized functions that aim at **minimizing your need to explicitly create loops**.
 
@@ -581,7 +589,7 @@ apply(X = height,
 ]
 
 ---
-## `lapply()`
+# `lapply()`
 
 `lapply()` applies a function to every element of a `list`.
 
@@ -611,19 +619,19 @@ lapply(SimulatedData, mean)
 # [1] 2.5
 # 
 # $Norm10
-# [1] 0.2654913
+# [1] 0.1784198
 # 
 # $Norm20
-# [1] 0.9254224
+# [1] 0.8261701
 # 
 # $Norm100
-# [1] 5.078787
+# [1] 5.005759
 ```
 ]
 ]
 
 ---
-## `sapply()`
+# `sapply()`
 
 `sapply()` sapply() is a ‘wrapper’ function for `lapply()`, but returns a simplified output as a `vector`, instead of a `list`.
 
@@ -643,12 +651,12 @@ SimulatedData &lt;- list(SimpleSequence = 1:4,
 # Apply mean to each element of the list
 sapply(SimulatedData, mean)
 # SimpleSequence         Norm10         Norm20        Norm100 
-#      2.5000000      0.2684117      1.0018123      5.0063723
+#      2.5000000     -0.2760434      0.8968313      4.8576007
 ```
 ]
 
 ---
-## `mapply()`
+# `mapply()`
 
 `mapply()` works as a multivariate version of `sapply()`.
 
@@ -668,7 +676,7 @@ mapply(sum, lilySeeds, poppySeeds)
 ```
 
 ---
-## `tapply()`
+# `tapply()`
 
 `tapply()` is used to apply a function over subsets of a vector.
 
@@ -694,7 +702,7 @@ tapply(mtcars$hp, mtcars$cyl, FUN = mean)
 ```
 
 ---
-## Challenge 2 ![:cube]()
+# Challenge 2 ![:cube]()
 
 You have realized that your tool for measuring uptake was not calibrated properly at Quebec sites and all measurements are 2 units higher than they should be.
 
@@ -705,8 +713,7 @@ You have realized that your tool for measuring uptake was not calibrated properl
 For this, you will have to load the CO2 dataset using `data(CO2)`, and then use the object `CO2`.
 
 ---
-
-## Challenge 2: Solution ![:cube]()
+# Challenge 2: Solution ![:cube]()
 
 
 1. Using `for` and `if` to correct the measurements:
@@ -727,8 +734,7 @@ tapply(CO2$uptake, CO2$Type, mean)
 #    31.54286    20.88333
 ```
 ---
-
-## Modifying iterations
+# Modifying iterations
 
 Normally, loops iterate over and over until they finish.
 
@@ -741,7 +747,7 @@ You may also want R to jump certain elements when certain conditions are met.
 For this, we will introduce `break`, `next` and `while`.
 
 ---
-## Modifying iterations: `break`
+# Modifying iterations: `break`
 
 ```r
 for(val in x) {
@@ -753,7 +759,7 @@ for(val in x) {
 ![](images/break.png)
 
 ---
-## Modifying iterations: `next`
+# Modifying iterations: `next`
 
 ```r
 for(val in x) {
@@ -765,7 +771,7 @@ for(val in x) {
 ![](images/next.png)
 
 ---
-## Modifying iterations: `next`
+# Modifying iterations: `next`
 
 Print the `\(CO_{2}\)` concentrations for "chilled" treatments and keep count of how many replications were done.
 
@@ -794,7 +800,7 @@ sum(CO2$Treatment == "nonchilled")
 ```
 
 ---
-## Modifying iterations: `break`
+# Modifying iterations: `break`
 
 This could be equivalently written using a `repeat` loop and `break`:
 
@@ -813,7 +819,7 @@ print(count)
 ```
 
 ---
-## Modifying iterations: `while`
+# Modifying iterations: `while`
 
 This could also be written using a `while` loop:
 
@@ -832,7 +838,7 @@ print(count)
 ```
 
 ---
-## Challenge 3 ![:cube]()
+# Challenge 3 ![:cube]()
 
 You have realized that your tool for measuring concentration did not work properly.
 
@@ -849,7 +855,7 @@ data(CO2)
 
 
 ---
-## Challenge 3: Solution ![:cube]()
+# Challenge 3: Solution ![:cube]()
 
 
 ```r
@@ -871,7 +877,7 @@ for (i in 1:nrow(CO2)) {
 ```
 
 ---
-## Edit a plot using `for` and `if`
+# Edit a plot using `for` and `if`
 
 Let's plot **uptake** vs **concentration** with points of different colors according to their type (*Quebec* or *Mississippi*) and **treatment** (*chilled* or *nonchilled*).
 
@@ -899,15 +905,15 @@ for (i in 1:length(CO2[,1])) {
 ]
 
 ---
-## Challenge 4 ![:cube]()
+# Challenge 4 ![:cube]()
 
 &lt;br&gt;
 Create a plot using `for` loop and `if`
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-39-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-40-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
-## Challenge 4![:cube]()
+# Challenge 4![:cube]()
 &lt;br&gt;
 &lt;br&gt;
 
@@ -921,7 +927,7 @@ Generate a plot showing **concentration versus uptake** where each plant is show
 3. Fill the plot using `for` and `if` statements]
 
 ---
-## Challenge 4: Solution ![:cube]()
+# Challenge 4: Solution ![:cube]()
 
 .small[
 
@@ -938,7 +944,7 @@ for (i in 1:nrow(CO2)){
 }}}
 ```
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-40-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-41-1.png" width="432" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -947,7 +953,7 @@ class: inverse, center, middle
 # Writing functions
 
 ---
-## Why write functions?
+# Why write functions?
 
 Much of the heavy lifting in R is done by functions. They are useful for:
 
@@ -959,7 +965,7 @@ Much of the heavy lifting in R is done by functions. They are useful for:
 6. Modifying R’s built-in functionality.
 
 ---
-## What is a function?
+# What is a function?
 
 &lt;br&gt;
 &lt;br&gt;
@@ -969,7 +975,7 @@ Much of the heavy lifting in R is done by functions. They are useful for:
 
 
 ---
-## Syntax of a function
+# Syntax of a function
 
 ```r
 function_name &lt;- function(argument1, argument2, ...) {
@@ -979,7 +985,7 @@ function_name &lt;- function(argument1, argument2, ...) {
 ```
 
 ---
-## Arguments of a function
+# Arguments of a function
 
 ```r
 function_name &lt;- function(argument1, argument2, ...) {
@@ -1006,7 +1012,7 @@ operations(1, 2, 3)
 ```
 ]
 ---
-## Challenge 5 ![:cube]()
+# Challenge 5 ![:cube]()
 
 Using what you learned previously on flow control, create a function `print_animal` that takes an `animal` as argument and gives the following results:
 
@@ -1026,7 +1032,7 @@ print_animal(Paws)
 
 
 ---
-## Challenge 5: Solution ![:cube]()
+# Challenge 5: Solution ![:cube]()
 &lt;br&gt;
 &lt;br&gt;
 
@@ -1041,7 +1047,7 @@ print_animal &lt;- function(animal) {
 ```
 
 ---
-## Default values in a function
+# Default values in a function
 
 Arguments can also be optional and be provided with a default value.
 
@@ -1063,7 +1069,7 @@ operations(1, 2, 2) # we can still change the value of number3 if needed
 ```
 
 ---
-## Argument `...`
+# Argument `...`
 
 The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
 
@@ -1085,14 +1091,14 @@ plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 
 
 ---
-## Argument `...`
+# Argument `...`
 
 The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-47-1.png" width="720" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-48-1.png" width="720" style="display: block; margin: auto;" /&gt;
 
 ---
-## Argument `...`
+# Argument `...`
 
 The special argument `...` allows you to input an indefinite number of arguments.
 
@@ -1114,7 +1120,7 @@ sum2(2, 4, 5, 7688, 1)
 ```
 
 ---
-## Return values
+# Return values
 
 The last expression evaluated in a `function` becomes the return value.
 
@@ -1137,7 +1143,7 @@ myfun(15)
 .comment[`function()` itself returns the last evaluated value even without including `return()` function.]
 
 ---
-## Return values
+# Return values
 
 .small[
 It can be useful to explicitly `return()` if the routine should end early, jump out of the function and return a value.
@@ -1188,7 +1194,7 @@ simplefun2(1, 2)
 ]
 ]
 ---
-## Challenge 6 ![:cube]()
+# Challenge 6 ![:cube]()
 
 &lt;br&gt;
 Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
@@ -1197,7 +1203,7 @@ Using what you have just learned on functions and control flow, create a functio
 2. Else, returns the sum of `a` and `b`.
 
 ---
-## Challenge 6: Solution ![:cube]()
+# Challenge 6: Solution ![:cube]()
 
 &lt;br&gt;&lt;br&gt;
 
@@ -1231,7 +1237,7 @@ bigsum &lt;- function(a, b) {
 
 
 ---
-## Accessibility of variables
+# Accessibility of variables
 
 It is essential to always keep in mind where your variables are, and whether they are defined and accessible:
 
@@ -1240,7 +1246,7 @@ It is essential to always keep in mind where your variables are, and whether the
 ![:faic](arrow-right) Variables defined .alert[outside] a function are accessible inside. But it is NEVER a good idea, as your function will not function if the outside variable is erased.
 
 ---
-## Accessibility of variables
+# Accessibility of variables
 
 
 ```r
@@ -1265,7 +1271,7 @@ vartest()     # calling the function again doesn't work anymore
 ```
 
 ---
-## Accessibility of variables
+# Accessibility of variables
 
 .alert[Mandatory tip.] Use arguments then!
 
@@ -1286,8 +1292,7 @@ var1          # var1 still has the same value
 ```
 
 ---
-
-## Accessibility of variables
+# Accessibility of variables
 
 .pull-left[
 .alert[Tip.] Be very careful when creating variables inside a conditional statement as the variable may never have been created and cause (sometimes imperceptible) errors.
@@ -1327,8 +1332,7 @@ class: inverse, center, middle
 # Good programming practices
 
 ---
-
-## Why should I care about programming practices?
+# Why should I care about programming practices?
 
 - To make your life easier;
 - To achieve greater readability and makes sharing and reusing your code a lot less painful;
@@ -1336,8 +1340,7 @@ class: inverse, center, middle
 
 .center[.large[Pay attention to the next tips!]]
 ---
-
-## Keep a clean and nice code
+# Keep a clean and nice code
 
 Proper indentation and spacing is the first step to get an easy to read code:
 
@@ -1352,8 +1355,7 @@ Proper indentation and spacing is the first step to get an easy to read code:
 
 
 ---
-
-## Keep a clean and nice code
+# Keep a clean and nice code
 
 On the left, code is not spaced. All brackets are in the same line, and it looks "messy".
 
@@ -1368,8 +1370,7 @@ if(b==0){print("b zero")}else print(b)}
 ]
 ]
 ---
-
-## Keep a clean and nice code
+# Keep a clean and nice code
 
 On the left, code is not spaced. All brackets are in the same line, and it looks "messy". On the right, it looks more organized, no?
 .small[
@@ -1401,8 +1402,7 @@ if(a &lt; b){
 ]
 
 ---
-
-## Use functions to simplify your code
+# Use functions to simplify your code
 
 Write your own function:
 1. When portion of the code is repeated more than twice in your script;
@@ -1411,8 +1411,7 @@ Write your own function:
 This would also reduce the number of potential errors done by copy-pasting, and the time needed to correct them.
 
 ---
-
-## Use functions to simplify your code
+# Use functions to simplify your code
 
 Let's modify the example from **Challenge #3** and suppose that all `\(CO_2\)` uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.
 .small[ .pull-left[
@@ -1456,7 +1455,7 @@ newCO2 &lt;- recalibrate(newCO2, "Quebec", +50)
 ]
 ]
 ---
-## Use meaningful names for functions
+# Use meaningful names for functions
 
 Same function as before, but with vague names.
 .pull-left[
@@ -1480,7 +1479,7 @@ rc &lt;- function(c, t, b) {
 .comment[Whenever possible, avoid using names of existing `R` functions and variables to avoid confusion and conflits.]
 
 ---
-## Use comments
+# Use comments
 
 .alert[Final tip]. Add comment to describe what your code does, how to use its arguments or a detailed step-by-step description of the function.
 
@@ -1557,6 +1556,42 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1574,17 +1609,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
