@@ -47,6 +47,14 @@ cat(bge[-1L])
 
 
 ## -----------------------------------------------------------------------------
+if(2+2 == 4) { #<<
+  print("Arithmetic works.")
+} else { #<<
+  print("Houston, we have a problem.")
+} #<<
+
+
+## -----------------------------------------------------------------------------
 Paws <- "cat"
 Scruffy <- "dog"
 Sassy <- "cat"
@@ -79,22 +87,14 @@ ifelse(animals == 'dog', "woof", "meow")
 for(val in 1:3) {
   if(animals[val] == 'cat') {
     print("meow")
-  }else if(animals[val] == 'dog') {
+  } else if(animals[val] == 'dog') {
     print("woof")
-  }else print("what?")
+  } else print("what?")
 }
 
 
-## -----------------------------------------------------------------------------
-if (2+2 == 4) { #<<
-  print("Arithmetic works.")
-} else { #<<
-  print("Houston, we have a problem.")
-} #<<
-
-
 ## ----echo=FALSE---------------------------------------------------------------
-for(m in 1:5) {
+  for(m in 1:5) {
   print(m*2)
 }
 
@@ -102,6 +102,86 @@ for(m in 1:5) {
 ## ----echo=FALSE---------------------------------------------------------------
 for(m in 6:10) {
   print(m*2)
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for(i in 1:10) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 11:20) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 21:30) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 31:40) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 1:11) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 12:22) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 23:33) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 34:42) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 1:20) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 21:40) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 1:20) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE--------------------------------------------------------------
+for (i in 21:40) { 
+  print(CO2$conc[i]) 
 }
 
 
@@ -114,7 +194,6 @@ for (i in 4:5) { # for i in 4 to 5
 
 ## ----echo = -c(2:5)-----------------------------------------------------------
 # Output
-
 for (i in 1:3) {
   for (n in 1:3) {
     print (i*n)
@@ -187,7 +266,7 @@ tapply(mtcars$hp, mtcars$cyl, FUN = mean)
 
 
 ## ----echo=TRUE----------------------------------------------------------------
-for (i in 1:dim(CO2)[1]) {
+for(i in 1:dim(CO2)[1]) {
   if(CO2$Type[i] == "Quebec") {
     CO2$uptake[i] <- CO2$uptake[i] - 2
   }
@@ -201,8 +280,8 @@ tapply(CO2$uptake, CO2$Type, mean)
 ## ----eval = FALSE-------------------------------------------------------------
 ## count <- 0
 ## 
-## for (i in 1:nrow(CO2)) {
-##   if (CO2$Treatment[i] == "nonchilled") next
+## for(i in 1:nrow(CO2)) {
+##   if(CO2$Treatment[i] == "nonchilled") next
 ##   # Skip to next iteration if treatment is nonchilled
 ##   count <- count + 1
 ## #  print(CO2$conc[i])
@@ -230,10 +309,10 @@ sum(CO2$Treatment == "nonchilled")
 ## i <- 0
 ## repeat {
 ##       i <- i + 1
-##       if (CO2$Treatment[i] == "nonchilled") next  # skip this loop
+##       if(CO2$Treatment[i] == "nonchilled") next  # skip this loop
 ##       count <- count + 1
 ##       print(CO2$conc[i])
-##       if (i == nrow(CO2)) break     # stop looping
+##       if(i == nrow(CO2)) break     # stop looping
 ##     }
 ## print(count)
 
@@ -241,10 +320,10 @@ sum(CO2$Treatment == "nonchilled")
 ## ----eval = FALSE-------------------------------------------------------------
 ## i <- 0
 ## count <- 0
-## while (i < nrow(CO2))
+## while(i < nrow(CO2))
 ## {
 ##   i <- i + 1
-##   if (CO2$Treatment[i] == "nonchilled") next  # skip this loop
+##   if(CO2$Treatment[i] == "nonchilled") next  # skip this loop
 ##   count <- count + 1
 ##   print(CO2$conc[i])
 ## }
@@ -256,7 +335,7 @@ data(CO2)
 
 
 ## -----------------------------------------------------------------------------
-for (i in 1:nrow(CO2)) {
+for(i in 1:nrow(CO2)) {
   if(CO2$Type[i] == "Mississippi") {
     if(CO2$conc[i] < 300) next
     CO2$conc[i] <- CO2$conc[i] - 20
@@ -265,7 +344,7 @@ for (i in 1:nrow(CO2)) {
 
 
 ## -----------------------------------------------------------------------------
-for (i in 1:nrow(CO2)) {
+for(i in 1:nrow(CO2)) {
   if(CO2$Type[i] == "Mississippi" && CO2$conc[i] >= 300) {
     CO2$conc[i] <- CO2$conc[i] - 20
   }
@@ -276,17 +355,17 @@ for (i in 1:nrow(CO2)) {
 ## plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
 ##      xlab = "CO2 concentration", ylab = "CO2 uptake")
 ## # Type "n" tells R to not actually plot the points.
-## for (i in 1:length(CO2[,1])) {
-##   if (CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "nonchilled") {
+## for(i in 1:length(CO2[,1])) {
+##   if(CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "nonchilled") {
 ##     points(CO2$conc[i], CO2$uptake[i], col = "red")
 ##   }
-##   if (CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "chilled") {
+##   if(CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "chilled") {
 ##     points(CO2$conc[i], CO2$uptake[i], col = "blue")
 ##   }
-##   if (CO2$Type[i] == "Mississippi" & CO2$Treatment[i] == "nonchilled") {
+##   if(CO2$Type[i] == "Mississippi" & CO2$Treatment[i] == "nonchilled") {
 ##     points(CO2$conc[i], CO2$uptake[i], col = "orange")
 ##   }
-##   if (CO2$Type[i] == "Mississippi" & CO2$Treatment[i] == "chilled") {
+##   if(CO2$Type[i] == "Mississippi" & CO2$Treatment[i] == "chilled") {
 ##     points(CO2$conc[i], CO2$uptake[i], col = "green")
 ##   }
 ## }
@@ -318,9 +397,9 @@ plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
 
 plants <- unique(CO2$Plant)
 
-for (i in 1:nrow(CO2)){
-  for (p in 1:length(plants)) {
-    if (CO2$Plant[i] == plants[p]) {
+for(i in 1:nrow(CO2)){
+  for(p in 1:length(plants)) {
+    if(CO2$Plant[i] == plants[p]) {
       points(CO2$conc[i], CO2$uptake[i], col = p)
 }}}
 
@@ -354,6 +433,25 @@ print_animal(Scruffy)
 print_animal(Paws)
 
 
+## ---- echo=F------------------------------------------------------------------
+print_animal <- function(animal) {
+  if(animal == "dog") {
+    print("woof")
+  } else if(animal == "cat") {
+    print("meow")
+  }
+}
+
+
+## -----------------------------------------------------------------------------
+Scruffy <- "dog"
+Paws <- "cat"
+
+print_animal(Scruffy)
+
+print_animal(Paws)
+
+
 ## -----------------------------------------------------------------------------
 operations <- function(number1, number2, number3 = 3) {
   result <- (number1 + number2) * number3
@@ -368,10 +466,10 @@ operations(1, 2, 2) # we can still change the value of number3 if needed
 ## ---- eval = FALSE------------------------------------------------------------
 ## plot.CO2 <- function(CO2, ...) {
 ##   plot(x=CO2$conc, y=CO2$uptake, type="n", ...) #<<
-##   for (i in 1:length(CO2[,1])){
-##      if (CO2$Type[i] == "Quebec") {
+##   for(i in 1:length(CO2[,1])){
+##      if(CO2$Type[i] == "Quebec") {
 ##        points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
-##      } else if (CO2$Type[i] == "Mississippi") {
+##      } else if(CO2$Type[i] == "Mississippi") {
 ##        points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...) #<<
 ##      }
 ##   }
@@ -384,10 +482,10 @@ operations(1, 2, 2) # we can still change the value of number3 if needed
 plot.CO2 <- function(CO2, ...) {
   plot(x = CO2$conc, y = CO2$uptake, type = "n", ...)
 
-  for (i in 1:length(CO2[,1])){
-     if (CO2$Type[i] == "Quebec") {
+  for(i in 1:length(CO2[,1])){
+     if(CO2$Type[i] == "Quebec") {
        points(CO2$conc[i], CO2$uptake[i], col="red", type="p", ...)
-     } else if (CO2$Type[i] == "Mississippi") {
+     } else if(CO2$Type[i] == "Mississippi") {
        points(CO2$conc[i], CO2$uptake[i], col="blue", type="p", ...)
      }
   }
@@ -398,13 +496,13 @@ plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 
 
 ## -----------------------------------------------------------------------------
-sum2 <- function(...){
+sum2 <- function(...) {
   args <- list(...) #<<
   result <- 0
-  for (i in args)  {
+  for(i in args) {
     result <- result + i
   }
-  return (result)
+  return(result)
 }
 
 sum2(2, 3)
@@ -413,7 +511,7 @@ sum2(2, 4, 5, 7688, 1)
 
 ## -----------------------------------------------------------------------------
 myfun <- function(x) {
-  if (x < 10) {
+  if(x < 10) {
     0
   } else {
     10
@@ -426,7 +524,7 @@ myfun(15)
 
 ## -----------------------------------------------------------------------------
 simplefun1 <- function(x) {
-  if (x<0)
+  if(x<0)
   return(x)
 }
 
@@ -477,7 +575,7 @@ var1          # var1 still has the same value
 
 ## ----eval = FALSE-------------------------------------------------------------
 ## a <- 3
-## if (a > 5) {
+## if(a > 5) {
 ##   b <- 2
 ## }
 ## 
@@ -489,8 +587,8 @@ var1          # var1 still has the same value
 
 
 ## ----eval = FALSE-------------------------------------------------------------
-## recalibrate <- function(CO2, type, bias){
-##   for (i in 1:nrow(CO2)) {
+## recalibrate <- function(CO2, type, bias) {
+##   for(i in 1:nrow(CO2)) {
 ##     if(CO2$Type[i] == type) {
 ##       CO2$conc[i] <- CO2$conc[i] + bias
 ##     }
@@ -503,4 +601,21 @@ var1          # var1 still has the same value
 ## ----eval = FALSE-------------------------------------------------------------
 ## newCO2 <- recalibrate(CO2, "Mississipi", -20)
 ## newCO2 <- recalibrate(newCO2, "Quebec", +50)
+
+
+## -----------------------------------------------------------------------------
+my_function <- function(x) {
+  if(x != 0) {
+  z <- cos(x)/x
+  } else { z <- 1 }
+  return(z)
+}
+
+
+## -----------------------------------------------------------------------------
+my_function(45)
+
+my_function(20)
+
+my_function(0)
 

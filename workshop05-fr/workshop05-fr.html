@@ -614,13 +614,13 @@ lapply(SimulatedData, mean)
 # [1] 2.5
 # 
 # $Norm10
-# [1] 0.05189392
+# [1] -0.1065419
 # 
 # $Norm20
-# [1] 1.033075
+# [1] 1.125981
 # 
 # $Norm100
-# [1] 4.877695
+# [1] 4.918675
 ```
 ]
 ]
@@ -643,7 +643,7 @@ SimulatedData &lt;- list(SimpleSequence = 1:4,
 # Applique mean() sur chaque élément de la liste
 sapply(SimulatedData, mean)
 # SimpleSequence         Norm10         Norm20        Norm100 
-#      2.5000000     -0.2114442      0.8414591      4.9776368
+#      2.5000000      0.4593717      1.0189426      4.9462070
 ```
 ]
 
@@ -1542,30 +1542,20 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })();
 (function() {
   "use strict"
-  /* Replace <script> tags in slides area to make them executable
-   *
-   * Runs after post-processing of markdown source into slides and replaces only
-   * <script>s on the last slide of continued slides using the .has-continuation
-   * class added by xaringan. Finally, any <script>s in the slides area that
-   * aren't executed are commented out.
-   */
+  // Replace <script> tags in slides area to make them executable
   var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+    '.remark-slides-area .remark-slide-container script'
   );
   if (!scripts.length) return;
   for (var i = 0; i < scripts.length; i++) {
     var s = document.createElement('script');
     var code = document.createTextNode(scripts[i].textContent);
     s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
     scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-  var scriptsNotExecuted = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container.has-continuation script'
-  );
-  if (!scriptsNotExecuted.length) return;
-  for (var i = 0; i < scriptsNotExecuted.length; i++) {
-    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
-    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
   }
 })();
 (function() {
