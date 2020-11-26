@@ -31,12 +31,12 @@ class: inverse, center, middle
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=wiki&amp;message=05&amp;logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=05&amp;color=red&amp;logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=05&amp;color=red&amp;logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=script&amp;message=05&amp;color=2a50b8&amp;logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)
 
 ---
-# Learning Objectives
+# Outline
 
-##### 1. Recognizing **control flow**
-##### 2. Developing your first functions in R
-##### 3. Accelerating your code
-##### 4. Demonstrating useful R packages for biologists
+##### 1. Learning what is **control flow**
+##### 2. Writing your first functions in R
+##### 3. Speeding up your code
+##### 4. Useful R packages for biologists
 
 ---
 class: inverse, center, middle
@@ -76,7 +76,7 @@ vectors
   treatment &lt;- c("Fert", "Fert", "No_fert", "No_fert")
 ```
 
-We then combine them using the function `data.frame`.
+We then combine them using the function `data.frame`
 
 
 ```r
@@ -126,22 +126,18 @@ class: inverse, center, middle
 
 Program flow control can be simply defined as the order in which a program is executed.
 
-&lt;br&gt;
-
 #### Why is it advantageous to have structured programs?
 
 - It **decreases the complexity** and time of the task at hand;
 - This logical structure also means that the code has **increased clarity**;
 - It also means that **many programmers can work on one program**.
 
-&lt;br&gt;
-
-.large[.center[**This means increased productivity.**]]
+.large[.center[**This means increased productivity**]]
 
 ---
 # Control flow
 
-Flowcharts can be used to plan programs and represent their structure.
+Flowcharts can be used to plan programs and represent their structure
 
 &lt;br&gt;
 
@@ -152,8 +148,6 @@ Flowcharts can be used to plan programs and represent their structure.
 
 The two basic building blocks of codes are the following:
 
-&lt;br&gt;
-
 .pull-left[
 
 #### Selection
@@ -161,8 +155,8 @@ The two basic building blocks of codes are the following:
 Program's execution determined by statements
 
 ```r
-if() {}
-if() {} else {}
+if
+if else
 ```
 
 ]
@@ -174,44 +168,12 @@ if() {} else {}
 Repetition, where the statement will **loop** until a criteria is met
 
 ```r
-for() {}
-while() {}
-repeat {}
+for
+while
+repeat
 ```
 ]
 
----
-# Control flow roadmap
-
-&lt;br&gt;
-&lt;br&gt;
-
-.center[
-
-
-.alert[**`if` and `if` `else` statements**] &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`for` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`break` and `next` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`repeat` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`while` loop**
-
-]
-
-???
-
-This roadmap appears at the beginning of each control flow tool to let participants know what is coming up in the control flow section.
 ---
 # Decision making
 
@@ -228,8 +190,6 @@ if(condition) {
 ![:scale 60%](images/if.png)
 ]
 ]
-
---
 
 .pull-right[
 
@@ -250,79 +210,41 @@ if(condition) {
 ---
 ### What if you want to test more than one condition?
 
-&lt;br&gt;
-
-- `if` and `if` `else` test a single condition.
-- You can also use `ifelse()` function to:
+- `if` and `if` `else` test a single condition
+- You can also use `ifelse` function to:
     - test a vector of conditions;
     - apply a function only under certain conditions.
 
-&lt;br&gt;
-
 ```r
 a &lt;- 1:10
-ifelse(test = a &gt; 5, yes = "yes", no = "no")
+ifelse(a &gt; 5, "yes", "no")
 
 a &lt;- (-4):5
-sqrt(ifelse(test = a &gt;= 0, yes = a, no = NA))
+sqrt(ifelse(a &gt;= 0, a, NA))
 ```
 
 ---
 # Nested `if` `else` statement
 
-While the `if` and `if` `else` statements leave you with exactly two options, nested `if` `else` statement allows you consider more alternatives.
-
-&lt;br&gt;
-
-.pull-left[
 .small[
 ```r
-if(test_expression1) {
+if (test_expression1) {
 statement1
-} else if(test_expression2) {
+} else if (test_expression2) {
 statement2
-} else if(test_expression3) {
+} else if (test_expression3) {
 statement3
 } else {
 statement4
 }
 ```
 ]
-]
-.pull-right[
-![:scale 100%](images/nested_ifelse.png)]
 
----
-# Beware of R’s expression parsing!
-
-Use curly brackets `{}` so that R knows to expect more input. Try:
-
-```r
-if(2+2) == 4 print("Arithmetic works.")
-else print("Houston, we have a problem.")
-```
-&lt;br&gt;
-
-.center[.alert[This doesn't work because R evaluates the first line and doesn't know that you are going to use an `else` statement]]
-
-&lt;br&gt;
-
-Instead use:
-
-
-```r
-*if(2+2 == 4) {
-  print("Arithmetic works.")
-*} else {
-  print("Houston, we have a problem.")
-*} 
-# [1] "Arithmetic works."
-```
+.center[
+![:scale 60%](images/nested_ifelse.png)]
 
 ---
 # Challenge 1 ![:cube]()
-
-&lt;br&gt;
 
 
 ```r
@@ -332,16 +254,14 @@ Sassy &lt;- "cat"
 animals &lt;- c(Paws, Scruffy, Sassy)
 ```
 
-&lt;br&gt;
-
 1. Use an `if` statement to print “meow” if `Paws` is a “cat”.
 2. Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
-3. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
+3. Use the `ifelse` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 ---
 # Challenge 1 - Solution ![:cube]()
 
-1.Use an `if` statement to print “meow” if `Paws` is a “cat”.
+1- Use an `if` statement to print “meow” if `Paws` is a “cat”.
 
 
 ```r
@@ -351,7 +271,7 @@ if(Paws == 'cat') {
 # [1] "meow"
 ```
 
-2.Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+2- Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 
 
 ```r
@@ -368,7 +288,7 @@ if(x == 'cat') {
 ---
 # Challenge 1 - Solution ![:cube]()
 
-3.Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
+3- Use the `ifelse` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 
 ```r
@@ -385,9 +305,9 @@ Or
 for(val in 1:3) {
   if(animals[val] == 'cat') {
     print("meow")
-  } else if(animals[val] == 'dog') {
+  }else if(animals[val] == 'dog') {
     print("woof")
-  } else print("what?")
+  }else print("what?")
 }
 # [1] "meow"
 # [1] "woof"
@@ -395,11 +315,30 @@ for(val in 1:3) {
 ```
 
 ---
-# Remember the logical operators
+# Beware of R’s expression parsing!
 
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
+Use curly brackets `{}` so that R knows to expect more input. Try:
+
+```r
+if (2+2) == 4 print("Arithmetic works.")
+else print("Houston, we have a problem.")
+```
+
+.center[.alert[This doesn't work because R evaluates the first line and doesn't know that you are going to use an `else` statement]]
+
+Instead use:
+
+
+```r
+*if (2+2 == 4) {
+  print("Arithmetic works.")
+*} else {
+  print("Houston, we have a problem.")
+*} 
+# [1] "Arithmetic works."
+```
+---
+# Remember the logical operators
 &lt;br&gt;
 
 | Command | Meaning |
@@ -418,52 +357,22 @@ for(val in 1:3) {
 ---
 # Iteration
 
-Every time some operations have to be repeated, a loop may come in handy.
-
-&lt;br&gt;
+Every time some operations have to be repeated, a loop may come in handy
 
 Loops are good for:
-- Doing something for every element of an object;
-- Doing something until the processed data runs out;
-- Doing something for every file in a folder;
-- Doing something that can fail, until it succeeds;
-- Iterating a calculation until it converges.
+- doing something for every element of an object
+- doing something until the processed data runs out
+- doing something for every file in a folder
+- doing something that can fail, until it succeeds
+- iterating a calculation until it converges
 
----
-# Control flow roadmap
-
-&lt;br&gt;
-&lt;br&gt;
-
-.center[
-
-
-**`if` and `if` `else` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-.alert[**`for` loop**] &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`break` and `next` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`repeat` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`while` loop**
-
-]
 ---
 # `for` loop
 
 A `for` loop works in the following way:
 
 ```R
-for(i in sequence) {
+for(val in sequence) {
   statement
   }
 ```
@@ -479,49 +388,43 @@ The letter `i` can be replaced with any variable name and the sequence can be al
 ```r
 # Try the commands below and see what happens:
 
-for(a in c("Hello", "R", "Programmers")) {
+for (a in c("Hello", "R", "Programmers")) {
   print(a)
 }
 
-for(z in 1:30) {
+for (z in 1:30) {
   a &lt;- rnorm(n = 1, mean = 5, sd = 2)
   print(a)
 }
 
 elements &lt;- list(1:3, 4:10)
-for(element in elements) {
+for (element in elements) {
   print(element)
 }
 ```
+
 ---
 # `for` loop
 
-&lt;br&gt;
-
-.pull-left[
-In the general example below, R would evaluate the expression 5 times by replacing `i` by numbers from 1 to 5.
+In the example below, R would evaluate the expression 5 times:
 
 ```r
 for(i in 1:5) {
   expression
 }
 ```
-]
---
-.pull-right[
-Similarly, in the following example, every instance of `m` is being replaced by each number between `1:10`, until it reaches the last element of the sequence.
 
+In the example, every instance of `m` is being replaced by each number between `1:10`, until it reaches the last element of the sequence.
+
+.pull-left[
 ```r
 for(m in 1:10) {
   print(m*2)
 }
 ```
 ]
-
---
 .small[
 .pull-right[.pull-left[
-
 
 ```
 # [1] 2
@@ -530,7 +433,6 @@ for(m in 1:10) {
 # [1] 8
 # [1] 10
 ```
-
 ]
 .pull-right[
 
@@ -544,7 +446,6 @@ for(m in 1:10) {
 ]
 ]
 ]
-
 ---
 # `for` loop
 
@@ -552,7 +453,7 @@ for(m in 1:10) {
 ```r
 x &lt;- c(2,5,3,9,6)
 count &lt;- 0
-for(val in x) {
+for (val in x) {
   if(val %% 2 == 0) {
     count = count+1
   }
@@ -574,327 +475,48 @@ For loops are often used to loop over a dataset. We will use loops to perform fu
 ```R
 data(CO2) # This loads the built in dataset
 
-for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
+for (i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   print(CO2$conc[i]) # print the CO2 concentration
 }
-```
---
 
-.small[
-First 40 outputs:
-.pull-left[.pull-left[
-
-```
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-```
-]
-
-.pull-right[
-
-```
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-```
-]
-]
-
-.pull-right[.pull-left[
-
-```
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-```
-]
-
-.pull-right[
-
-```
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-```
-]
-]
-]
-
----
-# `for` loop
-
-Another example:
-
-```R
-for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
+for (i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
     print(CO2$conc[i]) # print the CO2 concentration
     }
 }
 ```
---
-
-.small[
-Outputs:
-.pull-left[.pull-left[
-
-```
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-```
-]
-
-.pull-right[
-
-```
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-```
-]
-]
-
-.pull-right[.pull-left[
-
-```
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-```
-]
-
-.pull-right[
-
-```
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-```
-]
-]
-]
 
 ---
 # `for` loop
 
-.pull-left[
-
-.alert[Tip 1]. To loop over the number of rows of a data frame,
-we can use the function `nrow()`.
-
-&lt;br&gt;
+.alert[Tip 1]. To loop over the number of rows of a data frame, we can use the function `nrow()`
 
 ```r
-for(i in 1:nrow(CO2)) {
-      # for each row in
-      # the CO2 dataset
-  print(CO2$conc[i])
-      # print the CO2
-      # concentration
+for (i in 1:nrow(CO2)) { # for each row in the CO2 dataset
+  print(CO2$conc[i]) # print the CO2 concentration
 }
 ```
-]
 
-.small[
-.pull-right[.pull-left[
-
-```
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-```
-]
-.pull-right[
-
-```
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-```
-]
-]
-]
----
-# `for` loop
-
-.pull-left[
-
-.alert[Tip 2]. To perform operations on the elements of one column, we can directly iterate over it.
-
-&lt;br&gt;
+.alert[Tip 2]. If we want to perform operations on the elements of one column, we can directly iterate over it
 
 ```r
-for(p in CO2$conc) {
-      # for each element of
-      # the column "conc" of
-      # the CO2 df
-  print(p)
-      # print the p-th element
+for (p in CO2$conc) { # for each element of the column "conc" of the CO2 df
+  print(p) # print the p-th element
 }
 ```
-]
 
-.small[
-.pull-right[.pull-left[
-
-```
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-```
-]
-.pull-right[
-
-```
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-# [1] 675
-# [1] 1000
-# [1] 95
-# [1] 175
-# [1] 250
-# [1] 350
-# [1] 500
-```
-]
-]
-]
 ---
 # `for` loop
 
 The expression within the loop can be almost anything and is usually a compound statement containing many commands.
 
-&lt;br&gt;
-
 ```r
-for(i in 4:5) { # for i in 4 to 5
+for (i in 4:5) { # for i in 4 to 5
   print(colnames(CO2)[i])
   print(mean(CO2[,i])) # print the mean of that column from the CO2 dataset
 }
 ```
-&lt;br&gt;
+
 Output:
 
 ```
@@ -907,13 +529,11 @@ Output:
 # `for` loops within `for` loops
 
 In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
-
-&lt;br&gt;
 .pull-left[
 ```r
-for(i in 1:3) {
-  for(n in 1:3) {
-    print(i*n)
+for (i in 1:3) {
+  for (n in 1:3) {
+    print (i*n)
   }
 }
 ```
@@ -935,13 +555,11 @@ for(i in 1:3) {
 ]
 
 ---
-# Getting good: Using the `apply()` family
+# Getting good: using the `apply()` family
 
 R disposes of the `apply()` function family, which consists of vectorized functions that aim at **minimizing your need to explicitly create loops**.
 
 `apply()` can be used to apply functions to a matrix.
-
-&lt;br&gt;
 .pull-left[
 
 ```r
@@ -970,9 +588,6 @@ apply(X = height,
 ```
 ]
 
-???
-
-While it is important to cover the `apply()` function family slides, the presenter should consider passing over them more quickly to ensure there is enough time left for more important sections (i.e. The rest of control flow components, writing functions section, as well as the exercises).
 ---
 # `lapply()`
 
@@ -982,7 +597,6 @@ It may be used for other objects like **dataframes**, **lists** or **vectors**.
 
 The output returned is a `list` (explaining the “`l`” in `lapply`) and has the same number of elements as the object passed to it.
 
-&lt;br&gt;
 .pull-left[
 
 ```r
@@ -1005,13 +619,13 @@ lapply(SimulatedData, mean)
 # [1] 2.5
 # 
 # $Norm10
-# [1] 0.3604047
+# [1] 0.1784198
 # 
 # $Norm20
-# [1] 0.8656688
+# [1] 0.8261701
 # 
 # $Norm100
-# [1] 4.909377
+# [1] 5.005759
 ```
 ]
 ]
@@ -1019,9 +633,11 @@ lapply(SimulatedData, mean)
 ---
 # `sapply()`
 
-`sapply()` is a ‘wrapper’ function for `lapply()`, but returns a simplified output as a `vector`, instead of a `list`.
+`sapply()` sapply() is a ‘wrapper’ function for `lapply()`, but returns a simplified output as a `vector`, instead of a `list`.
 
-&lt;br&gt;
+
+The output returned is a `list` (explaining the “`l`” in `lapply`) and has the same number of elements as the object passed to it.
+
 .small[
 
 ```r
@@ -1035,7 +651,7 @@ SimulatedData &lt;- list(SimpleSequence = 1:4,
 # Apply mean to each element of the list
 sapply(SimulatedData, mean)
 # SimpleSequence         Norm10         Norm20        Norm100 
-#       2.500000       0.446146       1.194190       4.909912
+#      2.5000000     -0.2760434      0.8968313      4.8576007
 ```
 ]
 
@@ -1046,7 +662,7 @@ sapply(SimulatedData, mean)
 
 It will apply a given function to the first element of each argument first, followed by the second element, and so on. For example:
 
-&lt;br&gt;
+
 
 ```r
 lilySeeds &lt;- c(80, 65, 89, 23, 21)
@@ -1064,9 +680,8 @@ mapply(sum, lilySeeds, poppySeeds)
 
 `tapply()` is used to apply a function over subsets of a vector.
 
-It is primarily used when the dataset contains different groups &lt;br&gt; (*i*.*e*. levels/factors), and we want to apply a function to each of these groups.
+It is primarily used when the dataset contains  dataset contains different groups (*i*.*e*. levels/factors) and we want to apply a function to each of these groups.
 
-&lt;br&gt;
 
 ```r
 head(mtcars)
@@ -1095,25 +710,23 @@ You have realized that your tool for measuring uptake was not calibrated properl
 
 2. Use a vectorisation-based method to calculate the mean CO2-uptake in both areas.
 
-For this, you will have to load the `\(CO_{2}\)` dataset using `data(CO2)`, and then use the object `CO2`.
+For this, you will have to load the CO2 dataset using `data(CO2)`, and then use the object `CO2`.
 
 ---
 # Challenge 2: Solution ![:cube]()
 
 
-1.Using `for` and `if` to correct the measurements:
+1. Using `for` and `if` to correct the measurements:
 
 ```r
-for(i in 1:dim(CO2)[1]) {
+for (i in 1:dim(CO2)[1]) {
   if(CO2$Type[i] == "Quebec") {
     CO2$uptake[i] &lt;- CO2$uptake[i] - 2
   }
 }
 ```
---
-&lt;br&gt;
 
-2.Using `tapply()` to calculate the mean for each group:
+2. Using `tapply()` to calculate the mean for each group:
 
 ```r
 tapply(CO2$uptake, CO2$Type, mean)
@@ -1134,35 +747,7 @@ You may also want R to jump certain elements when certain conditions are met.
 For this, we will introduce `break`, `next` and `while`.
 
 ---
-# Control flow roadmap
-
-&lt;br&gt;
-&lt;br&gt;
-
-.center[
-
-
-**`if` and `if` `else` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`for` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-.alert[**`break` and `next` statements**] &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`repeat` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`while` loop**
-
-]
----
-# Modifying iterations: `break` statement
+# Modifying iterations: `break`
 
 ```r
 for(val in x) {
@@ -1174,7 +759,7 @@ for(val in x) {
 ![](images/break.png)
 
 ---
-# Modifying iterations: `next` statement
+# Modifying iterations: `next`
 
 ```r
 for(val in x) {
@@ -1186,7 +771,7 @@ for(val in x) {
 ![](images/next.png)
 
 ---
-# Modifying iterations: `next` statement
+# Modifying iterations: `next`
 
 Print the `\(CO_{2}\)` concentrations for "chilled" treatments and keep count of how many replications were done.
 
@@ -1194,8 +779,8 @@ Print the `\(CO_{2}\)` concentrations for "chilled" treatments and keep count of
 ```r
 count &lt;- 0
 
-for(i in 1:nrow(CO2)) {
-  if(CO2$Treatment[i] == "nonchilled") next
+for (i in 1:nrow(CO2)) {
+  if (CO2$Treatment[i] == "nonchilled") next
   # Skip to next iteration if treatment is nonchilled
   count &lt;- count + 1
 #  print(CO2$conc[i])
@@ -1215,35 +800,7 @@ sum(CO2$Treatment == "nonchilled")
 ```
 
 ---
-# Control flow roadmap
-
-&lt;br&gt;
-&lt;br&gt;
-
-.center[
-
-
-**`if` and `if` `else` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`for` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`break` and `next` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-.alert[**`repeat` loop**] &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`while` loop**
-
-]
----
-# Modifying iterations: `repeat` loop
+# Modifying iterations: `break`
 
 This could be equivalently written using a `repeat` loop and `break`:
 
@@ -1253,44 +810,16 @@ count &lt;- 0
 i &lt;- 0
 repeat {
       i &lt;- i + 1
-      if(CO2$Treatment[i] == "nonchilled") next  # skip this loop
+      if (CO2$Treatment[i] == "nonchilled") next  # skip this loop
       count &lt;- count + 1
       print(CO2$conc[i])
-      if(i == nrow(CO2)) break     # stop looping
+      if (i == nrow(CO2)) break     # stop looping
     }
 print(count)
 ```
 
 ---
-# Control flow roadmap
-
-&lt;br&gt;
-&lt;br&gt;
-
-.center[
-
-
-**`if` and `if` `else` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`for` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`break` and `next` statements** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-**`repeat` loop** &lt;br&gt;
-
-![:faic](arrow-down) &lt;br&gt;
-
-.alert[**`while` loop**]
-
-]
----
-# Modifying iterations: `while` loop
+# Modifying iterations: `while`
 
 This could also be written using a `while` loop:
 
@@ -1298,10 +827,10 @@ This could also be written using a `while` loop:
 ```r
 i &lt;- 0
 count &lt;- 0
-while(i &lt; nrow(CO2))
+while (i &lt; nrow(CO2))
 {
   i &lt;- i + 1
-  if(CO2$Treatment[i] == "nonchilled") next  # skip this loop
+  if (CO2$Treatment[i] == "nonchilled") next  # skip this loop
   count &lt;- count + 1
   print(CO2$conc[i])
 }
@@ -1313,11 +842,9 @@ print(count)
 
 You have realized that your tool for measuring concentration did not work properly.
 
-At **Mississippi** sites, **concentrations** less than 300 were measured correctly, but concentrations equal or higher than 300 were overestimated by 20 units!
+At Mississippi sites, concentrations less than 300 were measured correctly, but concentrations equal or higher than 300 were overestimated by 20 units!
 
 Your *mission* is to use a loop to correct these measurements for all Mississippi sites.
-
-&lt;br&gt;
 
 .alert[Tip]. Make sure you reload the data so that we are working with the raw data for the rest of the exercise:
 
@@ -1332,20 +859,17 @@ data(CO2)
 
 
 ```r
-for(i in 1:nrow(CO2)) {
+for (i in 1:nrow(CO2)) {
   if(CO2$Type[i] == "Mississippi") {
     if(CO2$conc[i] &lt; 300) next
     CO2$conc[i] &lt;- CO2$conc[i] - 20
   }
 }
 ```
---
-&lt;br&gt;
-
 .comment[Note: We could also have written it in this way, which is more concise and clear:]
 
 ```r
-for(i in 1:nrow(CO2)) {
+for (i in 1:nrow(CO2)) {
   if(CO2$Type[i] == "Mississippi" &amp;&amp; CO2$conc[i] &gt;= 300) {
     CO2$conc[i] &lt;- CO2$conc[i] - 20
   }
@@ -1363,17 +887,17 @@ Let's plot **uptake** vs **concentration** with points of different colors accor
 plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
      xlab = "CO2 concentration", ylab = "CO2 uptake")
 # Type "n" tells R to not actually plot the points.
-for(i in 1:length(CO2[,1])) {
-  if(CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "nonchilled") {
+for (i in 1:length(CO2[,1])) {
+  if (CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "nonchilled") {
     points(CO2$conc[i], CO2$uptake[i], col = "red")
   }
-  if(CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "chilled") {
+  if (CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "chilled") {
     points(CO2$conc[i], CO2$uptake[i], col = "blue")
   }
-  if(CO2$Type[i] == "Mississippi" &amp; CO2$Treatment[i] == "nonchilled") {
+  if (CO2$Type[i] == "Mississippi" &amp; CO2$Treatment[i] == "nonchilled") {
     points(CO2$conc[i], CO2$uptake[i], col = "orange")
   }
-  if(CO2$Type[i] == "Mississippi" &amp; CO2$Treatment[i] == "chilled") {
+  if (CO2$Type[i] == "Mississippi" &amp; CO2$Treatment[i] == "chilled") {
     points(CO2$conc[i], CO2$uptake[i], col = "green")
   }
 }
@@ -1381,22 +905,21 @@ for(i in 1:length(CO2[,1])) {
 ]
 
 ---
-# Edit a plot using `for` and `if`
-&lt;br&gt;
-Plotting uptake vs concentration using `for` loop and `if`.
+# Challenge 4 ![:cube]()
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-52-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+Create a plot using `for` loop and `if`
+
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-40-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
 # Challenge 4![:cube]()
 &lt;br&gt;
-Generate a plot showing **concentration** versus **uptake** where each plant is shown using a different .alert[colour] point.
-
 &lt;br&gt;
+
+Generate a plot showing **concentration versus uptake** where each plant is shown using a different .alert[colour] point.
 
 .alert[Bonus points] for doing it with nested loops!
-
-&lt;br&gt;
 
 .comment[Steps: &lt;br&gt;
 1. Create an empty plot &lt;br&gt;
@@ -1414,14 +937,14 @@ plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
 
 plants &lt;- unique(CO2$Plant)
 
-for(i in 1:nrow(CO2)){
-  for(p in 1:length(plants)) {
-    if(CO2$Plant[i] == plants[p]) {
+for (i in 1:nrow(CO2)){
+  for (p in 1:length(plants)) {
+    if (CO2$Plant[i] == plants[p]) {
       points(CO2$conc[i], CO2$uptake[i], col = p)
 }}}
 ```
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-53-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-41-1.png" width="432" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1432,14 +955,11 @@ class: inverse, center, middle
 ---
 # Why write functions?
 
-Much of the heavy lifting in R is done by functions.
-
-&lt;br&gt;
-They are useful for:
+Much of the heavy lifting in R is done by functions. They are useful for:
 
 1. Performing a task repeatedly, but configurably;
-2. Making code more readable;
-3. Making code easier to modify and maintain;
+2. Making your code more readable;
+3. Make your code easier to modify and maintain;
 4. Sharing code between different analyses;
 5. Sharing code with other people;
 6. Modifying R’s built-in functionality.
@@ -1510,35 +1030,22 @@ print_animal(Paws)
 # [1] "meow"
 ```
 
+
 ---
 # Challenge 5: Solution ![:cube]()
-
-Using what you learned previously on flow control, create a function `print_animal` that takes an `animal` as argument and gives the following results:
-
-
-
-
-```r
-Scruffy &lt;- "dog"
-Paws &lt;- "cat"
-
-print_animal(Scruffy)
-# [1] "woof"
-
-print_animal(Paws)
-# [1] "meow"
-```
-
+&lt;br&gt;
+&lt;br&gt;
 
 ```r
 print_animal &lt;- function(animal) {
-  if(animal == "dog") {
+  if (animal == "dog") {
     print("woof")
-  } else if(animal == "cat") {
+  } else if (animal == "cat") {
     print("meow")
   }
 }
 ```
+
 ---
 # Default values in a function
 
@@ -1570,10 +1077,10 @@ The special argument `...` allows you to pass on arguments to another function u
 ```r
 plot.CO2 &lt;- function(CO2, ...) {
 * plot(x=CO2$conc, y=CO2$uptake, type="n", ...)
-  for(i in 1:length(CO2[,1])){
-     if(CO2$Type[i] == "Quebec") {
+  for (i in 1:length(CO2[,1])){
+     if (CO2$Type[i] == "Quebec") {
 *      points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
-     } else if(CO2$Type[i] == "Mississippi") {
+     } else if (CO2$Type[i] == "Mississippi") {
 *      points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
      }
   }
@@ -1588,26 +1095,22 @@ plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 
 The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
 
-&lt;br&gt;
-
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-62-1.png" width="720" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-48-1.png" width="720" style="display: block; margin: auto;" /&gt;
 
 ---
 # Argument `...`
 
 The special argument `...` allows you to input an indefinite number of arguments.
 
-&lt;br&gt;
-
 
 ```r
-sum2 &lt;- function(...) {
+sum2 &lt;- function(...){
 * args &lt;- list(...)
   result &lt;- 0
-  for(i in args) {
+  for (i in args)  {
     result &lt;- result + i
   }
-  return(result)
+  return (result)
 }
 
 sum2(2, 3)
@@ -1624,7 +1127,7 @@ The last expression evaluated in a `function` becomes the return value.
 
 ```r
 myfun &lt;- function(x) {
-  if(x &lt; 10) {
+  if (x &lt; 10) {
     0
   } else {
     10
@@ -1648,12 +1151,11 @@ It can be useful to explicitly `return()` if the routine should end early, jump 
 
 ```r
 simplefun1 &lt;- function(x) {
-  if(x&lt;0)
+  if (x&lt;0)
   return(x)
 }
 ```
 
-&lt;br&gt;
 Functions can return only a single object (and text). But this is not a limitation because you can return a `list` containing any number of objects.
 
 .pull-left[
@@ -1694,6 +1196,7 @@ simplefun2(1, 2)
 ---
 # Challenge 6 ![:cube]()
 
+&lt;br&gt;
 Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
 
 1. Returns 0 if the sum of `a` and `b` is strictly less than 50;
@@ -1702,22 +1205,17 @@ Using what you have just learned on functions and control flow, create a functio
 ---
 # Challenge 6: Solution ![:cube]()
 
-Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
-
-1. Returns 0 if the sum of `a` and `b` is strictly less than 50;
-2. Else, returns the sum of `a` and `b`.
-
-&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 
 .pull-left[
 **Answer 1**
 ```r
 bigsum &lt;- function(a, b) {
   result &lt;- a + b
-  if(result &lt; 50) {
+  if (result &lt; 50) {
     return(0)
   } else {
-    return(result)
+    return (result)
   }
 }
 ```
@@ -1728,7 +1226,7 @@ bigsum &lt;- function(a, b) {
 ```r
 bigsum &lt;- function(a, b) {
   result &lt;- a + b
-  if(result &lt; 50) {
+  if (result &lt; 50) {
   0
   } else {
   result
@@ -1808,7 +1306,7 @@ var1          # var1 still has the same value
 
 ```r
 a &lt;- 3
-if(a &gt; 5) {
+if (a &gt; 5) {
   b &lt;- 2
 }
 
@@ -1836,34 +1334,30 @@ class: inverse, center, middle
 ---
 # Why should I care about programming practices?
 
-&lt;br&gt;
-
 - To make your life easier;
 - To achieve greater readability and makes sharing and reusing your code a lot less painful;
 - To reduce the time you will spend to understand your code.
 
-&lt;br&gt;
-.center[.large[**Pay attention to the next tips!**]]
+.center[.large[Pay attention to the next tips!]]
 ---
 # Keep a clean and nice code
 
 Proper indentation and spacing is the first step to get an easy to read code:
 
 - Use **spaces** between and after you operators;
-- Use consistently the same assignation operator. `&lt;-` is often preferred. `=` is OK, but do not switch all the time between the two;
+- Use consistentely the same assignation operator. `&lt;-` is often preferred. `=` is OK, but do not switch all the time between the two;
 - Use brackets when using flow control statements:
 &lt;br&gt;
   - Inside brackets, indent by *at least* two spaces;
   - Put closing brackets on a separate line, except when preceding an `else` statement.
   &lt;br&gt;
 - Define each variable on its own line.
-- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
+
+
 ---
 # Keep a clean and nice code
 
 On the left, code is not spaced. All brackets are in the same line, and it looks "messy".
-
-&lt;br&gt;
 
 .small[
 .pull-left[
@@ -1879,9 +1373,6 @@ if(b==0){print("b zero")}else print(b)}
 # Keep a clean and nice code
 
 On the left, code is not spaced. All brackets are in the same line, and it looks "messy". On the right, it looks more organized, no?
-
-&lt;br&gt;
-
 .small[
 .pull-left[
 ```r
@@ -1895,12 +1386,12 @@ if(b==0){print("b zero")}else print(b)}
 ```r
 a &lt;- 4
 b &lt;- 3
-if(a &lt; b) {
+if(a &lt; b){
   if(a == 0) {
     print("a zero")
   }
 } else {
-  if(b == 0) {
+  if(b == 0){
     print("b zero")
   } else {
     print(b)
@@ -1927,12 +1418,12 @@ Let's modify the example from **Challenge #3** and suppose that all `\(CO_2\)` u
  We could write this:
 &lt;br&gt;
 ```r
-for(i in 1:length(CO2[,1])) {
+for (i in 1:length(CO2[,1])) {
   if(CO2$Type[i] == "Mississippi") {
     CO2$conc[i] &lt;- CO2$conc[i] - 20
   }
 }
-for(i in 1:length(CO2[,1])) {
+for (i in 1:length(CO2[,1])) {
   if(CO2$Type[i] == "Quebec") {
     CO2$conc[i] &lt;- CO2$conc[i] + 50
   }
@@ -1944,8 +1435,8 @@ for(i in 1:length(CO2[,1])) {
 Or this:
 
 ```r
-recalibrate &lt;- function(CO2, type, bias) {
-  for(i in 1:nrow(CO2)) {
+recalibrate &lt;- function(CO2, type, bias){
+  for (i in 1:nrow(CO2)) {
     if(CO2$Type[i] == type) {
       CO2$conc[i] &lt;- CO2$conc[i] + bias
     }
@@ -1966,17 +1457,16 @@ newCO2 &lt;- recalibrate(newCO2, "Quebec", +50)
 ---
 # Use meaningful names for functions
 
-Same function as before, but with vague names:
-
+Same function as before, but with vague names.
 .pull-left[
 ```r
 rc &lt;- function(c, t, b) {
-  for(i in 1:nrow(c)) {
+  for (i in 1:nrow(c)) {
     if(c$Type[i] == t) {
       c$uptake[i] &lt;- c$uptake[i] + b
     }
   }
-  return(c)
+  return (c)
 }
 ```
 ]
@@ -1996,15 +1486,15 @@ rc &lt;- function(c, t, b) {
 .small[
 ```r
 # Recalibrates the CO2 dataset by modifying the CO2 uptake concentration
-# by a fixed amount depending on the region of sampling.
+# by a fixed amount depending on the region of sampling
 
 # Arguments
 # CO2: the CO2 dataset
-# type: the type ("Mississippi" or "Quebec") that need to be recalibrated
+# type: the type ("Mississippi" or "Quebec") that need to be recalibrated.
 # bias: the amount to add or remove to the concentration uptake
 
 recalibrate &lt;- function(CO2, type, bias) {
-  for(i in 1:nrow(CO2)) {
+  for (i in 1:nrow(CO2)) {
     if(CO2$Type[i] == type) {
       CO2$uptake[i] &lt;- CO2$uptake[i] + bias
     }
@@ -2014,56 +1504,6 @@ recalibrate &lt;- function(CO2, type, bias) {
 ```
 ]
 
----
-# Group exercise
-
-Using what you learned, write an `if` statement that tests whether a numeric variable `x` is zero. If not, it assigns cos(x)/x to `z`, otherwise it assigns 1 to `z`.
-&lt;br&gt;
-
-Create a function called my_function that takes the variable `x` as argument and returns `z`.
-&lt;br&gt;
-
-If we assign 45, 20, and 0 to `x` respectively, which of the following options would represent the results?
-
-&lt;br&gt;
-
-**1.** 0.54 - 0.12 - 0 &lt;br&gt;
-&lt;br&gt;
-**2.** 0.20 - 0.54 - 1 &lt;br&gt;
-&lt;br&gt;
-**3.** 0.12 - 0.20 - 1 &lt;br&gt;
-
-???
-
-This exercise should take place in breakout rooms within 10 minutes. After rejoining the main room, a poll should be opened to participants. Once you obtain the response from participants, show them the correct answer and code. You may request that one of the participants explain their answer before showing the results.
----
-# Group exercise: Solution ![:cube]()
-
-Correct answer is option 3 (0.12 - 0.20 - 1).
-
-&lt;br&gt;
-
-
-```r
-my_function &lt;- function(x) {
-  if(x != 0) {
-  z &lt;- cos(x)/x
-  } else { z &lt;- 1 }
-  return(z)
-}
-```
-
-
-```r
-my_function(45)
-# [1] 0.01167382
-
-my_function(20)
-# [1] 0.0204041
-
-my_function(0)
-# [1] 1
-```
 ---
 class: inverse, center, bottom
 
@@ -2118,20 +1558,30 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })();
 (function() {
   "use strict"
-  // Replace <script> tags in slides area to make them executable
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
   var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
   );
   if (!scripts.length) return;
   for (var i = 0; i < scripts.length; i++) {
     var s = document.createElement('script');
     var code = document.createTextNode(scripts[i].textContent);
     s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
     scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
   }
 })();
 (function() {
