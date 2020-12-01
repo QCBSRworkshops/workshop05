@@ -15,3 +15,8 @@ body {
 .remark-code, .remark-inline-code {
     font-family: "Fira Code", monospace;
 }
+
+/* To prevent ligatures within the assign operator */
+.remark-code, .remark-inline-code {
+    font-family: 'Fira Mono', 'Source Code Pro', monospace;
+}

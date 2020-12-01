@@ -1616,7 +1616,7 @@ for (i in 1:length(CO2[,1])) {
 ```
 
 ---
-# Challenge 4![:cube]()
+# Challenge 4 ![:cube]()
 <br>
 Generate a plot showing **concentration** *versus* **uptake** where each plant is shown using a point with a different $\color{red}{\text{co}}\color{blue}{\text{lo}}\color{green}{\text{ur}}$.
 
@@ -2245,7 +2245,7 @@ This would also reduce the number of potential errors done by copy-pasting, and 
 ---
 # Use functions to simplify your code
 
-Let's modify the example from **Challenge #3** and suppose that all $CO_2$ uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.
+Let's modify the example from **Challenge 3** and suppose that all $CO_2$ uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.
 .small[ .pull-left[
  We could write this:
 <br>
@@ -2280,7 +2280,9 @@ recalibrate <- function(CO2, type, bias) {
 ]
 .xsmall[
 ```{r eval = FALSE}
-newCO2 <- recalibrate(CO2 = CO2, type = "Mississipi", bias = -20)
+newCO2 <- recalibrate(CO2 = CO2, 
+                      type = "Mississipi", 
+                      bias = -20)
 newCO2 <- recalibrate(newCO2, "Quebec", +50)
 ```
 ]
