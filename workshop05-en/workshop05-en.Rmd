@@ -27,6 +27,9 @@ knitr::opts_chunk$set(
   fig.align = 'center'
 )
 options(repos=structure(c(CRAN="http://cran.r-project.org")))
+
+if (!require("DiagrammeR")) install.packages("DiagrammeR")
+library(DiagrammeR)
 ```
 
 class: inverse, center, middle
