@@ -4,6 +4,7 @@
     <title>Workshop 5: Programming in R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Québec Centre for Biodiversity Science" />
+    <script src="assets/header-attrs-2.5/header-attrs.js"></script>
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
     <script src="assets/htmlwidgets-1.5.2/htmlwidgets.js"></script>
     <script src="assets/viz-1.8.2/viz.js"></script>
@@ -38,9 +39,9 @@ class: inverse, center, middle
 # Learning Objectives
 
 ##### 1. Recognizing **control flow**
-##### 2. Developing your first functions in R
+##### 2. Developing your first functions in `R`
 ##### 3. Accelerating your code
-##### 4. Demonstrating useful R packages for biologists
+##### 4. Demonstrating useful `R` packages for biologists
 
 ---
 class: inverse, center, middle
@@ -53,24 +54,52 @@ class: inverse, center, middle
 ![:scale 90%](images/matrix.png)
 
 ---
-# Vectors
+# Review: Vectors
 
-Numeric vectors
+&lt;br&gt;
+
+.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)?]
+
+&lt;br&gt;
+
+.pull-left[
+##### Numeric vectors 
 
 
 ```r
-  num.vector &lt;- c(1, 4, 3, 98, 32, -76, -4)
-```
-
-```r
+  num.vector &lt;- c(1, 4, 3, 
+                  9, 32, -4)
   num.vector
-# [1]   1   4   3  98  32 -76  -4
+# [1]  1  4  3  9 32 -4
 ```
+]
+.pull-right[
+##### Character vector
+
+
+```r
+char_vector &lt;- c("blue", 
+                 "red", 
+                 "green")
+char_vector
+# [1] "blue"  "red"   "green"
+```
+]
+
+##### Logical vector
+
+
+```r
+bool_vector &lt;- c(TRUE, TRUE, FALSE) # or c(T, T, F)
+bool_vector
+# [1]  TRUE  TRUE FALSE
+```
+
 
 ---
-# Data frames
+# Review: Data frames
 
-vectors
+We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
 
 
 ```r
@@ -80,7 +109,8 @@ vectors
   treatment &lt;- c("Fert", "Fert", "No_fert", "No_fert")
 ```
 
-We then combine them using the function `data.frame`.
+&lt;br&gt;
+We then combine them using the function `data.frame()`.
 
 
 ```r
@@ -98,6 +128,8 @@ We then combine them using the function `data.frame`.
 
 ---
 # Lists
+
+We can also create lists by combining the vectors we created before.
 
 
 ```r
@@ -134,6 +166,8 @@ Program flow control can be simply defined as the order in which a program is ex
 
 #### Why is it advantageous to have structured programs?
 
+&lt;br&gt;
+
 - It **decreases the complexity** and time of the task at hand;
 - This logical structure also means that the code has **increased clarity**;
 - It also means that **many programmers can work on one program**.
@@ -145,15 +179,15 @@ Program flow control can be simply defined as the order in which a program is ex
 ---
 # Control flow
 
-Flowcharts can be used to plan programs and represent their structure.
+**Flowcharts** can be used to plan programs and represent their structure.
 
 &lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
 
 &lt;center&gt;
-<div id="htmlwidget-464590e89f35eea0f8fd" style="width:95%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-464590e89f35eea0f8fd">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\nprogram\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Process\n(operations carried out\ne.g. data manipulation)\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Decision\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"End\nprogram\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n\"2\"->\"3\" [label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"2\" [label = \"Boolean choice:\nTrue or False\", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b2f2b065cf16b12b15b1" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b2f2b065cf16b12b15b1">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\nprogram\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Process\n(operations carried out\ne.g. data manipulation)\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Decision\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"End\nprogram\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [tailport = \"e\", headport = \"w\", label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n\"2\"->\"3\" [tailport = \"e\", headport = \"w\", label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"2\" [tailport = \"s\", headport = \"s\", label = \"Boolean choice:\nTRUE or FALSE\", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"4\" [tailport = \"e\", headport = \"w\", label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
@@ -161,7 +195,6 @@ Flowcharts can be used to plan programs and represent their structure.
 
 The two basic building blocks of codes are the following:
 
-&lt;br&gt;
 
 .pull-left[
 
@@ -188,6 +221,16 @@ while() {}
 repeat {}
 ```
 ]
+
+Selection and iterative statements can also be controlled by termination and jump statements:
+
+#### Termination and Jump
+
+```r
+break
+next
+```
+
 
 ---
 # Control flow roadmap
@@ -226,7 +269,7 @@ This roadmap appears at the beginning of each control flow tool to let participa
 
 .pull-left[
 
-**`if` statement**
+**`if()` statement**
 
 ```R
 if(condition) {
@@ -235,8 +278,8 @@ if(condition) {
 ```
 &lt;center&gt;
 
-<div id="htmlwidget-89c414816eb83f67f29e" style="width:45%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-89c414816eb83f67f29e">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"3\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"4\" [label = \"  If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f987f066f17b55003f03" style="width:45%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f987f066f17b55003f03">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"3\" [label = \"  if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 ]
 
@@ -244,7 +287,7 @@ if(condition) {
 
 .pull-right[
 
-**`if` `else` statement**
+**`if()` `else` statement**
 
 ```r
 if(condition) {
@@ -254,8 +297,8 @@ if(condition) {
 }
 ```
 &lt;center&gt;
-<div id="htmlwidget-b04038e8ab27b1fdbcbc" style="width:50%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b04038e8ab27b1fdbcbc">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"3\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"5\" [label = \"  If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"5\"->\"4\" [decorate = \"TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b853a07d12157b5d18c9" style="width:50%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b853a07d12157b5d18c9">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"5\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"5\"->\"4\" [decorate = \"TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 &lt;/center&gt;
 ]
@@ -265,29 +308,51 @@ if(condition) {
 
 &lt;br&gt;
 
-- `if` and `if` `else` test a single condition.
-- You can also use `ifelse()` function to:
+- `if()` and `if()` `else` test a single condition.
+- You can also use the `ifelse()` function to:
     - test a vector of conditions;
     - apply a function only under certain conditions.
 
 &lt;br&gt;
+.pull-left[
 
 ```r
 a &lt;- 1:10
-ifelse(test = a &gt; 5, yes = "yes", no = "no")
 
-a &lt;- (-4):5
-sqrt(ifelse(test = a &gt;= 0, yes = a, no = NA))
+ifelse(test = a &gt; 5, 
+       yes = "yes", 
+       no = "no")
+#  [1] "no"  "no"  "no"  "no" 
+#  [5] "no"  "yes" "yes" "yes"
+#  [9] "yes" "yes"
 ```
+]
 
+.pull-right[
+
+```r
+a &lt;- (-4):5
+
+sqrt(ifelse(test = a &gt;= 0, 
+            yes = a,
+            no = NA)
+     )
+#  [1]       NA       NA
+#  [3]       NA       NA
+#  [5] 0.000000 1.000000
+#  [7] 1.414214 1.732051
+#  [9] 2.000000 2.236068
+```
+]
 ---
-# Nested `if` `else` statement
+# Nested `if()` `else` statement
 
-While the `if` and `if` `else` statements leave you with exactly two options, nested `if` `else` statement allows you consider more alternatives.
+While the `if()` and `if()` `else` statements leave you with exactly two options, nested `if()` `else` statement allows you consider more alternatives.
 
 
 .pull-left[
 .small[
+
 ```r
 if(test_expression1) {
 statement1
@@ -303,26 +368,42 @@ statement4
 ]
 .pull-right[
 &lt;center&gt;
-<div id="htmlwidget-67b90ae36b557d8ea899" style="width:75%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-67b90ae36b557d8ea899">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", group = \"a\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition 1\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Condition 2\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Condition 3\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 1\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Expression 2\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Expression 3\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"Expression 4\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \" \", group = \"a\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"sw\", headport = \"n\"] \n\"3\"->\"4\" [label = \" If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"3\"->\"6\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"sw\", headport = \"n\"] \n\"4\"->\"7\" [label = \" If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"4\"->\"8\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"6\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"7\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"8\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-14c3ff94c176864fdaf9" style="width:75%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-14c3ff94c176864fdaf9">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", group = \"a\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition 1\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Condition 2\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Condition 3\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 1\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Expression 2\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Expression 3\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"Expression 4\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \" \", group = \"a\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"sw\", headport = \"n\"] \n\"3\"->\"4\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"3\"->\"6\" [label = \"  if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"sw\", headport = \"n\"] \n\"4\"->\"7\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"4\"->\"8\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"6\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"7\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"8\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 ]
 ---
-# Beware of R’s expression parsing!
+# Beware of `R`’s expression parsing!
 
-Use curly brackets `{}` so that R knows to expect more input. Try:
+What do you think will happen if we try the code below?
+
+
+.pull-left[.small[
 
 ```r
-if(2+2) == 4 print("Arithmetic works.")
-else print("Houston, we have a problem.")
+if(2+2) == 4 
+print("Arithmetic works.")
+else 
+print("Houston, we have a problem.")
 ```
+]]
+
+--
+
+.pull-right[.small[
+
+```
+# Error: &lt;text&gt;:1:9: unexpected '=='
+# 1: if(2+2) ==
+#             ^
+```
+]]
+
+.center[.alert[This does not work because `R` evaluates the first line and does not know that you are going to use an `else` statement]]
+
 &lt;br&gt;
 
-.center[.alert[This doesn't work because R evaluates the first line and doesn't know that you are going to use an `else` statement]]
-
-&lt;br&gt;
-
-Instead use:
+Use curly brackets `{}` so that `R` knows to expect more input. Try:
 
 
 ```r
@@ -337,7 +418,7 @@ Instead use:
 ---
 # Challenge 1 ![:cube]()
 
-&lt;br&gt;
+Consider the following objects:
 
 
 ```r
@@ -349,14 +430,14 @@ animals &lt;- c(Paws, Scruffy, Sassy)
 
 &lt;br&gt;
 
-1. Use an `if` statement to print “meow” if `Paws` is a “cat”.
-2. Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
+2. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 3. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 ---
 # Challenge 1 - Solution ![:cube]()
 
-1.Use an `if` statement to print “meow” if `Paws` is a “cat”.
+1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
 
 
 ```r
@@ -366,7 +447,7 @@ if(Paws == 'cat') {
 # [1] "meow"
 ```
 
-2.Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+2\. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 
 
 ```r
@@ -383,7 +464,7 @@ if(x == 'cat') {
 ---
 # Challenge 1 - Solution ![:cube]()
 
-3.Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
+3\. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 
 ```r
@@ -393,7 +474,7 @@ ifelse(animals == 'dog', "woof", "meow")
 # [1] "meow" "woof" "meow"
 ```
 
-Or
+.center[Or]
 
 
 ```r
@@ -420,14 +501,14 @@ for(val in 1:3) {
 | Command | Meaning |
 | :-------------: | :-------------: |
 | `==`  | equal to  |
-| `!=`  | not x  |
+| `!=`  | not equal to  |
 | `&lt;`   | less than  |
 | `&lt;=`  | less than or equal to  |
 | `&gt;`   | greater than  |
 | `&gt;=`  | greater than or equal to  |
-| `x&amp;y` | x AND y |
-| `x`&amp;#124;`y`  | x OR y  |
-| `isTRUE(x)`  | test if X is true |
+| `x&amp;y` | `x` AND `y` |
+| `x`&amp;#124;`y`  | `x` OR `y`  |
+| `isTRUE(x)`  | test if `x` is true |
 
 
 ---
@@ -473,18 +554,18 @@ Loops are good for:
 
 ]
 ---
-# `for` loop
+# `for()` loop
 
-A `for` loop works in the following way:
+A `for()` loop works in the following way:
 
-```R
+```r
 for(i in sequence) {
   statement
   }
 ```
 &lt;center&gt;
-<div id="htmlwidget-831d4db2a4dab61d40c3" style="width:35%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-831d4db2a4dab61d40c3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Last item\nreached?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression\nFOR body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Exit\nLoop\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\"] \n\"2\"->\"3\" [label = \" If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\"] \n\"2\"->\"4\" [label = \"  If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\"] \n\"3\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5232b854b61f2cf32350" style="width:35%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5232b854b61f2cf32350">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Last item\nreached?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression\nfor \nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Exit\nLoop\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\"] \n\"2\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\"] \n\"2\"->\"4\" [label = \"  if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\"] \n\"3\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
@@ -509,34 +590,44 @@ for(element in elements) {
 }
 ```
 ---
-# `for` loop
+# `for()` loop
 
 &lt;br&gt;
 
 .pull-left[
-In the general example below, R would evaluate the expression 5 times by replacing `i` by numbers from 1 to 5.
+In the generic example below, `R` would execute the expression 5 times, each one of them by sequentially replacing `i` by numbers from 1 to 5:
 
 ```r
 for(i in 1:5) {
   expression
 }
 ```
+
+`expression` can be anything:
+
+```r
+print(i + 1)
+```
+```r
+vector.a[i] &lt;- 1 + i
+```
+```r
+matrix.b[i, 1] &lt;- matrix.a[i, 1] * 2
+```
+
 ]
 --
 .pull-right[
-Similarly, in the following example, every instance of `m` is being replaced by each number between `1:10`, until it reaches the last element of the sequence.
+In the following example, every instance of `m` is being replaced by each number between `1` and `7`, until it reaches the last element of the sequence:
+
 
 ```r
-for(m in 1:10) {
+for(m in 1:7) {
   print(m*2)
 }
 ```
-]
 
---
 .small[
-.pull-right[.pull-left[
-
 
 ```
 # [1] 2
@@ -544,48 +635,47 @@ for(m in 1:10) {
 # [1] 6
 # [1] 8
 # [1] 10
-```
-
-]
-.pull-right[
-
-```
 # [1] 12
 # [1] 14
-# [1] 16
-# [1] 18
-# [1] 20
 ```
 ]
 ]
-]
-
 ---
-# `for` loop
+# `for()` loop
 
 .small[
+.pull-left[
+Let us perform operations for even elements within `x` using the modulo operator (`%%`):
 ```r
-x &lt;- c(2,5,3,9,6)
+x &lt;- c(2, 5, 3, 9, 6)
 count &lt;- 0
+```
+]
+]
+.small[
+.pull-right[
+
+```r
 for(val in x) {
   if(val %% 2 == 0) {
-    count = count+1
+    count &lt;- count + 1
   }
 }
 print(count)
 ```
 ]
+]
 
 &lt;center&gt;
-<div id="htmlwidget-9322b7e9e8dcf83d1618" style="width:90%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9322b7e9e8dcf83d1618">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"x\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Last VAL\nin X?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is VAL even?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"count = count + 1\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Print\ncount\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" If False\nfor Xi\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"6\" [label = \"  If True,\nexit loop\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"w\"] \n\"3\"->\"4\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"5\" [label = \"If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"ne\", headport = \"w\"] \n\"4\"->\"5\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"s\"] \n\"5\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f67a71570d871a9e14b6" style="width:90%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f67a71570d871a9e14b6">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"x\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Last VAL\nin X?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is VAL even?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"count = count + 1\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"print\ncount\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\nfor X\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"6\" [label = \"  if TRUE,\nexit loop\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"w\"] \n\"3\"->\"4\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"5\" [label = \"if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"ne\", headport = \"w\"] \n\"4\"->\"5\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"s\"] \n\"5\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 
 ---
-# `for` loop
+# `for()` loop
 
-For loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in R.
+`for()` loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in `R`.
 
 ```R
 data(CO2) # This loads the built in dataset
@@ -666,11 +756,12 @@ First 40 outputs:
 ]
 
 ---
-# `for` loop
+# `for()` loop
 
 Another example:
 
-```R
+
+```r
 for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
     print(CO2$conc[i]) # print the CO2 concentration
@@ -751,7 +842,7 @@ Outputs:
 ]
 
 ---
-# `for` loop
+# `for()` loop
 
 .pull-left[
 
@@ -825,7 +916,7 @@ for(i in 1:nrow(CO2)) {
 ]
 ]
 ---
-# `for` loop
+# `for()` loop
 
 .pull-left[
 
@@ -898,7 +989,7 @@ for(p in CO2$conc) {
 ]
 ]
 ---
-# `for` loop
+# `for()` loop
 
 The expression within the loop can be almost anything and is usually a compound statement containing many commands.
 
@@ -915,12 +1006,12 @@ Output:
 
 ```
 # [1] "conc"
-# [1] 435
+# [1] 423.5714
 # [1] "uptake"
 # [1] 27.2131
 ```
 ---
-# `for` loops within `for` loops
+# `for()` loops within `for()` loops
 
 In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
 
@@ -953,17 +1044,22 @@ for(i in 1:3) {
 ---
 # Getting good: Using the `apply()` family
 
-R disposes of the `apply()` function family, which consists of vectorized functions that aim at **minimizing your need to explicitly create loops**.
+`R` disposes of the `apply()` function family, which consists of iterative functions that aim at **minimizing your need to explicitly create loops**.
+
+&lt;br&gt;
 
 `apply()` can be used to apply functions to a matrix.
 
-&lt;br&gt;
+.small[
 .pull-left[
 
 ```r
-(height &lt;- matrix(c(1:10, 21:30),
+height &lt;- matrix(c(1:10, 21:30),
                  nrow = 5,
-                 ncol = 4))
+                 ncol = 4)
+```
+
+```
 #      [,1] [,2] [,3] [,4]
 # [1,]    1    6   21   26
 # [2,]    2    7   22   27
@@ -971,6 +1067,7 @@ R disposes of the `apply()` function family, which consists of vectorized functi
 # [4,]    4    9   24   29
 # [5,]    5   10   25   30
 ```
+]
 ]
 .pull-right[
 
@@ -1006,7 +1103,8 @@ SimulatedData &lt;- list(
   SimpleSequence = 1:4,
   Norm10 = rnorm(10),
   Norm20 = rnorm(20, 1),
-  Norm100 = rnorm(100, 5))
+  Norm100 = rnorm(100, 5)
+  )
 
 # Apply mean to each element
 ## of the list
@@ -1021,13 +1119,13 @@ lapply(SimulatedData, mean)
 # [1] 2.5
 # 
 # $Norm10
-# [1] 0.2419621
+# [1] -0.4730575
 # 
 # $Norm20
-# [1] 0.786422
+# [1] 0.4475472
 # 
 # $Norm100
-# [1] 5.034983
+# [1] 4.858579
 ```
 ]
 ]
@@ -1050,8 +1148,10 @@ SimulatedData &lt;- list(SimpleSequence = 1:4,
 ```r
 # Apply mean to each element of the list
 sapply(SimulatedData, mean)
-# SimpleSequence         Norm10         Norm20        Norm100 
-#      2.5000000      0.3280119      0.6581171      5.0248381
+# SimpleSequence         Norm10 
+#      2.5000000     -0.1644058 
+#         Norm20        Norm100 
+#      1.5260823      4.8547577
 ```
 ]
 
@@ -1080,44 +1180,64 @@ mapply(sum, lilySeeds, poppySeeds)
 
 `tapply()` is used to apply a function over subsets of a vector.
 
-It is primarily used when the dataset contains different groups &lt;br&gt; (*i*.*e*. levels/factors), and we want to apply a function to each of these groups.
+It is primarily used when the dataset contains different groups &lt;br&gt; (*i*.*e*. levels or factors), and we want to apply a function to each of these groups.
 
 &lt;br&gt;
+.pull-left[
+.small[
 
 ```r
-head(mtcars)
-#                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-# Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-# Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-# Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-# Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-# Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-# Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+mtcars[1:10, c("hp", "cyl")]
+#                    hp cyl
+# Mazda RX4         110   6
+# Mazda RX4 Wag     110   6
+# Datsun 710         93   4
+# Hornet 4 Drive    110   6
+# Hornet Sportabout 175   8
+# Valiant           105   6
+# Duster 360        245   8
+# Merc 240D          62   4
+# Merc 230           95   4
+# Merc 280          123   6
 ```
+]
+]
+
+.pull-right[
+.small[
 
 ```r
-# get the mean hp by cylinder groups
-tapply(mtcars$hp, mtcars$cyl, FUN = mean)
+# mean hp by cylinder groups
+tapply(mtcars$hp, 
+       mtcars$cyl, 
+       FUN = mean)
 #         4         6         8 
 #  82.63636 122.28571 209.21429
 ```
-
+]
+]
 ---
 # Challenge 2 ![:cube]()
 
-You have realized that your tool for measuring uptake was not calibrated properly at Quebec sites and all measurements are 2 units higher than they should be.
+After coming back from the field, you have realized that your tool for measuring `\(\text{CO}_{2}\)` uptake was not calibrated properly at Quebec sites and all measurements are 2 units higher than they should be. 
 
-1. Use a loop to correct these measurements for all Quebec sites.
+Now, you must do the following:
 
-2. Use a vectorisation-based method to calculate the mean CO2-uptake in both areas.
+1. Use a loop to correct these measurements for all Quebec sites;
 
-For this, you will have to load the `\(CO_{2}\)` dataset using `data(CO2)`, and then use the object `CO2`.
+2. Use an `apply()` family function to calculate the average `\(\text{CO}_{2}\)` uptake in both Québec and Mississipi sampled sites.
+
+&gt; For this, you must load the `\(\text{CO}_{2}\)` dataset using `data(CO2)`, and then use the object `CO2`.
+
+&lt;br&gt;
+
+.center[Get your hands dirty!]
 
 ---
 # Challenge 2: Solution ![:cube]()
 
 
-1.Using `for` and `if` to correct the measurements:
+1.Using `for()` and `if()` to correct the measurements:
 
 ```r
 for(i in 1:dim(CO2)[1]) {
@@ -1143,9 +1263,9 @@ Normally, loops iterate over and over until they finish.
 
 Sometimes you may be interested in breaking this behaviour.
 
-For example, you may want to tell R to stop executing the iteration when it reaches a given element or condition.
+For example, you may want to tell `R` to stop executing the iteration when it reaches a given element or condition.
 
-You may also want R to jump certain elements when certain conditions are met.
+You may also want `R` to jump certain elements when certain conditions are met.
 
 For this, we will introduce `break`, `next` and `while`.
 
@@ -1189,8 +1309,8 @@ for(val in x) {
 &lt;br&gt;
 
 &lt;center&gt;
-<div id="htmlwidget-75e3052623c6f1b844ab" style="width:95%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-75e3052623c6f1b844ab">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Last VAL\nin X?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition true?\nBREAK\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Statement\nBody of FOR loop\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Exit\nLoop\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" If False\nfor Xi\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"se\", headport = \"nw\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"w\", headport = \"se\"] \n\"2\"->\"5\" [label = \"If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"ne\", headport = \"w\"] \n\"3\"->\"5\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-be88cd6716777e7db828" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be88cd6716777e7db828">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Reached last \nval in X?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition \nTRUE? \n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"statement\nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \" \", shape = \"circle\", style = \"invis\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\nfor x\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"n\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"w\", headport = \"s\"] \n\"2\"->\"5\" [label = \"if TRUE, then exit\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"5\" [label = \" if TRUE, then break\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
@@ -1204,14 +1324,14 @@ for(val in x) {
 ```
 &lt;br&gt;
 &lt;center&gt;
-<div id="htmlwidget-d8397b408e3d1ab538df" style="width:95%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d8397b408e3d1ab538df">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Last VAL\nin X?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition true?\nNEXT\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Statement\nBody of FOR loop\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Exit\nLoop\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" If False\nfor Xi\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  If False\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"nw\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n\"2\"->\"5\" [label = \"If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"ne\", headport = \"w\"] \n\"3\"->\"2\" [label = \" If True\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cc2f030df3a7b8bea64b" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc2f030df3a7b8bea64b">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Reached last \nval in X?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition \nTRUE?\n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"statement\nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"nw\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n\"2\"->\"5\" [label = \"if TRUE, then exit\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"2\" [label = \" if TRUE, then next\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
 # Modifying iterations: `next` statement
 
-Print the `\(CO_{2}\)` concentrations for "chilled" treatments and keep count of how many replications were done.
+Print the `\(\text{CO}_{2}\)` concentrations for "chilled" treatments and keep count of how many replications were done.
 
 
 ```r
@@ -1221,7 +1341,7 @@ for(i in 1:nrow(CO2)) {
   if(CO2$Treatment[i] == "nonchilled") next
   # Skip to next iteration if treatment is nonchilled
   count &lt;- count + 1
-#  print(CO2$conc[i])
+#  print(CO2$conc[i]) # You can turn this on if you want to
 }
 print(count) # The count and print command were performed 42 times.
 ```
@@ -1334,7 +1454,7 @@ print(count)
 ---
 # Challenge 3 ![:cube]()
 
-You have realized that your tool for measuring concentration did not work properly.
+You have realized that another of your tools was not working properly!
 
 At **Mississippi** sites, **concentrations** less than 300 were measured correctly, but concentrations equal or higher than 300 were overestimated by 20 units!
 
@@ -1342,7 +1462,7 @@ Your *mission* is to use a loop to correct these measurements for all Mississipp
 
 &lt;br&gt;
 
-.alert[Tip]. Make sure you reload the data so that we are working with the raw data for the rest of the exercise:
+.alert[Tip]. Make sure you reload the  `\(\text{CO}_{2}\)` data so that we are working with the raw data for the rest of the exercise:
 
 
 ```r
@@ -1365,7 +1485,7 @@ for(i in 1:nrow(CO2)) {
 --
 &lt;br&gt;
 
-.comment[Note: We could also have written it in this way, which is more concise and clear:]
+.comment[Note: We could also have written it in this way, which is more concise and clearer:]
 
 ```r
 for(i in 1:nrow(CO2)) {
@@ -1376,17 +1496,24 @@ for(i in 1:nrow(CO2)) {
 ```
 
 ---
-# Edit a plot using `for` and `if`
-
-Let's plot **uptake** vs **concentration** with points of different colors according to their type (*Quebec* or *Mississippi*) and **treatment** (*chilled* or *nonchilled*).
+# Edit a plot using `for()` and `if()`
 
 .small[
+Let us plot **uptake** *versus* **concentration** with points of different colors according to their type (*Québec* or *Mississippi*) and **treatment** (*chilled* or *nonchilled*):
+]
+
+.xsmall[
 
 ```r
-plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
-     xlab = "CO2 concentration", ylab = "CO2 uptake")
-# Type "n" tells R to not actually plot the points.
-for(i in 1:length(CO2[,1])) {
+plot(x = CO2$conc, 
+     y = CO2$uptake, 
+     type = "n", # points
+     cex.lab = 1.4, cex.axis = 1.5, 
+     cex.main = 1.5, cex.sub = 1.5,
+     xlab = "CO2 concentration", 
+     ylab = "CO2 uptake")
+
+for(i in 1:length(CO2[, 1])) {
   if(CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "nonchilled") {
     points(CO2$conc[i], CO2$uptake[i], col = "red")
   }
@@ -1404,16 +1531,16 @@ for(i in 1:length(CO2[,1])) {
 ]
 
 ---
-# Edit a plot using `for` and `if`
+# Edit a plot using `for()` and `if()`
 &lt;br&gt;
-Plotting uptake vs concentration using `for` loop and `if`.
+Plotting  **uptake** *versus* **concentration** with points of different colors according to their type using `for()` loop and `if()`.
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-52-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-58-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
 # Challenge 4![:cube]()
 &lt;br&gt;
-Generate a plot showing **concentration** versus **uptake** where each plant is shown using a different .alert[colour] point.
+Generate a plot showing **concentration** *versus* **uptake** where each plant is shown using a point with a different `\(\color{red}{\text{co}}\color{blue}{\text{lo}}\color{green}{\text{ur}}\)`.
 
 &lt;br&gt;
 
@@ -1422,9 +1549,10 @@ Generate a plot showing **concentration** versus **uptake** where each plant is 
 &lt;br&gt;
 
 .comment[Steps: &lt;br&gt;
-1. Create an empty plot &lt;br&gt;
-2. Create a list of plants (hint: `?unique`) &lt;br&gt;
-3. Fill the plot using `for` and `if` statements]
+1. Create an empty plot; &lt;br&gt;
+2. Create a list of plants (hint: `?unique`); &lt;br&gt;
+3. Fill the plot using `for()` and `if()` statements.
+]
 
 ---
 # Challenge 4: Solution ![:cube]()
@@ -1444,7 +1572,7 @@ for(i in 1:nrow(CO2)){
 }}}
 ```
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-53-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-59-1.png" width="432" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1474,8 +1602,8 @@ They are useful for:
 &lt;br&gt;
 
 &lt;center&gt;
-<div id="htmlwidget-39a407b8cb1282d2f724" style="width:95%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-39a407b8cb1282d2f724">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Argument 1\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Argument 2\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Argument 3\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Data processing\", group = \"b\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Return value\", group = \"c\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\"] \n\"2\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\"] \n\"4\"->\"5\" [style = \"dashed\", fontsize = \"10\", color = \"dimgrey\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a179625fddd30b6961a2" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a179625fddd30b6961a2">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Argument 1\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Argument 2\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Argument 3\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Data processing\", group = \"b\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Return value\", group = \"c\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"2\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"3\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"4\"->\"5\" [style = \"dashed\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 
@@ -1520,7 +1648,7 @@ operations(1, 2, 3)
 ---
 # Challenge 5 ![:cube]()
 
-Using what you learned previously on flow control, create a function `print_animal` that takes an `animal` as argument and gives the following results:
+Using what you learned previously on flow control, create a function `print_animal()` that takes an `animal` as argument and gives the following results:
 
 
 
@@ -1568,7 +1696,7 @@ print_animal &lt;- function(animal) {
 ---
 # Default values in a function
 
-Arguments can also be optional and be provided with a default value.
+Arguments can also be optional and be provided with a **default value**.
 
 This is useful when using a function with the same settings, but still provides the flexibility to change its values, if needed.
 
@@ -1592,22 +1720,41 @@ operations(1, 2, 2) # we can still change the value of number3 if needed
 
 The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
 
+.xsmall[
+.pull-left2[
 
 ```r
 plot.CO2 &lt;- function(CO2, ...) {
 * plot(x=CO2$conc, y=CO2$uptake, type="n", ...)
   for(i in 1:length(CO2[,1])){
      if(CO2$Type[i] == "Quebec") {
-*      points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
+       points(CO2$conc[i], CO2$uptake[i], 
+*             col = "red", type = "p", ...)
      } else if(CO2$Type[i] == "Mississippi") {
-*      points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
+       points(CO2$conc[i], CO2$uptake[i], 
+*             col = "blue", type = "p", ...)
      }
   }
 }
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake")
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ```
 
+
+```r
+plot.CO2(CO2, 
+*        cex.lab=1.2,
+         xlab="CO2 concentration", 
+         ylab="CO2 uptake")
+```
+
+
+```r
+plot.CO2(CO2, 
+*        cex.lab=1.2, pch=20,
+         xlab="CO2 concentration", 
+         ylab="CO2 uptake")
+```
+]
+]
 
 ---
 # Argument `...`
@@ -1616,12 +1763,12 @@ The special argument `...` allows you to pass on arguments to another function u
 
 &lt;br&gt;
 
-&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-62-1.png" width="720" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop05-en_files/figure-html/unnamed-chunk-70-1.png" width="720" style="display: block; margin: auto;" /&gt;
 
 ---
 # Argument `...`
 
-The special argument `...` allows you to input an indefinite number of arguments.
+The special argument `...` allows you to borrow arguments from other functions, *i.e.* allowing for an indefinite number of arguments to be inputed.
 
 &lt;br&gt;
 
@@ -1635,7 +1782,10 @@ sum2 &lt;- function(...) {
   }
   return(result)
 }
+```
 
+
+```r
 sum2(2, 3)
 # [1] 5
 sum2(2, 4, 5, 7688, 1)
@@ -1683,6 +1833,7 @@ simplefun1 &lt;- function(x) {
 Functions can return only a single object (and text). But this is not a limitation because you can return a `list` containing any number of objects.
 
 .pull-left[
+.small[
 
 ```r
 simplefun2 &lt;- function(x, y) {
@@ -1693,14 +1844,16 @@ simplefun2 &lt;- function(x, y) {
 }
 ```
 ]
-
+]
 .pull-right[
 .pull-left[
 &lt;br&gt;
+.small[
 
 ```r
 simplefun2(1, 2)
 ```
+]
 ]
 .pull-right[
 
@@ -1730,7 +1883,7 @@ Using what you have just learned on functions and control flow, create a functio
 
 Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
 
-1. Returns 0 if the sum of `a` and `b` is strictly less than 50;
+1. Returns `0` if the sum of `a` and `b` is strictly less than `50`;
 2. Else, returns the sum of `a` and `b`.
 
 &lt;br&gt;
@@ -1786,14 +1939,15 @@ vartest &lt;- function() {
 }
 
 a             # we cannot print 'a' as it exists only inside the function
-# Error in eval(expr, envir, enclos): object 'a' not found
+#  [1] -4 -3 -2 -1  0  1  2  3
+#  [9]  4  5
 
 vartest()     # calling vartest() will print a and var1
 # [1] 4
 # [1] 3
 
 rm(var1)      # remove var1
-vartest()     # calling the function again doesn't work anymore
+vartest()     # calling the function again does not work anymore
 # [1] 4
 # Error in print(var1): object 'var1' not found
 ```
@@ -1808,12 +1962,14 @@ Also, inside a function, arguments names will take over other variable names.
 
 ```r
 var1 &lt;- 3     # var1 is defined outside our function
+
 vartest &lt;- function(var1) {
   print(var1) # print var1
 }
 
-vartest(8)    # Inside our function var1 is now our argument and takes its value
+vartest(8)    # Inside our function var1 is now our argument 
 # [1] 8
+              # and takes its value
 
 var1          # var1 still has the same value
 # [1] 3
@@ -1869,14 +2025,17 @@ class: inverse, center, middle
 - To reduce the time you will spend to understand your code.
 
 &lt;br&gt;
+&lt;br&gt;
+
 .center[.large[**Pay attention to the next tips!**]]
 ---
 # Keep a clean and nice code
 
 Proper indentation and spacing is the first step to get an easy to read code:
 
-- Use **spaces** between and after you operators;
-- Use consistently the same assignation operator. `&lt;-` is often preferred. `=` is OK, but do not switch all the time between the two;
+- Use **spaces** between and after your operators;
+- Use consistently the same assignation operator. 
+  - `&lt;-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two;
 - Use brackets when using flow control statements:
 &lt;br&gt;
   - Inside brackets, indent by *at least* two spaces;
@@ -1884,6 +2043,46 @@ Proper indentation and spacing is the first step to get an easy to read code:
   &lt;br&gt;
 - Define each variable on its own line.
 - Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
+
+---
+# Keep a clean and nice code
+
+Proper indentation and spacing is the first step to get an easy to read code:
+
+- Use **spaces** between and after your operators;
+- Use consistently the same assignation operator. 
+  - `&lt;-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two;
+- Use brackets when using flow control statements:
+&lt;br&gt;
+  - Inside brackets, indent by *at least* two spaces;
+  - Put closing brackets on a separate line, except when preceding an `else` statement.
+  &lt;br&gt;
+- Define each variable on its own line.
+- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
+
+.pull-left[
+.center[**Nay!**]
+.small[
+
+```r
+ if((a[x,y]&gt;1.0)&amp;(a[x,y]&lt;2.0)){
+    print("Between 1 and 2")
+  }
+```
+]
+]
+
+.pull-right[
+.center[**Yay!**]
+.small[
+
+```r
+ if((a[x, y] &gt; 1.0) &amp; (a[x, y] &lt; 2.0)){
+    print("Between 1 and 2")
+  }
+```
+]
+]
 ---
 # Keep a clean and nice code
 
@@ -1891,7 +2090,7 @@ On the left, code is not spaced. All brackets are in the same line, and it looks
 
 &lt;br&gt;
 
-.small[
+.xsmall[
 .pull-left[
 ```r
 a&lt;-4;b=3
@@ -1908,7 +2107,7 @@ On the left, code is not spaced. All brackets are in the same line, and it looks
 
 &lt;br&gt;
 
-.small[
+.xsmall[
 .pull-left[
 ```r
 a&lt;-4;b=3
@@ -1968,6 +2167,7 @@ for(i in 1:length(CO2[,1])) {
 
 .pull-right[
 Or this:
+.xsmall[
 
 ```r
 recalibrate &lt;- function(CO2, type, bias) {
@@ -1980,10 +2180,11 @@ recalibrate &lt;- function(CO2, type, bias) {
 }
 
 ```
-.small[
+]
+.xsmall[
 
 ```r
-newCO2 &lt;- recalibrate(CO2, "Mississipi", -20)
+newCO2 &lt;- recalibrate(CO2 = CO2, type = "Mississipi", bias = -20)
 newCO2 &lt;- recalibrate(newCO2, "Quebec", +50)
 ```
 ]
@@ -2043,21 +2244,21 @@ recalibrate &lt;- function(CO2, type, bias) {
 ---
 # Group exercise
 
-Using what you learned, write an `if` statement that tests whether a numeric variable `x` is zero. If not, it assigns cos(x)/x to `z`, otherwise it assigns 1 to `z`.
+Using what you learned, write an `if()` statement that tests whether a numeric variable `x` is zero. If not, it assigns `\(cos(x)/x\)` to `z`, otherwise it assigns `\(1\)` to `z`.
 &lt;br&gt;
 
-Create a function called my_function that takes the variable `x` as argument and returns `z`.
+Create a function called `my_function()` that takes the variable `x` as argument and returns `z`.
 &lt;br&gt;
 
-If we assign 45, 20, and 0 to `x` respectively, which of the following options would represent the results?
+If we assign `\(45\)`, `\(20\)`, and `\(0\)` to `x` respectively, which of the following options would represent the results?
 
 &lt;br&gt;
 
-**1.** 0.54 - 0.12 - 0 &lt;br&gt;
+**1.** `\(0.54\)`, `\(0.12\)`, and `\(0\)`; &lt;br&gt;
 &lt;br&gt;
-**2.** 0.20 - 0.54 - 1 &lt;br&gt;
+**2.** `\(0.20\)`, `\(0.54\)`, and `\(1\)`; &lt;br&gt;
 &lt;br&gt;
-**3.** 0.12 - 0.20 - 1 &lt;br&gt;
+**3.** `\(0.12\)`, `\(0.20\)`, and `\(1\)`. &lt;br&gt;
 
 ???
 
@@ -2065,7 +2266,7 @@ This exercise should take place in breakout rooms within 10 minutes. After rejoi
 ---
 # Group exercise: Solution ![:cube]()
 
-Correct answer is option 3 (0.12 - 0.20 - 1).
+Correct answer is option **3** ($0.12$, `\(0.20\)`, and `\(1\)`).
 
 &lt;br&gt;
 

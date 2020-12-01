@@ -221,15 +221,41 @@ a:hover {
 
 .pull-left2 {
   float: left;
-  width: 67%;
+  width: 57%;
 }
 .pull-right2 {
   float: right;
-  width: 27%;
+  width: 38%;
 }
 
 .pull-right2, .pull-right2 p {
   padding-left: 0rem ;
+}
+
+.pull-left3 {
+  float: left;
+  width: 67%;
+}
+.pull-right3 {
+  float: right;
+  width: 28%;
+}
+
+.pull-right3, .pull-right3 p {
+  padding-left: 0rem ;
+}
+
+/* custom.css */
+.left-code {
+  color: #777;
+  width: 57%;
+  height: 92%;
+  float: left;
+}
+.right-plot {
+  width: 38%;
+  float: right;
+  padding-left: 1%;
 }
 
 /* Blockquote */

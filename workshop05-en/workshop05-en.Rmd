@@ -21,7 +21,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
   message = FALSE,
-  fig.width=6, fig.height=6,
+  fig.width=6, 
+  fig.height=6,
   fig.retina = 3,
   fig.align = 'center'
 )
@@ -42,9 +43,9 @@ cat(bge[-1L])
 # Learning Objectives
 
 ##### 1. Recognizing **control flow**
-##### 2. Developing your first functions in R
+##### 2. Developing your first functions in `R`
 ##### 3. Accelerating your code
-##### 4. Demonstrating useful R packages for biologists
+##### 4. Demonstrating useful `R` packages for biologists
 
 ---
 class: inverse, center, middle
@@ -57,21 +58,46 @@ class: inverse, center, middle
 ![:scale 90%](images/matrix.png)
 
 ---
-# Vectors
+# Review: Vectors
 
-Numeric vectors
+<br>
+
+.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)?]
+
+<br>
+
+.pull-left[
+##### Numeric vectors 
 
 ```{r}
-  num.vector <- c(1, 4, 3, 98, 32, -76, -4)
-```
-```{r}
+  num.vector <- c(1, 4, 3, 
+                  9, 32, -4)
   num.vector
 ```
+]
+.pull-right[
+##### Character vector
+
+```{r}
+char_vector <- c("blue", 
+                 "red", 
+                 "green")
+char_vector
+```
+]
+
+##### Logical vector
+
+```{r}
+bool_vector <- c(TRUE, TRUE, FALSE) # or c(T, T, F)
+bool_vector
+```
+
 
 ---
-# Data frames
+# Review: Data frames
 
-vectors
+We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
 
 ```{r}
   siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
@@ -80,7 +106,8 @@ vectors
   treatment <- c("Fert", "Fert", "No_fert", "No_fert")
 ```
 
-We then combine them using the function `data.frame`.
+<br>
+We then combine them using the function `data.frame()`.
 
 ```{r}
   my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
@@ -91,6 +118,8 @@ We then combine them using the function `data.frame`.
 
 ---
 # Lists
+
+We can also create lists by combining the vectors we created before.
 
 ```{r}
   my.first.list <- list(siteID, soil_pH, num.sp, treatment)
@@ -114,6 +143,8 @@ Program flow control can be simply defined as the order in which a program is ex
 
 #### Why is it advantageous to have structured programs?
 
+<br>
+
 - It **decreases the complexity** and time of the task at hand;
 - This logical structure also means that the code has **increased clarity**;
 - It also means that **many programmers can work on one program**.
@@ -125,7 +156,7 @@ Program flow control can be simply defined as the order in which a program is ex
 ---
 # Control flow
 
-Flowcharts can be used to plan programs and represent their structure.
+**Flowcharts** can be used to plan programs and represent their structure.
 
 <br>
 <br>
@@ -143,15 +174,18 @@ f1_nodes <- create_node_df(n = 4, #number of nodes
                            fontname = 'Helvetica',
                            fontsize = 10,
                            fixedsize = FALSE, #whether node changes size based on label or is fixed
-                           color = 'mediumblue'
+                           color = 'mediumblue',
+                           height = 0.70
                            )
 
 
 #create edges
 ##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
 f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
-                           to = c(2, 3, 2, 4), 
-                           label = c(' ', ' ', 'Boolean choice:\nTrue or False', ' '), #for text on edge
+                           to = c(2, 3, 2, 4),
+                           tailport = c("e", "e", "s", "e"),
+                           headport = c("w", "w", "s", "w"),
+                           label = c(' ', ' ', 'Boolean choice:\nTRUE or FALSE', ' '), #for text on edge
                            fontsize = 10,
                            color = 'dimgrey'
                            )
@@ -175,7 +209,6 @@ render_graph(flowchart1, width = '95%', height = 'auto')
 
 The two basic building blocks of codes are the following:
 
-<br>
 
 .pull-left[
 
@@ -202,6 +235,16 @@ while() {}
 repeat {}
 ```
 ]
+
+Selection and iterative statements can also be controlled by termination and jump statements:
+
+#### Termination and Jump
+
+```r
+break
+next
+```
+
 
 ---
 # Control flow roadmap
@@ -240,7 +283,7 @@ This roadmap appears at the beginning of each control flow tool to let participa
 
 .pull-left[
 
-**`if` statement**
+**`if()` statement**
 
 ```R
 if(condition) {
@@ -267,7 +310,7 @@ f2_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 4), 
-                           label = c(' ', ' If True', '  If False', ' '), 
+                           label = c(' ', '  if TRUE', '  if FALSE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -291,7 +334,7 @@ render_graph(flowchart2, width = '45%', height = 'auto')
 
 .pull-right[
 
-**`if` `else` statement**
+**`if()` `else` statement**
 
 ```r
 if(condition) {
@@ -319,7 +362,7 @@ f3_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
                            to = c(2, 3, 5, 4, 4), 
-                           label = c(' ', ' If True', '  If False', ' '), 
+                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -345,30 +388,42 @@ render_graph(flowchart3, width = '50%', height = 'auto')
 
 <br>
 
-- `if` and `if` `else` test a single condition.
-- You can also use `ifelse()` function to:
+- `if()` and `if()` `else` test a single condition.
+- You can also use the `ifelse()` function to:
     - test a vector of conditions;
     - apply a function only under certain conditions.
 
 <br>
-
-```r
+.pull-left[
+```{r, echo = c(-1) }
+options(width = 30)
 a <- 1:10
-ifelse(test = a > 5, yes = "yes", no = "no")
 
-a <- (-4):5
-sqrt(ifelse(test = a >= 0, yes = a, no = NA))
+ifelse(test = a > 5, 
+       yes = "yes", 
+       no = "no")
 ```
+]
 
+.pull-right[
+```{r}
+a <- (-4):5
+
+sqrt(ifelse(test = a >= 0, 
+            yes = a,
+            no = NA)
+     )
+```
+]
 ---
-# Nested `if` `else` statement
+# Nested `if()` `else` statement
 
-While the `if` and `if` `else` statements leave you with exactly two options, nested `if` `else` statement allows you consider more alternatives.
+While the `if()` and `if()` `else` statements leave you with exactly two options, nested `if()` `else` statement allows you consider more alternatives.
 
 
 .pull-left[
 .small[
-```r
+```{r, eval = FALSE}
 if(test_expression1) {
 statement1
 } else if(test_expression2) {
@@ -405,7 +460,7 @@ f4_nodes <- create_node_df(n = 9, #number of nodes
 #create edges
 f4_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8), #origin node id
                            to = c(2, 3, 5, 4, 6, 7, 8, 9, 9, 9, 9), 
-                           label = c(' ', ' If False', '  If True', ' If False', ' If True', ' If False', ' If True',
+                           label = c(' ', '  if FALSE', '  if TRUE', ' if FALSE', '  if TRUE', ' if FALSE', ' if TRUE',
                                      ' ', ' ', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
@@ -429,21 +484,36 @@ render_graph(flowchart4, width = '75%', height = 'auto')
 </center>
 ]
 ---
-# Beware of R’s expression parsing!
+# Beware of `R`’s expression parsing!
 
-Use curly brackets `{}` so that R knows to expect more input. Try:
+What do you think will happen if we try the code below?
 
-```r
-if(2+2) == 4 print("Arithmetic works.")
-else print("Houston, we have a problem.")
+
+.pull-left[.small[
+```{r bad-ifelse, eval = FALSE}
+if(2+2) == 4 
+print("Arithmetic works.")
+else 
+print("Houston, we have a problem.")
 ```
+]]
+
+--
+
+.pull-right[.small[
+```{r bad-ifelse-out, echo = FALSE, error = TRUE}
+if(2+2) == 4 
+print("Arithmetic works.")
+else 
+print("Houston, we have a problem.")
+```
+]]
+
+.center[.alert[This does not work because `R` evaluates the first line and does not know that you are going to use an `else` statement]]
+
 <br>
 
-.center[.alert[This doesn't work because R evaluates the first line and doesn't know that you are going to use an `else` statement]]
-
-<br>
-
-Instead use:
+Use curly brackets `{}` so that `R` knows to expect more input. Try:
 
 ```{r}
 if(2+2 == 4) { #<<
@@ -456,7 +526,7 @@ if(2+2 == 4) { #<<
 ---
 # Challenge 1 ![:cube]()
 
-<br>
+Consider the following objects:
 
 ```{r}
 Paws <- "cat"
@@ -467,14 +537,14 @@ animals <- c(Paws, Scruffy, Sassy)
 
 <br>
 
-1. Use an `if` statement to print “meow” if `Paws` is a “cat”.
-2. Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
+2. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 3. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 ---
 # Challenge 1 - Solution ![:cube]()
 
-1.Use an `if` statement to print “meow” if `Paws` is a “cat”.
+1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
 
 ```{r}
 if(Paws == 'cat') {
@@ -482,7 +552,7 @@ if(Paws == 'cat') {
 }
 ```
 
-2.Use an `if`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+2\. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 
 ```{r}
 x = Paws
@@ -497,7 +567,7 @@ if(x == 'cat') {
 ---
 # Challenge 1 - Solution ![:cube]()
 
-3.Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
+3\. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 
 ```{r}
 animals <- c(Paws, Scruffy, Sassy)
@@ -505,7 +575,7 @@ animals <- c(Paws, Scruffy, Sassy)
 ifelse(animals == 'dog', "woof", "meow")
 ```
 
-Or
+.center[Or]
 
 ```{r}
 for(val in 1:3) {
@@ -528,14 +598,14 @@ for(val in 1:3) {
 | Command | Meaning |
 | :-------------: | :-------------: |
 | `==`  | equal to  |
-| `!=`  | not x  |
+| `!=`  | not equal to  |
 | `<`   | less than  |
 | `<=`  | less than or equal to  |
 | `>`   | greater than  |
 | `>=`  | greater than or equal to  |
-| `x&y` | x AND y |
-| `x`&#124;`y`  | x OR y  |
-| `isTRUE(x)`  | test if X is true |
+| `x&y` | `x` AND `y` |
+| `x`&#124;`y`  | `x` OR `y`  |
+| `isTRUE(x)`  | test if `x` is true |
 
 
 ---
@@ -581,21 +651,21 @@ Loops are good for:
 
 ]
 ---
-# `for` loop
+# `for()` loop
 
-A `for` loop works in the following way:
+A `for()` loop works in the following way:
 
-```R
+```r
 for(i in sequence) {
   statement
   }
 ```
 <center>
-```{r flowchart5for-loop, echo=FALSE}
+```{r flowchart5for-loop, echo = FALSE}
 #Create node data frame
 f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Last item\nreached?", "Expression\nFOR body", "Exit\nLoop"), 
+                           label = c(" ", "Last item\nreached?", "Expression\nfor \nbody", "Exit\nLoop"), 
                            shape = c("circle", "diamond", 'rectangle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'filled'), 
                            fontname = 'Helvetica',
@@ -609,7 +679,7 @@ f5_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f5_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 2), 
-                           label = c(' ', ' If False', '  If True', ' '), 
+                           label = c(' ', ' if FALSE', '  if TRUE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE,
@@ -651,65 +721,73 @@ for(element in elements) {
 }
 ```
 ---
-# `for` loop
+# `for()` loop
 
 <br>
 
 .pull-left[
-In the general example below, R would evaluate the expression 5 times by replacing `i` by numbers from 1 to 5.
+In the generic example below, `R` would execute the expression 5 times, each one of them by sequentially replacing `i` by numbers from 1 to 5:
 
 ```r
 for(i in 1:5) {
   expression
 }
 ```
-]
---
-.pull-right[
-Similarly, in the following example, every instance of `m` is being replaced by each number between `1:10`, until it reaches the last element of the sequence.
+
+`expression` can be anything:
 
 ```r
-for(m in 1:10) {
-  print(m*2)
-}
+print(i + 1)
 ```
-]
+```r
+vector.a[i] <- 1 + i
+```
+```r
+matrix.b[i, 1] <- matrix.a[i, 1] * 2
+```
 
+]
 --
-.small[
-.pull-right[.pull-left[
-
-```{r echo=FALSE}
-  for(m in 1:5) {
-  print(m*2)
-}
-```
-
-]
 .pull-right[
-```{r echo=FALSE}
-for(m in 6:10) {
+In the following example, every instance of `m` is being replaced by each number between `1` and `7`, until it reaches the last element of the sequence:
+
+```{r eval = FALSE}
+for(m in 1:7) {
+  print(m*2)
+}
+```
+
+.small[
+```{r, echo = FALSE}
+for(m in 1:7) {
   print(m*2)
 }
 ```
 ]
 ]
-]
-
 ---
-# `for` loop
+# `for()` loop
 
 .small[
+.pull-left[
+Let us perform operations for even elements within `x` using the modulo operator (`%%`):
 ```r
-x <- c(2,5,3,9,6)
+x <- c(2, 5, 3, 9, 6)
 count <- 0
+```
+]
+]
+.small[
+.pull-right[
+```{r, eval = FALSE}
 for(val in x) {
   if(val %% 2 == 0) {
-    count = count+1
+    count <- count + 1
   }
 }
 print(count)
 ```
+]
 ]
 
 <center>
@@ -718,7 +796,7 @@ print(count)
 f6_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
                            label = c("x", "Last VAL\nin X?", "Is VAL even?", 'count = count + 1',
-                                     'End', "Print\ncount"), 
+                                     'End', "print\ncount"), 
                            shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'solid', 'solid', 'filled'), 
                            fontname = 'Helvetica',
@@ -732,7 +810,7 @@ f6_nodes <- create_node_df(n = 6, #number of nodes
 #create edges
 f6_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 5), #origin node id
                            to = c(2, 3, 6, 4, 5, 5, 2), 
-                           label = c(' ', ' If False\nfor Xi', '  If True,\nexit loop', ' If True', 'If False', ' ', ' '), 
+                           label = c(' ', ' if FALSE\nfor X', '  if TRUE,\nexit loop', ' if TRUE', 'if FALSE', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
@@ -755,9 +833,9 @@ render_graph(flowchart6, width = '90%', height = 'auto')
 
 
 ---
-# `for` loop
+# `for()` loop
 
-For loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in R.
+`for()` loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in `R`.
 
 ```R
 data(CO2) # This loads the built in dataset
@@ -806,11 +884,11 @@ for (i in 31:40) {
 ]
 
 ---
-# `for` loop
+# `for()` loop
 
 Another example:
 
-```R
+```{r eval = FALSE}
 for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
     print(CO2$conc[i]) # print the CO2 concentration
@@ -865,7 +943,7 @@ for (i in 34:42) {
 ]
 
 ---
-# `for` loop
+# `for()` loop
 
 .pull-left[
 
@@ -903,7 +981,7 @@ for (i in 21:40) {
 ]
 ]
 ---
-# `for` loop
+# `for()` loop
 
 .pull-left[
 
@@ -940,7 +1018,7 @@ for (i in 21:40) {
 ]
 ]
 ---
-# `for` loop
+# `for()` loop
 
 The expression within the loop can be almost anything and is usually a compound statement containing many commands.
 
@@ -961,7 +1039,7 @@ for (i in 4:5) { # for i in 4 to 5
 }
 ```
 ---
-# `for` loops within `for` loops
+# `for()` loops within `for()` loops
 
 In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
 
@@ -989,18 +1067,25 @@ for (i in 1:3) {
 ---
 # Getting good: Using the `apply()` family
 
-R disposes of the `apply()` function family, which consists of vectorized functions that aim at **minimizing your need to explicitly create loops**.
+`R` disposes of the `apply()` function family, which consists of iterative functions that aim at **minimizing your need to explicitly create loops**.
+
+<br>
 
 `apply()` can be used to apply functions to a matrix.
 
-<br>
+.small[
 .pull-left[
 ```{r}
-(height <- matrix(c(1:10, 21:30),
+height <- matrix(c(1:10, 21:30),
                  nrow = 5,
-                 ncol = 4))
+                 ncol = 4)
 
 ```
+```{r echo=FALSE}
+height
+
+```
+]
 ]
 .pull-right[
 ```{r}
@@ -1034,7 +1119,8 @@ SimulatedData <- list(
   SimpleSequence = 1:4,
   Norm10 = rnorm(10),
   Norm20 = rnorm(20, 1),
-  Norm100 = rnorm(100, 5))
+  Norm100 = rnorm(100, 5)
+  )
 
 # Apply mean to each element
 ## of the list
@@ -1096,33 +1182,49 @@ mapply(sum, lilySeeds, poppySeeds)
 
 `tapply()` is used to apply a function over subsets of a vector.
 
-It is primarily used when the dataset contains different groups <br> (*i*.*e*. levels/factors), and we want to apply a function to each of these groups.
+It is primarily used when the dataset contains different groups <br> (*i*.*e*. levels or factors), and we want to apply a function to each of these groups.
 
 <br>
+.pull-left[
+.small[
 ```{r}
-head(mtcars)
+mtcars[1:10, c("hp", "cyl")]
 ```
-```{r}
-# get the mean hp by cylinder groups
-tapply(mtcars$hp, mtcars$cyl, FUN = mean)
-```
+]
+]
 
+.pull-right[
+.small[
+```{r}
+# mean hp by cylinder groups
+tapply(mtcars$hp, 
+       mtcars$cyl, 
+       FUN = mean)
+```
+]
+]
 ---
 # Challenge 2 ![:cube]()
 
-You have realized that your tool for measuring uptake was not calibrated properly at Quebec sites and all measurements are 2 units higher than they should be.
+After coming back from the field, you have realized that your tool for measuring $\text{CO}_{2}$ uptake was not calibrated properly at Quebec sites and all measurements are 2 units higher than they should be. 
 
-1. Use a loop to correct these measurements for all Quebec sites.
+Now, you must do the following:
 
-2. Use a vectorisation-based method to calculate the mean CO2-uptake in both areas.
+1. Use a loop to correct these measurements for all Quebec sites;
 
-For this, you will have to load the $CO_{2}$ dataset using `data(CO2)`, and then use the object `CO2`.
+2. Use an `apply()` family function to calculate the average $\text{CO}_{2}$ uptake in both Québec and Mississipi sampled sites.
+
+> For this, you must load the $\text{CO}_{2}$ dataset using `data(CO2)`, and then use the object `CO2`.
+
+<br>
+
+.center[Get your hands dirty!]
 
 ---
 # Challenge 2: Solution ![:cube]()
 
 
-1.Using `for` and `if` to correct the measurements:
+1.Using `for()` and `if()` to correct the measurements:
 ```{r echo=TRUE}
 for(i in 1:dim(CO2)[1]) {
   if(CO2$Type[i] == "Quebec") {
@@ -1144,9 +1246,9 @@ Normally, loops iterate over and over until they finish.
 
 Sometimes you may be interested in breaking this behaviour.
 
-For example, you may want to tell R to stop executing the iteration when it reaches a given element or condition.
+For example, you may want to tell `R` to stop executing the iteration when it reaches a given element or condition.
 
-You may also want R to jump certain elements when certain conditions are met.
+You may also want `R` to jump certain elements when certain conditions are met.
 
 For this, we will introduce `break`, `next` and `while`.
 
@@ -1192,29 +1294,34 @@ for(val in x) {
 <center>
 ```{r flowchart7break, echo=FALSE}
 #Create node data frame
-f7_nodes <- create_node_df(n = 5, #number of nodes
+f7_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Last VAL\nin X?", "Is condition true?\nBREAK",
-                                     'Statement\nBody of FOR loop', "Exit\nLoop"), 
+                           label = c("Start", 
+                                     "Reached last \nval in X?\n\nfor()", 
+                                     "Is condition \nTRUE? \n\nif()",
+                                     'statement\nbody', 
+                                     "End", 
+                                     " "), 
                            shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 'filled'), 
+                           style = c('solid', 'solid', 'solid', 'solid', 'filled', 'invis'), 
                            fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
+                           fontsize = 13,
+                           fixedsize = 'false',
                            color = 'mediumblue',
-                           width = .1
+                           width = .1,
+                           penwidth = 1.5
                            )
 
 
 #create edges
 f7_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 5), 
-                           label = c(' ', ' If False\nfor Xi', '  If False', ' ', 'If True', ' If True'), 
+                           label = c(' ', ' if FALSE\nfor x', '  if FALSE', ' ', 'if TRUE, then exit', ' if TRUE, then break', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
-                           tailport = c('e', 'e', 'se', 'w', 'ne', 'e'),
-                           headport = c('w', 'w', 'nw', 'se', 'w', 'w')
+                           tailport = c('e', 'e', 's', 'w', 'n', 'e'),
+                           headport = c('w', 'w', 'n', 's', 'w', 'w')
                            )
 
 #create flowchart
@@ -1245,9 +1352,10 @@ for(val in x) {
 #Create node data frame
 f8_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Last VAL\nin X?", "Is condition true?\nNEXT",
-                                     'Statement\nBody of FOR loop', "Exit\nLoop"), 
-                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
+                           label = c("Start", "Reached last \nval in X?\n\nfor()", 
+                                     "Is condition \nTRUE?\n\nif()",
+                                     'statement\nbody', "End"), 
+                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'solid', 'filled'), 
                            fontname = 'Helvetica',
                            fontsize = 10,
@@ -1260,11 +1368,11 @@ f8_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f8_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 2), 
-                           label = c(' ', ' If False\nfor Xi', '  If False', ' ', 'If True', ' If True'), 
+                           label = c(' ', ' if FALSE', '  if FALSE', ' ', 'if TRUE, then exit', ' if TRUE, then next'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
-                           tailport = c('e', 'e', 'e', 's', 'ne', 's'),
+                           tailport = c('e', 'e', 'e', 's', 'n', 's'),
                            headport = c('w', 'w', 'nw', 's', 'w', 's')
                            )
 
@@ -1284,7 +1392,7 @@ render_graph(flowchart8, width = '95%', height = 'auto')
 ---
 # Modifying iterations: `next` statement
 
-Print the $CO_{2}$ concentrations for "chilled" treatments and keep count of how many replications were done.
+Print the $\text{CO}_{2}$ concentrations for "chilled" treatments and keep count of how many replications were done.
 
 ```{r eval = FALSE}
 count <- 0
@@ -1293,7 +1401,7 @@ for(i in 1:nrow(CO2)) {
   if(CO2$Treatment[i] == "nonchilled") next
   # Skip to next iteration if treatment is nonchilled
   count <- count + 1
-#  print(CO2$conc[i])
+#  print(CO2$conc[i]) # You can turn this on if you want to
 }
 print(count) # The count and print command were performed 42 times.
 ```
@@ -1408,7 +1516,7 @@ print(count)
 ---
 # Challenge 3 ![:cube]()
 
-You have realized that your tool for measuring concentration did not work properly.
+You have realized that another of your tools was not working properly!
 
 At **Mississippi** sites, **concentrations** less than 300 were measured correctly, but concentrations equal or higher than 300 were overestimated by 20 units!
 
@@ -1416,7 +1524,7 @@ Your *mission* is to use a loop to correct these measurements for all Mississipp
 
 <br>
 
-.alert[Tip]. Make sure you reload the data so that we are working with the raw data for the rest of the exercise:
+.alert[Tip]. Make sure you reload the  $\text{CO}_{2}$ data so that we are working with the raw data for the rest of the exercise:
 
 ```{r}
 data(CO2)
@@ -1437,7 +1545,7 @@ for(i in 1:nrow(CO2)) {
 --
 <br>
 
-.comment[Note: We could also have written it in this way, which is more concise and clear:]
+.comment[Note: We could also have written it in this way, which is more concise and clearer:]
 ```{r}
 for(i in 1:nrow(CO2)) {
   if(CO2$Type[i] == "Mississippi" && CO2$conc[i] >= 300) {
@@ -1447,16 +1555,23 @@ for(i in 1:nrow(CO2)) {
 ```
 
 ---
-# Edit a plot using `for` and `if`
-
-Let's plot **uptake** vs **concentration** with points of different colors according to their type (*Quebec* or *Mississippi*) and **treatment** (*chilled* or *nonchilled*).
+# Edit a plot using `for()` and `if()`
 
 .small[
-```{r, eval=F}
-plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
-     xlab = "CO2 concentration", ylab = "CO2 uptake")
-# Type "n" tells R to not actually plot the points.
-for(i in 1:length(CO2[,1])) {
+Let us plot **uptake** *versus* **concentration** with points of different colors according to their type (*Québec* or *Mississippi*) and **treatment** (*chilled* or *nonchilled*):
+]
+
+.xsmall[
+```{r CO2-incremental-plot1, eval = FALSE}
+plot(x = CO2$conc, 
+     y = CO2$uptake, 
+     type = "n", # points
+     cex.lab = 1.4, cex.axis = 1.5, 
+     cex.main = 1.5, cex.sub = 1.5,
+     xlab = "CO2 concentration", 
+     ylab = "CO2 uptake")
+
+for(i in 1:length(CO2[, 1])) {
   if(CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "nonchilled") {
     points(CO2$conc[i], CO2$uptake[i], col = "red")
   }
@@ -1474,12 +1589,13 @@ for(i in 1:length(CO2[,1])) {
 ]
 
 ---
-# Edit a plot using `for` and `if`
+# Edit a plot using `for()` and `if()`
 <br>
-Plotting uptake vs concentration using `for` loop and `if`.
+Plotting  **uptake** *versus* **concentration** with points of different colors according to their type using `for()` loop and `if()`.
 
 ```{r, eval = TRUE, echo = FALSE, fig.height=6, fig.width=7}
-plot(x=CO2$conc, y=CO2$uptake, type="n", cex.lab=1.4, xlab="CO2 Concentration", ylab="CO2 Uptake") # Type "n" tells R to not actually plot the points.
+plot(x=CO2$conc, y=CO2$uptake, type="n",cex.lab = 1.4, cex.axis = 1.5, 
+     cex.main = 1.5, cex.sub = 1.5, xlab="CO2 Concentration", ylab="CO2 Uptake") # Type "n" tells R to not actually plot the points.
 
 for (i in 1:length(CO2[,1])) {
   if (CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "nonchilled") {
@@ -1500,7 +1616,7 @@ for (i in 1:length(CO2[,1])) {
 ---
 # Challenge 4![:cube]()
 <br>
-Generate a plot showing **concentration** versus **uptake** where each plant is shown using a different .alert[colour] point.
+Generate a plot showing **concentration** *versus* **uptake** where each plant is shown using a point with a different $\color{red}{\text{co}}\color{blue}{\text{lo}}\color{green}{\text{ur}}$.
 
 <br>
 
@@ -1509,9 +1625,10 @@ Generate a plot showing **concentration** versus **uptake** where each plant is 
 <br>
 
 .comment[Steps: <br>
-1. Create an empty plot <br>
-2. Create a list of plants (hint: `?unique`) <br>
-3. Fill the plot using `for` and `if` statements]
+1. Create an empty plot; <br>
+2. Create a list of plants (hint: `?unique`); <br>
+3. Fill the plot using `for()` and `if()` statements.
+]
 
 ---
 # Challenge 4: Solution ![:cube]()
@@ -1581,7 +1698,9 @@ f9_edges <- create_edge_df(from = c(1, 2, 3, 4), #origin node id
                            to = c(4, 4, 4, 5),
                            style = c('solid', 'solid', 'solid', 'dashed'),
                            fontsize = 10,
-                           color = 'dimgrey'
+                           color = 'dimgrey',
+                           headport = c('w', 'w', 'w', 'w'),
+                           tailport = c('e', 'e', 'e', 'e')
                            )
 
 #create flowchart
@@ -1593,7 +1712,9 @@ flowchart9 <- create_graph(
                     )
 
 #display flowchart
-render_graph(flowchart9, width = '95%', height = 'auto')
+render_graph(flowchart9, 
+             width = '95%', 
+             height = 'auto')
 
 ```
 </center>
@@ -1637,7 +1758,7 @@ operations(1, 2, 3)
 ---
 # Challenge 5 ![:cube]()
 
-Using what you learned previously on flow control, create a function `print_animal` that takes an `animal` as argument and gives the following results:
+Using what you learned previously on flow control, create a function `print_animal()` that takes an `animal` as argument and gives the following results:
 
 ```{r, echo=F}
 print_animal <- function(animal) {
@@ -1695,7 +1816,7 @@ print_animal <- function(animal) {
 ---
 # Default values in a function
 
-Arguments can also be optional and be provided with a default value.
+Arguments can also be optional and be provided with a **default value**.
 
 This is useful when using a function with the same settings, but still provides the flexibility to change its values, if needed.
 
@@ -1715,21 +1836,38 @@ operations(1, 2, 2) # we can still change the value of number3 if needed
 
 The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
 
+.xsmall[
+.pull-left2[
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
   plot(x=CO2$conc, y=CO2$uptake, type="n", ...) #<<
   for(i in 1:length(CO2[,1])){
      if(CO2$Type[i] == "Quebec") {
-       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
+       points(CO2$conc[i], CO2$uptake[i], 
+              col = "red", type = "p", ...) #<<
      } else if(CO2$Type[i] == "Mississippi") {
-       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...) #<<
+       points(CO2$conc[i], CO2$uptake[i], 
+              col = "blue", type = "p", ...) #<<
      }
   }
 }
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake")
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ```
 
+```{r, eval = FALSE}
+plot.CO2(CO2, 
+         cex.lab=1.2,  #<< 
+         xlab="CO2 concentration", 
+         ylab="CO2 uptake")
+```
+
+```{r, eval = FALSE}
+plot.CO2(CO2, 
+         cex.lab=1.2, pch=20,  #<< 
+         xlab="CO2 concentration", 
+         ylab="CO2 uptake")
+```
+]
+]
 
 ---
 # Argument `...`
@@ -1758,7 +1896,7 @@ plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ---
 # Argument `...`
 
-The special argument `...` allows you to input an indefinite number of arguments.
+The special argument `...` allows you to borrow arguments from other functions, *i.e.* allowing for an indefinite number of arguments to be inputed.
 
 <br>
 
@@ -1771,7 +1909,9 @@ sum2 <- function(...) {
   }
   return(result)
 }
+```
 
+```{r}
 sum2(2, 3)
 sum2(2, 4, 5, 7688, 1)
 ```
@@ -1813,6 +1953,7 @@ simplefun1 <- function(x) {
 Functions can return only a single object (and text). But this is not a limitation because you can return a `list` containing any number of objects.
 
 .pull-left[
+.small[
 ```{r echo = TRUE}
 simplefun2 <- function(x, y) {
   z <- x + y
@@ -1822,13 +1963,15 @@ simplefun2 <- function(x, y) {
 }
 ```
 ]
-
+]
 .pull-right[
 .pull-left[
 <br>
+.small[
 ```{r, eval = FALSE}
 simplefun2(1, 2)
 ```
+]
 ]
 .pull-right[
 ```{r, echo = FALSE}
@@ -1850,7 +1993,7 @@ Using what you have just learned on functions and control flow, create a functio
 
 Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
 
-1. Returns 0 if the sum of `a` and `b` is strictly less than 50;
+1. Returns `0` if the sum of `a` and `b` is strictly less than `50`;
 2. Else, returns the sum of `a` and `b`.
 
 <br>
@@ -1909,7 +2052,7 @@ a             # we cannot print 'a' as it exists only inside the function
 vartest()     # calling vartest() will print a and var1
 
 rm(var1)      # remove var1
-vartest()     # calling the function again doesn't work anymore
+vartest()     # calling the function again does not work anymore
 ```
 
 ---
@@ -1921,11 +2064,13 @@ Also, inside a function, arguments names will take over other variable names.
 
 ```{r}
 var1 <- 3     # var1 is defined outside our function
+
 vartest <- function(var1) {
   print(var1) # print var1
 }
 
-vartest(8)    # Inside our function var1 is now our argument and takes its value
+vartest(8)    # Inside our function var1 is now our argument 
+              # and takes its value
 
 var1          # var1 still has the same value
 ```
@@ -1978,14 +2123,17 @@ class: inverse, center, middle
 - To reduce the time you will spend to understand your code.
 
 <br>
+<br>
+
 .center[.large[**Pay attention to the next tips!**]]
 ---
 # Keep a clean and nice code
 
 Proper indentation and spacing is the first step to get an easy to read code:
 
-- Use **spaces** between and after you operators;
-- Use consistently the same assignation operator. `<-` is often preferred. `=` is OK, but do not switch all the time between the two;
+- Use **spaces** between and after your operators;
+- Use consistently the same assignation operator. 
+  - `<-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two;
 - Use brackets when using flow control statements:
 <br>
   - Inside brackets, indent by *at least* two spaces;
@@ -1993,6 +2141,44 @@ Proper indentation and spacing is the first step to get an easy to read code:
   <br>
 - Define each variable on its own line.
 - Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
+
+---
+# Keep a clean and nice code
+
+Proper indentation and spacing is the first step to get an easy to read code:
+
+- Use **spaces** between and after your operators;
+- Use consistently the same assignation operator. 
+  - `<-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two;
+- Use brackets when using flow control statements:
+<br>
+  - Inside brackets, indent by *at least* two spaces;
+  - Put closing brackets on a separate line, except when preceding an `else` statement.
+  <br>
+- Define each variable on its own line.
+- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
+
+.pull-left[
+.center[**Nay!**]
+.small[
+```{r, eval = FALSE}
+ if((a[x,y]>1.0)&(a[x,y]<2.0)){
+    print("Between 1 and 2")
+  }
+```
+]
+]
+
+.pull-right[
+.center[**Yay!**]
+.small[
+```{r, eval = FALSE}
+ if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
+    print("Between 1 and 2")
+  }
+```
+]
+]
 ---
 # Keep a clean and nice code
 
@@ -2000,7 +2186,7 @@ On the left, code is not spaced. All brackets are in the same line, and it looks
 
 <br>
 
-.small[
+.xsmall[
 .pull-left[
 ```r
 a<-4;b=3
@@ -2017,7 +2203,7 @@ On the left, code is not spaced. All brackets are in the same line, and it looks
 
 <br>
 
-.small[
+.xsmall[
 .pull-left[
 ```r
 a<-4;b=3
@@ -2077,6 +2263,7 @@ for(i in 1:length(CO2[,1])) {
 
 .pull-right[
 Or this:
+.xsmall[
 ```{r eval = FALSE}
 recalibrate <- function(CO2, type, bias) {
   for(i in 1:nrow(CO2)) {
@@ -2088,9 +2275,10 @@ recalibrate <- function(CO2, type, bias) {
 }
 
 ```
-.small[
+]
+.xsmall[
 ```{r eval = FALSE}
-newCO2 <- recalibrate(CO2, "Mississipi", -20)
+newCO2 <- recalibrate(CO2 = CO2, type = "Mississipi", bias = -20)
 newCO2 <- recalibrate(newCO2, "Quebec", +50)
 ```
 ]
@@ -2150,21 +2338,21 @@ recalibrate <- function(CO2, type, bias) {
 ---
 # Group exercise
 
-Using what you learned, write an `if` statement that tests whether a numeric variable `x` is zero. If not, it assigns cos(x)/x to `z`, otherwise it assigns 1 to `z`.
+Using what you learned, write an `if()` statement that tests whether a numeric variable `x` is zero. If not, it assigns $cos(x)/x$ to `z`, otherwise it assigns $1$ to `z`.
 <br>
 
-Create a function called my_function that takes the variable `x` as argument and returns `z`.
+Create a function called `my_function()` that takes the variable `x` as argument and returns `z`.
 <br>
 
-If we assign 45, 20, and 0 to `x` respectively, which of the following options would represent the results?
+If we assign $45$, $20$, and $0$ to `x` respectively, which of the following options would represent the results?
 
 <br>
 
-**1.** 0.54 - 0.12 - 0 <br>
+**1.** $0.54$, $0.12$, and $0$; <br>
 <br>
-**2.** 0.20 - 0.54 - 1 <br>
+**2.** $0.20$, $0.54$, and $1$; <br>
 <br>
-**3.** 0.12 - 0.20 - 1 <br>
+**3.** $0.12$, $0.20$, and $1$. <br>
 
 ???
 
@@ -2172,7 +2360,7 @@ This exercise should take place in breakout rooms within 10 minutes. After rejoi
 ---
 # Group exercise: Solution ![:cube]()
 
-Correct answer is option 3 (0.12 - 0.20 - 1).
+Correct answer is option **3** ($0.12$, $0.20$, and $1$).
 
 <br>
 
