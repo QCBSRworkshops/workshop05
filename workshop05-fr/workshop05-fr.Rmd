@@ -15,23 +15,26 @@ output:
 ---
 
 
-```{r setup, echo = FALSE}
+```{r setup, echo = FALSE, include = FALSE}
 knitr::opts_chunk$set(
-  comment = "#",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width=6, fig.height=6,
-  fig.retina = 3,
-  fig.align = 'center'
+	fig.align = "center",
+	fig.height = 6,
+	fig.retina = 3,
+	fig.width = 6,
+	message = FALSE,
+	warning = FALSE,
+	collapse = TRUE,
+	comment = "#"
 )
 options(repos=structure(c(CRAN="http://cran.r-project.org")))
+
+if (!require("DiagrammeR")) install.packages("DiagrammeR")
+library(DiagrammeR)
 ```
 
 class: inverse, center, middle
 
 # À propos de cet atelier
-
 ```{R echo = FALSE, results = "asis"}
 bge <- qcbsRworkshops::get_badges(5, style = "for-the-badge", clip = FALSE,
 lang = "fr", show = FALSE)
@@ -42,9 +45,9 @@ cat(bge[-1L])
 # Objectifs d'apprentissage
 
 ##### 1. Prendre connaissance de **structures de contrôle**
-##### 2. Écrire des fonctions dans R
+##### 2. Écrire des fonctions dans `R`
 ##### 3. Réduire le temps d’exécution des codes
-##### 4. Paquets R utiles
+##### 4. Paquets `R` utiles
 
 ---
 class: inverse, center, middle
@@ -52,26 +55,49 @@ class: inverse, center, middle
 # Rappel
 
 ---
-# Objets
+# Rappel : Objets
 
-![](images/matrix.png)
+![:scale 90%](images/matrix.png)
 
 ---
-# Vecteurs
+# Révision : Vecteurs
 
-Vecteurs numériques
+<br>
+.center[Souvenez-vous de l'[atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#55) ?]
+
+<br>
+
+.pull-left[
+##### Vecteurs numériques 
 
 ```{r}
-  num.vector <- c(1, 4, 3, 98, 32, -76, -4)
-```
-```{r}
+  num.vector <- c(1, 4, 3, 
+                  9, 32, -4)
   num.vector
 ```
+]
+.pull-right[
+##### Vecteur de caractères
+
+```{r}
+char_vector <- c("bleu", 
+                 "rouge", 
+                 "vert")
+char_vector
+```
+]
+
+##### Vecteur logique
+
+```{r}
+bool_vector <- c(TRUE, TRUE, FALSE) # ou c(T, T, F)
+bool_vector
+```
 
 ---
-# Tableaux de données
+# Révision : Tableaux de données
 
-vecteurs
+Nous pouvons commencer par créer des vecteurs multiples (petit rappel : [Atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#55)) :
 
 ```{r}
   siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
@@ -80,7 +106,7 @@ vecteurs
   treatment <- c("Fert", "Fert", "No_fert", "No_fert")
 ```
 
-On combine ces vecteurs à l'aide de la fonction `data.frame`
+Nous les combinons ensuite en utilisant la fonction `data.frame()`.
 
 ```{r}
   my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
@@ -91,6 +117,8 @@ On combine ces vecteurs à l'aide de la fonction `data.frame`
 
 ---
 # Listes
+
+Nous pouvons également créer des listes en combinant les vecteurs que nous avons créés auparavant.
 
 ```{r}
   my.first.list <- list(siteID, soil_pH, num.sp, treatment)
@@ -108,20 +136,27 @@ class: inverse, center, middle
 ---
 # Contrôle de flux
 
-En programmation, le contrôle de flux est simplement l'ordre dans lequel le programme est exécuté.
+En programmation, le **contrôle de flux** (en anglais, *control flow*) est simplement l'ordre dans lequel le programme est exécuté.
+
+<br> 
 
 #### Pourquoi est-il avantageux de structurer nos programmes?
+
+<br>
 
 - On **réduit la complexité** et la durée de la tâche;
 - Une structure logique **améliore la clarté** du code;
 - **Plusieurs programmeurs peuvent alors travailler sur un même programme**.
+
+<br>
+<br>
 
 .large[.center[**Tout ceci augmente la productivité!**]]
 
 ---
 # Contrôle de flux
 
-On peut utiliser des organigrammes pour planifier et représenter la structure de  programmes.
+On peut utiliser des **organigrammes** pour planifier et représenter la structure des programmes.
 
 <br>
 
@@ -131,21 +166,24 @@ library(DiagrammeR)
 #Create node data frame
 f1_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
-                           label = c("Start\nprogram", "Process\n(operations carried out\ne.g. data manipulation)", "Decision", "End\nprogram"), #words inside node
+                           label = c("Début\n du programme", "Processus \n(opérations effectuées \ne.g., manipulation des données)", "Décision", "Fin\n du programme"), #words inside node
                            shape = c("rectangle", "rectangle", 'diamond', 'rectangle'), #shape of node
                            style = c('rounded', 'solid', 'solid', 'rounded'), #line style around nodes
                            fontname = 'Helvetica',
                            fontsize = 10,
                            fixedsize = FALSE, #whether node changes size based on label or is fixed
-                           color = 'mediumblue'
+                           color = 'mediumblue',
+                           height = 0.70
                            )
 
 
 #create edges
 ##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
 f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
-                           to = c(2, 3, 2, 4), 
-                           label = c(' ', ' ', 'Boolean choice:\nTrue or False', ' '), #for text on edge
+                           to = c(2, 3, 2, 4),
+                           tailport = c("e", "e", "s", "e"),
+                           headport = c("w", "w", "s", "w"),
+                           label = c(' ', ' ', 'Choix booléen:\nTRUE ou FALSE', ' '), #for text on edge
                            fontsize = 10,
                            color = 'dimgrey'
                            )
@@ -159,7 +197,8 @@ flowchart1 <- create_graph(
                     )
 
 #display flowchart
-render_graph(flowchart1, width = '95%', height = 'auto')
+render_graph(flowchart1, 
+             width = '95%', height = 'auto')
 
 ```
 </center>
@@ -176,8 +215,8 @@ Les deux composantes de base de programmation sont:
 Exécuter des commandes **conditionnellement** en utilisant:
 
 ```r
-if
-if else
+if() {}
+if() {} else {}
 ```
 
 ]
@@ -189,24 +228,64 @@ if else
 Répéter l'exécution d'une commande **en boucle** tant qu'une condition n'est pas satisfaite.
 
 ```r
-for
-while
-repeat
+for() {}
+while() {}
+repeat {}
 ```
 ]
+
+Les clauses de sélection et d'itéraction peuvent également être contrôlées par des procedures de terminaison et de saut :
+
+#### Terminaison et saut
+
+```r
+break
+next
+```
+---
+
+# Route pour le flux de contrôle
+
+<br>
+<br>
+
+.center[
+.alert[**les clauses `if` et `if` `else`**] <br>
+
+![:faic](arrow-down) <br>
+
+**la boucle `for`** <br>
+
+![:faic](arrow-down) <br>
+
+**les clauses `break` et `next`** <br>
+
+![:faic](arrow-down) <br>
+
+**la boucle `repeat`** <br>
+
+![:faic](arrow-down) <br>
+
+**la boucle `while`**
+]
+
+???
+
+Cette feuille de route apparaît au début de chaque outil de flux de contrôle pour faire savoir aux participants ce qui se passe dans la section flux de contrôle.
 
 ---
 # Prise de décisions
 
 .pull-left[
 
-**Commande `if`**
+**Condition `if()`**
 
 ```R
 if(condition) {
   expression
 }
 ```
+
 <center>
 
 ```{r flowchart2, echo=FALSE}
@@ -227,7 +306,7 @@ f2_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 4), 
-                           label = c(' ', ' If True', '  If False', ' '), 
+                           label = c(' ', ' if TRUE', '  if FAUX', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -279,7 +358,7 @@ f3_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
                            to = c(2, 3, 5, 4, 4), 
-                           label = c(' ', ' If True', '  If False', ' '), 
+                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -359,7 +438,7 @@ f4_nodes <- create_node_df(n = 9, #number of nodes
 #create edges
 f4_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8), #origin node id
                            to = c(2, 3, 5, 4, 6, 7, 8, 9, 9, 9, 9), 
-                           label = c(' ', ' If False', '  If True', ' If False', ' If True', ' If False', ' If True',
+                           label = c(' ', ' if FALSE', '  if TRUE', ' if FALSE', ' if TRUE', ' if FALSE', ' if TRUE',
                                      ' ', ' ', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
@@ -520,7 +599,7 @@ f5_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f5_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 2), 
-                           label = c(' ', ' If False', '  If True', ' '), 
+                           label = c(' ', ' if FALSE', '  if TRUE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE,
@@ -634,7 +713,7 @@ f6_nodes <- create_node_df(n = 6, #number of nodes
 #create edges
 f6_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 5), #origin node id
                            to = c(2, 3, 6, 4, 5, 5, 2), 
-                           label = c(' ', ' If False\nfor Xi', '  If True,\nexit loop', ' If True', 'If False', ' ', ' '), 
+                           label = c(' ', ' if FALSE\nfor Xi', '  if TRUE,\nexit loop', ' if TRUE', 'if FALSE', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
@@ -919,7 +998,7 @@ f7_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f7_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 5), 
-                           label = c(' ', ' If False\nfor Xi', '  If False', ' ', 'If True', ' If True'), 
+                           label = c(' ', ' if FALSE\nfor Xi', '  if FALSE', ' ', 'if TRUE', ' if TRUE'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
@@ -970,7 +1049,7 @@ f8_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f8_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 2), 
-                           label = c(' ', ' If False\nfor Xi', '  If False', ' ', 'If True', ' If True'), 
+                           label = c(' ', ' if FALSE\nfor Xi', '  if FALSE', ' ', 'if TRUE', ' if TRUE'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,

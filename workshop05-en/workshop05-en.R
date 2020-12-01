@@ -1,13 +1,13 @@
-## ----setup, echo = FALSE----
+## ----setup, echo = FALSE, 	include = FALSE----
 knitr::opts_chunk$set(
-  comment = "#",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width=6, 
-  fig.height=6,
-  fig.retina = 3,
-  fig.align = 'center'
+	fig.align = "center",
+	fig.height = 6,
+	fig.retina = 3,
+	fig.width = 6,
+	message = FALSE,
+	warning = FALSE,
+	collapse = TRUE,
+	comment = "#"
 )
 options(repos=structure(c(CRAN="http://cran.r-project.org")))
 

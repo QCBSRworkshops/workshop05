@@ -1,14 +1,18 @@
-## ----setup, echo = FALSE----
+## ----setup, echo = FALSE, include = FALSE----
 knitr::opts_chunk$set(
-  comment = "#",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width=6, fig.height=6,
-  fig.retina = 3,
-  fig.align = 'center'
+	fig.align = "center",
+	fig.height = 6,
+	fig.retina = 3,
+	fig.width = 6,
+	message = FALSE,
+	warning = FALSE,
+	collapse = TRUE,
+	comment = "#"
 )
 options(repos=structure(c(CRAN="http://cran.r-project.org")))
+
+if (!require("DiagrammeR")) install.packages("DiagrammeR")
+library(DiagrammeR)
 
 
 ## ----echo = FALSE, results = "asis"----
@@ -18,10 +22,21 @@ cat(bge[-1L])
 
 
 ## ---------------------------
-  num.vector <- c(1, 4, 3, 98, 32, -76, -4)
+  num.vector <- c(1, 4, 3, 
+                  9, 32, -4)
+  num.vector
+
 
 ## ---------------------------
-  num.vector
+char_vector <- c("bleu", 
+                 "rouge", 
+                 "vert")
+char_vector
+
+
+## ---------------------------
+bool_vector <- c(TRUE, TRUE, FALSE) # ou c(T, T, F)
+bool_vector
 
 
 ## ---------------------------
@@ -51,21 +66,24 @@ library(DiagrammeR)
 #Create node data frame
 f1_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
-                           label = c("Start\nprogram", "Process\n(operations carried out\ne.g. data manipulation)", "Decision", "End\nprogram"), #words inside node
+                           label = c("Début\n du programme", "Processus \n(opérations effectuées \ne.g., manipulation des données)", "Décision", "Fin\n du programme"), #words inside node
                            shape = c("rectangle", "rectangle", 'diamond', 'rectangle'), #shape of node
                            style = c('rounded', 'solid', 'solid', 'rounded'), #line style around nodes
                            fontname = 'Helvetica',
                            fontsize = 10,
                            fixedsize = FALSE, #whether node changes size based on label or is fixed
-                           color = 'mediumblue'
+                           color = 'mediumblue',
+                           height = 0.70
                            )
 
 
 #create edges
 ##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
 f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
-                           to = c(2, 3, 2, 4), 
-                           label = c(' ', ' ', 'Boolean choice:\nTrue or False', ' '), #for text on edge
+                           to = c(2, 3, 2, 4),
+                           tailport = c("e", "e", "s", "e"),
+                           headport = c("w", "w", "s", "w"),
+                           label = c(' ', ' ', 'Choix booléen:\nTRUE ou FALSE', ' '), #for text on edge
                            fontsize = 10,
                            color = 'dimgrey'
                            )
@@ -79,7 +97,8 @@ flowchart1 <- create_graph(
                     )
 
 #display flowchart
-render_graph(flowchart1, width = '95%', height = 'auto')
+render_graph(flowchart1, 
+             width = '95%', height = 'auto')
 
 
 
@@ -101,7 +120,7 @@ f2_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 4), 
-                           label = c(' ', ' If True', '  If False', ' '), 
+                           label = c(' ', ' if TRUE', '  if FAUX', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -137,7 +156,7 @@ f3_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
                            to = c(2, 3, 5, 4, 4), 
-                           label = c(' ', ' If True', '  If False', ' '), 
+                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -177,7 +196,7 @@ f4_nodes <- create_node_df(n = 9, #number of nodes
 #create edges
 f4_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8), #origin node id
                            to = c(2, 3, 5, 4, 6, 7, 8, 9, 9, 9, 9), 
-                           label = c(' ', ' If False', '  If True', ' If False', ' If True', ' If False', ' If True',
+                           label = c(' ', ' if FALSE', '  if TRUE', ' if FALSE', ' if TRUE', ' if FALSE', ' if TRUE',
                                      ' ', ' ', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
@@ -264,7 +283,7 @@ f5_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f5_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 2), 
-                           label = c(' ', ' If False', '  If True', ' '), 
+                           label = c(' ', ' if FALSE', '  if TRUE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE,
@@ -314,7 +333,7 @@ f6_nodes <- create_node_df(n = 6, #number of nodes
 #create edges
 f6_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 5), #origin node id
                            to = c(2, 3, 6, 4, 5, 5, 2), 
-                           label = c(' ', ' If False\nfor Xi', '  If True,\nexit loop', ' If True', 'If False', ' ', ' '), 
+                           label = c(' ', ' if FALSE\nfor Xi', '  if TRUE,\nexit loop', ' if TRUE', 'if FALSE', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
@@ -445,7 +464,7 @@ f7_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f7_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 5), 
-                           label = c(' ', ' If False\nfor Xi', '  If False', ' ', 'If True', ' If True'), 
+                           label = c(' ', ' if FALSE\nfor Xi', '  if FALSE', ' ', 'if TRUE', ' if TRUE'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
@@ -484,7 +503,7 @@ f8_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f8_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 2), 
-                           label = c(' ', ' If False\nfor Xi', '  If False', ' ', 'If True', ' If True'), 
+                           label = c(' ', ' if FALSE\nfor Xi', '  if FALSE', ' ', 'if TRUE', ' if TRUE'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
