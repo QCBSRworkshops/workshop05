@@ -120,7 +120,7 @@ f2_nodes <- create_node_df(n = 4, #number of nodes
 #create edges
 f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            to = c(2, 3, 4, 4), 
-                           label = c(' ', ' if TRUE', '  if FAUX', ' '), 
+                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE
@@ -142,7 +142,7 @@ render_graph(flowchart2, width = '45%', height = 'auto')
 #Create node data frame
 f3_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Condition", "Expression 1\nif body", " ", "Expression 2\nelse body"), 
+                           label = c(" ", "Condition", "l'expression 1\nif", " ", "l'expression 2\nelse"), 
                            shape = c("circle", "diamond", 'rectangle', 'circle', 'rectangle'), 
                            style = c('rounded', 'solid', 'solid', 'filled', 'solid'), 
                            fontname = 'Helvetica',
@@ -174,13 +174,31 @@ flowchart3 <- create_graph(
 render_graph(flowchart3, width = '50%', height = 'auto')
 
 
+## ---- echo = c(-1)----------
+options(width = 30)
+a <- 1:10
+
+ifelse(test = a > 5, 
+       yes = "oui", 
+       no = "non")
+
+
+## ---------------------------
+a <- (-4):5
+
+sqrt(ifelse(test = a >= 0, 
+            yes = a,
+            no = NA)
+     )
+
+
 ## ----flowchart4, echo=FALSE----
 #note this one might turn out better in diagraph / DOT language, 'rank = same' seems broken without DOT
 #Create node data frame
 f4_nodes <- create_node_df(n = 9, #number of nodes
                            group = c('a','b','b','b','c','c','c','c','a'),
                            label = c(" ", "Condition 1", "Condition 2", "Condition 3", 
-                                     "Expression 1", "Expression 2", "Expression 3", "Expression 4",  " "), 
+                                     "Procedure 1", "Procedure 2", "Procedure 3", "Procedure 4",  " "), 
                            shape = c("circle", "diamond", "diamond", "diamond", 
                                      'rectangle', 'rectangle','rectangle', 'rectangle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'solid', 
@@ -216,6 +234,28 @@ flowchart4 <- create_graph(
 
 #display flowchart
 render_graph(flowchart4, width = '75%', height = 'auto')
+
+
+## ----bad-ifelse, eval = FALSE----
+## if(2+2) == 4
+## print("Ouf, tout va bien!")
+## else
+## print("C'est la fin du monde!")
+
+
+## ----bad-ifelse-out, echo = FALSE, error = TRUE----
+if(2+2) == 4 
+print("Ouf, tout va bien!")
+else 
+print("C'est la fin du monde!")
+
+
+## ---------------------------
+if(2+2 == 4) { #<<
+  print("Ouf, tout va bien!")
+} else { #<<
+  print("C'est la fin du monde!")
+} #<<
 
 
 ## ---------------------------
@@ -257,19 +297,11 @@ for(val in 1:3) {
 }
 
 
-## ---------------------------
-if (2+2 == 4) { #<<
-  print("Les maths, c'est logique!")
-} else { #<<
-  print("Houston, on a un problème.")
-} #<<
-
-
 ## ----flowchart5for-loop, echo=FALSE----
 #Create node data frame
 f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Last item\nreached?", "Expression\nFOR body", "Exit\nLoop"), 
+                           label = c("Début", "Est-ce que le \ndernier élément \na été atteint ?", "Expression", "Sortie"), 
                            shape = c("circle", "diamond", 'rectangle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'filled'), 
                            fontname = 'Helvetica',
@@ -287,7 +319,8 @@ f5_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = TRUE,
-                           tailport = c('s', 'w', 'e', 'e')
+                           tailport = c('s', 'w', 'e', 'e'),
+                           headport = c('n', 'w', 'w', 's')
                            )
 
 #create flowchart
@@ -302,24 +335,33 @@ flowchart5 <- create_graph(
 render_graph(flowchart5, width = '35%', height = 'auto')
 
 
-## ----echo=FALSE-------------
-for(m in 1:5) {
+## ----eval = FALSE-----------
+## for(m in 1:7) {
+##   print(m*2)
+## }
+
+
+## ---- echo = FALSE----------
+for(m in 1:7) {
   print(m*2)
 }
 
 
-## ----echo=FALSE-------------
-for(m in 6:10) {
-  print(m*2)
-}
+## ---- eval = FALSE----------
+## for(val in x) {
+##   if(val %% 2 == 0) {
+##     count <- count + 1
+##   }
+## }
+## print(count)
 
 
 ## ----flowchart6for-loop2, echo=FALSE----
 #Create node data frame
 f6_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
-                           label = c("x", "Last VAL\nin X?", "Is VAL even?", 'count = count + 1',
-                                     'End', "Print\ncount"), 
+                           label = c("x", "Dernière valeur\ndans x?", "Est-ce que \nvaleur est paire?", 'count = count + 1',
+                                     'Fin', "imprimer\ncount"), 
                            shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'solid', 'solid', 'filled'), 
                            fontname = 'Helvetica',
@@ -333,7 +375,7 @@ f6_nodes <- create_node_df(n = 6, #number of nodes
 #create edges
 f6_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 5), #origin node id
                            to = c(2, 3, 6, 4, 5, 5, 2), 
-                           label = c(' ', ' if FALSE\nfor Xi', '  if TRUE,\nexit loop', ' if TRUE', 'if FALSE', ' ', ' '), 
+                           label = c(' ', ' if FALSE\nfor X', '  if TRUE,\nsortir de la boucle', ' if TRUE', 'if FALSE', ' ', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
@@ -351,6 +393,30 @@ flowchart6 <- create_graph(
 
 #display flowchart
 render_graph(flowchart6, width = '90%', height = 'auto')
+
+
+## ---- echo=FALSE------------
+for(i in 1:10) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE------------
+for (i in 11:20) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE------------
+for (i in 21:30) { 
+  print(CO2$conc[i]) 
+}
+
+
+## ---- echo=FALSE------------
+for (i in 31:40) { 
+  print(CO2$conc[i]) 
+}
 
 
 ## ----echo = FALSE-----------
@@ -391,7 +457,8 @@ apply(X = hauteur,
 ##   Norm20 = rnorm(20, 1),
 ##   Norm100 = rnorm(100, 5))
 ## 
-## # Applique mean() sur chaque élément de la liste
+## # Applique mean() sur chaque
+## # élément de la liste
 ## lapply(SimulatedData, mean)
 
 
@@ -426,11 +493,14 @@ mapply(sum, lilySeeds, poppySeeds)
 
 
 ## ---------------------------
-head(mtcars)
+mtcars[1:10, c("hp", "cyl")]
+
 
 ## ---------------------------
-# obtient la moyenne de hp par groupe de cylindres
-tapply(mtcars$hp, mtcars$cyl, FUN = mean)
+# Moyenne de hp par cylindres
+tapply(mtcars$hp, 
+       mtcars$cyl,
+       FUN = mean)
 
 
 ## ----echo=TRUE--------------
@@ -447,29 +517,34 @@ tapply(CO2$uptake, CO2$Type, mean)
 
 ## ----flowchart7break, echo=FALSE----
 #Create node data frame
-f7_nodes <- create_node_df(n = 5, #number of nodes
+f7_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Last VAL\nin X?", "Is condition true?\nBREAK",
-                                     'Statement\nBody of FOR loop', "Exit\nLoop"), 
+                           label = c("Début", 
+                                     "La dernière valeur\nde x a été \natteinte?\n\nfor()", 
+                                     "Est-ce que la\ncondition est \nTRUE? \n\nif()",
+                                     'Expression', 
+                                     "Fin", 
+                                     " "), 
                            shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 'filled'), 
+                           style = c('solid', 'solid', 'solid', 'solid', 'filled', 'invis'), 
                            fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
+                           fontsize = 13,
+                           fixedsize = 'false',
                            color = 'mediumblue',
-                           width = .1
+                           width = .1,
+                           penwidth = 1.5
                            )
 
 
 #create edges
 f7_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 5), 
-                           label = c(' ', ' if FALSE\nfor Xi', '  if FALSE', ' ', 'if TRUE', ' if TRUE'), 
+                           label = c(' ', ' si FALSE\nfor x', '  si FALSE', ' ', 'si TRUE, sortez', ' si TRUE, break', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
-                           tailport = c('e', 'e', 'se', 'w', 'ne', 'e'),
-                           headport = c('w', 'w', 'nw', 'se', 'w', 'w')
+                           tailport = c('e', 'e', 's', 'w', 'n', 'e'),
+                           headport = c('w', 'w', 'n', 's', 'w', 'w')
                            )
 
 #create flowchart
@@ -488,9 +563,10 @@ render_graph(flowchart7, width = '95%', height = 'auto')
 #Create node data frame
 f8_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Last VAL\nin X?", "Is condition true?\nNEXT",
-                                     'Statement\nBody of FOR loop', "Exit\nLoop"), 
-                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
+                           label = c("Début", "Dernière valeur de \nx atteinte?\n\nfor()", 
+                                     "Est-ce que la condition est \nTRUE?\n\nif()",
+                                     'Expression', "Fin"), 
+                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle'), 
                            style = c('solid', 'solid', 'solid', 'solid', 'filled'), 
                            fontname = 'Helvetica',
                            fontsize = 10,
@@ -503,11 +579,11 @@ f8_nodes <- create_node_df(n = 5, #number of nodes
 #create edges
 f8_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
                            to = c(2, 3, 4, 2, 5, 2), 
-                           label = c(' ', ' if FALSE\nfor Xi', '  if FALSE', ' ', 'if TRUE', ' if TRUE'), 
+                           label = c(' ', ' si FALSE', '  si FALSE', ' ', 'si TRUE, sortez', ' si TRUE, next'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
-                           tailport = c('e', 'e', 'e', 's', 'ne', 's'),
+                           tailport = c('e', 'e', 'e', 's', 'n', 's'),
                            headport = c('w', 'w', 'nw', 's', 'w', 's')
                            )
 
@@ -598,9 +674,13 @@ for (i in 1:nrow(CO2)) {
 
 
 ## ---- eval=F----------------
-## plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
+## plot(x = CO2$conc, y = CO2$uptake, type = "n",
+##      cex.lab = 1.4, cex.axis = 1.5,
+##      cex.main = 1.5, cex.sub = 1.5,
 ##      xlab = "CO2 concentration", ylab = "CO2 uptake")
-## # Type "n" dit à R de ne pas afficher les points
+## 
+## # type = "n" dit à R de ne pas afficher les points
+## 
 ## for (i in 1:length(CO2[,1])) {
 ##   if (CO2$Type[i] == "Quebec" & CO2$Treatment[i] == "nonchilled") {
 ##     points(CO2$conc[i], CO2$uptake[i], col = "red")
@@ -656,7 +736,7 @@ library(DiagrammeR)
 f9_nodes <- create_node_df(n = 5, #number of nodes
                            group = c('a', 'a', 'a', 'b', 'c'),
                            label = c("Argument 1", "Argument 2",
-                                     "Argument 3", "Data processing", 'Return value'), 
+                                     "Argument 3", "Traitement des données", 'Résultat'), 
                            shape = c("none", "none", 'none', 'rectangle', 'none'), #shape of node
                            style = c('none', 'none', 'none', 'rounded', 'none'), #line style around nodes
                            fontname = 'Helvetica',
@@ -672,7 +752,9 @@ f9_edges <- create_edge_df(from = c(1, 2, 3, 4), #origin node id
                            to = c(4, 4, 4, 5),
                            style = c('solid', 'solid', 'solid', 'dashed'),
                            fontsize = 10,
-                           color = 'dimgrey'
+                           color = 'dimgrey',
+                           headport = c('w', 'w', 'w', 'w'),
+                           tailport = c('e', 'e', 'e', 'e')
                            )
 
 #create flowchart
@@ -684,14 +766,16 @@ flowchart9 <- create_graph(
                     )
 
 #display flowchart
-render_graph(flowchart9, width = '95%', height = 'auto')
+render_graph(flowchart9, 
+             width = '95%', 
+             height = 'auto')
 
 
 
 ## ---------------------------
-operations <- function(number1, number2, number3) {
-  result <- (number1 + number2) * number3
-  print(result)
+operations <- function(numero_1, numero_2, numero_3) {
+  resultat <- (numero_1 + numero_2) * numero_3
+  print(resultat)
 }
 
 ## ---------------------------
@@ -700,32 +784,33 @@ operations(1, 2, 3)
 
 ## ---- echo=F----------------
 print_animal <- function(animal) {
-  if (animal == "dog") {
+  if (animal == "chien") {
     print("woof")
-  } else if (animal == "cat") {
-    print("meow")
+  } else if (animal == "chat") {
+    print("miaou")
   }
 }
 
 
 ## ---------------------------
-Scruffy <- "dog"
-Paws <- "cat"
+Pitou <- "chien"
 
-print_animal(Scruffy)
+Minou <- "chat"
 
-print_animal(Paws)
+print_animal(Pitou)
+
+print_animal(Minou)
 
 
 ## ---------------------------
-operations <- function(number1, number2, number3 = 3) {
-  result <- (number1 + number2) * number3
-  print(result)
+operations <- function(numero_1, numero_2, numero_3 = 3) {
+  resultat <- (numero_1 + numero_2) * numero_3
+  print(resultat)
 }
 
 operations(1, 2, 3) # est équivalent à
 operations(1, 2)
-operations(1, 2, 2) # on peut toujours changer la valeur de number3
+operations(1, 2, 2) # on peut toujours changer la valeur de numero_3
 
 
 ## ---- eval = FALSE----------
@@ -739,6 +824,8 @@ operations(1, 2, 2) # on peut toujours changer la valeur de number3
 ##      }
 ##   }
 ## }
+
+## ---- eval = FALSE----------
 ## plot.CO2(CO2, cex.lab=1.2, xlab="Concentration CO2", ylab="CO2 uptake")
 ## plot.CO2(CO2, cex.lab=1.2, xlab="Concentration CO2", ylab="CO2 uptake", pch=20)
 
@@ -770,6 +857,8 @@ sum2 <- function(...){
   return (result)
 }
 
+
+## ---------------------------
 sum2(2, 3)
 sum2(2, 4, 5, 7688, 1)
 
@@ -783,6 +872,8 @@ myfun <- function(x) {
   }
 }
 
+
+## ---------------------------
 myfun(5)
 myfun(15)
 
@@ -864,6 +955,25 @@ var1          # var1 a toujours la même valeur à l'extérieur de la fonction
 
 
 ## ----eval = FALSE-----------
-## newCO2 <- recalibrate(CO2, "Mississipi", -20)
+## newCO2 <- recalibrate(CO2 = CO2,
+##                       type = "Mississipi",
+##                       bias = -20)
 ## newCO2 <- recalibrate(newCO2, "Quebec", +50)
+
+
+## ---------------------------
+ma_fonction <- function(x) {
+  if(x != 0) {
+  z <- cos(x)/x
+  } else { z <- 1 }
+  return(z)
+}
+
+
+## ---------------------------
+ma_fonction(45)
+
+ma_fonction(20)
+
+ma_fonction(0)
 

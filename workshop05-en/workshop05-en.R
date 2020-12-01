@@ -1077,7 +1077,9 @@ var1          # var1 still has the same value
 
 
 ## ----eval = FALSE-----------
-## newCO2 <- recalibrate(CO2 = CO2, type = "Mississipi", bias = -20)
+## newCO2 <- recalibrate(CO2 = CO2,
+##                       type = "Mississipi",
+##                       bias = -20)
 ## newCO2 <- recalibrate(newCO2, "Quebec", +50)
 
 
