@@ -35,7 +35,7 @@ class: inverse, center, middle
 
 # About this workshop
 
-```{R echo = FALSE, results = "asis"}
+```{r echo = FALSE, results = "asis"}
 bge <- qcbsRworkshops::get_badges(5, style = "for-the-badge", clip = FALSE,
 show = FALSE)
 cat(bge[-1L])
@@ -44,10 +44,13 @@ cat(bge[-1L])
 ---
 # Learning Objectives
 
-##### 1. Recognizing **control flow**
-##### 2. Developing your first functions in `R`
-##### 3. Accelerating your code
-##### 4. Demonstrating useful `R` packages for biologists
+<br>
+
+###### 1. Recognizing **control flow**;
+###### 2. Getting comfortable with testing conditions and performing iterations;
+###### 3. Developing your first functions in `R`;
+###### 4. Discovering how to accelerate your code;
+###### 5. Demonstrating useful `R` packages for biologists.
 
 ---
 class: inverse, center, middle
@@ -72,9 +75,9 @@ class: inverse, center, middle
 ##### Numeric vectors 
 
 ```{r}
-  num.vector <- c(1, 4, 3, 
-                  9, 32, -4)
-  num.vector
+num.vector <- c(1, 4, 3, 
+                9, 32, -4)
+num.vector
 ```
 ]
 .pull-right[
@@ -102,24 +105,24 @@ bool_vector
 We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
 
 ```{r}
-  siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
-  soil_pH <- c(5.6, 7.3, 4.1, 6.0)
-  num.sp <- c(17, 23, 15, 7)
-  treatment <- c("Fert", "Fert", "No_fert", "No_fert")
+siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
+soil_pH <- c(5.6, 7.3, 4.1, 6.0)
+num.sp <- c(17, 23, 15, 7)
+treatment <- c("Fert", "Fert", "No_fert", "No_fert")
 ```
 
 <br>
 We then combine them using the function `data.frame()`.
 
 ```{r}
-  my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
+my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
 ```
 ```{r}
-  my.first.df
+my.first.df
 ```
 
 ---
-# Lists
+# Review: Lists
 
 We can also create lists by combining the vectors we created before.
 
@@ -142,15 +145,19 @@ class: inverse, center, middle
 Program flow control can be simply defined as the order in which a program is executed.
 
 <br>
+<br>
 
+.center[
 #### Why is it advantageous to have structured programs?
-
+<br>
+]
 <br>
 
 - It **decreases the complexity** and time of the task at hand;
 - This logical structure also means that the code has **increased clarity**;
 - It also means that **many programmers can work on one program**.
 
+<br>
 <br>
 
 .large[.center[**This means increased productivity.**]]
@@ -238,6 +245,8 @@ repeat {}
 ```
 ]
 
+--
+
 Selection and iterative statements can also be controlled by termination and jump statements:
 
 #### Termination and Jump
@@ -252,28 +261,26 @@ next
 # Control flow roadmap
 
 <br>
-<br>
 
 .center[
 
-
-.alert[**`if` and `if` `else` statements**] <br>
-
-![:faic](arrow-down) <br>
-
-**`for` loop** <br>
+#### .alert[**`if` and `if` `else` statements**] <br>
 
 ![:faic](arrow-down) <br>
 
-**`break` and `next` statements** <br>
+#### **`for` loop** <br>
 
 ![:faic](arrow-down) <br>
 
-**`repeat` loop** <br>
+#### **`break` and `next` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-**`while` loop**
+#### **`repeat` loop** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`while` loop**
 
 ]
 
@@ -537,11 +544,30 @@ Sassy <- "cat"
 animals <- c(Paws, Scruffy, Sassy)
 ```
 
-<br>
 
+.pull-left[
 1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
 2. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 3. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
+]
+
+--
+
+.pull-right[
+Remember the logical operators
+
+| Command | Meaning |
+| :-------------: | :-------------: |
+| `==`  | equal to  |
+| `!=`  | not equal to  |
+| `<`   | less than  |
+| `<=`  | less than or equal to  |
+| `>`   | greater than  |
+| `>=`  | greater than or equal to  |
+| `x&y` | `x` AND `y` |
+| `x`&#124;`y`  | `x` OR `y`  |
+| `isTRUE(x)`  | test if `x` is true |
+]
 
 ---
 # Challenge 1 - Solution ![:cube]()
@@ -589,26 +615,6 @@ for(val in 1:3) {
 }
 ```
 
----
-# Remember the logical operators
-
-<br>
-<br>
-<br>
-<br>
-
-| Command | Meaning |
-| :-------------: | :-------------: |
-| `==`  | equal to  |
-| `!=`  | not equal to  |
-| `<`   | less than  |
-| `<=`  | less than or equal to  |
-| `>`   | greater than  |
-| `>=`  | greater than or equal to  |
-| `x&y` | `x` AND `y` |
-| `x`&#124;`y`  | `x` OR `y`  |
-| `isTRUE(x)`  | test if `x` is true |
-
 
 ---
 # Iteration
@@ -628,28 +634,26 @@ Loops are good for:
 # Control flow roadmap
 
 <br>
-<br>
 
 .center[
 
-
-**`if` and `if` `else` statements** <br>
-
-![:faic](arrow-down) <br>
-
-.alert[**`for` loop**] <br>
+#### **`if` and `if` `else` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-**`break` and `next` statements** <br>
+#### .alert[**`for` loop**] <br>
 
 ![:faic](arrow-down) <br>
 
-**`repeat` loop** <br>
+#### **`break` and `next` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-**`while` loop**
+#### **`repeat` loop** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`while` loop**
 
 ]
 ---
@@ -702,7 +706,7 @@ render_graph(flowchart5, width = '35%', height = 'auto')
 </center>
 
 ---
-# `for` loop
+# `for()` loop
 The letter `i` can be replaced with any variable name and the sequence can be almost anything, even a list of vectors.
 
 ```r
@@ -1041,7 +1045,7 @@ for (i in 4:5) { # for i in 4 to 5
 }
 ```
 ---
-# `for()` loops within `for()` loops
+# Nested `for()` loops within `for()` loops
 
 In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
 
@@ -1258,28 +1262,26 @@ For this, we will introduce `break`, `next` and `while`.
 # Control flow roadmap
 
 <br>
-<br>
 
 .center[
 
-
-**`if` and `if` `else` statements** <br>
-
-![:faic](arrow-down) <br>
-
-**`for` loop** <br>
+#### **`if` and `if` `else` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-.alert[**`break` and `next` statements**] <br>
+#### **`for` loop** <br>
 
 ![:faic](arrow-down) <br>
 
-**`repeat` loop** <br>
+#### .alert[**`break` and `next` statements**] <br>
 
 ![:faic](arrow-down) <br>
 
-**`while` loop**
+#### **`repeat` loop** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`while` loop**
 
 ]
 ---
@@ -1394,7 +1396,7 @@ render_graph(flowchart8, width = '95%', height = 'auto')
 ---
 # Modifying iterations: `next` statement
 
-Print the $\text{CO}_{2}$ concentrations for "chilled" treatments and keep count of how many replications were done.
+Print the $\text{CO}_{2}$ concentrations for *chilled* treatments and keep count of how many replications were done.
 
 ```{r eval = FALSE}
 count <- 0
@@ -1427,28 +1429,26 @@ sum(CO2$Treatment == "nonchilled")
 # Control flow roadmap
 
 <br>
-<br>
 
 .center[
 
-
-**`if` and `if` `else` statements** <br>
-
-![:faic](arrow-down) <br>
-
-**`for` loop** <br>
+#### **`if` and `if` `else` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-**`break` and `next` statements** <br>
+#### **`for` loop** <br>
 
 ![:faic](arrow-down) <br>
 
-.alert[**`repeat` loop**] <br>
+#### **`break` and `next` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-**`while` loop**
+#### .alert[**`repeat` loop**] <br>
+
+![:faic](arrow-down) <br>
+
+#### **`while` loop**
 
 ]
 ---
@@ -1473,28 +1473,26 @@ print(count)
 # Control flow roadmap
 
 <br>
-<br>
 
 .center[
 
-
-**`if` and `if` `else` statements** <br>
-
-![:faic](arrow-down) <br>
-
-**`for` loop** <br>
+#### **`if` and `if` `else` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-**`break` and `next` statements** <br>
+#### **`for` loop** <br>
 
 ![:faic](arrow-down) <br>
 
-**`repeat` loop** <br>
+#### **`break` and `next` statements** <br>
 
 ![:faic](arrow-down) <br>
 
-.alert[**`while` loop**]
+#### **`repeat` loop** <br>
+
+![:faic](arrow-down) <br>
+
+#### .alert[**`while` loop**]
 
 ]
 ---
@@ -1621,12 +1619,17 @@ for (i in 1:length(CO2[,1])) {
 Generate a plot showing **concentration** *versus* **uptake** where each plant is shown using a point with a different $\color{red}{\text{co}}\color{blue}{\text{lo}}\color{green}{\text{ur}}$.
 
 <br>
-
-.alert[Bonus points] for doing it with nested loops!
-
+<br>
 <br>
 
-.comment[Steps: <br>
+.center[.alert[Bonus points] for doing it with nested loops!]
+
+<br>
+<br>
+<br>
+
+
+.comment[Suggested steps: <br>
 1. Create an empty plot; <br>
 2. Create a list of plants (hint: `?unique`); <br>
 3. Fill the plot using `for()` and `if()` statements.
@@ -1659,17 +1662,22 @@ class: inverse, center, middle
 ---
 # Why write functions?
 
-Much of the heavy lifting in R is done by functions.
+<br>
+
+.center[Much of the heavy lifting in `R` is done by functions.]
 
 <br>
-They are useful for:
+<br>
+
+Functions are useful for:
+
 
 1. Performing a task repeatedly, but configurably;
 2. Making code more readable;
 3. Making code easier to modify and maintain;
 4. Sharing code between different analyses;
 5. Sharing code with other people;
-6. Modifying R’s built-in functionality.
+6. Modifying `R`’s built-in functionality.
 
 ---
 # What is a function?
@@ -1724,7 +1732,7 @@ render_graph(flowchart9,
 
 
 ---
-# Syntax of a function
+# Syntax of a function: `function()`
 
 ```r
 function_name <- function(argument1, argument2, ...) {
@@ -1738,14 +1746,16 @@ function_name <- function(argument1, argument2, ...) {
 
 ```r
 function_name <- function(argument1, argument2, ...) {
-  expression...
-  return(value)
+  expression...  # What we want the function to do
+  return(value)  # Optional
 }
 ```
 
 Arguments are the entry values of your function and will have the information your function needs to be able to perform correctly.
 
-A function can have between 0 and an infinity of arguments. See the following example:
+--
+
+A function can have between zero and an infinity of arguments. See the following example:
 .small[
 ```{r}
 operations <- function(number1, number2, number3) {
@@ -2034,9 +2044,16 @@ bigsum <- function(a, b) {
 
 It is essential to always keep in mind where your variables are, and whether they are defined and accessible:
 
-![:faic](arrow-right) Variables defined .alert[inside] a function are not accessible outside of it!
+1. Variables defined .alert[inside] a function are not accessible outside of it!
 
-![:faic](arrow-right) Variables defined .alert[outside] a function are accessible inside. But it is NEVER a good idea, as your function will not function if the outside variable is erased.
+2. Variables defined .alert[outside] a function are accessible inside. But we caution about using this often, as your function will not function if the outside variable is erased.
+
+<br>
+
+<br>
+
+.center[Include short examples!]
+
 
 ---
 # Accessibility of variables
@@ -2060,7 +2077,7 @@ vartest()     # calling the function again does not work anymore
 ---
 # Accessibility of variables
 
-.alert[Mandatory tip.] Use arguments then!
+.alert[Mandatory tip.] **Use arguments!**
 
 Also, inside a function, arguments names will take over other variable names.
 
@@ -2340,9 +2357,9 @@ recalibrate <- function(CO2, type, bias) {
 ]
 
 ---
-# Group exercise
+# Challenge 7: Group exercise
 
-Using what you learned, write an `if()` statement that tests whether a numeric variable `x` is zero. If not, it assigns $cos(x)/x$ to `z`, otherwise it assigns $1$ to `z`.
+Using what you learned, write an `if()` statement that tests whether a numeric variable `x` is `0`. If not, it assigns $cos(x)/x$ to `z`, otherwise it assigns $1$ to `z`.
 <br>
 
 Create a function called `my_function()` that takes the variable `x` as argument and returns `z`.
@@ -2352,11 +2369,11 @@ If we assign $45$, $20$, and $0$ to `x` respectively, which of the following opt
 
 <br>
 
-**1.** $0.54$, $0.12$, and $0$; <br>
+**1.** $0.054$, $0.012$, and $0$; <br>
 <br>
-**2.** $0.20$, $0.54$, and $1$; <br>
+**2.** $0.020$, $0.054$, and $1$; <br>
 <br>
-**3.** $0.12$, $0.20$, and $1$. <br>
+**3.** $0.012$, $0.020$, and $1$. <br>
 
 ???
 
@@ -2364,7 +2381,7 @@ This exercise should take place in breakout rooms within 10 minutes. After rejoi
 ---
 # Group exercise: Solution ![:cube]()
 
-Correct answer is option **3** ($0.12$, $0.20$, and $1$).
+Correct answer is option **3** ( $0.12$, $0.20$, and $1$ ).
 
 <br>
 
