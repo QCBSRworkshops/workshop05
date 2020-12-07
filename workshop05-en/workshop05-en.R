@@ -22,9 +22,9 @@ cat(bge[-1L])
 
 
 ## ---------------------------
-  num.vector <- c(1, 4, 3, 
-                  9, 32, -4)
-  num.vector
+num.vector <- c(1, 4, 3, 
+                9, 32, -4)
+num.vector
 
 
 ## ---------------------------
@@ -40,17 +40,17 @@ bool_vector
 
 
 ## ---------------------------
-  siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
-  soil_pH <- c(5.6, 7.3, 4.1, 6.0)
-  num.sp <- c(17, 23, 15, 7)
-  treatment <- c("Fert", "Fert", "No_fert", "No_fert")
+siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
+soil_pH <- c(5.6, 7.3, 4.1, 6.0)
+num.sp <- c(17, 23, 15, 7)
+treatment <- c("Fert", "Fert", "No_fert", "No_fert")
 
 
 ## ---------------------------
-  my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
+my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
 
 ## ---------------------------
-  my.first.df
+my.first.df
 
 
 ## ---------------------------
