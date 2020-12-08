@@ -1911,7 +1911,6 @@ R ne trouverait pas d'erreur, et la valeur de `a + b` serait entièrement diffé
 ]
 
 ---
-
 class: inverse, center, middle
 
 # Bonnes pratiques de programmation
