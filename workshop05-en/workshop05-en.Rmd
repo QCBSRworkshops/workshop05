@@ -2204,18 +2204,6 @@ function_name <- function(argument1, argument2, ...) {
 
 Arguments are the *input* values of your function and will have the information your function needs to be able to perform correctly.
 
----
-# Arguments of a function
-
-```r
-function_name <- function(argument1, argument2, ...) {
-  body  # What we want the function to do
-  return(values)  # Optional
-}
-```
-
-Arguments are the entry values of your function and will have the information your function needs to be able to perform correctly.
-
 --
 
 A function can have between zero and an infinity of arguments. See the following example:
