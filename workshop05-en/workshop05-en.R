@@ -528,10 +528,24 @@ for(m in 1:6) {
 #Create node data frame
 f6_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
-                           label = c("x", "Last VAL\nin X?", "Is VAL even?", 'count = count + 1',
-                                     'End', "print\ncount"), 
-                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 'solid', 'filled'), 
+                           label = c("Start",
+                                     "x",
+                                     "Last VAL\nin X?", 
+                                     "Is VAL even?", 
+                                     'count = count + 1',
+                                     "print\ncount"), 
+                           shape = c("circle",
+                                     "parallelogram",
+                                     "diamond", 
+                                     'diamond', 
+                                     'parallelogram', 
+                                     'circle'), 
+                           style = c('solid',
+                                     'solid',
+                                     'solid', 
+                                     'solid', 
+                                     'solid',
+                                     'filled'), 
                            fontname = 'Helvetica',
                            fontsize = 10,
                            fixedsize = FALSE,
@@ -541,14 +555,14 @@ f6_nodes <- create_node_df(n = 6, #number of nodes
 
 
 #create edges
-f6_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 5), #origin node id
-                           to = c(2, 3, 6, 4, 5, 5, 2), 
-                           label = c(' ', ' if FALSE\nfor X', '  if TRUE,\nexit loop', ' if TRUE', 'if FALSE', ' ', ' '), 
+f6_edges <- create_edge_df(from = c(1, 2, 3, 3, 4, 5, 4), #origin node id
+                           to = c(2, 3, 4, 6, 5, 3, 3), 
+                           label = c(' ', ' ', '  if FALSE', ' if TRUE', ' if TRUE', ' ', ' if FALSE'), 
                            fontsize = 10,
                            color = 'dimgrey',
                            decorate = FALSE,
-                           tailport = c('e', 'e', 's', 'e', 'ne', 'e', 'n'),
-                           headport = c('w', 'w', 'w', 'w', 'w', 's', 'n')
+                           tailport = c('e', 'e', 'e', 's', 'e', 'n', 'n'),
+                           headport = c('w', 'w', 'w', 'n', 'w', 'n', 'n')
                            )
 
 #create flowchart
@@ -861,7 +875,7 @@ print(count) # The count and print command were performed 42 times.
 
 
 ## ---------------------------
-sum(CO2$Treatment == "nonchilled")
+sum(CO2$Treatment == "chilled")
 
 
 ## ----eval = FALSE-----------
