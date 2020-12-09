@@ -2648,49 +2648,34 @@ class: inverse, center, middle
 # Keep a clean and nice code
 
 Proper indentation and spacing is the first step to get an easy to read code:
-
-- Use **spaces** between and after your operators;
-  - `x>=1&x<=10` is more difficult to read then `x >= 1 & x <= 10`
-
---
-
-- Use consistently the same assignation operator. 
-  - `<-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two;
---
-
-- Use brackets and returns when using flow control statements:
-<br>
-  - Inside brackets, indent by *at least* two return;
-  - Put closing brackets on a separate line, except when preceding an `else` statement.
-  <br>
---
-
-- Define each variable on its own line.
-
---
-
-- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
-
----
-# Keep a clean and nice code
-
-Proper indentation and spacing is the first step to get an easy to read code:
 .small[
 - Use **spaces** between and after your operators;
   - `x>=1&x<=10` is more difficult to read then `x >= 1 & x <= 10`
-- Use consistently the same assignation operator. 
-  - `<-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two;
-- Use brackets when using flow control statements:
-<br>
-  - Inside brackets, indent by *at least* two spaces;
-  - Put closing brackets on a separate line, except when preceding an `else` statement.
-  <br>
-- Define each variable on its own line.
-- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically.
 ]
+--
+.small[
+- Use consistently the same assignation operator;
+  - `<-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two.
+]  
+--
+.small[
+- Use brackets and returns when using flow control statements;
+  - Inside brackets, indent by *at least* two returns;
+  - Put closing brackets on a separate line, except when preceding an `else` statement.
+]
+--
+.small[
+- Define each variable on its own line;
+]
+--
+.small[
+- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically;
+]
+--
+
 .pull-left[
 .center[**Nay!**]
-.small[
+.xsmall[
 ```{r, eval = FALSE}
 if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
 ```
@@ -2699,7 +2684,7 @@ if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
 
 .pull-right[
 .center[**Yay!**]
-.small[
+.xsmall[
 ```{r, eval = FALSE}
  if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
     print("Between 1 and 2")
@@ -2707,6 +2692,7 @@ if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
 ```
 ]
 ]
+
 ---
 # Keep a clean and nice code
 
@@ -2774,7 +2760,7 @@ This would also reduce the number of potential errors done by copy-pasting, and 
 Let's modify the example from **Challenge 3** and suppose that all $CO_2$ uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.
 
 .pull-left[
-.small[ 
+.xsmall[ 
  We could write this:
 <br>
 ```r
@@ -2837,6 +2823,8 @@ rc <- function(c, t, b) {
 }
 ```
 ]
+
+<br>
 
 .center[.alert[What is `c` and `rc`?]]
 
@@ -2902,6 +2890,10 @@ If we assign $45$, $20$, and $0$ to `x` respectively, which of the following opt
 **2.** $0.020$, $0.054$, and $1$; <br>
 <br>
 **3.** $0.012$, $0.020$, and $1$. <br>
+
+<br>
+
+In addition to this, discuss with your group about a function that you would like to create to apply (it can or it may not be related to your research). Be prepared to briefly describe it to us!
 
 ???
 
