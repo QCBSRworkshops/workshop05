@@ -939,28 +939,53 @@ render_graph(flowchart5,
              height = '40%')
 
 
+## ----echo = TRUE------------
+count <- 0
+
+for(i in 1:nrow(CO2)) {
+  if(CO2$Treatment[i] == "nonchilled") next
+  count <- count + 1
+}
+
+print(count)
+
+
+## ----echo = TRUE------------
+count <- 0
+i <- 0
+
+repeat {
+      i <- i + 1
+      if(CO2$Treatment[i] == "nonchilled") next
+      count <- count + 1
+      if(i == nrow(CO2)) break
+}
+
+print(count)
+
+
 ## ----eval = FALSE-----------
-## count <- 0
-## i <- 0
-## repeat {
-##       i <- i + 1
-##       if(CO2$Treatment[i] == "nonchilled") next  # skip this loop
-##       count <- count + 1
-##       print(CO2$conc[i])
-##       if(i == nrow(CO2)) break     # stop looping
-##     }
-## print(count)
+## while(condition){
+##   expression
+## }
 
 
-## ----flowchart-next, echo=FALSE----
+## ----flowchart-while-loop, echo = FALSE----
 #Create node data frame
-f8_nodes <- create_node_df(n = 5, #number of nodes
+f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
-                           label = c("Start", "Reached last \nval in X?\n\nfor()", 
-                                     "Is condition \nTRUE?\n\nif()",
-                                     'statement\nbody', "End"), 
-                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 'filled'), 
+                           label = c(" ", 
+                                     "Condition\nbeing met?",
+                                                                          "Expression",
+                                     "Exit"), 
+                           shape = c("circle",
+                                     "diamond", 
+                                     'rectangle', 
+                                     'circle'), 
+                           style = c('solid', 
+                                     'solid', 
+                                     'solid',
+                                     'filled'), 
                            fontname = 'Helvetica',
                            fontsize = 10,
                            fixedsize = FALSE,
@@ -970,26 +995,52 @@ f8_nodes <- create_node_df(n = 5, #number of nodes
 
 
 #create edges
-f8_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
-                           to = c(2, 3, 4, 2, 5, 2), 
-                           label = c(' ', ' if FALSE', '  if FALSE', ' ', 'if TRUE, then exit', ' if TRUE, then next'), 
+f5_edges <- create_edge_df(from = c(1, 2, 3, 2), #origin node id
+                           to = c(2, 3, 2, 4), 
+                           label = c(' ', 
+                                     ' while TRUE', 
+                                     ' ', 
+                                     ' if FALSE\nexit'),
                            fontsize = 10,
                            color = 'dimgrey',
-                           decorate = FALSE,
-                           tailport = c('e', 'e', 'e', 's', 'n', 's'),
-                           headport = c('w', 'w', 'nw', 's', 'w', 's')
+                           decorate = TRUE,
+                           tailport = c('s', 's', 'w', 'e'),
+                           headport = c('n', 'n', 'w', 'n')
                            )
 
 #create flowchart
-flowchart8 <- create_graph(
-                    nodes_df = f8_nodes,
-                    edges_df = f8_edges,
+flowchart5 <- create_graph(
+                    nodes_df = f5_nodes,
+                    edges_df = f5_edges,
                     directed = TRUE, 
-                    attr_theme = 'lr' 
+                    attr_theme = 'tb' 
                     )
 
 #display flowchart
-render_graph(flowchart8, width = '95%', height = 'auto')
+render_graph(flowchart5, 
+             width = '80%', 
+             height = 'auto')
+
+
+## ----eval = FALSE-----------
+## count <- 0
+## for(i in 1:nrow(CO2)) {
+##   if(CO2$Treatment[i] == "nonchilled") next
+##   count <- count + 1
+## }
+## print(count)
+
+
+## ----eval = FALSE-----------
+## count <- 0
+## i <- 0
+## repeat {
+##       i <- i + 1
+##       if(CO2$Treatment[i] == "nonchilled") next
+##       count <- count + 1
+##       if(i == nrow(CO2)) break
+## }
+## print(count)
 
 
 ## ----eval = FALSE-----------
@@ -998,9 +1049,8 @@ render_graph(flowchart8, width = '95%', height = 'auto')
 ## while(i < nrow(CO2))
 ## {
 ##   i <- i + 1
-##   if(CO2$Treatment[i] == "nonchilled") next  # skip this loop
+##   if(CO2$Treatment[i] == "nonchilled") next
 ##   count <- count + 1
-##   print(CO2$conc[i])
 ## }
 ## print(count)
 
@@ -1026,13 +1076,62 @@ for(i in 1:nrow(CO2)) {
 }
 
 
+## ----echo = TRUE------------
+our.dataset <- data.frame(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+
+## ----echo = TRUE------------
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$b <- (our.dataset$b - min(our.dataset$b, na.rm = TRUE)) / 
+  (max(our.dataset$b, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$c <- (our.dataset$c - min(our.dataset$c, na.rm = TRUE)) / 
+  (max(our.dataset$c, na.rm = TRUE) - min(our.dataset$c, na.rm = TRUE))
+our.dataset$d <- (our.dataset$d - min(our.dataset$d, na.rm = TRUE)) / 
+  (max(our.dataset$d, na.rm = TRUE) - min(our.dataset$d, na.rm = TRUE))
+
+
+## ----echo = TRUE------------
+our.dataset <- data.frame(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+
+## ----eval = FALSE-----------
+## our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) /
+##   (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+## 
+
+
+## ----eval = FALSE-----------
+## # our
+## # secret
+## # hidden
+## # function
+
+
+## ----eval = FALSE-----------
+## rescale01(our.dataset$a)
+## rescale01(our.dataset$b)
+## rescale01(our.dataset$c)
+## rescale01(our.dataset$d)
+
+
 ## ----flowchart9, echo=FALSE----
 library(DiagrammeR)
 #Create node data frame
 f9_nodes <- create_node_df(n = 5, #number of nodes
                            group = c('a', 'a', 'a', 'b', 'c'),
                            label = c("Argument 1", "Argument 2",
-                                     "Argument 3", "Data processing", 'Return value'), 
+                                     "Argument 3", "Data processing\nFunction", 'Return value'), 
                            shape = c("none", "none", 'none', 'rectangle', 'none'), #shape of node
                            style = c('none', 'none', 'none', 'rounded', 'none'), #line style around nodes
                            fontname = 'Helvetica',
@@ -1073,6 +1172,7 @@ operations <- function(number1, number2, number3) {
   result <- (number1 + number2) * number3
   print(result)
 }
+
 
 ## ---------------------------
 operations(1, 2, 3)
@@ -1122,21 +1222,53 @@ operations <- function(number1, number2, number3 = 3) {
   print(result)
 }
 
-operations(1, 2, 3) # is equivalent to
+operations(number1 = 1, number2 = 2, number3 = 3) 
+
+# is equivalent to
 operations(1, 2)
+
 operations(1, 2, 2) # we can still change the value of number3 if needed
+
+
+## ----echo=TRUE--------------
+paste_anything_fun <- function(...) {
+  arguments <- list(...)
+  paste0(arguments)
+}
+
+
+
+## ----echo=TRUE--------------
+paste_anything_fun("I", 
+                   "want", 
+                   "a break!")
+
+
+## ----echo=TRUE--------------
+percentages <- function(x, mult = 100, ...){
+ percent <- round(x * mult, ...)
+ paste(percent, "%", sep = "")
+}
+
+
+## ----echo=TRUE--------------
+percentages(c(.543, .534, .466))
+
+
+## ----echo=TRUE--------------
+# ?round
+
+percentages(c(.543, .534, .466), digits = 2)
 
 
 ## ---- eval = FALSE----------
 ## plot.CO2 <- function(CO2, ...) {
-##   plot(x=CO2$conc, y=CO2$uptake, type="n", ...) #<<
+##   plot(x=CO2$conc, y = CO2$uptake, type = "n", ...)
 ##   for(i in 1:length(CO2[,1])){
 ##      if(CO2$Type[i] == "Quebec") {
-##        points(CO2$conc[i], CO2$uptake[i],
-##               col = "red", type = "p", ...) #<<
+##        points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
 ##      } else if(CO2$Type[i] == "Mississippi") {
-##        points(CO2$conc[i], CO2$uptake[i],
-##               col = "blue", type = "p", ...) #<<
+##        points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
 ##      }
 ##   }
 ## }
@@ -1144,19 +1276,19 @@ operations(1, 2, 2) # we can still change the value of number3 if needed
 
 ## ---- eval = FALSE----------
 ## plot.CO2(CO2,
-##          cex.lab=1.2,  #<<
-##          xlab="CO2 concentration",
-##          ylab="CO2 uptake")
+##          cex.lab = 1.2,
+##          xlab = "CO2 concentration",
+##          ylab = "CO2 uptake")
 
 
 ## ---- eval = FALSE----------
 ## plot.CO2(CO2,
-##          cex.lab=1.2, pch=20,  #<<
-##          xlab="CO2 concentration",
-##          ylab="CO2 uptake")
+##          cex.lab = 1.2, pch = 20,
+##          xlab = "CO2 concentration",
+##          ylab = "CO2 uptake")
 
 
-## ---- echo=F, fig.height=4.5, fig.width=10----
+## ---- echo = FALSE, fig.height = 2.5, fig.width = 5----
 plot.CO2 <- function(CO2, ...) {
   plot(x = CO2$conc, y = CO2$uptake, type = "n", ...)
 
@@ -1168,25 +1300,12 @@ plot.CO2 <- function(CO2, ...) {
      }
   }
 }
-par(mfrow=c(1,2), mar = c(4,4,1,1))
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake")
+
+par(mfrow=c(1, 2), mar = c(4, 4, 1, 1))
+plot.CO2(CO2, 
+         cex.lab=1.2, 
+         xlab="CO2 concentration", ylab="CO2 uptake")
 plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
-
-
-## ---------------------------
-sum2 <- function(...) {
-  args <- list(...) #<<
-  result <- 0
-  for(i in args) {
-    result <- result + i
-  }
-  return(result)
-}
-
-
-## ---------------------------
-sum2(2, 3)
-sum2(2, 4, 5, 7688, 1)
 
 
 ## ---------------------------
@@ -1204,7 +1323,7 @@ myfun(15)
 
 ## ---------------------------
 simplefun1 <- function(x) {
-  if(x<0)
+  if(x < 0)
   return(x)
 }
 
@@ -1227,7 +1346,32 @@ simplefun2(1, 2)
 
 
 ## ---- error = TRUE----------
-var1 <- 3     # var1 is defined outside our function
+out_val <- 3 
+vartest <- function() {
+  in_val <- 4  
+  print(in_val)
+  print(out_val)
+}
+vartest()
+
+## ---- error = TRUE----------
+in_val; out_val
+
+
+## ---------------------------
+out_val_2 <- 3
+vartest <- function(out_val_2) {
+  print(out_val_2)
+}
+
+vartest(8)
+
+## ---- error = TRUE----------
+out_val_2
+
+
+## ---- error = TRUE----------
+var1 <- 3 
 vartest <- function() {
   a <- 4      # 'a' is defined inside
   print(a)    # print 'a'
@@ -1240,19 +1384,6 @@ vartest()     # calling vartest() will print a and var1
 
 rm(var1)      # remove var1
 vartest()     # calling the function again does not work anymore
-
-
-## ---------------------------
-var1 <- 3     # var1 is defined outside our function
-
-vartest <- function(var1) {
-  print(var1) # print var1
-}
-
-vartest(8)    # Inside our function var1 is now our argument 
-              # and takes its value
-
-var1          # var1 still has the same value
 
 
 ## ----eval = FALSE-----------
@@ -1269,9 +1400,7 @@ var1          # var1 still has the same value
 
 
 ## ---- eval = FALSE----------
-##  if((a[x,y]>1.0)&(a[x,y]<2.0)){
-##     print("Between 1 and 2")
-##   }
+## if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
 
 
 ## ---- eval = FALSE----------
@@ -1296,7 +1425,19 @@ var1          # var1 still has the same value
 ## newCO2 <- recalibrate(CO2 = CO2,
 ##                       type = "Mississipi",
 ##                       bias = -20)
+## 
 ## newCO2 <- recalibrate(newCO2, "Quebec", +50)
+
+
+## ---- eval = FALSE, echo = TRUE----
+## rc <- function(c, t, b) {
+##   for(i in 1:nrow(c)) {
+##     if(c$Type[i] == t) {
+##       c$uptake[i] <- c$uptake[i] + b
+##     }
+##   }
+##   return(c)
+## }
 
 
 ## ---------------------------
