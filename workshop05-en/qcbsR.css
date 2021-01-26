@@ -11,7 +11,7 @@ html {
 
 .remark-slide-content p {
   font-size: 1.5rem;
-  padding: .4rem 1rem .4rem 1.2rem;
+  padding: .4rem 1rem .4rem 1.4rem;
   margin: .1rem;
 }
 
@@ -21,17 +21,17 @@ html {
 }
 
 .remark-code-line {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   line-height: 1.4;
 }
 
 .hljs {
-  padding: .8rem !important;
+  padding: .8rem 1rem .8rem 1rem !important;
   background-color: #f3f3f3 !important;
 }
 
 .remark-code .remark-code-line {
-  padding-left: .6rem !important;
+  padding-left: 1rem !important;
 }
 
 .remark-inline-code {
@@ -221,11 +221,11 @@ a:hover {
 
 .pull-left2 {
   float: left;
-  width: 67%;
+  width: 57%;
 }
 .pull-right2 {
   float: right;
-  width: 27%;
+  width: 38%;
 }
 
 .pull-right2, .pull-right2 p {
@@ -234,17 +234,18 @@ a:hover {
 
 .pull-left3 {
   float: left;
-  width: 57%;
+  width: 67%;
 }
 .pull-right3 {
   float: right;
-  width: 38%;
+  width: 28%;
 }
 
 .pull-right3, .pull-right3 p {
   padding-left: 0rem ;
 }
 
+/* custom.css */
 .left-code {
   color: #777;
   width: 57%;
