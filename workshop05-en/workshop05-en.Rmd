@@ -2881,7 +2881,7 @@ If we assign $45$, $20$, and $0$ to `x` respectively, which of the following opt
 
 <br>
 
-In addition to this, discuss with your group about a function that you would like to create to apply (it can or it may not be related to your research). Be prepared to briefly describe it to us!
+In addition to this, discuss with your group about a function that you would like to create (it can or it may not be related to your research). Be prepared to briefly describe it to us!
 
 ???
 
