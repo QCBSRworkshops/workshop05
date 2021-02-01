@@ -35,11 +35,7 @@ class: inverse, center, middle
 
 # About this workshop
 
-```{r echo = FALSE, results = "asis"}
-bge <- qcbsRworkshops::get_badges(5, style = "for-the-badge", clip = FALSE,
-show = FALSE)
-cat(bge[-1L])
-```
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)
 
 ---
 # Learning Objectives
