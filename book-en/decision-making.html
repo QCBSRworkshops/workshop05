@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Workshop 5: Programming in R</title>
+  <title>Chapter 4 Decision making | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 4 Decision making | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 4 Decision making | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="learning-objectives.html"/>
+<link rel="prev" href="control-flow.html"/>
+<link rel="next" href="iteration.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -232,74 +232,131 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
-<div id="header">
-<h1 class="title">Workshop 5: Programming in <code>R</code></h1>
-<h2 class="subtitle"><em>QCBS R Workshop Series</em></h2>
-<p class="author"><em>Developed and maintained by the contributors of the QCBS R Workshop Series<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-30 21:33:41</em></p>
+<div id="decision-making" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Decision making</h1>
+<div id="if-statement" class="section level2">
+<h2><span class="header-section-number">4.1</span> <code>if</code> <strong>statement</strong></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="decision-making.html#cb4-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb4-2"><a href="decision-making.html#cb4-2"></a>    expression</span>
+<span id="cb4-3"><a href="decision-making.html#cb4-3"></a>}</span></code></pre></div>
+<p><img src="images/if.png" class="align-center" width="300" /></p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>The <strong>QCBS R Workshop Series</strong> is a series of 10 workshops that walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.</p>
-<p>The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed on the main Github page.</p>
-<div id="code-of-conduct" class="section level2">
-<h2><span class="header-section-number">0.1</span> Code of conduct</h2>
-<p>The QCBS R Workshop Series and the QCBS R Symposium are venues dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity.</p>
-<p>Participants, presenters and organizers of the workshop series and other related activities accept this Code of Conduct when being present at any workshop-related activities.</p>
-<p>We do not tolerate behaviour that is disrespectful or that excludes, intimidates, or causes discomfort to others.</p>
-<p>We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.</p>
-<p>It applies to all spaces managed by or affiliated with the workshop, including, but not limited to, workshops, email lists, and online forums such as GitHub, Slack and Twitter.</p>
-<div id="expected-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Expected behaviour</h3>
-<p>All participants are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all workshop events and platforms:</p>
+<div id="if-else-statement" class="section level2">
+<h2><span class="header-section-number">4.2</span> <code>if else</code> <strong>statement</strong></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="decision-making.html#cb5-1"></a><span class="cf">if</span>(condition) {</span>
+<span id="cb5-2"><a href="decision-making.html#cb5-2"></a>  expression <span class="dv">1</span></span>
+<span id="cb5-3"><a href="decision-making.html#cb5-3"></a>} <span class="cf">else</span> {</span>
+<span id="cb5-4"><a href="decision-making.html#cb5-4"></a>  expression <span class="dv">2</span></span>
+<span id="cb5-5"><a href="decision-making.html#cb5-5"></a>}</span></code></pre></div>
+<p><img src="images/ifelse.png" class="align-center" width="300" /></p>
+<p><strong>What if you want to test more than one condition?</strong></p>
 <ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Gracefully accept constructive criticism</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
-</ul>
-</div>
-<div id="unacceptable-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour</h3>
-<p>Examples of unacceptable behaviour by participants at any workshop event/platform include:</p>
+<li><code>if</code> and <code>if else</code> test a single condition</li>
+<li>You can also use <code>ifelse</code> function to:
 <ul>
-<li>written or verbal comments which have the effect of excluding people on the - basis of membership of any specific group;</li>
-<li>causing someone to fear for their safety, such as through stalking or intimidation;</li>
-<li>violent threats or language directed against another person;</li>
-<li>the display of sexual or violent images;</li>
-<li>unwelcome sexual attention;</li>
-<li>nonconsensual or unwelcome physical contact;</li>
-<li>insults or put-downs;</li>
-<li>sexist, racist, homophobic, transphobic, ableist, or exclusionary jokes;</li>
-<li>incitement to violence, suicide, or self-harm;</li>
-<li>continuing to initiate interaction (including photography or recording) with - someone after being asked to stop;</li>
-<li>publication of private communication without consent.</li>
+<li>test a vector of conditions;</li>
+<li>apply a function only under certain conditions.</li>
+</ul></li>
 </ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="decision-making.html#cb6-1"></a>a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb6-2"><a href="decision-making.html#cb6-2"></a><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb6-3"><a href="decision-making.html#cb6-3"></a></span>
+<span id="cb6-4"><a href="decision-making.html#cb6-4"></a>a &lt;-<span class="st"> </span>(<span class="op">-</span><span class="dv">4</span>)<span class="op">:</span><span class="dv">5</span></span>
+<span id="cb6-5"><a href="decision-making.html#cb6-5"></a><span class="kw">sqrt</span>(<span class="kw">ifelse</span>(a <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>, a, <span class="ot">NA</span>))</span></code></pre></div>
+<p><strong>Nested</strong> <code>if else</code> <strong>statement</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="decision-making.html#cb7-1"></a><span class="cf">if</span> (test_expression1) {</span>
+<span id="cb7-2"><a href="decision-making.html#cb7-2"></a>    statement1</span>
+<span id="cb7-3"><a href="decision-making.html#cb7-3"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_expression2) {</span>
+<span id="cb7-4"><a href="decision-making.html#cb7-4"></a>    statement2</span>
+<span id="cb7-5"><a href="decision-making.html#cb7-5"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_expression3) {</span>
+<span id="cb7-6"><a href="decision-making.html#cb7-6"></a>    statement3</span>
+<span id="cb7-7"><a href="decision-making.html#cb7-7"></a>} <span class="cf">else</span> {</span>
+<span id="cb7-8"><a href="decision-making.html#cb7-8"></a>    statement4</span>
+<span id="cb7-9"><a href="decision-making.html#cb7-9"></a>}</span></code></pre></div>
+<p><img src="images/nested_ifelse.png" class="align-center" /></p>
 </div>
+<div id="challenge-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> Challenge 1</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="decision-making.html#cb8-1"></a>Paws &lt;-<span class="st"> &quot;cat&quot;</span></span>
+<span id="cb8-2"><a href="decision-making.html#cb8-2"></a>Scruffy &lt;-<span class="st"> &quot;dog&quot;</span></span>
+<span id="cb8-3"><a href="decision-making.html#cb8-3"></a>Sassy &lt;-<span class="st"> &quot;cat&quot;</span></span>
+<span id="cb8-4"><a href="decision-making.html#cb8-4"></a>animals &lt;-<span class="st"> </span><span class="kw">c</span>(Paws, Scruffy, Sassy)</span></code></pre></div>
+<p>1.- Use an <code>if</code> statement to print “meow” if Paws is a “cat”.</p>
+<p>++++ Challenge 1 : Answer| 2.- Use an <code>if else</code> statement to print
+“woof” if you supply an object that is a “dog” and “meow” if it is not.
+Try it out with Paws and Scruffy.</p>
+<p>3.- Use the <code>ifelse</code> function to display “woof” for animals that are
+dogs and “meow” for animals that are cats.</p>
+<p>++++</p>
+<div id="beware-of-rs-expression-parsing" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Beware of R’s expression parsing!</h3>
+<p>Use curly brackets <code>{}</code> so that R knows to expect more input. Try:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="decision-making.html#cb9-1"></a><span class="cf">if</span> (<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
+<span id="cb9-2"><a href="decision-making.html#cb9-2"></a><span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
+<p><em>This doesn’t work because R evaluates the first line and doesn’t know
+that you are going to use an else statement</em></p>
+<p>Instead use:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="decision-making.html#cb10-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
+<span id="cb10-2"><a href="decision-making.html#cb10-2"></a>    <span class="co"># &lt;&lt;</span></span>
+<span id="cb10-3"><a href="decision-making.html#cb10-3"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
+<span id="cb10-4"><a href="decision-making.html#cb10-4"></a>} <span class="cf">else</span> {</span>
+<span id="cb10-5"><a href="decision-making.html#cb10-5"></a>    <span class="co"># &lt;&lt;</span></span>
+<span id="cb10-6"><a href="decision-making.html#cb10-6"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
+<span id="cb10-7"><a href="decision-making.html#cb10-7"></a>}  <span class="co">#&lt;&lt;</span></span></code></pre></div>
 </div>
-<div id="contributors" class="section level2">
-<h2><span class="header-section-number">0.2</span> Contributors</h2>
-<p>Originally developed by:</p>
-<p>Contributed with changes to the presentation:</p>
-<p>Contributed with changes to the written material:</p>
-<p>Contributed by reporting issues and suggesting modifications:</p>
-</div>
-<div id="contributing" class="section level2">
-<h2><span class="header-section-number">0.3</span> Contributing</h2>
-<p>Under construction.</p>
+<div id="remember-the-logical-operators" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Remember the logical operators</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">==</td>
+<td align="left">equal to</td>
+</tr>
+<tr class="even">
+<td align="left">!=</td>
+<td align="left">not equal to</td>
+</tr>
+<tr class="odd">
+<td align="left">!x</td>
+<td align="left">not x</td>
+</tr>
+<tr class="even">
+<td align="left">&lt;</td>
+<td align="left">less than</td>
+</tr>
+<tr class="odd">
+<td align="left">&lt; =</td>
+<td align="left">less than or equal to</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;</td>
+<td align="left">greater than</td>
+</tr>
+<tr class="odd">
+<td align="left">&gt;=</td>
+<td align="left">greater than or equal to</td>
+</tr>
+<tr class="even">
+<td align="left">x &amp; y</td>
+<td align="left">x AND y</td>
+</tr>
+<tr class="odd">
+<td align="left">x|y</td>
+<td align="left">x OR y</td>
+</tr>
+<tr class="even">
+<td align="left">isTRUE(x)</td>
+<td align="left">test if X is true</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>The QCBS R Workshop Series is part of the <a href="https://www.qcbs.ca">Québec Centre for Biodiversity Science</a>, and is maintained by the series coordinators and graduent student, postdoctoral, and research professional members. <strong>The contributors for this workshop can be accessed <a href="link">here</a></strong>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
+
+
+
 <hr>
 <center> 
   <div class="footer">
@@ -311,8 +368,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="learning-objectives.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="control-flow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="iteration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
