@@ -1,0 +1,113 @@
+# (PART\*) Decision making {-}
+
+# Decision making
+
+## `if` **statement**
+
+```{r, echo = TRUE, eval = FALSE}
+if(condition) {
+  expression
+}
+```
+
+![](images/if.png){.align-center width="300"}
+
+## `if else` **statement**
+
+```{r, echo = TRUE, eval = FALSE}
+if(condition) {
+  expression 1
+} else {
+  expression 2
+}
+```
+
+![](images/ifelse.png){.align-center width="300"}
+
+**What if you want to test more than one condition?**
+
+-   `if` and `if else` test a single condition
+-   You can also use `ifelse` function to:
+    -   test a vector of conditions;
+    -   apply a function only under certain conditions.
+
+```{r, echo = TRUE, eval = FALSE}
+a <- 1:10
+ifelse(a > 5, "yes", "no")
+
+a <- (-4):5
+sqrt(ifelse(a >= 0, a, NA))
+```
+
+**Nested** `if else` **statement**
+
+```{r, echo = TRUE, eval = FALSE}
+if (test_expression1) {
+statement1
+} else if (test_expression2) {
+statement2
+} else if (test_expression3) {
+statement3
+} else {
+statement4
+}
+```
+
+![](images/nested_ifelse.png){.align-center}
+
+## Challenge 1
+
+```{r, echo = TRUE, eval = FALSE}
+Paws <- "cat"
+Scruffy <- "dog"
+Sassy <- "cat"
+animals <- c(Paws, Scruffy, Sassy)
+```
+
+1.- Use an `if` statement to print "meow" if Paws is a "cat".
+
+++++ Challenge 1 : Answer\| 2.- Use an `if else` statement to print
+"woof" if you supply an object that is a "dog" and "meow" if it is not.
+Try it out with Paws and Scruffy.
+
+3.- Use the `ifelse` function to display "woof" for animals that are
+dogs and "meow" for animals that are cats.
+
+++++
+
+### Beware of R's expression parsing!
+
+Use curly brackets `{}` so that R knows to expect more input. Try:
+
+```{r, echo = TRUE, eval = FALSE}
+if (2+2) == 4 print("Arithmetic works.")
+else print("Houston, we have a problem.")
+```
+
+*This doesn't work because R evaluates the first line and doesn't know
+that you are going to use an else statement*
+
+Instead use:
+
+```{r, echo = TRUE, eval = FALSE}
+if (2+2 == 4) { #<<
+  print("Arithmetic works.")
+} else { #<<
+  print("Houston, we have a problem.")
+} #<<
+```
+
+### Remember the logical operators
+
+  ----------- --------------------------
+  ==          equal to
+  !=          not equal to
+  !x          not x
+  \<          less than
+  \< =        less than or equal to
+  \>          greater than
+  \>=         greater than or equal to
+  x & y       x AND y
+  x\|y        x OR y
+  isTRUE(x)   test if X is true
+  ----------- --------------------------

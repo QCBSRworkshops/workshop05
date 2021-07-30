@@ -1,0 +1,45 @@
+
+# Control Flow
+
+Program flow control can be simply defined as the order in which a
+program is executed.
+
+**Why is it advantageous to have structured programs?**
+
+- It decreases the complexity and time of the task at hand;
+
+- This logical structure also means that the code has increased
+clarity;
+
+- It also means that many programmers can work on one program.
+
+**This means increased productivity**
+
+------------------------------------------------------------------------
+
+Flowcharts can be used to plan programs and represent their structure
+
+![](images/flowchart1.png){.align-center width="700"}
+
+## Representing structure
+
+The two basic building blocks of codes are the following:
+
+**Selection**
+
+Program's execution determined by statements
+
+```{r, echo = TRUE, eval = FALSE}
+if
+if else
+```
+
+**Iteration**
+
+Repetition, where the statement will **loop** until a criteria is met
+
+```{r, echo = TRUE, eval = FALSE}
+for
+while
+repeat
+```

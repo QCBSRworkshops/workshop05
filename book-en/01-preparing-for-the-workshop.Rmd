@@ -1,0 +1,37 @@
+# (PART\*) Programming in `R` {-}
+
+# Learning objectives
+
+**Summary:** This workshop focuses on basic programming in R. In this
+workshop, you will learn how to use control flow (for loops, if, while)
+methods to prevent code repetition, facilitate organization and run
+simulations. In addition, you will learn to write your own functions,
+and tips to program efficiently. The last part of the workshop will
+discuss packages that will not covered elsewhere in this workshop
+series, but that may be of interest to participants.
+
+1.  Learning what is **control flow;**
+2.  Writing your first functions in R
+3.  Speeding up your code
+4.  Useful R packages for biologists
+
+*Include learning objectives.*
+
+# Preparing for the workshop
+
+To prepare for this workshop, you must do the following steps:
+
+Download the R script and data required for this workshop:
+
+-   [R Script](http://qcbs.ca/wiki/_media/programming.r)
+
+Make sure to load the following packages (see how in the R script):
+
+-    [vegan (for multivariate
+    analyses)](http://cran.r-project.org/web/packages/vegan/index.html)
+
+```{r, echo = TRUE, eval = FALSE}
+install.packages("vegan")
+
+library(vegan)
+```
