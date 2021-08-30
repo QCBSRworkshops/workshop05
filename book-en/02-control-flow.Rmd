@@ -1,45 +1,131 @@
+## Control flow
 
-# Control Flow
+Program flow control can be simply defined as the order in which a program is executed.
 
-Program flow control can be simply defined as the order in which a
-program is executed.
+<br>
+<br>
 
-**Why is it advantageous to have structured programs?**
 
-- It decreases the complexity and time of the task at hand;
+#### Why is it advantageous to have structured programs?
+<br>
 
-- This logical structure also means that the code has increased
-clarity;
+<br>
 
-- It also means that many programmers can work on one program.
+- It **decreases the complexity** and time of the task at hand;
+- This logical structure also means that the code has **increased clarity**;
+- It also means that **many programmers can work on one program**.
 
-**This means increased productivity**
+<br>
+<br>
 
-------------------------------------------------------------------------
+**This means increased productivity.**
 
-Flowcharts can be used to plan programs and represent their structure
+## Control flow
 
-![](images/flowchart1.png){.align-center width="700"}
+**Program flowcharts** can be used to plan programs and represent their structure.
+
+<br>
+<br>
+<br>
+
+<center>
+
+```{r flowchart1, echo=FALSE}
+library(DiagrammeR)
+#Create node data frame
+f1_nodes <- create_node_df(n = 4, #number of nodes
+                           type = 'a', #for grouping
+                           label = c("Start\nprogram", "Process\n(operations carried out\ne.g. data manipulation)", "Decision", "End\nprogram"), #words inside node
+                           shape = c("rectangle", "rectangle", 'diamond', 'rectangle'), #shape of node
+                           style = c('rounded', 'solid', 'solid', 'rounded'), #line style around nodes
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE, #whether node changes size based on label or is fixed
+                           color = 'mediumblue',
+                           height = 0.70
+                           )
+#create edges
+##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
+f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
+                           to = c(2, 3, 2, 4),
+                           tailport = c("e", "e", "s", "e"),
+                           headport = c("w", "w", "s", "w"),
+                           label = c(' ', ' ', 'Boolean choice:\nTRUE or FALSE', ' '), #for text on edge
+                           fontsize = 10,
+                           color = 'dimgrey'
+                           )
+#create flowchart
+flowchart1 <- create_graph(
+                    nodes_df = f1_nodes,
+                    edges_df = f1_edges,
+                    directed = TRUE, #arrows vs straight lines
+                    attr_theme = 'lr' #left to right specified
+                    )
+#display flowchart
+render_graph(flowchart1, width = '95%', height = 'auto')
+```
+</center>
+
 
 ## Representing structure
 
 The two basic building blocks of codes are the following:
 
-**Selection**
+
+#### Selection
 
 Program's execution determined by statements
 
-```{r, echo = TRUE, eval = FALSE}
-if
-if else
+```{r, eval=FALSE, echo=TRUE}
+if() {}
+if() {} else {}
 ```
 
-**Iteration**
+
+#### Iteration
 
 Repetition, where the statement will **loop** until a criteria is met
 
-```{r, echo = TRUE, eval = FALSE}
-for
-while
-repeat
+```{r, eval=FALSE, echo=TRUE}
+for() {}
+while() {}
+repeat {}
 ```
+
+
+Selection and iterative statements can also be controlled by termination and jump statements:
+
+#### Termination and Jump
+
+```{r,eval=FALSE, echo=TRUE}
+break
+next
+```
+
+
+# Control flow roadmap
+
+<br>
+
+
+#### **`if` and `if` `else` statements** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`for` loop** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`break` and `next` statements** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`repeat` loop** <br>
+
+![:faic](arrow-down) <br>
+
+#### **`while` loop**
+
+???
+
+This roadmap appears at the beginning of each control flow tool to let participants know what is coming up in the control flow section.

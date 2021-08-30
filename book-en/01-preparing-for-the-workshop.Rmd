@@ -1,6 +1,6 @@
 # (PART\*) Programming in `R` {-}
 
-# Learning objectives
+## Learning objectives
 
 **Summary:** This workshop focuses on basic programming in R. In this
 workshop, you will learn how to use control flow (for loops, if, while)
@@ -10,12 +10,12 @@ and tips to program efficiently. The last part of the workshop will
 discuss packages that will not covered elsewhere in this workshop
 series, but that may be of interest to participants.
 
-1.  Learning what is **control flow;**
-2.  Writing your first functions in R
-3.  Speeding up your code
-4.  Useful R packages for biologists
+###### 1. Recognizing **control flow**;
+###### 2. Getting comfortable with testing conditions and performing iterations;
+###### 3. Developing your first functions in `R`;
+###### 4. Discovering how to accelerate your code;
+###### 5. Demonstrating useful `R` packages for biologists.
 
-*Include learning objectives.*
 
 # Preparing for the workshop
 
@@ -35,3 +35,83 @@ install.packages("vegan")
 
 library(vegan)
 ```
+
+## Review: Objects
+
+![:scale 90%](images/matrix.png)
+
+
+## Review: Vectors
+
+<br>
+
+.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)?]
+
+<br>
+
+
+##### Numeric vectors 
+
+```{r}
+num.vector <- c(1, 4, 3, 
+                9, 32, -4)
+num.vector
+```
+
+
+##### Character vector
+
+```{r}
+char_vector <- c("blue", 
+                 "red", 
+                 "green")
+char_vector
+```
+
+
+##### Logical vector
+
+```{r}
+bool_vector <- c(TRUE, TRUE, FALSE) # or c(T, T, F)
+bool_vector
+```
+
+
+
+## Review: Data frames
+
+We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
+
+```{r}
+siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
+soil_pH <- c(5.6, 7.3, 4.1, 6.0)
+num.sp <- c(17, 23, 15, 7)
+treatment <- c("Fert", "Fert", "No_fert", "No_fert")
+```
+
+<br>
+We then combine them using the function `data.frame()`.
+
+```{r}
+my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
+```
+
+```{r}
+my.first.df
+```
+
+
+## Review: Lists
+
+We can also create lists by combining the vectors we created before.
+
+```{r}
+  my.first.list <- list(siteID, soil_pH, num.sp, treatment)
+```
+
+```{r}
+  my.first.list
+```
+
+
+
