@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Decision making | Workshop 5: Programming in R</title>
+  <title>Page not found | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Decision making | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Page not found | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Decision making | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Page not found | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="control-flow.html"/>
-<link rel="next" href="iteration.html"/>
+
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -244,131 +244,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="decision-making" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Decision making</h1>
-<div id="if-statement" class="section level2">
-<h2><span class="header-section-number">4.1</span> <code>if</code> <strong>statement</strong></h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="decision-making.html#cb4-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb4-2"><a href="decision-making.html#cb4-2"></a>    expression</span>
-<span id="cb4-3"><a href="decision-making.html#cb4-3"></a>}</span></code></pre></div>
-<p><img src="images/if.png" class="align-center" width="300" /></p>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
-<div id="if-else-statement" class="section level2">
-<h2><span class="header-section-number">4.2</span> <code>if else</code> <strong>statement</strong></h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="decision-making.html#cb5-1"></a><span class="cf">if</span>(condition) {</span>
-<span id="cb5-2"><a href="decision-making.html#cb5-2"></a>  expression <span class="dv">1</span></span>
-<span id="cb5-3"><a href="decision-making.html#cb5-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb5-4"><a href="decision-making.html#cb5-4"></a>  expression <span class="dv">2</span></span>
-<span id="cb5-5"><a href="decision-making.html#cb5-5"></a>}</span></code></pre></div>
-<p><img src="images/ifelse.png" class="align-center" width="300" /></p>
-<p><strong>What if you want to test more than one condition?</strong></p>
-<ul>
-<li><code>if</code> and <code>if else</code> test a single condition</li>
-<li>You can also use <code>ifelse</code> function to:
-<ul>
-<li>test a vector of conditions;</li>
-<li>apply a function only under certain conditions.</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="decision-making.html#cb6-1"></a>a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb6-2"><a href="decision-making.html#cb6-2"></a><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
-<span id="cb6-3"><a href="decision-making.html#cb6-3"></a></span>
-<span id="cb6-4"><a href="decision-making.html#cb6-4"></a>a &lt;-<span class="st"> </span>(<span class="op">-</span><span class="dv">4</span>)<span class="op">:</span><span class="dv">5</span></span>
-<span id="cb6-5"><a href="decision-making.html#cb6-5"></a><span class="kw">sqrt</span>(<span class="kw">ifelse</span>(a <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>, a, <span class="ot">NA</span>))</span></code></pre></div>
-<p><strong>Nested</strong> <code>if else</code> <strong>statement</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="decision-making.html#cb7-1"></a><span class="cf">if</span> (test_expression1) {</span>
-<span id="cb7-2"><a href="decision-making.html#cb7-2"></a>    statement1</span>
-<span id="cb7-3"><a href="decision-making.html#cb7-3"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_expression2) {</span>
-<span id="cb7-4"><a href="decision-making.html#cb7-4"></a>    statement2</span>
-<span id="cb7-5"><a href="decision-making.html#cb7-5"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_expression3) {</span>
-<span id="cb7-6"><a href="decision-making.html#cb7-6"></a>    statement3</span>
-<span id="cb7-7"><a href="decision-making.html#cb7-7"></a>} <span class="cf">else</span> {</span>
-<span id="cb7-8"><a href="decision-making.html#cb7-8"></a>    statement4</span>
-<span id="cb7-9"><a href="decision-making.html#cb7-9"></a>}</span></code></pre></div>
-<p><img src="images/nested_ifelse.png" class="align-center" /></p>
-</div>
-<div id="challenge-1" class="section level2">
-<h2><span class="header-section-number">4.3</span> Challenge 1</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="decision-making.html#cb8-1"></a>Paws &lt;-<span class="st"> &quot;cat&quot;</span></span>
-<span id="cb8-2"><a href="decision-making.html#cb8-2"></a>Scruffy &lt;-<span class="st"> &quot;dog&quot;</span></span>
-<span id="cb8-3"><a href="decision-making.html#cb8-3"></a>Sassy &lt;-<span class="st"> &quot;cat&quot;</span></span>
-<span id="cb8-4"><a href="decision-making.html#cb8-4"></a>animals &lt;-<span class="st"> </span><span class="kw">c</span>(Paws, Scruffy, Sassy)</span></code></pre></div>
-<p>1.- Use an <code>if</code> statement to print “meow” if Paws is a “cat”.</p>
-<p>++++ Challenge 1 : Answer| 2.- Use an <code>if else</code> statement to print
-“woof” if you supply an object that is a “dog” and “meow” if it is not.
-Try it out with Paws and Scruffy.</p>
-<p>3.- Use the <code>ifelse</code> function to display “woof” for animals that are
-dogs and “meow” for animals that are cats.</p>
-<p>++++</p>
-<div id="beware-of-rs-expression-parsing" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> Beware of R’s expression parsing!</h3>
-<p>Use curly brackets <code>{}</code> so that R knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="decision-making.html#cb9-1"></a><span class="cf">if</span> (<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb9-2"><a href="decision-making.html#cb9-2"></a><span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
-<p><em>This doesn’t work because R evaluates the first line and doesn’t know
-that you are going to use an else statement</em></p>
-<p>Instead use:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="decision-making.html#cb10-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb10-2"><a href="decision-making.html#cb10-2"></a>    <span class="co"># &lt;&lt;</span></span>
-<span id="cb10-3"><a href="decision-making.html#cb10-3"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-4"><a href="decision-making.html#cb10-4"></a>} <span class="cf">else</span> {</span>
-<span id="cb10-5"><a href="decision-making.html#cb10-5"></a>    <span class="co"># &lt;&lt;</span></span>
-<span id="cb10-6"><a href="decision-making.html#cb10-6"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb10-7"><a href="decision-making.html#cb10-7"></a>}  <span class="co">#&lt;&lt;</span></span></code></pre></div>
-</div>
-<div id="remember-the-logical-operators" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> Remember the logical operators</h3>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">==</td>
-<td align="left">equal to</td>
-</tr>
-<tr class="even">
-<td align="left">!=</td>
-<td align="left">not equal to</td>
-</tr>
-<tr class="odd">
-<td align="left">!x</td>
-<td align="left">not x</td>
-</tr>
-<tr class="even">
-<td align="left">&lt;</td>
-<td align="left">less than</td>
-</tr>
-<tr class="odd">
-<td align="left">&lt; =</td>
-<td align="left">less than or equal to</td>
-</tr>
-<tr class="even">
-<td align="left">&gt;</td>
-<td align="left">greater than</td>
-</tr>
-<tr class="odd">
-<td align="left">&gt;=</td>
-<td align="left">greater than or equal to</td>
-</tr>
-<tr class="even">
-<td align="left">x &amp; y</td>
-<td align="left">x AND y</td>
-</tr>
-<tr class="odd">
-<td align="left">x|y</td>
-<td align="left">x OR y</td>
-</tr>
-<tr class="even">
-<td align="left">isTRUE(x)</td>
-<td align="left">test if X is true</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-
-
-
 <hr>
 <center> 
   <div class="footer">
@@ -380,8 +261,8 @@ that you are going to use an else statement</em></p>
           </div>
         </div>
       </div>
-<a href="control-flow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="iteration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Control Flow | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Control Flow | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
-  <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Chapter 3 Control Flow | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
-  <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
 
 <meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
 
@@ -32,7 +32,8 @@
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="preparing-for-the-workshop.html"/>
 <link rel="next" href="decision-making.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,10 +49,13 @@
 
 
 
-
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
 
 
 <style type="text/css">
@@ -181,21 +185,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="iteration.html"><a href="iteration.html#challenge-4"><i class="fa fa-check"></i><b>5.8</b> Challenge 4</a></li>
 </ul></li>
-<li class="part"><span><b>Programming</b></span></li>
-<li class="chapter" data-level="6" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>6</b> Writing functions</a><ul>
-<li class="chapter" data-level="6.1" data-path="writing-functions.html"><a href="writing-functions.html#challenge-5"><i class="fa fa-check"></i><b>6.1</b> Challenge 5</a></li>
-<li class="chapter" data-level="6.2" data-path="writing-functions.html"><a href="writing-functions.html#default-values-in-a-function"><i class="fa fa-check"></i><b>6.2</b> Default values in a function</a></li>
-<li class="chapter" data-level="6.3" data-path="writing-functions.html"><a href="writing-functions.html#argument-..."><i class="fa fa-check"></i><b>6.3</b> Argument <code>...</code></a></li>
-<li class="chapter" data-level="6.4" data-path="writing-functions.html"><a href="writing-functions.html#return-values"><i class="fa fa-check"></i><b>6.4</b> Return values</a></li>
-<li class="chapter" data-level="6.5" data-path="writing-functions.html"><a href="writing-functions.html#challenge-6"><i class="fa fa-check"></i><b>6.5</b> Challenge 6</a></li>
-<li class="chapter" data-level="6.6" data-path="writing-functions.html"><a href="writing-functions.html#accessibility-of-variables"><i class="fa fa-check"></i><b>6.6</b> Accessibility of variables</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="writing-functions.html"><a href="writing-functions.html#good-programming-practices"><i class="fa fa-check"></i><b>6.6.1</b> Good programming practices</a></li>
-<li class="chapter" data-level="6.6.2" data-path="writing-functions.html"><a href="writing-functions.html#pay-attention-to-the-next-tips"><i class="fa fa-check"></i><b>6.6.2</b> Pay attention to the next tips!</a></li>
-<li class="chapter" data-level="6.6.3" data-path="writing-functions.html"><a href="writing-functions.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>6.6.3</b> Use functions to simplify your code</a></li>
-<li class="chapter" data-level="6.6.4" data-path="writing-functions.html"><a href="writing-functions.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>6.6.4</b> Use meaningful names for functions</a></li>
-<li class="chapter" data-level="6.6.5" data-path="writing-functions.html"><a href="writing-functions.html#use-comments"><i class="fa fa-check"></i><b>6.6.5</b> Use comments</a></li>
-<li class="chapter" data-level="6.6.6" data-path="writing-functions.html"><a href="writing-functions.html#thank-you-for-attending-this-workshop"><i class="fa fa-check"></i><b>6.6.6</b> Thank you for attending this workshop!</a></li>
-</ul></li>
+<li class="chapter" data-level="6" data-path="why-write-functions.html"><a href="why-write-functions.html"><i class="fa fa-check"></i><b>6</b> Why write functions?</a><ul>
+<li class="chapter" data-level="6.1" data-path="why-write-functions.html"><a href="why-write-functions.html#what-is-a-function"><i class="fa fa-check"></i><b>6.1</b> What is a function?</a></li>
+<li class="chapter" data-level="6.2" data-path="why-write-functions.html"><a href="why-write-functions.html#syntax-of-a-function-function"><i class="fa fa-check"></i><b>6.2</b> Syntax of a function: <code>function()</code></a></li>
+<li class="chapter" data-level="6.3" data-path="why-write-functions.html"><a href="why-write-functions.html#arguments-of-a-function"><i class="fa fa-check"></i><b>6.3</b> Arguments of a <code>function()</code></a></li>
+<li class="chapter" data-level="6.4" data-path="why-write-functions.html"><a href="why-write-functions.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>6.4</b> Default argument values in a function</a></li>
+<li class="chapter" data-level="6.5" data-path="why-write-functions.html"><a href="why-write-functions.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>6.5</b> The ellipsis argument: <code>...</code></a></li>
+<li class="chapter" data-level="6.6" data-path="why-write-functions.html"><a href="why-write-functions.html#the-ellipsis-argument-...-1"><i class="fa fa-check"></i><b>6.6</b> The ellipsis argument: <code>...</code></a></li>
+<li class="chapter" data-level="6.7" data-path="why-write-functions.html"><a href="why-write-functions.html#return-values"><i class="fa fa-check"></i><b>6.7</b> Return values</a></li>
+<li class="chapter" data-level="6.8" data-path="why-write-functions.html"><a href="why-write-functions.html#return-values-1"><i class="fa fa-check"></i><b>6.8</b> Return values</a></li>
+<li class="chapter" data-level="6.9" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables"><i class="fa fa-check"></i><b>6.9</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="6.10" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables-1"><i class="fa fa-check"></i><b>6.10</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="6.11" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables-2"><i class="fa fa-check"></i><b>6.11</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="6.12" data-path="why-write-functions.html"><a href="why-write-functions.html#additional-good-programming-practices"><i class="fa fa-check"></i><b>6.12</b> Additional good programming practices</a></li>
+<li class="chapter" data-level="6.13" data-path="why-write-functions.html"><a href="why-write-functions.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>6.13</b> Why should I care about programming practices?</a></li>
+<li class="chapter" data-level="6.14" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code"><i class="fa fa-check"></i><b>6.14</b> Keep a clean and nice code</a></li>
+<li class="chapter" data-level="6.15" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code-1"><i class="fa fa-check"></i><b>6.15</b> Keep a clean and nice code</a></li>
+<li class="chapter" data-level="6.16" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code-2"><i class="fa fa-check"></i><b>6.16</b> Keep a clean and nice code</a></li>
+<li class="chapter" data-level="6.17" data-path="why-write-functions.html"><a href="why-write-functions.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>6.17</b> Use functions to simplify your code</a></li>
+<li class="chapter" data-level="6.18" data-path="why-write-functions.html"><a href="why-write-functions.html#use-functions-to-simplify-your-code-1"><i class="fa fa-check"></i><b>6.18</b> Use functions to simplify your code</a></li>
+<li class="chapter" data-level="6.19" data-path="why-write-functions.html"><a href="why-write-functions.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>6.19</b> Use meaningful names for functions</a></li>
+<li class="chapter" data-level="6.20" data-path="why-write-functions.html"><a href="why-write-functions.html#use-comments"><i class="fa fa-check"></i><b>6.20</b> Use comments: <code>#</code></a></li>
+<li class="chapter" data-level="6.21" data-path="why-write-functions.html"><a href="why-write-functions.html#group-exercise-solution"><i class="fa fa-check"></i><b>6.21</b> Group exercise: Solution</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -228,10 +239,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </head>
 
 
-
+<!-- 
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
+--!>
 <div id="control-flow" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Control Flow</h1>
 <p>Program flow control can be simply defined as the order in which a
@@ -281,7 +293,6 @@ clarity;</p></li>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -321,6 +332,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -328,6 +343,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
