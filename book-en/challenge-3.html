@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Workshop 5: Programming in R</title>
+  <title>Chapter 18 Challenge 3 | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 18 Challenge 3 | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 18 Challenge 3 | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="learning-objectives.html"/>
+<link rel="prev" href="modifying-iterations-while.html"/>
+<link rel="next" href="why-write-functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -245,73 +245,88 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="header">
-<h1 class="title">Workshop 5: Programming in <code>R</code></h1>
-<h2 class="subtitle"><em>QCBS R Workshop Series</em></h2>
-<p class="author"><em>Developed and maintained by the contributors of the QCBS R Workshop Series<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date"><em>2021-09-18 20:36:17</em></p>
+<div id="challenge-3" class="section level1">
+<h1><span class="header-section-number">Chapter 18</span> Challenge 3</h1>
+<p>You have realized that your tool for measuring concentration did not
+work properly.</p>
+<p>At Mississippi sites, concentrations less than 300 were measured
+correctly, but concentrations equal or higher than 300 were
+overestimated by 20 units!</p>
+<p>Your mission is to use a loop to correct these measurements for all
+Mississippi sites.</p>
+<p>Tip. Make sure you reload the data so that we are working with the raw
+data for the rest of the exercise:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="challenge-3.html#cb55-1"></a><span class="kw">data</span>(CO2)</span></code></pre></div>
+<p>++++ Challenge 3: Answer| </p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="challenge-3.html#cb56-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb56-2"><a href="challenge-3.html#cb56-2"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span>) {</span>
+<span id="cb56-3"><a href="challenge-3.html#cb56-3"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>conc[i] <span class="op">&lt;</span><span class="st"> </span><span class="dv">300</span>)</span>
+<span id="cb56-4"><a href="challenge-3.html#cb56-4"></a>            <span class="cf">next</span></span>
+<span id="cb56-5"><a href="challenge-3.html#cb56-5"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">-</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb56-6"><a href="challenge-3.html#cb56-6"></a>    }</span>
+<span id="cb56-7"><a href="challenge-3.html#cb56-7"></a>}</span></code></pre></div>
+<p>*Note: We could also have written it in this way, which is more concise
+and clear*</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="challenge-3.html#cb57-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb57-2"><a href="challenge-3.html#cb57-2"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span> <span class="op">&amp;&amp;</span><span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">&gt;=</span><span class="st"> </span><span class="dv">300</span>) {</span>
+<span id="cb57-3"><a href="challenge-3.html#cb57-3"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">-</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb57-4"><a href="challenge-3.html#cb57-4"></a>    }</span>
+<span id="cb57-5"><a href="challenge-3.html#cb57-5"></a>}</span></code></pre></div>
+<p>++++</p>
+<div id="edit-a-plot-using-for-and-if" class="section level3">
+<h3><span class="header-section-number">18.0.1</span> Edit a plot using <code>for</code> and <code>if</code></h3>
+<p>Let’s plot uptake vs concentration with points of different colors
+according to their type (Quebec or Mississippi) and treatment (chilled
+or nonchilled).</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="challenge-3.html#cb58-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">1.4</span>,</span>
+<span id="cb58-2"><a href="challenge-3.html#cb58-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;CO2 concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 uptake&quot;</span>)</span>
+<span id="cb58-3"><a href="challenge-3.html#cb58-3"></a><span class="co"># Type &#39;n&#39; tells R to not actually plot the points.</span></span>
+<span id="cb58-4"><a href="challenge-3.html#cb58-4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb58-5"><a href="challenge-3.html#cb58-5"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>) {</span>
+<span id="cb58-6"><a href="challenge-3.html#cb58-6"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb58-7"><a href="challenge-3.html#cb58-7"></a>    }</span>
+<span id="cb58-8"><a href="challenge-3.html#cb58-8"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;chilled&quot;</span>) {</span>
+<span id="cb58-9"><a href="challenge-3.html#cb58-9"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb58-10"><a href="challenge-3.html#cb58-10"></a>    }</span>
+<span id="cb58-11"><a href="challenge-3.html#cb58-11"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>) {</span>
+<span id="cb58-12"><a href="challenge-3.html#cb58-12"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb58-13"><a href="challenge-3.html#cb58-13"></a>    }</span>
+<span id="cb58-14"><a href="challenge-3.html#cb58-14"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;chilled&quot;</span>) {</span>
+<span id="cb58-15"><a href="challenge-3.html#cb58-15"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb58-16"><a href="challenge-3.html#cb58-16"></a>    }</span>
+<span id="cb58-17"><a href="challenge-3.html#cb58-17"></a>}</span></code></pre></div>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>The <strong>QCBS R Workshop Series</strong> is a series of 10 workshops that walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.</p>
-<p>The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed on the main Github page.</p>
-<div id="code-of-conduct" class="section level2">
-<h2><span class="header-section-number">0.1</span> Code of conduct</h2>
-<p>The QCBS R Workshop Series and the QCBS R Symposium are venues dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity.</p>
-<p>Participants, presenters and organizers of the workshop series and other related activities accept this Code of Conduct when being present at any workshop-related activities.</p>
-<p>We do not tolerate behaviour that is disrespectful or that excludes, intimidates, or causes discomfort to others.</p>
-<p>We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.</p>
-<p>It applies to all spaces managed by or affiliated with the workshop, including, but not limited to, workshops, email lists, and online forums such as GitHub, Slack and Twitter.</p>
-<div id="expected-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Expected behaviour</h3>
-<p>All participants are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all workshop events and platforms:</p>
-<ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Gracefully accept constructive criticism</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
-</ul>
-</div>
-<div id="unacceptable-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour</h3>
-<p>Examples of unacceptable behaviour by participants at any workshop event/platform include:</p>
-<ul>
-<li>written or verbal comments which have the effect of excluding people on the - basis of membership of any specific group;</li>
-<li>causing someone to fear for their safety, such as through stalking or intimidation;</li>
-<li>violent threats or language directed against another person;</li>
-<li>the display of sexual or violent images;</li>
-<li>unwelcome sexual attention;</li>
-<li>nonconsensual or unwelcome physical contact;</li>
-<li>insults or put-downs;</li>
-<li>sexist, racist, homophobic, transphobic, ableist, or exclusionary jokes;</li>
-<li>incitement to violence, suicide, or self-harm;</li>
-<li>continuing to initiate interaction (including photography or recording) with - someone after being asked to stop;</li>
-<li>publication of private communication without consent.</li>
-</ul>
-</div>
-</div>
-<div id="contributors" class="section level2">
-<h2><span class="header-section-number">0.2</span> Contributors</h2>
-<p>Since 2014, several QCBS members contributed to consistently and collaboratively develop and update this workshop, as part of the Learning and Development Award from the Québec Centre for Biodiversity Science. They were:</p>
-<p>Contributed with changes to the presentation: Pedro Henrique Pereira Braga, Parnian Pourtaherian, Kate Sheridan, Katherine Hébert, Gabriel Muñoz, Marie-Hélène Brice</p>
-<p>Contributed with changes to the written material: Pedro Henrique Pereira Braga, Gabriel Muñoz</p>
-<p>Contributed by reporting issues and suggesting modifications:</p>
-</div>
-<div id="contributing" class="section level2">
-<h2><span class="header-section-number">0.3</span> Contributing</h2>
-<p>Under construction.</p>
+<div id="challenge-4" class="section level2">
+<h2><span class="header-section-number">18.1</span> Challenge 4</h2>
+<p>Generate a plot of showing concentration versus uptake where each plant
+is shown using a different point.</p>
+<p><strong>Bonus points</strong> for doing it with nested loops!</p>
+<p>++++ Challenge 4 Answer |</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="challenge-3.html#cb59-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">1.4</span>,</span>
+<span id="cb59-2"><a href="challenge-3.html#cb59-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;CO2 concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 uptake&quot;</span>)  <span class="co"># Type &#39;n&#39; tells R to not actually plot the points.</span></span>
+<span id="cb59-3"><a href="challenge-3.html#cb59-3"></a>plants &lt;-<span class="st"> </span><span class="kw">unique</span>(CO2<span class="op">$</span>Plant)</span>
+<span id="cb59-4"><a href="challenge-3.html#cb59-4"></a></span>
+<span id="cb59-5"><a href="challenge-3.html#cb59-5"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb59-6"><a href="challenge-3.html#cb59-6"></a>    <span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(plants)) {</span>
+<span id="cb59-7"><a href="challenge-3.html#cb59-7"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Plant[i] <span class="op">==</span><span class="st"> </span>plants[p]) {</span>
+<span id="cb59-8"><a href="challenge-3.html#cb59-8"></a>            <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> p)</span>
+<span id="cb59-9"><a href="challenge-3.html#cb59-9"></a>        }</span>
+<span id="cb59-10"><a href="challenge-3.html#cb59-10"></a>    }</span>
+<span id="cb59-11"><a href="challenge-3.html#cb59-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="challenge-3.html#cb60-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">1.4</span>,</span>
+<span id="cb60-2"><a href="challenge-3.html#cb60-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;CO2 Concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 Uptake&quot;</span>)</span>
+<span id="cb60-3"><a href="challenge-3.html#cb60-3"></a></span>
+<span id="cb60-4"><a href="challenge-3.html#cb60-4"></a>plants &lt;-<span class="st"> </span><span class="kw">unique</span>(CO2<span class="op">$</span>Plant)</span>
+<span id="cb60-5"><a href="challenge-3.html#cb60-5"></a></span>
+<span id="cb60-6"><a href="challenge-3.html#cb60-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb60-7"><a href="challenge-3.html#cb60-7"></a>    <span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(plants)) {</span>
+<span id="cb60-8"><a href="challenge-3.html#cb60-8"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Plant[i] <span class="op">==</span><span class="st"> </span>plants[p]) {</span>
+<span id="cb60-9"><a href="challenge-3.html#cb60-9"></a>            <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> p)</span>
+<span id="cb60-10"><a href="challenge-3.html#cb60-10"></a>        }</span>
+<span id="cb60-11"><a href="challenge-3.html#cb60-11"></a>    }</span>
+<span id="cb60-12"><a href="challenge-3.html#cb60-12"></a>}</span></code></pre></div>
 
 </div>
-</div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>The QCBS R Workshop Series is part of the <a href="https://www.qcbs.ca">Québec Centre for Biodiversity Science</a>, and is maintained by the series coordinators and graduent student, postdoctoral, and research professional members. <strong>The contributors for this workshop can be accessed <a href="link">here</a></strong>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 <hr>
 <center> 
@@ -324,8 +339,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="learning-objectives.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modifying-iterations-while.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="why-write-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
