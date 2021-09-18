@@ -2,7 +2,16 @@
 
 # Decision making
 
-## `if` **statement**
+It is not rare that we wish to *conditionally* perform operations - or in other words, to perform different operations depending on the outcome of a test of desired conditions.
+
+We can use `if() {}`, `if() {} else {}` and `ifelse()` to help us with this *selection* process.
+
+# `if` **statement**
+
+In the example below, the `expression` is only executed if the `condition` that is being tested is `TRUE`.
+
+<div class = "split">
+<div class = "uneven-split-left">
 
 ```{r, echo = TRUE, eval = FALSE}
 if(condition) {
@@ -10,9 +19,64 @@ if(condition) {
 }
 ```
 
-![](images/if.png){.align-center width="300"}
+</div>
+<div class = "uneven-split-right">
+<center>
+```{r flowchart2, echo=FALSE}
+#Create node data frame
+f2_nodes <- create_node_df(n = 4, #number of nodes
+                           type = 'a', #for grouping
+                           label = c(" ", "Condition", "Expression", " "), 
+                           shape = c("circle", "diamond", 'rectangle', 'circle'), 
+                           style = c('rounded', 'solid', 'solid', 'filled'), 
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
 
-## `if else` **statement**
+
+#create edges
+f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
+                           to = c(2, 3, 4, 4), 
+                           label = c(' ', '  if TRUE', '  if FALSE', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           tailport = c('s', 'w', 's'),
+                           headport = c('n', 'n', 'n')
+                           )
+
+#create flowchart
+flowchart2 <- create_graph(
+                    nodes_df = f2_nodes,
+                    edges_df = f2_edges,
+                    directed = TRUE, 
+                    attr_theme = 'tb' 
+                    )
+
+#display flowchart
+render_graph(flowchart2, width = '45%', height = 'auto')
+```
+</center>
+</div>
+</div>
+
+::: explanation
+
+Note that when the `condition` is `FALSE`, nothing happens and the program carries on to the next step.
+
+:::
+
+# `if else` **statement**
+
+The `if` statement only performs an operation if a condition is met. However, one may not only be interested in specifying the `expression` that must be done when the required `condition` is `TRUE`, but also the `expression` that must be performed when the `condition` is `FALSE`.
+
+To achieve this, we can use the `if() {} else {}` statement and `ifelse()` function.
+
+<div class = "split">
+<div class = "uneven-split-left">
 
 ```{r, echo = TRUE, eval = FALSE}
 if(condition) {
@@ -22,92 +86,303 @@ if(condition) {
 }
 ```
 
-![](images/ifelse.png){.align-center width="300"}
-
-**What if you want to test more than one condition?**
-
--   `if` and `if else` test a single condition
--   You can also use `ifelse` function to:
-    -   test a vector of conditions;
-    -   apply a function only under certain conditions.
-
 ```{r, echo = TRUE, eval = FALSE}
-a <- 1:10
-ifelse(a > 5, "yes", "no")
-
-a <- (-4):5
-sqrt(ifelse(a >= 0, a, NA))
+ifelse(condition, 
+       expression 1, 
+       expression 2
+)
 ```
 
-**Nested** `if else` **statement**
 
-```{r, echo = TRUE, eval = FALSE}
-if (test_expression1) {
-statement1
-} else if (test_expression2) {
-statement2
-} else if (test_expression3) {
-statement3
+</div>
+<div class = "uneven-split-right">
+<center>
+```{r flowchart3, echo=FALSE}
+#Create node data frame
+f3_nodes <- create_node_df(n = 5, #number of nodes
+                           type = 'a', #for grouping
+                           label = c(" ", "Condition", "Expression 1\nif body", " ", "Expression 2\nelse body"), 
+                           shape = c("circle", "diamond", 'rectangle', 'circle', 'rectangle'), 
+                           style = c('rounded', 'solid', 'solid', 'filled', 'solid'), 
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
+
+
+#create edges
+f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
+                           to = c(2, 3, 5, 4, 4), 
+                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           tailport = c('s', 'w', 's', 's', 's'), #where edge leaves node
+                           headport = c('n', 'n', 'n', 'n', 'n') #where arrow meets node
+                           )
+
+#create flowchart
+flowchart3 <- create_graph(
+                    nodes_df = f3_nodes,
+                    edges_df = f3_edges,
+                    directed = TRUE, 
+                    attr_theme = 'tb' 
+                    )
+
+#display flowchart
+render_graph(flowchart3, width = '50%', height = 'auto')
+```
+</center>
+</div>
+</div>
+
+# Multiple condition decisions
+
+While simple `if` and `if else` operations tests single conditions, we can make more complex operations, which tests multiple conditions.
+
+With the `ifelse()` function, we can test a test a vector of conditions and/or apply functions only under certain conditions. See the examples below:
+
+<div class = "split">
+<div class = "split-left">
+
+```{r, echo = c(-1) }
+options(width = 30)
+a <- 1:10
+
+ifelse(test = a > 5, 
+       yes = "yes", 
+       no = "no")
+```
+
+</div>
+<div class = "uneven-split-right">
+
+```{r}
+a <- (-4):5
+
+sqrt(ifelse(test = a >= 0, 
+            yes = a,
+            no = NA)
+     )
+```
+
+</div>
+</div>
+
+
+While the `if()` and `if()` `else` statements leave you with exactly two options, nested `if()` `else` statement allows you consider more alternatives.
+
+<div class = "split">
+<div class = "uneven-split-left">
+
+```{r, eval = FALSE}
+if(test_expression1) {
+  statement1
+} else if(test_expression2) {
+  statement2
+} else if(test_expression3) {
+  statement3
 } else {
-statement4
+  statement4
 }
 ```
 
-![](images/nested_ifelse.png){.align-center}
+</div>
+<div class = "uneven-split-right">
+<center>
 
-## Challenge 1
+```{r flowchart4, echo=FALSE}
+#note this one might turn out better in diagraph / DOT language, 'rank = same' seems broken without DOT
+#Create node data frame
+f4_nodes <- create_node_df(n = 9, #number of nodes
+                           group = c('a','b','b','b','c','c','c','c','a'),
+                           label = c("Start", "Condition 1", "Condition 2", "Condition 3", 
+                                     "Expression 1", "Expression 2", "Expression 3", "Expression 4",  "End"), 
+                           shape = c("circle", "diamond", "diamond", "diamond", 
+                                     'rectangle', 'rectangle','rectangle', 'rectangle', 'circle'), 
+                           style = c('solid', 'solid', 'solid', 'solid', 
+                                     'solid', 'solid', 'solid', 'solid', 'filled'), 
+                           fontname = 'Helvetica',
+                           fontsize = 12,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
 
-```{r, echo = TRUE, eval = FALSE}
+
+#create edges
+f4_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8), #origin node id
+                           to = c(2, 3, 5, 4, 6, 7, 8, 9, 9, 9, 9), 
+                           label = c(' ', '  if FALSE', '  if TRUE', ' if FALSE', '  if TRUE', ' if FALSE', ' if TRUE',
+                                     ' ', ' ', ' ', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           rel = c('a','b','c', 'b', 'c', 'c', 'd', 'd', 'd', 'd,'),
+                           tailport = c('s', 'e', 's', 'e', 's', 'e', 's'), #where edge leaves node
+                           headport = c('n', 'n', 'n', 'n', 'n', 'n', 'n') #where arrow meets node
+                           )
+
+#create flowchart
+flowchart4 <- create_graph(
+                    nodes_df = f4_nodes,
+                    edges_df = f4_edges,
+                    directed = TRUE,
+                    attr_theme = 'tb'
+                    )
+
+#display flowchart
+render_graph(flowchart4, width = '75%', height = 'auto')
+```
+
+</center>
+</div>
+</div>
+
+# Caution with parsing statements
+
+::: noway
+
+What do you think will happen if we try the code below?
+
+<div class = "split">
+<div class = "split-left">
+
+```{r bad-ifelse, eval = FALSE}
+if(2+2) == 4 
+print("Arithmetic works.")
+else 
+print("Houston, we have a problem.")
+```
+
+</div>
+<div class = "split-right">
+
+```{r bad-ifelse-out, echo = FALSE, error = TRUE}
+if(2+2) == 4 
+print("Arithmetic works.")
+else
+print("Houston, we have a problem.")
+```
+
+</div>
+</div>
+
+This does not work because `R` evaluates the first line and does not know that you are going to use an `else` statement
+:::
+
+::: explanation
+
+Use curly brackets `{ }` so that `R` knows to expect more input. Try:
+
+```{r}
+if(2+2 == 4) {
+  print("Arithmetic works.")
+} else {
+  print("Houston, we have a problem.")
+}
+```
+
+:::
+
+# Challenge 1
+
+Welcome to our first challenge! To complete it, you will use the code block below, and you must:
+
+<div class = "split">
+<div class = "uneven-split-left">
+
+1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
+2. Use an `if()`  `else` statement to print `"woof"` if you supply an object that is a `"dog"` and `"meow"` if it is not. Try it out with `Paws` and `Scruffy`.
+3. Use the `ifelse()` function to display `"woof"` for `animals` that are dogs and `"meow"` for `animals` that are cats.
+
+</div>
+<div class = "uneven-split-right">
+
+```{r, echo = TRUE, eval = TRUE}
 Paws <- "cat"
 Scruffy <- "dog"
 Sassy <- "cat"
+
 animals <- c(Paws, Scruffy, Sassy)
 ```
 
-1.- Use an `if` statement to print "meow" if Paws is a "cat".
+</div>
+</div>
 
-++++ Challenge 1 : Answer\| 2.- Use an `if else` statement to print
-"woof" if you supply an object that is a "dog" and "meow" if it is not.
-Try it out with Paws and Scruffy.
+::: explanation 
 
-3.- Use the `ifelse` function to display "woof" for animals that are
-dogs and "meow" for animals that are cats.
+Here is a cheatsheet with logical operators that can help you completing this exercise: 
 
-++++
+| Command | Meaning |
+| :-------------: | :-------------: |
+| `==`  | equal to  |
+| `!=`  | not equal to  |
+| `<`   | less than  |
+| `<=`  | less than or equal to  |
+| `>`   | greater than  |
+| `>=`  | greater than or equal to  |
+| `x&y` | `x` AND `y` |
+| `x`&#124;`y`  | `x` OR `y`  |
+| `isTRUE(x)`  | test if `x` is true |
+:::
 
-### Beware of R's expression parsing!
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+ 
+<button onclick="myFunction()">Solution for Challenge 1</button>
+ 
+<div id="myDIV">
 
-Use curly brackets `{}` so that R knows to expect more input. Try:
+1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
 
-```{r, echo = TRUE, eval = FALSE}
-if (2+2) == 4 print("Arithmetic works.")
-else print("Houston, we have a problem.")
+```{r}
+if(Paws == 'cat') {
+  print("meow")
+}
 ```
 
-*This doesn't work because R evaluates the first line and doesn't know
-that you are going to use an else statement*
+2\. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 
-Instead use:
-
-```{r, echo = TRUE, eval = FALSE}
-if (2+2 == 4) { #<<
-  print("Arithmetic works.")
-} else { #<<
-  print("Houston, we have a problem.")
-} #<<
+```{r}
+x = Paws
+# x = Scruffy
+if(x == 'cat') {
+  print("meow")
+} else {
+  print("woof")
+}
 ```
 
-### Remember the logical operators
 
-  ----------- --------------------------
-  ==          equal to
-  !=          not equal to
-  !x          not x
-  \<          less than
-  \< =        less than or equal to
-  \>          greater than
-  \>=         greater than or equal to
-  x & y       x AND y
-  x\|y        x OR y
-  isTRUE(x)   test if X is true
-  ----------- --------------------------
+3\. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
+
+```{r}
+animals <- c(Paws, Scruffy, Sassy)
+
+ifelse(animals == 'dog', "woof", "meow")
+```
+
+or
+
+```{r}
+for(val in 1:3) {
+  if(animals[val] == 'cat') {
+    print("meow")
+  } else if(animals[val] == 'dog') {
+    print("woof")
+  } else print("what?")
+}
+```
+
+</div>

@@ -2,36 +2,32 @@
 
 # Learning objectives
 
-**Summary:** This workshop focuses on basic programming in R. In this
-workshop, you will learn how to use control flow (for loops, if, while)
-methods to prevent code repetition, facilitate organization and run
-simulations. In addition, you will learn to write your own functions,
-and tips to program efficiently. The last part of the workshop will
-discuss packages that will not covered elsewhere in this workshop
-series, but that may be of interest to participants.
+This workshop focuses on basic programming in R.
 
-1.  Learning what is **control flow;**
-2.  Writing your first functions in R
-3.  Speeding up your code
-4.  Useful R packages for biologists
+You will learn how to use control flow (`for` loops, `if`, `while`, `repeat`, and `apply()` family functions) methods to prevent code repetition, facilitate organization and run
+simulations. 
 
-*Include learning objectives.*
+You will also learn to write your own functions,
+and tips to program efficiently.
+
+1.  Learning what is **control flow**;
+2.  Writing your first functions in `R`;
+3.  Speeding up your code.
 
 # Preparing for the workshop
 
-To prepare for this workshop, you must do the following steps:
+To prepare for this workshop, you must download and install the earliest RStudio and R versions. 
 
-Download the R script and data required for this workshop:
+All workshop materials are found within the [Github repository for this workshop](github.com/QCBSRworkshops/workshop05). This includes an [`R` script](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R), which contains all code chunks shown in this book.
 
--   [R Script](http://qcbs.ca/wiki/_media/programming.r)
-
-Make sure to load the following packages (see how in the R script):
-
--    [vegan (for multivariate
-    analyses)](http://cran.r-project.org/web/packages/vegan/index.html)
+To reproduce the diagrams included in this workshop, you will need the `DiagrammeR` package. You can install and load it with the following command:
 
 ```{r, echo = TRUE, eval = FALSE}
-install.packages("vegan")
+install.packages("DiagrammeR")
 
-library(vegan)
+library(DiagrammeR)
 ```
+
+### Accessing the workshop material {-}
+
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)
