@@ -1,37 +1,45 @@
-## Control flow
+# Introduction to Control Flow
 
-Program flow control can be simply defined as the order in which a program is executed.
+The basis of computer programming in any language begins with **control flow**. 
 
-<br>
-<br>
+**Control flow** (or *flow of control*) is the order function calls, instructions, and statements are executed or evaluate when any program is running.
 
+> Imagine that you would like to run an operation several times, until a condition is met. One option, is to rewrite the same code, while changing part of the syntax, that number of times you wish. Alternatively, we could write our code using *control flow*, and *iterate* through the same operation that will *evaluate* and *stop* until a certain condition is met. This last option usually implies in a much shorter, clearer and less complex form of writing code.
 
-#### Why is it advantageous to have structured programs?
-<br>
+It is advantageous, for any programmer, to think in terms of in terms of **control flow**, and therefore have structured programs, because:
 
-<br>
+1. **The complexity and time of the task at hand is greatly decreased**;
 
-- It **decreases the complexity** and time of the task at hand;
-- This logical structure also means that the code has **increased clarity**;
-- It also means that **many programmers can work on one program**.
+2. **A logical structure also means that the code has increased clarity**;
 
-<br>
-<br>
+3. **It also facilitates collaboration**, and therefore increases productivity.
 
-**This means increased productivity.**
+### Building blocks of control flow
 
-## Control flow
+There are many building blocks of control flow programming:
 
-**Program flowcharts** can be used to plan programs and represent their structure.
+- **Sequencing**, which executes or evaluates something sequentially;
+- **Selection**, which performs opertations `ìf` or unless certain conditions are met; 
+- **Iteration**, which iteratively `repeat`s an operation `while`, `until` or `for` a determined number of times; 
+- **Procedural abstraction**, which involes a subroutine, nested call;
+- Recursion
+- **Concurrency**, which does several operations at the same time;
+- Exception handling and speculation
+- **Non-determinism**, which does an operation 
 
-<br>
-<br>
-<br>
+# Using flowcharts
 
-<center>
+Control-flow diagrams can be used to plan and represent the structure of programs. The main elements program-flowcharts are:
+
+- A processing step, represented by the *rectangular box*;
+- A decision step, usually denoted by a *diamond*; 
+- The start and end steps, denoted by *rounded-edge rectangles*;
+- *Arrows* indicating the direction and each step;
+- *Labels* naming elements of the flowchart.
 
 ```{r flowchart1, echo=FALSE}
 library(DiagrammeR)
+
 #Create node data frame
 f1_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
@@ -44,8 +52,10 @@ f1_nodes <- create_node_df(n = 4, #number of nodes
                            color = 'mediumblue',
                            height = 0.70
                            )
+
+
 #create edges
-##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
+##DiagrammeR does not handle NA's in edge labels well, so NAs are ' ' here.
 f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
                            to = c(2, 3, 2, 4),
                            tailport = c("e", "e", "s", "e"),
@@ -54,6 +64,7 @@ f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
                            fontsize = 10,
                            color = 'dimgrey'
                            )
+
 #create flowchart
 flowchart1 <- create_graph(
                     nodes_df = f1_nodes,
@@ -61,71 +72,8 @@ flowchart1 <- create_graph(
                     directed = TRUE, #arrows vs straight lines
                     attr_theme = 'lr' #left to right specified
                     )
+
 #display flowchart
 render_graph(flowchart1, width = '95%', height = 'auto')
+
 ```
-</center>
-
-
-## Representing structure
-
-The two basic building blocks of codes are the following:
-
-
-#### Selection
-
-Program's execution determined by statements
-
-```{r, eval=FALSE, echo=TRUE}
-if() {}
-if() {} else {}
-```
-
-
-#### Iteration
-
-Repetition, where the statement will **loop** until a criteria is met
-
-```{r, eval=FALSE, echo=TRUE}
-for() {}
-while() {}
-repeat {}
-```
-
-
-Selection and iterative statements can also be controlled by termination and jump statements:
-
-#### Termination and Jump
-
-```{r,eval=FALSE, echo=TRUE}
-break
-next
-```
-
-
-# Control flow roadmap
-
-<br>
-
-
-#### **`if` and `if` `else` statements** <br>
-
-![:faic](arrow-down) <br>
-
-#### **`for` loop** <br>
-
-![:faic](arrow-down) <br>
-
-#### **`break` and `next` statements** <br>
-
-![:faic](arrow-down) <br>
-
-#### **`repeat` loop** <br>
-
-![:faic](arrow-down) <br>
-
-#### **`while` loop**
-
-???
-
-This roadmap appears at the beginning of each control flow tool to let participants know what is coming up in the control flow section.

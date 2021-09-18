@@ -2,116 +2,34 @@
 
 ## Learning objectives
 
-**Summary:** This workshop focuses on basic programming in R. In this
-workshop, you will learn how to use control flow (for loops, if, while)
-methods to prevent code repetition, facilitate organization and run
-simulations. In addition, you will learn to write your own functions,
-and tips to program efficiently. The last part of the workshop will
-discuss packages that will not covered elsewhere in this workshop
-series, but that may be of interest to participants.
+This workshop focuses on basic programming in R.
 
-###### 1. Recognizing **control flow**;
-###### 2. Getting comfortable with testing conditions and performing iterations;
-###### 3. Developing your first functions in `R`;
-###### 4. Discovering how to accelerate your code;
-###### 5. Demonstrating useful `R` packages for biologists.
+You will learn how to use control flow (`for` loops, `if`, `while`, `repeat`, and `apply()` family functions) methods to prevent code repetition, facilitate organization and run
+simulations. 
 
+You will also learn to write your own functions,
+and tips to program efficiently.
+
+1. Recognizing **control flow**;
+2. Getting comfortable with testing conditions and performing iterations;
+3. Developing your first functions in `R`;
+4. Discovering how to accelerate your code;
+5. Demonstrating useful `R` packages for biologists.
 
 # Preparing for the workshop
 
-To prepare for this workshop, you must do the following steps:
+To prepare for this workshop, you must download and install the earliest RStudio and R versions. 
 
-Download the R script and data required for this workshop:
+All workshop materials are found within the [Github repository for this workshop](github.com/QCBSRworkshops/workshop05). This includes an [`R` script](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R), which contains all code chunks shown in this book.
 
--   [R Script](http://qcbs.ca/wiki/_media/programming.r)
-
-Make sure to load the following packages (see how in the R script):
-
--    [vegan (for multivariate
-    analyses)](http://cran.r-project.org/web/packages/vegan/index.html)
+To reproduce the diagrams included in this workshop, you will need the `DiagrammeR` package. You can install and load it with the following command:
 
 ```{r, echo = TRUE, eval = FALSE}
-install.packages("vegan")
+install.packages("DiagrammeR")
 
-library(vegan)
+library(DiagrammeR)
 ```
 
-## Review: Objects
+### Accessing the workshop material {-}
 
-![:scale 90%](images/matrix.png)
-
-
-## Review: Vectors
-
-<br>
-
-.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)?]
-
-<br>
-
-
-##### Numeric vectors 
-
-```{r}
-num.vector <- c(1, 4, 3, 
-                9, 32, -4)
-num.vector
-```
-
-
-##### Character vector
-
-```{r}
-char_vector <- c("blue", 
-                 "red", 
-                 "green")
-char_vector
-```
-
-
-##### Logical vector
-
-```{r}
-bool_vector <- c(TRUE, TRUE, FALSE) # or c(T, T, F)
-bool_vector
-```
-
-
-
-## Review: Data frames
-
-We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
-
-```{r}
-siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
-soil_pH <- c(5.6, 7.3, 4.1, 6.0)
-num.sp <- c(17, 23, 15, 7)
-treatment <- c("Fert", "Fert", "No_fert", "No_fert")
-```
-
-<br>
-We then combine them using the function `data.frame()`.
-
-```{r}
-my.first.df <- data.frame(siteID, soil_pH, num.sp, treatment)
-```
-
-```{r}
-my.first.df
-```
-
-
-## Review: Lists
-
-We can also create lists by combining the vectors we created before.
-
-```{r}
-  my.first.list <- list(siteID, soil_pH, num.sp, treatment)
-```
-
-```{r}
-  my.first.list
-```
-
-
-
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)

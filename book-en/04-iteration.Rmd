@@ -2,48 +2,151 @@
 
 # Iteration
 
-Every time some operations have to be repeated, a loop may come in handy
+Every time some operations have to be repeated, a *loop* may come in handy. Loops are good for:
 
-Loops are good for:
+- Doing something for every element of an object;
+- Doing something until the processed data runs out;
+- Doing something for every file in a folder;
+- Doing something that can fail, until it succeeds;
+- Iterating a calculation until it reaches convergence.
 
--   doing something for every element of an object
--   doing something until the processed data runs out
--   doing something for every file in a folder
--   doing something that can fail, until it succeeds
--   iterating a calculation until it converges
-
-## `for` loop
-
-A `for` loop works in the following way:
+Here, we will learn the following types of *iteration* statements:
 
 ```{r, echo = TRUE, eval = FALSE}
-for(val in sequence) {
-  statement
+for() {}
+while() {}
+repeat {}
+```
+
+We will also dive into the `apply()` family functions, which are interesting function-based alternatives to `for() {}` loops.
+
+We will finally learn about two special statements that allow us to control iterations:
+
+```{r, echo = TRUE, eval = FALSE}
+break
+next
+```
+
+# `for` loops
+
+A `for()` loop works in the following way:
+
+
+```r
+for(i in sequence) {
+  expression
   }
 ```
 
-![](images/forloop.png){.align-center width="300"}
+<center>
 
-The letter i can be replaced with any variable name and the sequence can
-be almost anything, even a list of vectors.
+```{r flowchart5for-loop, echo = FALSE}
+#Create node data frame
+f5_nodes <- create_node_df(n = 4, #number of nodes
+                           type = 'a', #for grouping
+                           label = c(" ", "Last item\nreached?", "expression\nfor() \nbody", "  "), 
+                           shape = c("circle", "diamond", 'rectangle', 'circle'), 
+                           style = c('solid', 'solid', 'solid', 'filled'), 
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
+
+
+#create edges
+f5_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
+                           to = c(2, 3, 4, 2), 
+                           label = c(' ', ' if FALSE', '  if TRUE, exit loop', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           tailport = c('s', 'w', 'e', 'e'),
+                           headport = c('n', 'w', 'n', 's')
+                           )
+
+#create flowchart
+flowchart5 <- create_graph(
+                    nodes_df = f5_nodes,
+                    edges_df = f5_edges,
+                    directed = TRUE, 
+                    attr_theme = 'tb' 
+                    )
+
+#display flowchart
+render_graph(flowchart5, width = '35%', height = 'auto')
+```
+
+</center>
+
+::: explanation
+
+The letter `i` can be replaced with any variable name, `sequence` can be elements or the position of these elements, and `expression` can be anything. Try the examples below:
+
+<div class = "split">
+<div class = "split-left">
 
 ```{r, echo = TRUE, eval = FALSE}
-# Try the commands below and see what happens:
-
-for (a in c("Hello", "R", "Programmers")) {
+for(a in c("Hello", 
+           "R", 
+           "Programmers")) {
   print(a)
-}
-
-for (z in 1:30) {
-  a <- rnorm(n = 1, mean = 5, sd = 2)
-  print(a)
-}
-
-elements <- list(1:3, 4:10)
-for (element in elements) {
-  print(element)
 }
 ```
+
+
+```{r, echo = TRUE, eval = FALSE}
+for(z in 1:4) {
+  a <- rnorm(n = 1, 
+             mean = 5 * z, 
+             sd = 2)
+  print(a)
+}
+```
+
+</div>
+<div class = "split-right">
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+ 
+<button onclick="myFunction()">Output</button>
+ 
+<div id="myDIV">
+
+```{r, echo = FALSE, eval = TRUE}
+for(a in c("Hello", 
+           "R", 
+           "Programmers")) {
+  print(a)
+}
+```
+
+<br>
+
+```{r, echo = FALSE, eval = TRUE}
+for(z in 1:4) {
+  a <- rnorm(n = 1, 
+             mean = 5 * z, 
+             sd = 2)
+  print(a)
+}
+```
+
+</div>
+</div>
+</div>
+
+:::
 
 In the example below, R would evaluate the expression 5 times:
 
@@ -147,7 +250,7 @@ for (i in 1:3) {
 ```
 
 
-## Getting better: using the `apply()` family
+# The `apply()` family
 
 R disposes of the `apply()` function family, which consists of
 vectorized functions that aim at minimizing your need to explicitly
@@ -166,7 +269,7 @@ apply(X = height,
 ?apply
 ```
 
-### apply()
+## apply()
 
 `lapply()` applies a function to every element of a **list**.
 
@@ -197,7 +300,7 @@ SimulatedData <- list(SimpleSequence = 1:4,
 lapply(SimulatedData, mean)
 ```
 
-### sapply()
+## sapply()
 
 `sapply()` is a 'wrapper' function for `lapply()`, but returns a
 simplified output as a vector, instead of a list.
@@ -215,7 +318,7 @@ SimulatedData <- list(SimpleSequence = 1:4,
 sapply(SimulatedData, mean)
 ```
 
-### mapply()
+## mapply()
 
 `mapply()` works as a multivariate version of `sapply()`.
 
@@ -230,7 +333,7 @@ poppySeeds <- c(20, 35, 11, 77, 79)
 mapply(sum, lilySeeds, poppySeeds)
 ```
 
-### tapply()
+## tapply()
 
 `tapply()` is used to apply a function over subsets of a vector.
 
@@ -245,7 +348,7 @@ head(mtcars)
 tapply(mtcars$hp, mtcars$cyl, FUN = mean)
 ```
 
-## Challenge 2
+# Challenge 2
 
 You have realized that your tool for measuring uptake was not calibrated
 properly at Quebec sites and all measurements are 2 units higher than
@@ -288,7 +391,18 @@ met.
 
 For this, we will introduce `break`, `next` and `while`.
 
-### Modifying iterations: `break`
+
+**Termination and Jump**
+
+Program's execution determined by statements
+
+```{r, echo = TRUE, eval = FALSE}
+break
+next
+```
+
+
+# Modifying iterations: `break`
 
 ```{r, echo = TRUE, eval = FALSE}
 for(val in x) {
@@ -299,7 +413,7 @@ for(val in x) {
 
 ![](images/break.png){.align-center}
 
-### Modifying iterations: next
+# Modifying iterations: next
 
 ```{r, echo = TRUE, eval = FALSE}
 for(val in x) {
@@ -344,7 +458,7 @@ repeat {
 print(count)
 ```
 
-## Modifying iterations: `while`
+# Modifying iterations: `while`
 
 This could also be written using a `while` loop:
 
@@ -361,7 +475,7 @@ while (i < nrow(CO2))
 print(count)
 ```
 
-## Challenge 3
+# Challenge 3
 
 You have realized that your tool for measuring concentration did not
 work properly.

@@ -143,6 +143,8 @@ Program flow control can be simply defined as the order in which a program is ex
 <br>
 <br>
 
+--
+
 .center[
 #### Why is it advantageous to have structured programs?
 <br>
@@ -151,7 +153,7 @@ Program flow control can be simply defined as the order in which a program is ex
 
 - It **decreases the complexity** and time of the task at hand;
 - This logical structure also means that the code has **increased clarity**;
-- It also means that **many programmers can work on one program**.
+- It also improves collaborative efforts and helps **multiple programmers to work in the same program**.
 
 <br>
 <br>
