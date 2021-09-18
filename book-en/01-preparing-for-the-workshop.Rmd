@@ -1,6 +1,6 @@
 # (PART\*) Programming in `R` {-}
 
-# Learning objectives
+## Learning objectives
 
 This workshop focuses on basic programming in R.
 
@@ -10,9 +10,11 @@ simulations.
 You will also learn to write your own functions,
 and tips to program efficiently.
 
-1.  Learning what is **control flow**;
-2.  Writing your first functions in `R`;
-3.  Speeding up your code.
+1. Recognizing **control flow**;
+2. Getting comfortable with testing conditions and performing iterations;
+3. Developing your first functions in `R`;
+4. Discovering how to accelerate your code;
+5. Demonstrating useful `R` packages for biologists.
 
 # Preparing for the workshop
 

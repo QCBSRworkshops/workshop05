@@ -148,7 +148,7 @@ print_animal(Paws)
 ```
 
 
-```r
+```{r}
 print_animal <- function(animal) {
   if(animal == "dog") {
     print("woof")
@@ -346,7 +346,8 @@ Using what you have just learned on functions and control flow, create a functio
 
 
 **Answer 1**
-```r
+
+```{r}
 bigsum <- function(a, b) {
   result <- a + b
   if(result < 50) {
@@ -360,7 +361,8 @@ bigsum <- function(a, b) {
 
 
 **Answer 2**
-```r
+
+```{r}
 bigsum <- function(a, b) {
   result <- a + b
   if(result < 50) {
@@ -516,7 +518,7 @@ On the left, code is not spaced, nor indented. All brackets are in the same line
 <br>
 
 
-```r
+```{r}
 a<-4;b=3
 if(a<b){
 if(a==0)print("a zero")}else{
@@ -531,7 +533,7 @@ On the left, code is not spaced, nor indented. All brackets are in the same line
 <br>
 
 
-```r
+```{r}
 a<-4;b=3
 if(a<b){
 if(a==0)print("a zero")}else{
@@ -539,7 +541,7 @@ if(b==0){print("b zero")}else print(b)}
 ```
 
 
-```r
+```{r}
 a <- 4
 b <- 3
 if(a < b) {
@@ -574,7 +576,8 @@ Let's modify the example from **Challenge 3** and suppose that all $CO_2$ uptake
 
  We could write this:
 <br>
-```r
+
+```{r}
 for(i in 1:length(CO2[,1])) {
   if(CO2$Type[i] == "Mississippi") {
     CO2$conc[i] <- CO2$conc[i] - 20
@@ -653,7 +656,7 @@ Whenever possible, avoid using names of existing `R` functions and variables to 
 .alert[Final tip]. Add comments to describe what your code does, how to use its arguments or a detailed step-by-step description of the function.
 
 
-```r
+```{r}
 # Recalibrates the CO2 dataset by modifying the CO2 uptake concentration
 # by a fixed amount depending on the region of sampling.
 # Arguments
