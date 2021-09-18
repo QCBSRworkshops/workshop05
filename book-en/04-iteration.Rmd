@@ -402,7 +402,7 @@ for (i in 31:40) {
 </div>
 </div>
 
-Another example:
+Now, let us obtain the CO2 concentration only for the sites that were sampled in Québec (Canada):
 
 ```{r eval = FALSE}
 for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
@@ -413,57 +413,127 @@ for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
 ```
 
 
-
-For loops are often used to loop over a dataset. We will use loops to
-perform functions on the CO2 dataset which is built in R.
-
 ```{r, echo = TRUE, eval = FALSE}
-data(CO2) # This loads the built in dataset
-
-for (i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
-  print(CO2$conc[i]) # print the CO2 concentration
-}
-
-for (i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
+for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
     print(CO2$conc[i]) # print the CO2 concentration
     }
 }
 ```
 
-**Tip 1.** To loop over the number of rows of a data frame, we can use
-the function `nrow()`
 
-```{r, echo = TRUE, eval = FALSE}
-for (i in 1:nrow(CO2)) { # for each row in the CO2 dataset
-  print(CO2$conc[i]) # print the CO2 concentration
+Here they are:
+
+<div class = "split">
+<div class = "split-left">
+
+<div class = "split">
+<div class = "split-left">
+
+```{r, echo=FALSE}
+for (i in 1:11) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+```
+</div>
+
+<div class = "split-right">
+```{r, echo=FALSE}
+for (i in 12:22) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+```
+</div>
+
+</div>
+</div>
+
+<div class = "split-right">
+
+<div class = "split">
+<div class = "split-left">
+```{r, echo=FALSE}
+for (i in 23:33) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
+}
+```
+</div>
+
+<div class = "split-right">
+```{r, echo=FALSE}
+for (i in 34:42) { 
+  if(CO2$Type[i] == "Quebec") { 
+    print(CO2$conc[i])
+  }
 }
 ```
 
-**Tip 2.** If we want to perform operations on the elements of one
-column, we can directly iterate over it
+</div>
+</div>
+</div>
+</div>
+</div>
+
+::: explanation 
+
+**Tip 1.** To loop over the number of rows of a data frame, we can use the function `nrow()`:
 
 ```{r, echo = TRUE, eval = FALSE}
-for (p in 1:CO2$conc) { # for each row of the column "conc"of the CO2 df
-  print(p) # print the p-th element
+for(i in 1:nrow(CO2)) {
+      # for each row in
+      # the CO2 dataset
+  print(CO2$conc[i])
+      # print the CO2
+      # concentration
 }
 ```
 
-**Tip 3.** The expression within the loop can be almost anything and is
-usually a compound statement containing many commands.
+::: 
+
+
+::: explanation 
+
+**Tip 2.** To perform operations on the elements of one column, we can directly iterate over it.
 
 ```{r, echo = TRUE, eval = FALSE}
-for (i in 4:5) { # for i in 4 to 5
+for(p in CO2$conc) {
+      # for each element of
+      # the column "conc" of
+      # the CO2 df
+  print(p)
+      # print the p-th element
+}
+```
+
+::: 
+
+::: explanation 
+
+**Tip 3.** The expression within the loop can be almost anything and is usually a compound statement containing many commands.
+
+```{r, echo = TRUE, eval = FALSE}
+for(i in 4:5) { # for i in 4 to 5
   print(colnames(CO2)[i])
   print(mean(CO2[,i])) # print the mean of that column from the CO2 dataset
 }
 ```
 
-## `for` loops within `for` loops
+::: 
 
-In some cases, you may want to use nested loops to accomplish a task.
-When using nested loops, it is important to use different variables as
-counters for each of your loops. Here we used i and n:
+# `for` loops within `for` loops
+
+In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables for each one of your loops. 
+
+In the example below, we used a nested `for` framework which printed the product of `i` and `n`, where `n` was part of the nested `for` and was a sequence from `1` to `3`, and then `i`, which was also a sequence from `1` to `3`, was part of the outer loop.
+
+<div class = "split">
+<div class = "split-left">
 
 ```{r, echo = TRUE, eval = FALSE}
 for (i in 1:3) {
@@ -473,12 +543,45 @@ for (i in 1:3) {
 }
 ```
 
+</div>
+
+<div class = "split-right">
+
+```{r, echo = FALSE, eval = TRUE}
+for (i in 1:3) {
+  for (n in 1:3) {
+    print (i*n)
+  }
+}
+```
+
+</div>
+</div>
+
+::: explanation
+
+Specifically, the operation above beings as follows:
+
+1. `i` takes the *first* value from `1` to `3`, *i.e*. $i = 1$;
+2. `n` takes the *first* value from `1` to `3`, *i.e*. $n = 1$;
+3. The product of the current value of `i` and `n` is computed and printed, *i.e.* $i \times n = 1 \times 1 = 1$;
+4. `n` takes the second value from `1` to `3`, *i*.*e*. $n = 2$;
+5. The product of the current value of `i` and `n` is computed and printed, *i.e.* $i \times n = 1 \times 2 = 2$;
+6. `n` takes the *third* value from `1` to `3`, *i*.*e*. $n = 3$;
+7. The product of the current value of `i` and `n` is computed and printed, *i.e.* $i \times n = 1 \times 3 = 3$;
+8. 1. `i` takes the *second* value from `1` to `3`, *i.e*. $i = 2$;
+9. The product of the current value of `i` and `n` is computed and printed, *i.e.* $i \times n = 2 \times 1 = 2$;
+10. `n` takes the second value from `1` to `3`, *i*.*e*. $n = 2$;
+11. The product of the current value of `i` and `n` is computed and printed, *i.e.* $i \times n = 2 \times 2 = 4$;
+12. `n` takes the *third* value from `1` to `3`, *i*.*e*. $n = 3$;
+13. The product of the current value of `i` and `n` is computed and printed, *i.e.* $i \times n = 2 \times 3 = 6$;
+14. *Would you be able to follow up with the rest of the iteration?*
+
+:::
 
 # The `apply()` family
 
-R disposes of the `apply()` function family, which consists of
-vectorized functions that aim at minimizing your need to explicitly
-create loops.
+`R` disposes of the `apply()` function family, which consists of iterative functions that aim at **minimizing your need to explicitly create loops**.
 
 `apply()` can be used to apply functions to a matrix
 
