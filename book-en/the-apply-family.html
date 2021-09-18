@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 The apply() family | Workshop 5: Programming in R</title>
+  <title>Chapter 12 The apply() family | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 The apply() family | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 12 The apply() family | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 The apply() family | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 12 The apply() family | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -149,65 +149,66 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
-<li class="part"><span><b>Programming in <code>R</code></b></span></li>
-<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives</a></li>
-<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop</a><ul>
+<li class="part"><span><b>Programming in <code>R</code></b></span><ul>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html"><i class="fa fa-check"></i><b>3</b> Introduction to Control Flow</a><ul>
-<li class="chapter" data-level="3.0.1" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>3.0.1</b> Building blocks of control flow</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html"><i class="fa fa-check"></i><b>2</b> Introduction to Control Flow</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>2.0.1</b> Building blocks of control flow</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="using-flowcharts.html"><a href="using-flowcharts.html"><i class="fa fa-check"></i><b>4</b> Using flowcharts</a></li>
+<li class="chapter" data-level="3" data-path="using-flowcharts.html"><a href="using-flowcharts.html"><i class="fa fa-check"></i><b>3</b> Using flowcharts</a></li>
 <li class="part"><span><b>Decision making</b></span></li>
-<li class="chapter" data-level="5" data-path="decision-making.html"><a href="decision-making.html"><i class="fa fa-check"></i><b>5</b> Decision making</a></li>
-<li class="chapter" data-level="6" data-path="if-statement.html"><a href="if-statement.html"><i class="fa fa-check"></i><b>6</b> <code>if</code> <strong>statement</strong></a></li>
-<li class="chapter" data-level="7" data-path="if-else-statement.html"><a href="if-else-statement.html"><i class="fa fa-check"></i><b>7</b> <code>if else</code> <strong>statement</strong></a></li>
-<li class="chapter" data-level="8" data-path="multiple-condition-decisions.html"><a href="multiple-condition-decisions.html"><i class="fa fa-check"></i><b>8</b> Multiple condition decisions</a></li>
-<li class="chapter" data-level="9" data-path="caution-with-parsing-statements.html"><a href="caution-with-parsing-statements.html"><i class="fa fa-check"></i><b>9</b> Caution with parsing statements</a></li>
-<li class="chapter" data-level="10" data-path="challenge-1.html"><a href="challenge-1.html"><i class="fa fa-check"></i><b>10</b> Challenge 1</a></li>
+<li class="chapter" data-level="4" data-path="decision-making.html"><a href="decision-making.html"><i class="fa fa-check"></i><b>4</b> Decision making</a></li>
+<li class="chapter" data-level="5" data-path="if-statement.html"><a href="if-statement.html"><i class="fa fa-check"></i><b>5</b> <code>if</code> <strong>statement</strong></a></li>
+<li class="chapter" data-level="6" data-path="if-else-statement.html"><a href="if-else-statement.html"><i class="fa fa-check"></i><b>6</b> <code>if else</code> <strong>statement</strong></a></li>
+<li class="chapter" data-level="7" data-path="multiple-condition-decisions.html"><a href="multiple-condition-decisions.html"><i class="fa fa-check"></i><b>7</b> Multiple condition decisions</a></li>
+<li class="chapter" data-level="8" data-path="caution-with-parsing-statements.html"><a href="caution-with-parsing-statements.html"><i class="fa fa-check"></i><b>8</b> Caution with parsing statements</a></li>
+<li class="chapter" data-level="9" data-path="challenge-1.html"><a href="challenge-1.html"><i class="fa fa-check"></i><b>9</b> Challenge 1</a></li>
 <li class="part"><span><b>Iteration</b></span></li>
-<li class="chapter" data-level="11" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>11</b> Iteration</a></li>
-<li class="chapter" data-level="12" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>12</b> <code>for</code> loops</a><ul>
-<li class="chapter" data-level="12.1" data-path="for-loops.html"><a href="for-loops.html#for-loops-within-for-loops"><i class="fa fa-check"></i><b>12.1</b> <code>for</code> loops within <code>for</code> loops</a></li>
+<li class="chapter" data-level="10" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>10</b> Iteration</a></li>
+<li class="chapter" data-level="11" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>11</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="11.1" data-path="for-loops.html"><a href="for-loops.html#for-loops-within-for-loops"><i class="fa fa-check"></i><b>11.1</b> <code>for</code> loops within <code>for</code> loops</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>13</b> The <code>apply()</code> family</a><ul>
-<li class="chapter" data-level="13.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>13.1</b> apply()</a></li>
-<li class="chapter" data-level="13.2" data-path="the-apply-family.html"><a href="the-apply-family.html#sapply"><i class="fa fa-check"></i><b>13.2</b> sapply()</a></li>
-<li class="chapter" data-level="13.3" data-path="the-apply-family.html"><a href="the-apply-family.html#mapply"><i class="fa fa-check"></i><b>13.3</b> mapply()</a></li>
-<li class="chapter" data-level="13.4" data-path="the-apply-family.html"><a href="the-apply-family.html#tapply"><i class="fa fa-check"></i><b>13.4</b> tapply()</a></li>
+<li class="chapter" data-level="12" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>12</b> The <code>apply()</code> family</a><ul>
+<li class="chapter" data-level="12.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>12.1</b> apply()</a></li>
+<li class="chapter" data-level="12.2" data-path="the-apply-family.html"><a href="the-apply-family.html#sapply"><i class="fa fa-check"></i><b>12.2</b> sapply()</a></li>
+<li class="chapter" data-level="12.3" data-path="the-apply-family.html"><a href="the-apply-family.html#mapply"><i class="fa fa-check"></i><b>12.3</b> mapply()</a></li>
+<li class="chapter" data-level="12.4" data-path="the-apply-family.html"><a href="the-apply-family.html#tapply"><i class="fa fa-check"></i><b>12.4</b> tapply()</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="challenge-2.html"><a href="challenge-2.html"><i class="fa fa-check"></i><b>14</b> Challenge 2</a><ul>
-<li class="chapter" data-level="14.1" data-path="challenge-2.html"><a href="challenge-2.html#modifying-iterations"><i class="fa fa-check"></i><b>14.1</b> Modifying iterations</a></li>
+<li class="chapter" data-level="13" data-path="challenge-2.html"><a href="challenge-2.html"><i class="fa fa-check"></i><b>13</b> Challenge 2</a><ul>
+<li class="chapter" data-level="13.1" data-path="challenge-2.html"><a href="challenge-2.html#modifying-iterations"><i class="fa fa-check"></i><b>13.1</b> Modifying iterations</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="modifying-iterations-break.html"><a href="modifying-iterations-break.html"><i class="fa fa-check"></i><b>15</b> Modifying iterations: <code>break</code></a></li>
-<li class="chapter" data-level="16" data-path="modifying-iterations-next.html"><a href="modifying-iterations-next.html"><i class="fa fa-check"></i><b>16</b> Modifying iterations: next</a></li>
-<li class="chapter" data-level="17" data-path="modifying-iterations-while.html"><a href="modifying-iterations-while.html"><i class="fa fa-check"></i><b>17</b> Modifying iterations: <code>while</code></a></li>
-<li class="chapter" data-level="18" data-path="challenge-3.html"><a href="challenge-3.html"><i class="fa fa-check"></i><b>18</b> Challenge 3</a><ul>
-<li class="chapter" data-level="18.0.1" data-path="challenge-3.html"><a href="challenge-3.html#edit-a-plot-using-for-and-if"><i class="fa fa-check"></i><b>18.0.1</b> Edit a plot using <code>for</code> and <code>if</code></a></li>
-<li class="chapter" data-level="18.1" data-path="challenge-3.html"><a href="challenge-3.html#challenge-4"><i class="fa fa-check"></i><b>18.1</b> Challenge 4</a></li>
+<li class="chapter" data-level="14" data-path="modifying-iterations-break.html"><a href="modifying-iterations-break.html"><i class="fa fa-check"></i><b>14</b> Modifying iterations: <code>break</code></a></li>
+<li class="chapter" data-level="15" data-path="modifying-iterations-next.html"><a href="modifying-iterations-next.html"><i class="fa fa-check"></i><b>15</b> Modifying iterations: next</a></li>
+<li class="chapter" data-level="16" data-path="modifying-iterations-while.html"><a href="modifying-iterations-while.html"><i class="fa fa-check"></i><b>16</b> Modifying iterations: <code>while</code></a></li>
+<li class="chapter" data-level="17" data-path="challenge-3.html"><a href="challenge-3.html"><i class="fa fa-check"></i><b>17</b> Challenge 3</a><ul>
+<li class="chapter" data-level="17.0.1" data-path="challenge-3.html"><a href="challenge-3.html#edit-a-plot-using-for-and-if"><i class="fa fa-check"></i><b>17.0.1</b> Edit a plot using <code>for</code> and <code>if</code></a></li>
+<li class="chapter" data-level="17.1" data-path="challenge-3.html"><a href="challenge-3.html#challenge-4"><i class="fa fa-check"></i><b>17.1</b> Challenge 4</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="why-write-functions.html"><a href="why-write-functions.html"><i class="fa fa-check"></i><b>19</b> Why write functions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="why-write-functions.html"><a href="why-write-functions.html#what-is-a-function"><i class="fa fa-check"></i><b>19.1</b> What is a function?</a></li>
-<li class="chapter" data-level="19.2" data-path="why-write-functions.html"><a href="why-write-functions.html#syntax-of-a-function-function"><i class="fa fa-check"></i><b>19.2</b> Syntax of a function: <code>function()</code></a></li>
-<li class="chapter" data-level="19.3" data-path="why-write-functions.html"><a href="why-write-functions.html#arguments-of-a-function"><i class="fa fa-check"></i><b>19.3</b> Arguments of a <code>function()</code></a></li>
-<li class="chapter" data-level="19.4" data-path="why-write-functions.html"><a href="why-write-functions.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>19.4</b> Default argument values in a function</a></li>
-<li class="chapter" data-level="19.5" data-path="why-write-functions.html"><a href="why-write-functions.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>19.5</b> The ellipsis argument: <code>...</code></a></li>
-<li class="chapter" data-level="19.6" data-path="why-write-functions.html"><a href="why-write-functions.html#the-ellipsis-argument-...-1"><i class="fa fa-check"></i><b>19.6</b> The ellipsis argument: <code>...</code></a></li>
-<li class="chapter" data-level="19.7" data-path="why-write-functions.html"><a href="why-write-functions.html#return-values"><i class="fa fa-check"></i><b>19.7</b> Return values</a></li>
-<li class="chapter" data-level="19.8" data-path="why-write-functions.html"><a href="why-write-functions.html#return-values-1"><i class="fa fa-check"></i><b>19.8</b> Return values</a></li>
-<li class="chapter" data-level="19.9" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables"><i class="fa fa-check"></i><b>19.9</b> Accessibility of variables</a></li>
-<li class="chapter" data-level="19.10" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables-1"><i class="fa fa-check"></i><b>19.10</b> Accessibility of variables</a></li>
-<li class="chapter" data-level="19.11" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables-2"><i class="fa fa-check"></i><b>19.11</b> Accessibility of variables</a></li>
-<li class="chapter" data-level="19.12" data-path="why-write-functions.html"><a href="why-write-functions.html#additional-good-programming-practices"><i class="fa fa-check"></i><b>19.12</b> Additional good programming practices</a></li>
-<li class="chapter" data-level="19.13" data-path="why-write-functions.html"><a href="why-write-functions.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>19.13</b> Why should I care about programming practices?</a></li>
-<li class="chapter" data-level="19.14" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code"><i class="fa fa-check"></i><b>19.14</b> Keep a clean and nice code</a></li>
-<li class="chapter" data-level="19.15" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code-1"><i class="fa fa-check"></i><b>19.15</b> Keep a clean and nice code</a></li>
-<li class="chapter" data-level="19.16" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code-2"><i class="fa fa-check"></i><b>19.16</b> Keep a clean and nice code</a></li>
-<li class="chapter" data-level="19.17" data-path="why-write-functions.html"><a href="why-write-functions.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>19.17</b> Use functions to simplify your code</a></li>
-<li class="chapter" data-level="19.18" data-path="why-write-functions.html"><a href="why-write-functions.html#use-functions-to-simplify-your-code-1"><i class="fa fa-check"></i><b>19.18</b> Use functions to simplify your code</a></li>
-<li class="chapter" data-level="19.19" data-path="why-write-functions.html"><a href="why-write-functions.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>19.19</b> Use meaningful names for functions</a></li>
-<li class="chapter" data-level="19.20" data-path="why-write-functions.html"><a href="why-write-functions.html#use-comments"><i class="fa fa-check"></i><b>19.20</b> Use comments: <code>#</code></a></li>
-<li class="chapter" data-level="19.21" data-path="why-write-functions.html"><a href="why-write-functions.html#group-exercise-solution"><i class="fa fa-check"></i><b>19.21</b> Group exercise: Solution</a></li>
+<li class="chapter" data-level="18" data-path="why-write-functions.html"><a href="why-write-functions.html"><i class="fa fa-check"></i><b>18</b> Why write functions?</a><ul>
+<li class="chapter" data-level="18.1" data-path="why-write-functions.html"><a href="why-write-functions.html#what-is-a-function"><i class="fa fa-check"></i><b>18.1</b> What is a function?</a></li>
+<li class="chapter" data-level="18.2" data-path="why-write-functions.html"><a href="why-write-functions.html#syntax-of-a-function-function"><i class="fa fa-check"></i><b>18.2</b> Syntax of a function: <code>function()</code></a></li>
+<li class="chapter" data-level="18.3" data-path="why-write-functions.html"><a href="why-write-functions.html#arguments-of-a-function"><i class="fa fa-check"></i><b>18.3</b> Arguments of a <code>function()</code></a></li>
+<li class="chapter" data-level="18.4" data-path="why-write-functions.html"><a href="why-write-functions.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>18.4</b> Default argument values in a function</a></li>
+<li class="chapter" data-level="18.5" data-path="why-write-functions.html"><a href="why-write-functions.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>18.5</b> The ellipsis argument: <code>...</code></a></li>
+<li class="chapter" data-level="18.6" data-path="why-write-functions.html"><a href="why-write-functions.html#the-ellipsis-argument-...-1"><i class="fa fa-check"></i><b>18.6</b> The ellipsis argument: <code>...</code></a></li>
+<li class="chapter" data-level="18.7" data-path="why-write-functions.html"><a href="why-write-functions.html#return-values"><i class="fa fa-check"></i><b>18.7</b> Return values</a></li>
+<li class="chapter" data-level="18.8" data-path="why-write-functions.html"><a href="why-write-functions.html#return-values-1"><i class="fa fa-check"></i><b>18.8</b> Return values</a></li>
+<li class="chapter" data-level="18.9" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables"><i class="fa fa-check"></i><b>18.9</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="18.10" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables-1"><i class="fa fa-check"></i><b>18.10</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="18.11" data-path="why-write-functions.html"><a href="why-write-functions.html#accessibility-of-variables-2"><i class="fa fa-check"></i><b>18.11</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="18.12" data-path="why-write-functions.html"><a href="why-write-functions.html#additional-good-programming-practices"><i class="fa fa-check"></i><b>18.12</b> Additional good programming practices</a></li>
+<li class="chapter" data-level="18.13" data-path="why-write-functions.html"><a href="why-write-functions.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>18.13</b> Why should I care about programming practices?</a></li>
+<li class="chapter" data-level="18.14" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code"><i class="fa fa-check"></i><b>18.14</b> Keep a clean and nice code</a></li>
+<li class="chapter" data-level="18.15" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code-1"><i class="fa fa-check"></i><b>18.15</b> Keep a clean and nice code</a></li>
+<li class="chapter" data-level="18.16" data-path="why-write-functions.html"><a href="why-write-functions.html#keep-a-clean-and-nice-code-2"><i class="fa fa-check"></i><b>18.16</b> Keep a clean and nice code</a></li>
+<li class="chapter" data-level="18.17" data-path="why-write-functions.html"><a href="why-write-functions.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>18.17</b> Use functions to simplify your code</a></li>
+<li class="chapter" data-level="18.18" data-path="why-write-functions.html"><a href="why-write-functions.html#use-functions-to-simplify-your-code-1"><i class="fa fa-check"></i><b>18.18</b> Use functions to simplify your code</a></li>
+<li class="chapter" data-level="18.19" data-path="why-write-functions.html"><a href="why-write-functions.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>18.19</b> Use meaningful names for functions</a></li>
+<li class="chapter" data-level="18.20" data-path="why-write-functions.html"><a href="why-write-functions.html#use-comments"><i class="fa fa-check"></i><b>18.20</b> Use comments: <code>#</code></a></li>
+<li class="chapter" data-level="18.21" data-path="why-write-functions.html"><a href="why-write-functions.html#group-exercise-solution"><i class="fa fa-check"></i><b>18.21</b> Group exercise: Solution</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -246,7 +247,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 --!>
 <div id="the-apply-family" class="section level1">
-<h1><span class="header-section-number">Chapter 13</span> The <code>apply()</code> family</h1>
+<h1><span class="header-section-number">Chapter 12</span> The <code>apply()</code> family</h1>
 <p>R disposes of the <code>apply()</code> function family, which consists of
 vectorized functions that aim at minimizing your need to explicitly
 create loops.</p>
@@ -260,7 +261,7 @@ create loops.</p>
 <span id="cb40-7"><a href="the-apply-family.html#cb40-7"></a>      <span class="dt">FUN =</span> mean)</span>
 <span id="cb40-8"><a href="the-apply-family.html#cb40-8"></a>?apply</span></code></pre></div>
 <div id="apply" class="section level2">
-<h2><span class="header-section-number">13.1</span> apply()</h2>
+<h2><span class="header-section-number">12.1</span> apply()</h2>
 <p><code>lapply()</code> applies a function to every element of a <strong>list</strong>.</p>
 <p>It may be used for other objects like dataframes, lists or vectors.</p>
 <p>The output returned is a <strong>list</strong> (explaining the “l” in lapply) and has
@@ -277,7 +278,7 @@ the same number of elements as the object passed to it.</p>
 <span id="cb42-8"><a href="the-apply-family.html#cb42-8"></a><span class="kw">lapply</span>(SimulatedData, mean)</span></code></pre></div>
 </div>
 <div id="sapply" class="section level2">
-<h2><span class="header-section-number">13.2</span> sapply()</h2>
+<h2><span class="header-section-number">12.2</span> sapply()</h2>
 <p><code>sapply()</code> is a ‘wrapper’ function for <code>lapply()</code>, but returns a
 simplified output as a vector, instead of a list.</p>
 <p>The output returned is a list (explaining the “l” in lapply) and has the
@@ -289,7 +290,7 @@ same number of elements as the object passed to it.</p>
 <span id="cb43-5"><a href="the-apply-family.html#cb43-5"></a><span class="kw">sapply</span>(SimulatedData, mean)</span></code></pre></div>
 </div>
 <div id="mapply" class="section level2">
-<h2><span class="header-section-number">13.3</span> mapply()</h2>
+<h2><span class="header-section-number">12.3</span> mapply()</h2>
 <p><code>mapply()</code> works as a multivariate version of <code>sapply()</code>.</p>
 <p>It will apply a given function to the first element of each argument
 first, followed by the second element, and so on. For example:</p>
@@ -300,7 +301,7 @@ first, followed by the second element, and so on. For example:</p>
 <span id="cb44-5"><a href="the-apply-family.html#cb44-5"></a><span class="kw">mapply</span>(sum, lilySeeds, poppySeeds)</span></code></pre></div>
 </div>
 <div id="tapply" class="section level2">
-<h2><span class="header-section-number">13.4</span> tapply()</h2>
+<h2><span class="header-section-number">12.4</span> tapply()</h2>
 <p><code>tapply()</code> is used to apply a function over subsets of a vector.</p>
 <p>It is primarily used when the dataset contains dataset contains
 different groups (i.e. levels/factors) and we want to apply a function

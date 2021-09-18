@@ -599,6 +599,14 @@ Paws <- "cat"
 print_animal(Scruffy)
 print_animal(Paws)
 
+print_animal <- function(animal) {
+  if(animal == "dog") {
+    print("woof")
+  } else if(animal == "cat") {
+    print("meow")
+  }
+}
+
 operations <- function(number1, number2, number3 = 3) {
   result <- (number1 + number2) * number3
   print(result)
@@ -690,6 +698,24 @@ simplefun2(1, 2)
 
 simplefun2(1, 2)
 
+bigsum <- function(a, b) {
+  result <- a + b
+  if(result < 50) {
+    return(0)
+  } else {
+    return(result)
+  }
+}
+
+bigsum <- function(a, b) {
+  result <- a + b
+  if(result < 50) {
+  0
+  } else {
+  result
+  }
+}
+
 out_val <- 3 
 vartest <- function() {
   in_val <- 4  
@@ -731,6 +757,41 @@ if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
     print("Between 1 and 2")
   }
 
+a<-4;b=3
+if(a<b){
+if(a==0)print("a zero")}else{
+if(b==0){print("b zero")}else print(b)}
+
+a<-4;b=3
+if(a<b){
+if(a==0)print("a zero")}else{
+if(b==0){print("b zero")}else print(b)}
+
+a <- 4
+b <- 3
+if(a < b) {
+  if(a == 0) {
+    print("a zero")
+  }
+} else {
+  if(b == 0) {
+    print("b zero")
+  } else {
+    print(b)
+  }
+}
+
+for(i in 1:length(CO2[,1])) {
+  if(CO2$Type[i] == "Mississippi") {
+    CO2$conc[i] <- CO2$conc[i] - 20
+  }
+}
+for(i in 1:length(CO2[,1])) {
+  if(CO2$Type[i] == "Quebec") {
+    CO2$conc[i] <- CO2$conc[i] + 50
+  }
+}
+
 recalibrate <- function(CO2, type, bias) {
   for(i in 1:nrow(CO2)) {
     if(CO2$Type[i] == type) {
@@ -752,6 +813,21 @@ rc <- function(c, t, b) {
     }
   }
   return(c)
+}
+
+# Recalibrates the CO2 dataset by modifying the CO2 uptake concentration
+# by a fixed amount depending on the region of sampling.
+# Arguments
+# CO2: the CO2 dataset
+# type: the type ("Mississippi" or "Quebec") that need to be recalibrated
+# bias: the amount to add or remove to the concentration uptake
+recalibrate <- function(CO2, type, bias) {
+  for(i in 1:nrow(CO2)) {
+    if(CO2$Type[i] == type) {
+      CO2$uptake[i] <- CO2$uptake[i] + bias
+    }
+  }
+  return(CO2)
 }
 
 my_function <- function(x) {
