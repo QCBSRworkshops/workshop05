@@ -73,13 +73,13 @@ Examples of unacceptable behaviour by participants at any workshop event/platfor
 THIS SECTION MUST ONLY BE EDITED BY THE COORDINATORS OF THE WORKSHOP SERIES
 ```
 
-Originally developed by:
+Since 2014, several QCBS members contributed to consistently and collaboratively develop and update this workshop, as part of the Learning and Development Award from the Québec Centre for Biodiversity Science. They were:
 
-Contributed with changes to the presentation:
+Contributed with changes to the presentation: Pedro Henrique Pereira Braga, Parnian Pourtaherian, Kate Sheridan, Katherine Hébert, Gabriel Muñoz, Marie-Hélène Brice
 
-Contributed with changes to the written material:
+Contributed with changes to the written material: Pedro Henrique Pereira Braga, Gabriel Muñoz
 
-Contributed by reporting issues and suggesting modifications:
+Contributed by reporting issues and suggesting modifications: 
 
 ## Contributing
 
