@@ -2,24 +2,129 @@
 
 # Writing functions
 
-\*\* Why write functions? \*\*
+
+Imagine that we would like to rescale variables to the range of `0` to `1`.
+
+```{r echo = TRUE}
+# our.dataset has 4 variables 
+
+our.dataset <- data.frame(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+```
+
+
+The equation for rescaling variables into the simplex (0-1) is:
+
+$$x_{\text{new}} =  \frac{x_i - \text{min}(x)}{ \text{max}(x) - \text{min}(x)}$$
+We could rescale these four variables to `0` and `1` by doing the following:
+
+```{r echo = TRUE}
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$b <- (our.dataset$b - min(our.dataset$b, na.rm = TRUE)) / 
+  (max(our.dataset$b, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$c <- (our.dataset$c - min(our.dataset$c, na.rm = TRUE)) / 
+  (max(our.dataset$c, na.rm = TRUE) - min(our.dataset$c, na.rm = TRUE))
+our.dataset$d <- (our.dataset$d - min(our.dataset$d, na.rm = TRUE)) / 
+  (max(our.dataset$d, na.rm = TRUE) - min(our.dataset$d, na.rm = TRUE))
+```
+
+
+**What if our dataset had 31 variables?**
+
+Repeating that equation and this chunk of code 31 times could become a tedious and inneficient process:
+
+```{r eval = FALSE}
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+```
+
+
+But, we can see that, except from the *input*, the code was practically the same among the variables
+
+*The function here was deliberately hidden to not cause confusion among the participants*
+
+```{r eval = FALSE}
+# our
+# secret
+# hidden
+# function
+```
+
+```{r eval = FALSE}
+rescale01(our.dataset$a)
+rescale01(our.dataset$b)
+rescale01(our.dataset$c)
+rescale01(our.dataset$d)
+```
+
+
+
+####  Why write functions? #### 
 
 Much of the heavy lifting in R is done by functions. They are useful
 for:
 
-\- Performing a task repeatedly, but configurably;
+1- Performing a task repeatedly, but configurably;
 
-\- Making your code more readable;
+2- Making your code more readable;
 
-\- Make your code easier to modify and maintain;
+3- Make your code easier to modify and maintain;
 
-\- Sharing code between different analyses;
+4- Sharing code between different analyses;
 
-\- Sharing code with other people;
+5- Sharing code with other people;
 
-\- Modifying R's built-in functionality.
+6- Modifying R's built-in functionality.
 
 #### What is a function?
+
+
+```{r flowchart9, echo=FALSE}
+library(DiagrammeR)
+#Create node data frame
+f9_nodes <- create_node_df(n = 5, #number of nodes
+                           group = c('a', 'a', 'a', 'b', 'c'),
+                           label = c("Argument 1", "Argument 2",
+                                     "Argument 3", "Data processing\nFunction", 'Return value'), 
+                           shape = c("none", "none", 'none', 'rectangle', 'none'), #shape of node
+                           style = c('none', 'none', 'none', 'rounded', 'none'), #line style around nodes
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE, #whether node changes size based on label or is fixed
+                           color = 'mediumblue'
+                           )
+#create edges
+##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
+f9_edges <- create_edge_df(from = c(1, 2, 3, 4), #origin node id
+                           to = c(4, 4, 4, 5),
+                           style = c('solid', 'solid', 'solid', 'dashed'),
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           headport = c('w', 'w', 'w', 'w'),
+                           tailport = c('e', 'e', 'e', 'e')
+                           )
+#create flowchart
+flowchart9 <- create_graph(
+                    nodes_df = f9_nodes,
+                    edges_df = f9_edges,
+                    directed = TRUE, #arrows vs straight lines
+                    attr_theme = 'lr' #left to right specified
+                    )
+#display flowchart
+render_graph(flowchart9, 
+             width = '95%', 
+             height = 'auto')
+```
+
+
+
+
+
 
 #### Syntax of a function
 
@@ -30,20 +135,27 @@ function_name <- function(argument1, argument2, ...) {
 }
 ```
 
+
+- `function_name` is the name of the function, and will be stored in the `R` environment as an object with this name;
+- `argument`s take the defined values that can be used within the function;
+- `body` contains the statements that define what the function does;
+- `output` contains the returned value from the function. If `return()` is absent, then the last expression is returned. 
+
+
+
 #### Arguments of a function
 
 ```{r, echo = TRUE, eval = FALSE}
 function_name <- function(argument1, argument2, ...) {
-  expression...
-  return(value)
+  body  # What we want the function to do
+  return(values)  # Optional
 }
 ```
 
-Arguments are the entry values of your function and will have the
-information your function needs to be able to perform correctly.
+Arguments are the *input* values of your function and will have the information your function needs to be able to perform correctly.
 
-A function can have between 0 and an infinity of arguments. See the
-following example:
+
+A function can have between 0 and an infinity of arguments. See the following example:
 
 ```{r, echo = TRUE, eval = FALSE}
 operations <- function(number1, number2, number3) {
@@ -91,64 +203,110 @@ print_animal <- function(animal) {
 
 ## Default values in a function
 
-Arguments can also be optional and be provided with a default value.
+Arguments can be provided with a **default value**, or even be optional.
 
-This is useful when using a function with the same settings, but still
-provides the flexibility to change its values, if needed.
+**Default values** are useful when using a function with the same settings. The flexibility to depart from default values is still there, if needed.
 
 ```{r, echo = TRUE, eval = FALSE}
 operations <- function(number1, number2, number3 = 3) {
   result <- (number1 + number2) * number3
   print(result)
 }
-
-operations(1, 2, 3) # is equivalent to
+operations(number1 = 1, number2 = 2, number3 = 3) 
+# is equivalent to
 operations(1, 2)
 operations(1, 2, 2) # we can still change the value of number3 if needed
 ```
 
-## Argument `...`
+## The ellipsis argument: `...`
 
-The special argument `...` allows you to pass on arguments to another
-function used inside your function. Here we use `...` to pass on
-arguments to `plot()` and `points()`
 
-```{r, echo = TRUE, eval = FALSE}
-plot.CO2 <- function(CO2, ...) { #<<
-  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) #<<
-  for (i in 1:length(CO2[,1])){
-     if (CO2$Type[i] == "Quebec") {
-       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
-     } else if (CO2$Type[i] == "Mississippi") {
-       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...) #<<
+The special argument `...` allows you to pass arguments from other undefined functions, *i.e.* allowing for an indefinite number of arguments inputs. 
+
+
+```{r echo=TRUE}
+paste_anything_fun <- function(...) {
+  arguments <- list(...)
+  paste0(arguments)
+}
+```
+
+```{r echo=TRUE}
+paste_anything_fun("I", 
+                   "want", 
+                   "a break!")
+```
+
+```{r echo=TRUE}
+percentages <- function(x, mult = 100, ...){
+ percent <- round(x * mult, ...)
+ paste(percent, "%", sep = "")
+}
+```
+
+
+```{r echo=TRUE}
+percentages(c(.543, .534, .466))
+``` 
+
+```{r echo=TRUE}
+# ?round
+percentages(c(.543, .534, .466), digits = 2)
+``` 
+
+
+The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
+
+```{r, eval = FALSE}
+plot.CO2 <- function(CO2, ...) {
+  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...)
+  for(i in 1:length(CO2[,1])){
+     if(CO2$Type[i] == "Quebec") {
+       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
+     } else if(CO2$Type[i] == "Mississippi") {
+       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
      }
   }
 }
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake") #<<
-plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", #<<
-         pch=20) #<<
 ```
 
-The special argument `...` allows you to input an indefinite number of
-arguments.
 
-```{r, echo = TRUE, eval = FALSE}
-sum2 <- function(...){ #<<
-  args <- list(...) #<<
-  result <- 0
-  for (i in args)  {
-    result <- result + i
+```{r, eval = FALSE}
+plot.CO2(CO2, 
+         cex.lab = 1.2,
+         xlab = "CO2 concentration", 
+         ylab = "CO2 uptake")
+```
+
+```{r, eval = FALSE}
+plot.CO2(CO2, 
+         cex.lab = 1.2, pch = 20,
+         xlab = "CO2 concentration", 
+         ylab = "CO2 uptake")
+```
+
+```{r, echo = FALSE, fig.height = 2.5, fig.width = 5}
+plot.CO2 <- function(CO2, ...) {
+  plot(x = CO2$conc, y = CO2$uptake, type = "n", ...)
+  for(i in 1:length(CO2[,1])){
+     if(CO2$Type[i] == "Quebec") {
+       points(CO2$conc[i], CO2$uptake[i], col="red", type="p", ...)
+     } else if(CO2$Type[i] == "Mississippi") {
+       points(CO2$conc[i], CO2$uptake[i], col="blue", type="p", ...)
+     }
   }
-  return (result)
 }
-
-sum2(2, 3) #<<
-sum2(2, 4, 5, 7688, 1) #<<
+par(mfrow=c(1, 2), mar = c(4, 4, 1, 1))
+plot.CO2(CO2, 
+         cex.lab=1.2, 
+         xlab="CO2 concentration", ylab="CO2 uptake")
+plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ```
 
 ## Return values
 
-The last expression evaluated in a `function` becomes the return value.
+The last expression evaluated in a `function` becomes the return value:
+
 
 ```{r, echo = TRUE, eval = FALSE}
 myfun <- function(x) {
@@ -193,15 +351,16 @@ simplefun2 <- function(x, y) {
 simplefun2(1, 2)
 ```
 
-## Challenge 6
+## Challenge 5
 
 Using what you have just learned on functions and control flow, create a
 function named `bigsum` that takes two arguments `a` and `b` and:
 
-Returns 0 if the sum of `a` and `b` is strictly less than 50; Else,
-returns the sum of `a` and `b`
+1. Returns $0$ if the sum of `a` and `b` is strictly less than $50$;
 
-++++ Challenge 6 Answer \|
+2. Else, returns the sum of `a` and `b`.
+
+++++ Challenge 5 Answer \|
 
 Answer 1:
 
@@ -232,49 +391,56 @@ bigsum <- function(a, b) {
 
 ## Accessibility of variables
 
-It is essential to always keep in mind where your variables are, and
-whether they are defined and accessible:
+It is essential to always keep in mind where your variables are, and whether they are defined and accessible:
 
-Variables defined \*inside\* a function are not accessible outside of
-it!
+1. Variables defined inside a function are not accessible outside from it!
 
-Variables defined \*outside\* a function are accessible inside. But it
-is NEVER a good idea, as your function will not function if the outside
-variable is erased.
+2. Variables defined outside a function are accessible inside, and are not modified, even if they have the same name.
 
-```{r, echo = TRUE, eval = FALSE}
-var1 <- 3     # var1 is defined outside our function
+```{r, error = TRUE}
+out_val <- 3 
+vartest <- function() {
+  in_val <- 4  
+  print(in_val)
+  print(out_val)
+}
+vartest()
+```
+
+```{r, error = TRUE}
+in_val; out_val
+```
+
+
+```{r}
+out_val_2 <- 3
+vartest <- function(out_val_2) {
+  print(out_val_2)
+}
+vartest(8)
+```
+
+```{r, error = TRUE}
+out_val_2
+```
+
+*What happens in the function club, stays in the function club.*
+
+```{r, error = TRUE}
+var1 <- 3 
 vartest <- function() {
   a <- 4      # 'a' is defined inside
   print(a)    # print 'a'
   print(var1) # print var1
 }
-
 a             # we cannot print 'a' as it exists only inside the function
-
 vartest()     # calling vartest() will print a and var1
-
 rm(var1)      # remove var1
-vartest()     # calling the function again doesn't work anymore
+vartest()     # calling the function again does not work anymore
 ```
 
-Use arguments then!
 
-Also, inside a function, arguments names will take over other variable
-names.
-
-```{r, echo = TRUE, eval = FALSE}
-var1 <- 3     # var1 is defined outside our function
-vartest <- function(var1) {
-  print(var1) # print var1
-}
-
-vartest(8)    # Inside our function var1 is now our argument and takes its value
-
-var1
-```
-
-Be very careful when creating variables inside a conditionnal statement
+Be very careful when creating variables inside a conditional statement
 as the variable may never have been created and cause (sometimes
 unperceptible) errors.
 
@@ -291,7 +457,7 @@ a + b
 ```
 
 If you had `b` already assigned in your environment, with a different
-value, you could have had a \*bigger\* problem!
+value, you could have had a *bigger* problem!
 
 No error would have been shown and `a + b` would have meant another
 thing!
@@ -300,38 +466,60 @@ thing!
 
 Why should I care about programming practices?
 
-\- To make your life easier;
-
-\- To achieve greater readability and makes sharing and reusing your
-code a lot less painful;
-
-\- To reduce the time you will spend to understand your code.
+- It makes your life easier;
+- It helps you achieve greater readability and makes sharing and reusing your code a lot less painful;
+- It helps reduce the time you will spend remembering and understanding your own code.
 
 ### Pay attention to the next tips!
 
-\*\* Keep a clean and nice code \*\*
+**Keep a clean and nice code**
 
 Proper indentation and spacing is the first step to get an easy to read
+
 code:
 
 -   Use spaces between and after you operators
--   Use consistently the same assignation operator. \<- is often
-    preferred. = is OK, but do not switch all the time between the two
+
+`x>=1&x<=10` is more difficult to read then `x >= 1 & x <= 10`
+
+
+-   Use consistently the same assignation operator. 
+
+<- is often preferred. = is OK, but do not switch all the time between the two
+
+
 -   Use brackets when using flow control statements:
-    -   Inside brackets, indent by \*at least\* two spaces;
-    -   Put closing brackets on a separate line, except when preceding
-        an \`else\` statement.
+
+    -   Inside brackets, indent by *at least* two spaces;
+    -   Put closing brackets on a separate line, except when preceding an `else` statement.
+    
+    
 -   Define each variable on its own line.
 
-This code is not spaced, and therefore hard to read. All brackets are
-badly aligned, and it looks \"messy\".
 
-```{r, echo = TRUE, eval = FALSE}
+- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically;
+
+```{r, eval = FALSE}
+if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
+```
+
+```{r, eval = FALSE}
+ if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
+    print("Between 1 and 2")
+  }
+```
+
+
+This code is not spaced, and therefore hard to read. All brackets are
+badly aligned, and it looks "messy".
+
+```{r, eval= FALSE}
 a<-4;b=3
 if(a<b){
 if(a==0)print("a zero")}else{
-if(b==0){print("b zero")}else print(b)
+if(b==0){print("b zero")}else print(b)}
 ```
+
 
 This looks more organized, no?
 
@@ -363,10 +551,8 @@ different arguments.
 This would also reduce the number of potential errors done by
 copy-pasting, and the time needed to correct them.
 
-------------------------------------------------------------------------
-
-Let's modify the example from Challenge \#3 and suppose that all
-\$CO_2\$ uptake from Mississipi plants was overestimated by 20 and
+Let uzs now modify the example from Challenge \#3 and suppose that all
+$CO_2$ uptake from Mississipi plants was overestimated by 20 and
 Quebec underestimated by 50. We could write this:
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -415,6 +601,10 @@ rc <- function(c, t, b) {
 }
 ```
 
+
+Whenever possible, avoid using names of existing `R` functions and variables to avoid confusion and conflits.
+
+
 ### Use comments
 
 Add comment to describe what your code does, how to use its arguments or
@@ -439,5 +629,3 @@ recalibrate <- function(CO2, type, bias) {
 }
 
 ```
-
-### Thank you for attending this workshop!
