@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Caution with parsing statements | Workshop 5: Programming in R</title>
+  <title>Chapter 16 Modifying iterations: break, next and while | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 16 Modifying iterations: break, next and while | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 16 Modifying iterations: break, next and while | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="multiple-condition-decisions.html"/>
-<link rel="next" href="challenge-1.html"/>
+<link rel="prev" href="challenge-2.html"/>
+<link rel="next" href="repeat-loops.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
@@ -253,33 +253,36 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="caution-with-parsing-statements" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Caution with parsing statements</h1>
-<div class="noway">
-<p>What do you think will happen if we try the code below?</p>
-<div class="split">
-<div class="split-left">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="caution-with-parsing-statements.html#cb10-1"></a><span class="cf">if</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> </span>
-<span id="cb10-2"><a href="caution-with-parsing-statements.html#cb10-2"></a><span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-3"><a href="caution-with-parsing-statements.html#cb10-3"></a><span class="cf">else</span> </span>
-<span id="cb10-4"><a href="caution-with-parsing-statements.html#cb10-4"></a><span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
+<div id="modifying-iterations-break-next-and-while" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> Modifying iterations: <code>break</code>, <code>next</code> and <code>while</code></h1>
+<p>In <code>R</code>, a standard looping sequence may be modified with the <code>break</code>, <code>next</code> and <code>while</code> statements.</p>
+<div id="next" class="section level2">
+<h2><span class="header-section-number">16.1</span> <code>next</code></h2>
+<p><code>next</code> allows us to skip an iteration if a certain condition is met. It is used inside the loop and is usually joined by the <code>if</code> statement, as shown below:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="modifying-iterations-break-next-and-while.html#cb75-1"></a><span class="cf">for</span> (val <span class="cf">in</span> x) {</span>
+<span id="cb75-2"><a href="modifying-iterations-break-next-and-while.html#cb75-2"></a>    <span class="cf">if</span> (condition) {</span>
+<span id="cb75-3"><a href="modifying-iterations-break-next-and-while.html#cb75-3"></a>        <span class="cf">next</span></span>
+<span id="cb75-4"><a href="modifying-iterations-break-next-and-while.html#cb75-4"></a>    }</span>
+<span id="cb75-5"><a href="modifying-iterations-break-next-and-while.html#cb75-5"></a>    statement</span>
+<span id="cb75-6"><a href="modifying-iterations-break-next-and-while.html#cb75-6"></a>}</span></code></pre></div>
+<center>
+<div id="htmlwidget-9ef44d6c25aa0baad0ab" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ef44d6c25aa0baad0ab">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Reached last \nval in X?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition \nTRUE?\n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"statement\nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"nw\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n\"2\"->\"5\" [label = \"if TRUE, then exit\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"2\" [label = \" if TRUE, then next\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</center>
 </div>
-<div class="split-right">
-<pre><code>## Error: &lt;text&gt;:1:9: unexpected &#39;==&#39;
-## 1: if(2+2) ==
-##             ^</code></pre>
-</div>
-</div>
-<p>This does not work because <code>R</code> evaluates the first line and does not know that you are going to use an <code>else</code> statement</p>
-</div>
-<div class="explanation">
-<p>Use curly brackets <code>{ }</code> so that <code>R</code> knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="caution-with-parsing-statements.html#cb12-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb12-2"><a href="caution-with-parsing-statements.html#cb12-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb12-3"><a href="caution-with-parsing-statements.html#cb12-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="caution-with-parsing-statements.html#cb12-4"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb12-5"><a href="caution-with-parsing-statements.html#cb12-5"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Arithmetic works.&quot;</code></pre>
+<div id="break" class="section level2">
+<h2><span class="header-section-number">16.2</span> <code>break</code></h2>
+<p>The <code>break</code> statement is used inside a loop to terminate and exit the iteration when a certain condition is met.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="modifying-iterations-break-next-and-while.html#cb76-1"></a><span class="cf">for</span> (val <span class="cf">in</span> x) {</span>
+<span id="cb76-2"><a href="modifying-iterations-break-next-and-while.html#cb76-2"></a>    <span class="cf">if</span> (condition) {</span>
+<span id="cb76-3"><a href="modifying-iterations-break-next-and-while.html#cb76-3"></a>        <span class="cf">break</span></span>
+<span id="cb76-4"><a href="modifying-iterations-break-next-and-while.html#cb76-4"></a>    }</span>
+<span id="cb76-5"><a href="modifying-iterations-break-next-and-while.html#cb76-5"></a>    statement</span>
+<span id="cb76-6"><a href="modifying-iterations-break-next-and-while.html#cb76-6"></a>}</span></code></pre></div>
+<center>
+<div id="htmlwidget-1b31fc1651ab5a75d8aa" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1b31fc1651ab5a75d8aa">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Reached last \nval in X?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition \nTRUE? \n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"statement\nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \" \", shape = \"circle\", style = \"invis\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\nfor x\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"n\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"w\", headport = \"s\"] \n\"2\"->\"5\" [label = \"if TRUE, then exit\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"5\" [label = \" if TRUE, then break\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</center>
 </div>
 </div>
 <hr>
@@ -293,8 +296,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-condition-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="challenge-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="challenge-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="repeat-loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

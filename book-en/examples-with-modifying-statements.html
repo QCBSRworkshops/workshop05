@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Caution with parsing statements | Workshop 5: Programming in R</title>
+  <title>Chapter 19 Examples with modifying statements | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 19 Examples with modifying statements | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 19 Examples with modifying statements | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="multiple-condition-decisions.html"/>
-<link rel="next" href="challenge-1.html"/>
+<link rel="prev" href="while-loops.html"/>
+<link rel="next" href="challenge-3.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
@@ -253,34 +253,133 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="caution-with-parsing-statements" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Caution with parsing statements</h1>
-<div class="noway">
-<p>What do you think will happen if we try the code below?</p>
-<div class="split">
-<div class="split-left">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="caution-with-parsing-statements.html#cb10-1"></a><span class="cf">if</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> </span>
-<span id="cb10-2"><a href="caution-with-parsing-statements.html#cb10-2"></a><span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-3"><a href="caution-with-parsing-statements.html#cb10-3"></a><span class="cf">else</span> </span>
-<span id="cb10-4"><a href="caution-with-parsing-statements.html#cb10-4"></a><span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
-</div>
-<div class="split-right">
-<pre><code>## Error: &lt;text&gt;:1:9: unexpected &#39;==&#39;
-## 1: if(2+2) ==
-##             ^</code></pre>
-</div>
-</div>
-<p>This does not work because <code>R</code> evaluates the first line and does not know that you are going to use an <code>else</code> statement</p>
-</div>
-<div class="explanation">
-<p>Use curly brackets <code>{ }</code> so that <code>R</code> knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="caution-with-parsing-statements.html#cb12-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb12-2"><a href="caution-with-parsing-statements.html#cb12-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb12-3"><a href="caution-with-parsing-statements.html#cb12-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="caution-with-parsing-statements.html#cb12-4"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb12-5"><a href="caution-with-parsing-statements.html#cb12-5"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Arithmetic works.&quot;</code></pre>
-</div>
+<div id="examples-with-modifying-statements" class="section level1">
+<h1><span class="header-section-number">Chapter 19</span> Examples with modifying statements</h1>
+<p>We can print <span class="math inline">\(\text{CO}_{2}\)</span> concentrations for <em>chilled</em> treatments and keep count of how many replications using <code>next</code>.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="examples-with-modifying-statements.html#cb81-1"></a>count &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb81-2"><a href="examples-with-modifying-statements.html#cb81-2"></a></span>
+<span id="cb81-3"><a href="examples-with-modifying-statements.html#cb81-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb81-4"><a href="examples-with-modifying-statements.html#cb81-4"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>)</span>
+<span id="cb81-5"><a href="examples-with-modifying-statements.html#cb81-5"></a>        <span class="cf">next</span></span>
+<span id="cb81-6"><a href="examples-with-modifying-statements.html#cb81-6"></a>    <span class="co"># Skip to next iteration if treatment is nonchilled</span></span>
+<span id="cb81-7"><a href="examples-with-modifying-statements.html#cb81-7"></a>    count &lt;-<span class="st"> </span>count <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb81-8"><a href="examples-with-modifying-statements.html#cb81-8"></a>    <span class="co"># print(CO2$conc[i]) # You can turn this on if you want</span></span>
+<span id="cb81-9"><a href="examples-with-modifying-statements.html#cb81-9"></a>    <span class="co"># to</span></span>
+<span id="cb81-10"><a href="examples-with-modifying-statements.html#cb81-10"></a>}</span>
+<span id="cb81-11"><a href="examples-with-modifying-statements.html#cb81-11"></a><span class="kw">print</span>(count)  <span class="co"># The count and print command were performed 42 times.</span></span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="examples-with-modifying-statements.html#cb83-1"></a><span class="kw">sum</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;chilled&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<p>Alternatively, we could have written the example above using <code>repeat</code> and <code>break</code>:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="examples-with-modifying-statements.html#cb85-1"></a>count &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb85-2"><a href="examples-with-modifying-statements.html#cb85-2"></a>i &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb85-3"><a href="examples-with-modifying-statements.html#cb85-3"></a><span class="cf">repeat</span> {</span>
+<span id="cb85-4"><a href="examples-with-modifying-statements.html#cb85-4"></a>    i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb85-5"><a href="examples-with-modifying-statements.html#cb85-5"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>)</span>
+<span id="cb85-6"><a href="examples-with-modifying-statements.html#cb85-6"></a>        <span class="cf">next</span>  <span class="co"># skip this loop</span></span>
+<span id="cb85-7"><a href="examples-with-modifying-statements.html#cb85-7"></a>    count &lt;-<span class="st"> </span>count <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb85-8"><a href="examples-with-modifying-statements.html#cb85-8"></a>    <span class="kw">print</span>(CO2<span class="op">$</span>conc[i])</span>
+<span id="cb85-9"><a href="examples-with-modifying-statements.html#cb85-9"></a>    <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="kw">nrow</span>(CO2))</span>
+<span id="cb85-10"><a href="examples-with-modifying-statements.html#cb85-10"></a>        <span class="cf">break</span>  <span class="co"># stop looping</span></span>
+<span id="cb85-11"><a href="examples-with-modifying-statements.html#cb85-11"></a>}</span></code></pre></div>
+<pre><code>## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="examples-with-modifying-statements.html#cb87-1"></a><span class="kw">print</span>(count)</span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<p>Finally, one could have also done this using a <code>while</code> loop:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="examples-with-modifying-statements.html#cb89-1"></a>i &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb89-2"><a href="examples-with-modifying-statements.html#cb89-2"></a>count &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb89-3"><a href="examples-with-modifying-statements.html#cb89-3"></a><span class="cf">while</span> (i <span class="op">&lt;</span><span class="st"> </span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb89-4"><a href="examples-with-modifying-statements.html#cb89-4"></a>    i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb89-5"><a href="examples-with-modifying-statements.html#cb89-5"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>)</span>
+<span id="cb89-6"><a href="examples-with-modifying-statements.html#cb89-6"></a>        <span class="cf">next</span>  <span class="co"># skip this loop</span></span>
+<span id="cb89-7"><a href="examples-with-modifying-statements.html#cb89-7"></a>    count &lt;-<span class="st"> </span>count <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb89-8"><a href="examples-with-modifying-statements.html#cb89-8"></a>    <span class="kw">print</span>(CO2<span class="op">$</span>conc[i])</span>
+<span id="cb89-9"><a href="examples-with-modifying-statements.html#cb89-9"></a>}</span></code></pre></div>
+<pre><code>## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="examples-with-modifying-statements.html#cb91-1"></a><span class="kw">print</span>(count)</span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
 </div>
 <hr>
 <center> 
@@ -293,8 +392,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-condition-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="challenge-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="while-loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="challenge-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

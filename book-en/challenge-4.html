@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Caution with parsing statements | Workshop 5: Programming in R</title>
+  <title>Chapter 22 Challenge 4 | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 22 Challenge 4 | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 22 Challenge 4 | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="multiple-condition-decisions.html"/>
-<link rel="next" href="challenge-1.html"/>
+<link rel="prev" href="edit-a-plot-using-for-and-if.html"/>
+<link rel="next" href="why-write-functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
@@ -253,34 +253,53 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="caution-with-parsing-statements" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Caution with parsing statements</h1>
-<div class="noway">
-<p>What do you think will happen if we try the code below?</p>
-<div class="split">
-<div class="split-left">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="caution-with-parsing-statements.html#cb10-1"></a><span class="cf">if</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> </span>
-<span id="cb10-2"><a href="caution-with-parsing-statements.html#cb10-2"></a><span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-3"><a href="caution-with-parsing-statements.html#cb10-3"></a><span class="cf">else</span> </span>
-<span id="cb10-4"><a href="caution-with-parsing-statements.html#cb10-4"></a><span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
+<div id="challenge-4" class="section level1">
+<h1><span class="header-section-number">Chapter 22</span> Challenge 4</h1>
+<p>Generate a plot of comparing the CO2 concentration <em>versus</em> uptake where each plant is shown using a different point.</p>
+<p><strong>Bonus points</strong> for doing this challenge using nested loops!</p>
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<button onclick="myFunction()">
+Solution for Challenge 4
+</button>
+<div id="myDIV">
+<p>Challenge 4: Answer</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="challenge-4.html#cb97-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">1.4</span>,</span>
+<span id="cb97-2"><a href="challenge-4.html#cb97-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;CO2 concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 uptake&quot;</span>)</span>
+<span id="cb97-3"><a href="challenge-4.html#cb97-3"></a></span>
+<span id="cb97-4"><a href="challenge-4.html#cb97-4"></a><span class="co"># Type &#39;n&#39; tells R to not actually plot the points.</span></span>
+<span id="cb97-5"><a href="challenge-4.html#cb97-5"></a></span>
+<span id="cb97-6"><a href="challenge-4.html#cb97-6"></a>plants &lt;-<span class="st"> </span><span class="kw">unique</span>(CO2<span class="op">$</span>Plant)</span>
+<span id="cb97-7"><a href="challenge-4.html#cb97-7"></a></span>
+<span id="cb97-8"><a href="challenge-4.html#cb97-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb97-9"><a href="challenge-4.html#cb97-9"></a>    <span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(plants)) {</span>
+<span id="cb97-10"><a href="challenge-4.html#cb97-10"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Plant[i] <span class="op">==</span><span class="st"> </span>plants[p]) {</span>
+<span id="cb97-11"><a href="challenge-4.html#cb97-11"></a>            <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> p)</span>
+<span id="cb97-12"><a href="challenge-4.html#cb97-12"></a>        }</span>
+<span id="cb97-13"><a href="challenge-4.html#cb97-13"></a>    }</span>
+<span id="cb97-14"><a href="challenge-4.html#cb97-14"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="challenge-4.html#cb98-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">1.4</span>,</span>
+<span id="cb98-2"><a href="challenge-4.html#cb98-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;CO2 Concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 Uptake&quot;</span>)</span>
+<span id="cb98-3"><a href="challenge-4.html#cb98-3"></a></span>
+<span id="cb98-4"><a href="challenge-4.html#cb98-4"></a>plants &lt;-<span class="st"> </span><span class="kw">unique</span>(CO2<span class="op">$</span>Plant)</span>
+<span id="cb98-5"><a href="challenge-4.html#cb98-5"></a></span>
+<span id="cb98-6"><a href="challenge-4.html#cb98-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb98-7"><a href="challenge-4.html#cb98-7"></a>    <span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(plants)) {</span>
+<span id="cb98-8"><a href="challenge-4.html#cb98-8"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Plant[i] <span class="op">==</span><span class="st"> </span>plants[p]) {</span>
+<span id="cb98-9"><a href="challenge-4.html#cb98-9"></a>            <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> p)</span>
+<span id="cb98-10"><a href="challenge-4.html#cb98-10"></a>        }</span>
+<span id="cb98-11"><a href="challenge-4.html#cb98-11"></a>    }</span>
+<span id="cb98-12"><a href="challenge-4.html#cb98-12"></a>}</span></code></pre></div>
 </div>
-<div class="split-right">
-<pre><code>## Error: &lt;text&gt;:1:9: unexpected &#39;==&#39;
-## 1: if(2+2) ==
-##             ^</code></pre>
-</div>
-</div>
-<p>This does not work because <code>R</code> evaluates the first line and does not know that you are going to use an <code>else</code> statement</p>
-</div>
-<div class="explanation">
-<p>Use curly brackets <code>{ }</code> so that <code>R</code> knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="caution-with-parsing-statements.html#cb12-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb12-2"><a href="caution-with-parsing-statements.html#cb12-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb12-3"><a href="caution-with-parsing-statements.html#cb12-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="caution-with-parsing-statements.html#cb12-4"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb12-5"><a href="caution-with-parsing-statements.html#cb12-5"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Arithmetic works.&quot;</code></pre>
-</div>
+
 </div>
 <hr>
 <center> 
@@ -293,8 +312,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-condition-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="challenge-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="edit-a-plot-using-for-and-if.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="why-write-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

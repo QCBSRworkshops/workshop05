@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Caution with parsing statements | Workshop 5: Programming in R</title>
+  <title>Chapter 21 Edit a plot using for and if | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 21 Edit a plot using for and if | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 21 Edit a plot using for and if | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="multiple-condition-decisions.html"/>
-<link rel="next" href="challenge-1.html"/>
+<link rel="prev" href="challenge-3.html"/>
+<link rel="next" href="challenge-4.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
@@ -253,34 +253,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="caution-with-parsing-statements" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Caution with parsing statements</h1>
-<div class="noway">
-<p>What do you think will happen if we try the code below?</p>
-<div class="split">
-<div class="split-left">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="caution-with-parsing-statements.html#cb10-1"></a><span class="cf">if</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> </span>
-<span id="cb10-2"><a href="caution-with-parsing-statements.html#cb10-2"></a><span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-3"><a href="caution-with-parsing-statements.html#cb10-3"></a><span class="cf">else</span> </span>
-<span id="cb10-4"><a href="caution-with-parsing-statements.html#cb10-4"></a><span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
-</div>
-<div class="split-right">
-<pre><code>## Error: &lt;text&gt;:1:9: unexpected &#39;==&#39;
-## 1: if(2+2) ==
-##             ^</code></pre>
-</div>
-</div>
-<p>This does not work because <code>R</code> evaluates the first line and does not know that you are going to use an <code>else</code> statement</p>
-</div>
-<div class="explanation">
-<p>Use curly brackets <code>{ }</code> so that <code>R</code> knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="caution-with-parsing-statements.html#cb12-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb12-2"><a href="caution-with-parsing-statements.html#cb12-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb12-3"><a href="caution-with-parsing-statements.html#cb12-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="caution-with-parsing-statements.html#cb12-4"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb12-5"><a href="caution-with-parsing-statements.html#cb12-5"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Arithmetic works.&quot;</code></pre>
-</div>
+<div id="edit-a-plot-using-for-and-if" class="section level1">
+<h1><span class="header-section-number">Chapter 21</span> Edit a plot using <code>for</code> and <code>if</code></h1>
+<p>Let us plot uptake <em>versus</em> concentration with points of different colors according to their <em>type</em> (Québec or Mississippi) and <em>treatment</em> (chilled or nonchilled).</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="edit-a-plot-using-for-and-if.html#cb96-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex.lab =</span> <span class="fl">1.4</span>,</span>
+<span id="cb96-2"><a href="edit-a-plot-using-for-and-if.html#cb96-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;CO2 concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 uptake&quot;</span>)</span>
+<span id="cb96-3"><a href="edit-a-plot-using-for-and-if.html#cb96-3"></a><span class="co"># Type &#39;n&#39; tells R to not actually plot the points.</span></span>
+<span id="cb96-4"><a href="edit-a-plot-using-for-and-if.html#cb96-4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb96-5"><a href="edit-a-plot-using-for-and-if.html#cb96-5"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>) {</span>
+<span id="cb96-6"><a href="edit-a-plot-using-for-and-if.html#cb96-6"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb96-7"><a href="edit-a-plot-using-for-and-if.html#cb96-7"></a>    }</span>
+<span id="cb96-8"><a href="edit-a-plot-using-for-and-if.html#cb96-8"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;chilled&quot;</span>) {</span>
+<span id="cb96-9"><a href="edit-a-plot-using-for-and-if.html#cb96-9"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb96-10"><a href="edit-a-plot-using-for-and-if.html#cb96-10"></a>    }</span>
+<span id="cb96-11"><a href="edit-a-plot-using-for-and-if.html#cb96-11"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;nonchilled&quot;</span>) {</span>
+<span id="cb96-12"><a href="edit-a-plot-using-for-and-if.html#cb96-12"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb96-13"><a href="edit-a-plot-using-for-and-if.html#cb96-13"></a>    }</span>
+<span id="cb96-14"><a href="edit-a-plot-using-for-and-if.html#cb96-14"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CO2<span class="op">$</span>Treatment[i] <span class="op">==</span><span class="st"> &quot;chilled&quot;</span>) {</span>
+<span id="cb96-15"><a href="edit-a-plot-using-for-and-if.html#cb96-15"></a>        <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb96-16"><a href="edit-a-plot-using-for-and-if.html#cb96-16"></a>    }</span>
+<span id="cb96-17"><a href="edit-a-plot-using-for-and-if.html#cb96-17"></a>}</span></code></pre></div>
+<p><img src="book-en_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 </div>
 <hr>
 <center> 
@@ -293,8 +286,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-condition-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="challenge-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="challenge-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="challenge-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

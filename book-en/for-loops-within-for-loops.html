@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Caution with parsing statements | Workshop 5: Programming in R</title>
+  <title>Chapter 13 for loops within for loops | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 13 for loops within for loops | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 13 for loops within for loops | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="multiple-condition-decisions.html"/>
-<link rel="next" href="challenge-1.html"/>
+<link rel="prev" href="examples-using-for.html"/>
+<link rel="next" href="the-apply-family.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
@@ -253,33 +253,48 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="caution-with-parsing-statements" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Caution with parsing statements</h1>
-<div class="noway">
-<p>What do you think will happen if we try the code below?</p>
+<div id="for-loops-within-for-loops" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> <code>for</code> loops within <code>for</code> loops</h1>
+<p>In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables for each one of your loops.</p>
+<p>In the example below, we used a nested <code>for</code> framework which printed the product of <code>i</code> and <code>n</code>, where <code>n</code> was part of the nested <code>for</code> and was a sequence from <code>1</code> to <code>3</code>, and then <code>i</code>, which was also a sequence from <code>1</code> to <code>3</code>, was part of the outer loop.</p>
 <div class="split">
 <div class="split-left">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="caution-with-parsing-statements.html#cb10-1"></a><span class="cf">if</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> </span>
-<span id="cb10-2"><a href="caution-with-parsing-statements.html#cb10-2"></a><span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-3"><a href="caution-with-parsing-statements.html#cb10-3"></a><span class="cf">else</span> </span>
-<span id="cb10-4"><a href="caution-with-parsing-statements.html#cb10-4"></a><span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="for-loops-within-for-loops.html#cb55-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
+<span id="cb55-2"><a href="for-loops-within-for-loops.html#cb55-2"></a>    <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
+<span id="cb55-3"><a href="for-loops-within-for-loops.html#cb55-3"></a>        <span class="kw">print</span>(i <span class="op">*</span><span class="st"> </span>n)</span>
+<span id="cb55-4"><a href="for-loops-within-for-loops.html#cb55-4"></a>    }</span>
+<span id="cb55-5"><a href="for-loops-within-for-loops.html#cb55-5"></a>}</span></code></pre></div>
 </div>
 <div class="split-right">
-<pre><code>## Error: &lt;text&gt;:1:9: unexpected &#39;==&#39;
-## 1: if(2+2) ==
-##             ^</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 2
+## [1] 4
+## [1] 6
+## [1] 3
+## [1] 6
+## [1] 9</code></pre>
 </div>
-</div>
-<p>This does not work because <code>R</code> evaluates the first line and does not know that you are going to use an <code>else</code> statement</p>
 </div>
 <div class="explanation">
-<p>Use curly brackets <code>{ }</code> so that <code>R</code> knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="caution-with-parsing-statements.html#cb12-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb12-2"><a href="caution-with-parsing-statements.html#cb12-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb12-3"><a href="caution-with-parsing-statements.html#cb12-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="caution-with-parsing-statements.html#cb12-4"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb12-5"><a href="caution-with-parsing-statements.html#cb12-5"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Arithmetic works.&quot;</code></pre>
+<p>Specifically, the operation above beings as follows:</p>
+<ol style="list-style-type: decimal">
+<li><code>i</code> takes the <em>first</em> value from <code>1</code> to <code>3</code>, <em>i.e</em>. <span class="math inline">\(i = 1\)</span>;</li>
+<li><code>n</code> takes the <em>first</em> value from <code>1</code> to <code>3</code>, <em>i.e</em>. <span class="math inline">\(n = 1\)</span>;</li>
+<li>The product of the current value of <code>i</code> and <code>n</code> is computed and printed, <em>i.e.</em> <span class="math inline">\(i \times n = 1 \times 1 = 1\)</span>;</li>
+<li><code>n</code> takes the second value from <code>1</code> to <code>3</code>, <em>i</em>.<em>e</em>. <span class="math inline">\(n = 2\)</span>;</li>
+<li>The product of the current value of <code>i</code> and <code>n</code> is computed and printed, <em>i.e.</em> <span class="math inline">\(i \times n = 1 \times 2 = 2\)</span>;</li>
+<li><code>n</code> takes the <em>third</em> value from <code>1</code> to <code>3</code>, <em>i</em>.<em>e</em>. <span class="math inline">\(n = 3\)</span>;</li>
+<li>The product of the current value of <code>i</code> and <code>n</code> is computed and printed, <em>i.e.</em> <span class="math inline">\(i \times n = 1 \times 3 = 3\)</span>;</li>
+<li><code>i</code> takes the <em>second</em> value from <code>1</code> to <code>3</code>, <em>i.e</em>. <span class="math inline">\(i = 2\)</span>;</li>
+<li>The product of the current value of <code>i</code> and <code>n</code> is computed and printed, <em>i.e.</em> <span class="math inline">\(i \times n = 2 \times 1 = 2\)</span>;</li>
+<li><code>n</code> takes the second value from <code>1</code> to <code>3</code>, <em>i</em>.<em>e</em>. <span class="math inline">\(n = 2\)</span>;</li>
+<li>The product of the current value of <code>i</code> and <code>n</code> is computed and printed, <em>i.e.</em> <span class="math inline">\(i \times n = 2 \times 2 = 4\)</span>;</li>
+<li><code>n</code> takes the <em>third</em> value from <code>1</code> to <code>3</code>, <em>i</em>.<em>e</em>. <span class="math inline">\(n = 3\)</span>;</li>
+<li>The product of the current value of <code>i</code> and <code>n</code> is computed and printed, <em>i.e.</em> <span class="math inline">\(i \times n = 2 \times 3 = 6\)</span>;</li>
+<li><em>Would you be able to follow up with the rest of the iteration?</em></li>
+</ol>
 </div>
 </div>
 <hr>
@@ -293,8 +308,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-condition-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="challenge-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="examples-using-for.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-apply-family.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

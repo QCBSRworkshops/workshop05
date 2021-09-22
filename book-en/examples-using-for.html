@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Caution with parsing statements | Workshop 5: Programming in R</title>
+  <title>Chapter 12 Examples using for | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 12 Examples using for | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Caution with parsing statements | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 12 Examples using for | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="multiple-condition-decisions.html"/>
-<link rel="next" href="challenge-1.html"/>
+<link rel="prev" href="for-loops.html"/>
+<link rel="next" href="for-loops-within-for-loops.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
 <li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
@@ -253,33 +253,262 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="caution-with-parsing-statements" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Caution with parsing statements</h1>
-<div class="noway">
-<p>What do you think will happen if we try the code below?</p>
+<div id="examples-using-for" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Examples using <code>for</code></h1>
+<div id="simple-for-loop" class="section level2">
+<h2><span class="header-section-number">12.1</span> Simple <code>for</code> loop</h2>
+<p>In this next example, every instance of <code>m</code> is being replaced by each number between <code>1</code> and <code>7</code>, until it reaches the last element of the sequence:</p>
 <div class="split">
 <div class="split-left">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="caution-with-parsing-statements.html#cb10-1"></a><span class="cf">if</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> </span>
-<span id="cb10-2"><a href="caution-with-parsing-statements.html#cb10-2"></a><span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb10-3"><a href="caution-with-parsing-statements.html#cb10-3"></a><span class="cf">else</span> </span>
-<span id="cb10-4"><a href="caution-with-parsing-statements.html#cb10-4"></a><span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="examples-using-for.html#cb30-1"></a>y &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb30-2"><a href="examples-using-for.html#cb30-2"></a><span class="cf">for</span> (m <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>) {</span>
+<span id="cb30-3"><a href="examples-using-for.html#cb30-3"></a>    <span class="kw">print</span>(y <span class="op">*</span><span class="st"> </span>m)</span>
+<span id="cb30-4"><a href="examples-using-for.html#cb30-4"></a>}</span></code></pre></div>
+<pre><code>## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8
+## [1] 10
+## [1] 12</code></pre>
 </div>
 <div class="split-right">
-<pre><code>## Error: &lt;text&gt;:1:9: unexpected &#39;==&#39;
-## 1: if(2+2) ==
-##             ^</code></pre>
+<center>
+<div id="htmlwidget-1bc24a2908ffd58342cd" style="width:60%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1bc24a2908ffd58342cd">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"y = 2\", shape = \"parallelogram\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"for m in 1:6\nis m > 6?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"print(y*m)\", shape = \"parallelogram\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Exit\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"3\"->\"4\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"w\"] \n\"3\"->\"5\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\", headport = \"n\"] \n\"4\"->\"3\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</center>
 </div>
 </div>
-<p>This does not work because <code>R</code> evaluates the first line and does not know that you are going to use an <code>else</code> statement</p>
+</div>
+<div id="for-loops-on-different-classes" class="section level2">
+<h2><span class="header-section-number">12.2</span> <code>for</code> loops on different classes</h2>
+<p>As expected, you can use <code>for()</code> loops in different object types and classes, such as a <code>list</code>. Let us take the example below, where we are creating the <code>elements</code> object list.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="examples-using-for.html#cb32-1"></a>(elements &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">c =</span> <span class="dv">7</span><span class="op">:-</span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## $a
+## [1] 1 2 3
+## 
+## $b
+## [1]  4  5  6  7  8  9 10
+## 
+## $c
+## [1]  7  6  5  4  3  2  1  0 -1</code></pre>
+<p>Now, let us <code>print</code> the double of every element of the list:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="examples-using-for.html#cb34-1"></a><span class="cf">for</span> (element <span class="cf">in</span> elements) {</span>
+<span id="cb34-2"><a href="examples-using-for.html#cb34-2"></a>    <span class="kw">print</span>(element <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb34-3"><a href="examples-using-for.html#cb34-3"></a>}</span></code></pre></div>
+<pre><code>## [1] 2 4 6
+## [1]  8 10 12 14 16 18 20
+## [1] 14 12 10  8  6  4  2  0 -2</code></pre>
+</div>
+<div id="for-and-if-together" class="section level2">
+<h2><span class="header-section-number">12.3</span> <code>for</code> and <code>if</code> together</h2>
+<p>Let us perform operations for even elements within <code>x</code> using the modulo operator (<code>%%</code>):</p>
+<div class="split">
+<div class="split-left">
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="examples-using-for.html#cb36-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">6</span>)</span>
+<span id="cb36-2"><a href="examples-using-for.html#cb36-2"></a>count &lt;-<span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+</div>
+<div class="split-right">
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="examples-using-for.html#cb37-1"></a><span class="cf">for</span> (val <span class="cf">in</span> x) {</span>
+<span id="cb37-2"><a href="examples-using-for.html#cb37-2"></a>    <span class="cf">if</span> (val<span class="op">%%</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb37-3"><a href="examples-using-for.html#cb37-3"></a>        count &lt;-<span class="st"> </span>count <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb37-4"><a href="examples-using-for.html#cb37-4"></a>    }</span>
+<span id="cb37-5"><a href="examples-using-for.html#cb37-5"></a>}</span>
+<span id="cb37-6"><a href="examples-using-for.html#cb37-6"></a><span class="kw">print</span>(count)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+</div>
+<p>The above example can be represented within the following flowchart:</p>
+<center>
+<div id="htmlwidget-6567f36af844a8a49bef" style="width:90%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6567f36af844a8a49bef">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"x\", shape = \"parallelogram\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Last VAL\nin X?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Is VAL even?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"count = count + 1\", shape = \"parallelogram\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"print\ncount\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"6\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"n\"] \n\"4\"->\"5\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"5\"->\"3\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"n\"] \n\"4\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</center>
+</div>
+<div id="for-with-a-real-dataset" class="section level2">
+<h2><span class="header-section-number">12.4</span> <code>for</code> with a real dataset</h2>
+<p><code>for()</code> loops are often used to loop over a dataset. We will use loops to perform functions on the <code>CO2</code> dataset which is built in <code>R</code>. To load and see the first 6 rows of the <code>CO2</code> dataset, execute the following code:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="examples-using-for.html#cb39-1"></a><span class="kw">data</span>(CO2)  <span class="co"># This loads the built in dataset</span></span>
+<span id="cb39-2"><a href="examples-using-for.html#cb39-2"></a></span>
+<span id="cb39-3"><a href="examples-using-for.html#cb39-3"></a><span class="kw">head</span>(CO2)</span></code></pre></div>
+<pre><code>##   Plant   Type  Treatment
+## 1   Qn1 Quebec nonchilled
+## 2   Qn1 Quebec nonchilled
+## 3   Qn1 Quebec nonchilled
+## 4   Qn1 Quebec nonchilled
+## 5   Qn1 Quebec nonchilled
+## 6   Qn1 Quebec nonchilled
+##   conc uptake
+## 1   95   16.0
+## 2  175   30.4
+## 3  250   34.8
+## 4  350   37.2
+## 5  500   35.3
+## 6  675   39.2</code></pre>
+<p>Now, to recursively print the CO2 concentration, let us do this:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="examples-using-for.html#cb41-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb41-2"><a href="examples-using-for.html#cb41-2"></a>    <span class="co"># for each row in the CO2 dataset</span></span>
+<span id="cb41-3"><a href="examples-using-for.html#cb41-3"></a>    <span class="kw">print</span>(CO2<span class="op">$</span>conc[i])  <span class="co"># print the CO2 concentration</span></span>
+<span id="cb41-4"><a href="examples-using-for.html#cb41-4"></a>}</span></code></pre></div>
+<p>Here are the first 40 outputs:</p>
+<div class="split">
+<div class="split-left">
+<div class="split">
+<div class="split-left">
+<pre><code>## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250</code></pre>
+</div>
+<div class="split-right">
+<pre><code>## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675</code></pre>
+</div>
+</div>
+</div>
+<div class="split-right">
+<div class="split">
+<div class="split-left">
+<pre><code>## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175</code></pre>
+</div>
+<div class="split-right">
+<pre><code>## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Now, let us obtain the CO2 concentration only for the sites that were sampled in Québec (Canada):</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="examples-using-for.html#cb46-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb46-2"><a href="examples-using-for.html#cb46-2"></a>    <span class="co"># for each row in the CO2 dataset if the type is</span></span>
+<span id="cb46-3"><a href="examples-using-for.html#cb46-3"></a>    <span class="co"># &#39;Quebec&#39;</span></span>
+<span id="cb46-4"><a href="examples-using-for.html#cb46-4"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span>) {</span>
+<span id="cb46-5"><a href="examples-using-for.html#cb46-5"></a>        <span class="kw">print</span>(CO2<span class="op">$</span>conc[i])  <span class="co"># print the CO2 concentration</span></span>
+<span id="cb46-6"><a href="examples-using-for.html#cb46-6"></a>    }</span>
+<span id="cb46-7"><a href="examples-using-for.html#cb46-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="examples-using-for.html#cb47-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb47-2"><a href="examples-using-for.html#cb47-2"></a>    <span class="co"># for each row in the CO2 dataset if the type is</span></span>
+<span id="cb47-3"><a href="examples-using-for.html#cb47-3"></a>    <span class="co"># &#39;Quebec&#39;</span></span>
+<span id="cb47-4"><a href="examples-using-for.html#cb47-4"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span>) {</span>
+<span id="cb47-5"><a href="examples-using-for.html#cb47-5"></a>        <span class="kw">print</span>(CO2<span class="op">$</span>conc[i])  <span class="co"># print the CO2 concentration</span></span>
+<span id="cb47-6"><a href="examples-using-for.html#cb47-6"></a>    }</span>
+<span id="cb47-7"><a href="examples-using-for.html#cb47-7"></a>}</span></code></pre></div>
+<p>Here they are:</p>
+<div class="split">
+<div class="split-left">
+<div class="split">
+<div class="split-left">
+<pre><code>## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350</code></pre>
+</div>
+<div class="split-right">
+<pre><code>## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95</code></pre>
+</div>
+</div>
+</div>
+<div class="split-right">
+<div class="split">
+<div class="split-left">
+<pre><code>## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500</code></pre>
+</div>
+<div class="split-right">
+<pre><code>## [1] 675
+## [1] 1000
+## [1] 95
+## [1] 175
+## [1] 250
+## [1] 350
+## [1] 500
+## [1] 675
+## [1] 1000</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="explanation">
-<p>Use curly brackets <code>{ }</code> so that <code>R</code> knows to expect more input. Try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="caution-with-parsing-statements.html#cb12-1"></a><span class="cf">if</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
-<span id="cb12-2"><a href="caution-with-parsing-statements.html#cb12-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Arithmetic works.&quot;</span>)</span>
-<span id="cb12-3"><a href="caution-with-parsing-statements.html#cb12-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="caution-with-parsing-statements.html#cb12-4"></a>    <span class="kw">print</span>(<span class="st">&quot;Houston, we have a problem.&quot;</span>)</span>
-<span id="cb12-5"><a href="caution-with-parsing-statements.html#cb12-5"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Arithmetic works.&quot;</code></pre>
+<p><strong>Tip 1.</strong> To loop over the number of rows of a data frame, we can use the function <code>nrow()</code>:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="examples-using-for.html#cb52-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb52-2"><a href="examples-using-for.html#cb52-2"></a>    <span class="co"># for each row in the CO2 dataset</span></span>
+<span id="cb52-3"><a href="examples-using-for.html#cb52-3"></a>    <span class="kw">print</span>(CO2<span class="op">$</span>conc[i])</span>
+<span id="cb52-4"><a href="examples-using-for.html#cb52-4"></a>    <span class="co"># print the CO2 concentration</span></span>
+<span id="cb52-5"><a href="examples-using-for.html#cb52-5"></a>}</span></code></pre></div>
+</div>
+<div class="explanation">
+<p><strong>Tip 2.</strong> To perform operations on the elements of one column, we can directly iterate over it.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="examples-using-for.html#cb53-1"></a><span class="cf">for</span> (p <span class="cf">in</span> CO2<span class="op">$</span>conc) {</span>
+<span id="cb53-2"><a href="examples-using-for.html#cb53-2"></a>    <span class="co"># for each element of the column &#39;conc&#39; of the CO2 df</span></span>
+<span id="cb53-3"><a href="examples-using-for.html#cb53-3"></a>    <span class="kw">print</span>(p)</span>
+<span id="cb53-4"><a href="examples-using-for.html#cb53-4"></a>    <span class="co"># print the p-th element</span></span>
+<span id="cb53-5"><a href="examples-using-for.html#cb53-5"></a>}</span></code></pre></div>
+</div>
+<div class="explanation">
+<p><strong>Tip 3.</strong> The expression within the loop can be almost anything and is usually a compound statement containing many commands.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="examples-using-for.html#cb54-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>) {</span>
+<span id="cb54-2"><a href="examples-using-for.html#cb54-2"></a>    <span class="co"># for i in 4 to 5</span></span>
+<span id="cb54-3"><a href="examples-using-for.html#cb54-3"></a>    <span class="kw">print</span>(<span class="kw">colnames</span>(CO2)[i])</span>
+<span id="cb54-4"><a href="examples-using-for.html#cb54-4"></a>    <span class="kw">print</span>(<span class="kw">mean</span>(CO2[, i]))  <span class="co"># print the mean of that column from the CO2 dataset</span></span>
+<span id="cb54-5"><a href="examples-using-for.html#cb54-5"></a>}</span></code></pre></div>
+</div>
 </div>
 </div>
 <hr>
@@ -293,8 +522,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-condition-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="challenge-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="for-loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="for-loops-within-for-loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
