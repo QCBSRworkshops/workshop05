@@ -19,9 +19,9 @@ It is advantageous, for any programmer, to think in terms of in terms of **contr
 There are many building blocks of control flow programming:
 
 - **Sequencing**, which executes or evaluates something sequentially;
-- **Selection**, which performs opertations `ìf` or unless certain conditions are met; 
-- **Iteration**, which iteratively `repeat`s an operation `while`, `until` or `for` a determined number of times; 
-- **Procedural abstraction**, which involes a subroutine, nested call;
+- **Selection**, which performs operations `ìf` or unless certain conditions are met; 
+- **Iteration**, which `repeat`s an operation `while`, `until` or `for` a determined number of times; 
+- **Procedural abstraction**, which involves a subroutine, nested call;
 - Recursion
 - **Concurrency**, which does several operations at the same time;
 - Exception handling and speculation
@@ -55,7 +55,7 @@ f1_nodes <- create_node_df(n = 4, #number of nodes
 
 
 #create edges
-##DiagrammeR does not handle NA's in edge labels well, so NAs are ' ' here.
+##DiagrammeR does not handle NA in edge labels well, so NAs are ' ' here.
 f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
                            to = c(2, 3, 2, 4),
                            tailport = c("e", "e", "s", "e"),

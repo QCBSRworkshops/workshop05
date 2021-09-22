@@ -1261,7 +1261,7 @@ for (i in 4:5) { # for i in 4 to 5
 ---
 # Nested `for()` loops within `for()` loops
 
-In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
+In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables for each one of your loops. Here we used `i` and `n`:
 
 <br>
 .pull-left[
