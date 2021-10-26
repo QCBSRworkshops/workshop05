@@ -905,6 +905,37 @@ for (i in 1:nrow(CO2)){
 
 ##Section: 05-writing-functions.R 
 
+# our.dataset has 4 variables 
+
+our.dataset <- data.frame(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$b <- (our.dataset$b - min(our.dataset$b, na.rm = TRUE)) / 
+  (max(our.dataset$b, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$c <- (our.dataset$c - min(our.dataset$c, na.rm = TRUE)) / 
+  (max(our.dataset$c, na.rm = TRUE) - min(our.dataset$c, na.rm = TRUE))
+our.dataset$d <- (our.dataset$d - min(our.dataset$d, na.rm = TRUE)) / 
+  (max(our.dataset$d, na.rm = TRUE) - min(our.dataset$d, na.rm = TRUE))
+
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) /
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+
+# our
+# secret
+# hidden
+# function
+
+rescale01(our.dataset$a)
+rescale01(our.dataset$b)
+rescale01(our.dataset$c)
+rescale01(our.dataset$d)
+
 library(DiagrammeR)
 #Create node data frame
 f9_nodes <- create_node_df(n = 5, #number of nodes
@@ -1097,13 +1128,9 @@ vartest <- function() {
   print(out_val)
 }
 vartest()
+
 in_val; out_val
 
-out_val_2 <- 3
-vartest <- function(out_val_2) {
-  print(out_val_2)
-}
-vartest(8)
 out_val_2
 
 var1 <- 3 
@@ -1130,11 +1157,6 @@ if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
  if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
     print("Between 1 and 2")
   }
-
-a<-4;b=3
-if(a<b){
-if(a==0)print("a zero")}else{
-if(b==0){print("b zero")}else print(b)}
 
 a<-4;b=3
 if(a<b){

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 23 Writing functions | Workshop 5: Programming in R</title>
+  <meta name="description" content="Introduction to Programming in R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 23 Writing functions | Workshop 5: Programming in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:description" content="Introduction to Programming in R" />
+  <meta name="github-repo" content="qcbsRworkshops/workshop05" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 23 Writing functions | Workshop 5: Programming in R" />
+  
+  <meta name="twitter:description" content="Introduction to Programming in R" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
+
+<meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="challenge-4.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/qcbs-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="assets/images/csbq_logo_gray_accueil.png"></a></li>
+<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
+
+<li class="divider"></li>
+<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+</ul></li>
+<li class="part"><span><b>Programming in <code>R</code></b></span><ul>
+<li class="chapter" data-level="0.4" data-path="05-writing-functions.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
+<li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html"><i class="fa fa-check"></i><b>2</b> Introduction to Control Flow</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>2.0.1</b> Building blocks of control flow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="using-flowcharts.html"><a href="using-flowcharts.html"><i class="fa fa-check"></i><b>3</b> Using flowcharts</a></li>
+<li class="part"><span><b>Decision making</b></span></li>
+<li class="chapter" data-level="4" data-path="decision-making.html"><a href="decision-making.html"><i class="fa fa-check"></i><b>4</b> Decision making</a></li>
+<li class="chapter" data-level="5" data-path="if-statement.html"><a href="if-statement.html"><i class="fa fa-check"></i><b>5</b> <code>if</code> <strong>statement</strong></a></li>
+<li class="chapter" data-level="6" data-path="if-else-statement.html"><a href="if-else-statement.html"><i class="fa fa-check"></i><b>6</b> <code>if else</code> <strong>statement</strong></a></li>
+<li class="chapter" data-level="7" data-path="multiple-condition-decisions.html"><a href="multiple-condition-decisions.html"><i class="fa fa-check"></i><b>7</b> Multiple condition decisions</a></li>
+<li class="chapter" data-level="8" data-path="caution-with-parsing-statements.html"><a href="caution-with-parsing-statements.html"><i class="fa fa-check"></i><b>8</b> Caution with parsing statements</a></li>
+<li class="chapter" data-level="9" data-path="challenge-1.html"><a href="challenge-1.html"><i class="fa fa-check"></i><b>9</b> Challenge 1</a></li>
+<li class="part"><span><b>Iteration</b></span></li>
+<li class="chapter" data-level="10" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>10</b> Iteration</a></li>
+<li class="chapter" data-level="11" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>11</b> <code>for</code> loops</a></li>
+<li class="chapter" data-level="12" data-path="examples-using-for.html"><a href="examples-using-for.html"><i class="fa fa-check"></i><b>12</b> Examples using <code>for</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="examples-using-for.html"><a href="examples-using-for.html#simple-for-loop"><i class="fa fa-check"></i><b>12.1</b> Simple <code>for</code> loop</a></li>
+<li class="chapter" data-level="12.2" data-path="examples-using-for.html"><a href="examples-using-for.html#for-loops-on-different-classes"><i class="fa fa-check"></i><b>12.2</b> <code>for</code> loops on different classes</a></li>
+<li class="chapter" data-level="12.3" data-path="examples-using-for.html"><a href="examples-using-for.html#for-and-if-together"><i class="fa fa-check"></i><b>12.3</b> <code>for</code> and <code>if</code> together</a></li>
+<li class="chapter" data-level="12.4" data-path="examples-using-for.html"><a href="examples-using-for.html#for-with-a-real-dataset"><i class="fa fa-check"></i><b>12.4</b> <code>for</code> with a real dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="for-loops-within-for-loops.html"><a href="for-loops-within-for-loops.html"><i class="fa fa-check"></i><b>13</b> <code>for</code> loops within <code>for</code> loops</a></li>
+<li class="chapter" data-level="14" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>14</b> The <code>apply()</code> family</a><ul>
+<li class="chapter" data-level="14.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>14.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="14.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply"><i class="fa fa-check"></i><b>14.2</b> <code>lapply()</code></a></li>
+<li class="chapter" data-level="14.3" data-path="the-apply-family.html"><a href="the-apply-family.html#sapply"><i class="fa fa-check"></i><b>14.3</b> <code>sapply()</code></a></li>
+<li class="chapter" data-level="14.4" data-path="the-apply-family.html"><a href="the-apply-family.html#mapply"><i class="fa fa-check"></i><b>14.4</b> <code>mapply()</code></a></li>
+<li class="chapter" data-level="14.5" data-path="the-apply-family.html"><a href="the-apply-family.html#tapply"><i class="fa fa-check"></i><b>14.5</b> <code>tapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="challenge-2.html"><a href="challenge-2.html"><i class="fa fa-check"></i><b>15</b> Challenge 2</a></li>
+<li class="chapter" data-level="16" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html"><i class="fa fa-check"></i><b>16</b> Modifying iterations: <code>break</code>, <code>next</code> and <code>while</code></a><ul>
+<li class="chapter" data-level="16.1" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html#next"><i class="fa fa-check"></i><b>16.1</b> <code>next</code></a></li>
+<li class="chapter" data-level="16.2" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html#break"><i class="fa fa-check"></i><b>16.2</b> <code>break</code></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="repeat-loops.html"><a href="repeat-loops.html"><i class="fa fa-check"></i><b>17</b> <code>repeat</code> loops</a></li>
+<li class="chapter" data-level="18" data-path="while-loops.html"><a href="while-loops.html"><i class="fa fa-check"></i><b>18</b> <code>while</code> loops</a></li>
+<li class="chapter" data-level="19" data-path="examples-with-modifying-statements.html"><a href="examples-with-modifying-statements.html"><i class="fa fa-check"></i><b>19</b> Examples with modifying statements</a></li>
+<li class="chapter" data-level="20" data-path="challenge-3.html"><a href="challenge-3.html"><i class="fa fa-check"></i><b>20</b> Challenge 3</a></li>
+<li class="chapter" data-level="21" data-path="edit-a-plot-using-for-and-if.html"><a href="edit-a-plot-using-for-and-if.html"><i class="fa fa-check"></i><b>21</b> Edit a plot using <code>for</code> and <code>if</code></a></li>
+<li class="chapter" data-level="22" data-path="challenge-4.html"><a href="challenge-4.html"><i class="fa fa-check"></i><b>22</b> Challenge 4</a></li>
+<li class="part"><span><b>Programming</b></span></li>
+<li class="chapter" data-level="23" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>23</b> Writing functions</a><ul>
+<li class="chapter" data-level="23.1" data-path="writing-functions.html"><a href="writing-functions.html#syntax-of-a-function-function"><i class="fa fa-check"></i><b>23.1</b> Syntax of a function: <code>function()</code></a></li>
+<li class="chapter" data-level="23.2" data-path="writing-functions.html"><a href="writing-functions.html#arguments-of-a-function"><i class="fa fa-check"></i><b>23.2</b> Arguments of a <code>function()</code></a></li>
+<li class="chapter" data-level="23.3" data-path="writing-functions.html"><a href="writing-functions.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>23.3</b> Default argument values in a function</a></li>
+<li class="chapter" data-level="23.4" data-path="writing-functions.html"><a href="writing-functions.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>23.4</b> The ellipsis argument: <code>...</code></a></li>
+<li class="chapter" data-level="23.5" data-path="writing-functions.html"><a href="writing-functions.html#return-values"><i class="fa fa-check"></i><b>23.5</b> Return values</a></li>
+<li class="chapter" data-level="23.6" data-path="writing-functions.html"><a href="writing-functions.html#return-values-1"><i class="fa fa-check"></i><b>23.6</b> Return values</a></li>
+<li class="chapter" data-level="23.7" data-path="writing-functions.html"><a href="writing-functions.html#challenge"><i class="fa fa-check"></i><b>23.7</b> Challenge</a></li>
+<li class="chapter" data-level="23.8" data-path="writing-functions.html"><a href="writing-functions.html#accessibility-of-variables"><i class="fa fa-check"></i><b>23.8</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="23.9" data-path="writing-functions.html"><a href="writing-functions.html#accessibility-of-variables-1"><i class="fa fa-check"></i><b>23.9</b> Accessibility of variables</a></li>
+<li class="chapter" data-level="23.10" data-path="writing-functions.html"><a href="writing-functions.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>23.10</b> Why should I care about programming practices?</a></li>
+<li class="chapter" data-level="23.11" data-path="writing-functions.html"><a href="writing-functions.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>23.11</b> Use functions to simplify your code</a></li>
+<li class="chapter" data-level="23.12" data-path="writing-functions.html"><a href="writing-functions.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>23.12</b> Use meaningful names for functions</a><ul>
+<li class="chapter" data-level="23.12.1" data-path="writing-functions.html"><a href="writing-functions.html#use-comments"><i class="fa fa-check"></i><b>23.12.1</b> Use comments</a></li>
+</ul></li>
+<li class="chapter" data-level="23.13" data-path="writing-functions.html"><a href="writing-functions.html#use-comments-1"><i class="fa fa-check"></i><b>23.13</b> Use comments: <code>#</code></a></li>
+<li class="chapter" data-level="23.14" data-path="writing-functions.html"><a href="writing-functions.html#group-exercise-solution"><i class="fa fa-check"></i><b>23.14</b> Group exercise: Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop 5: Programming in <code>R</code></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!------------------------ Hero Image Container --------------------------> 
+
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a26f47516.js"></script>
+  <script src="assets/qcbs-hideOutput.js"></script>
+  <link href="assets/qcbs-style.css" rel="stylesheet">
+</head>
+
+
+<!-- 
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
+</div>
+--!>
+<div id="writing-functions" class="section level1">
+<h1><span class="header-section-number">Chapter 23</span> Writing functions</h1>
+<p>Imagine that we would like to rescale variables to the range of <code>0</code> to <code>1</code>.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="writing-functions.html#cb99-1"></a><span class="co"># our.dataset has 4 variables</span></span>
+<span id="cb99-2"><a href="writing-functions.html#cb99-2"></a></span>
+<span id="cb99-3"><a href="writing-functions.html#cb99-3"></a>our.dataset &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">c =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb99-4"><a href="writing-functions.html#cb99-4"></a>    <span class="dt">d =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>))</span></code></pre></div>
+<p>The equation for rescaling variables into the simplex (0-1) is:</p>
+<p><span class="math display">\[x_{\text{new}} =  \frac{x_i - \text{min}(x)}{ \text{max}(x) - \text{min}(x)}\]</span>
+We could rescale these four variables to <code>0</code> and <code>1</code> by doing the following:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="writing-functions.html#cb100-1"></a>our.dataset<span class="op">$</span>a &lt;-<span class="st"> </span>(our.dataset<span class="op">$</span>a <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))<span class="op">/</span>(<span class="kw">max</span>(our.dataset<span class="op">$</span>a,</span>
+<span id="cb100-2"><a href="writing-functions.html#cb100-2"></a>    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb100-3"><a href="writing-functions.html#cb100-3"></a>our.dataset<span class="op">$</span>b &lt;-<span class="st"> </span>(our.dataset<span class="op">$</span>b <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>b, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))<span class="op">/</span>(<span class="kw">max</span>(our.dataset<span class="op">$</span>b,</span>
+<span id="cb100-4"><a href="writing-functions.html#cb100-4"></a>    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb100-5"><a href="writing-functions.html#cb100-5"></a>our.dataset<span class="op">$</span>c &lt;-<span class="st"> </span>(our.dataset<span class="op">$</span>c <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>c, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))<span class="op">/</span>(<span class="kw">max</span>(our.dataset<span class="op">$</span>c,</span>
+<span id="cb100-6"><a href="writing-functions.html#cb100-6"></a>    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>c, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb100-7"><a href="writing-functions.html#cb100-7"></a>our.dataset<span class="op">$</span>d &lt;-<span class="st"> </span>(our.dataset<span class="op">$</span>d <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))<span class="op">/</span>(<span class="kw">max</span>(our.dataset<span class="op">$</span>d,</span>
+<span id="cb100-8"><a href="writing-functions.html#cb100-8"></a>    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<p><strong>What if our dataset had 31 variables?</strong></p>
+<p>Repeating that equation and this chunk of code 31 times could become a tedious and inneficient process:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="writing-functions.html#cb101-1"></a>our.dataset<span class="op">$</span>a &lt;-<span class="st"> </span>(our.dataset<span class="op">$</span>a <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))<span class="op">/</span>(<span class="kw">max</span>(our.dataset<span class="op">$</span>a,</span>
+<span id="cb101-2"><a href="writing-functions.html#cb101-2"></a>    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(our.dataset<span class="op">$</span>a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<p>But, we can see that, except from the <em>input</em>, the code was practically the same among the variables</p>
+<p><em>The function here was deliberately hidden to not cause confusion among the participants</em></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="writing-functions.html#cb102-1"></a><span class="co"># our secret hidden function</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="writing-functions.html#cb103-1"></a><span class="kw">rescale01</span>(our.dataset<span class="op">$</span>a)</span>
+<span id="cb103-2"><a href="writing-functions.html#cb103-2"></a><span class="kw">rescale01</span>(our.dataset<span class="op">$</span>b)</span>
+<span id="cb103-3"><a href="writing-functions.html#cb103-3"></a><span class="kw">rescale01</span>(our.dataset<span class="op">$</span>c)</span>
+<span id="cb103-4"><a href="writing-functions.html#cb103-4"></a><span class="kw">rescale01</span>(our.dataset<span class="op">$</span>d)</span></code></pre></div>
+<div id="why-write-functions" class="section level4">
+<h4><span class="header-section-number">23.0.0.1</span> Why write functions?</h4>
+<p>Much of the heavy lifting in R is done by functions. They are useful
+for:</p>
+<p>1- Performing a task repeatedly, but configurably;</p>
+<p>2- Making your code more readable;</p>
+<p>3- Make your code easier to modify and maintain;</p>
+<p>4- Sharing code between different analyses;</p>
+<p>5- Sharing code with other people;</p>
+<p>6- Modifying R’s built-in functionality.</p>
+<div id="htmlwidget-0effe7d3bcb271f6bfc2" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0effe7d3bcb271f6bfc2">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Argument 1\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Argument 2\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Argument 3\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Data processing\nFunction\", group = \"b\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Return value\", group = \"c\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"2\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"3\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"4\"->\"5\" [style = \"dashed\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="syntax-of-a-function-function" class="section level2">
+<h2><span class="header-section-number">23.1</span> Syntax of a function: <code>function()</code></h2>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="writing-functions.html#cb104-1"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2, ...) {</span>
+<span id="cb104-2"><a href="writing-functions.html#cb104-2"></a>  body  <span class="co"># What we want the function to do</span></span>
+<span id="cb104-3"><a href="writing-functions.html#cb104-3"></a>  <span class="kw">return</span>(values)  <span class="co"># Optional</span></span>
+<span id="cb104-4"><a href="writing-functions.html#cb104-4"></a>}</span></code></pre></div>
+<ul>
+<li><code>function_name</code> is the name of the function, and will be stored in the <code>R</code> environemnt as an object with this name;</li>
+<li><code>argument</code>s take the defined values that can be used within the function;</li>
+<li><code>body</code> contains the statements that define what the function does;</li>
+<li><code>output</code> contains the returned value from the function. If <code>return()</code> is absent, then the last expression is returned.</li>
+</ul>
+</div>
+<div id="arguments-of-a-function" class="section level2">
+<h2><span class="header-section-number">23.2</span> Arguments of a <code>function()</code></h2>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="writing-functions.html#cb105-1"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2, ...) {</span>
+<span id="cb105-2"><a href="writing-functions.html#cb105-2"></a>  body  <span class="co"># What we want the function to do</span></span>
+<span id="cb105-3"><a href="writing-functions.html#cb105-3"></a>  <span class="kw">return</span>(values)  <span class="co"># Optional</span></span>
+<span id="cb105-4"><a href="writing-functions.html#cb105-4"></a>}</span></code></pre></div>
+<p>Arguments are the <em>input</em> values of your function and will have the information your function needs to be able to perform correctly.</p>
+<p>A function can have between zero and an infinity of arguments. See the following example:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="writing-functions.html#cb106-1"></a>operations &lt;-<span class="st"> </span><span class="cf">function</span>(number1, number2, number3) {</span>
+<span id="cb106-2"><a href="writing-functions.html#cb106-2"></a>    result &lt;-<span class="st"> </span>(number1 <span class="op">+</span><span class="st"> </span>number2) <span class="op">*</span><span class="st"> </span>number3</span>
+<span id="cb106-3"><a href="writing-functions.html#cb106-3"></a>    <span class="kw">print</span>(result)</span>
+<span id="cb106-4"><a href="writing-functions.html#cb106-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="writing-functions.html#cb107-1"></a><span class="kw">operations</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p><strong>Challenge 4</strong></p>
+<p>Using what you learned previously on flow control, create a function <code>print_animal()</code> that takes an <code>animal</code> as argument and gives the following results:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="writing-functions.html#cb109-1"></a>Scruffy &lt;-<span class="st"> &quot;dog&quot;</span></span>
+<span id="cb109-2"><a href="writing-functions.html#cb109-2"></a>Paws &lt;-<span class="st"> &quot;cat&quot;</span></span>
+<span id="cb109-3"><a href="writing-functions.html#cb109-3"></a><span class="kw">print_animal</span>(Scruffy)</span></code></pre></div>
+<pre><code>## [1] &quot;woof&quot;</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="writing-functions.html#cb111-1"></a><span class="kw">print_animal</span>(Paws)</span></code></pre></div>
+<pre><code>## [1] &quot;meow&quot;</code></pre>
+<p><strong>Challenge 4: Solution</strong></p>
+<p>Using what you learned previously on flow control, create a function <code>print_animal()</code> that takes an <code>animal</code> as argument and gives the following results:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="writing-functions.html#cb113-1"></a>Scruffy &lt;-<span class="st"> &quot;dog&quot;</span></span>
+<span id="cb113-2"><a href="writing-functions.html#cb113-2"></a>Paws &lt;-<span class="st"> &quot;cat&quot;</span></span>
+<span id="cb113-3"><a href="writing-functions.html#cb113-3"></a><span class="kw">print_animal</span>(Scruffy)</span></code></pre></div>
+<pre><code>## [1] &quot;woof&quot;</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="writing-functions.html#cb115-1"></a><span class="kw">print_animal</span>(Paws)</span></code></pre></div>
+<pre><code>## [1] &quot;meow&quot;</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="writing-functions.html#cb117-1"></a>print_animal &lt;-<span class="st"> </span><span class="cf">function</span>(animal) {</span>
+<span id="cb117-2"><a href="writing-functions.html#cb117-2"></a>    <span class="cf">if</span> (animal <span class="op">==</span><span class="st"> &quot;dog&quot;</span>) {</span>
+<span id="cb117-3"><a href="writing-functions.html#cb117-3"></a>        <span class="kw">print</span>(<span class="st">&quot;woof&quot;</span>)</span>
+<span id="cb117-4"><a href="writing-functions.html#cb117-4"></a>    } <span class="cf">else</span> <span class="cf">if</span> (animal <span class="op">==</span><span class="st"> &quot;cat&quot;</span>) {</span>
+<span id="cb117-5"><a href="writing-functions.html#cb117-5"></a>        <span class="kw">print</span>(<span class="st">&quot;meow&quot;</span>)</span>
+<span id="cb117-6"><a href="writing-functions.html#cb117-6"></a>    }</span>
+<span id="cb117-7"><a href="writing-functions.html#cb117-7"></a>}</span></code></pre></div>
+</div>
+<div id="default-argument-values-in-a-function" class="section level2">
+<h2><span class="header-section-number">23.3</span> Default argument values in a function</h2>
+<p>Arguments can be provided with a <strong>default value</strong>, or even be optional.</p>
+<p><strong>Default values</strong> are useful when using a function with the same settings. The flexibility to depart from default values is still there, if needed.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="writing-functions.html#cb118-1"></a>operations &lt;-<span class="st"> </span><span class="cf">function</span>(number1, number2, <span class="dt">number3 =</span> <span class="dv">3</span>) {</span>
+<span id="cb118-2"><a href="writing-functions.html#cb118-2"></a>    result &lt;-<span class="st"> </span>(number1 <span class="op">+</span><span class="st"> </span>number2) <span class="op">*</span><span class="st"> </span>number3</span>
+<span id="cb118-3"><a href="writing-functions.html#cb118-3"></a>    <span class="kw">print</span>(result)</span>
+<span id="cb118-4"><a href="writing-functions.html#cb118-4"></a>}</span>
+<span id="cb118-5"><a href="writing-functions.html#cb118-5"></a><span class="kw">operations</span>(<span class="dt">number1 =</span> <span class="dv">1</span>, <span class="dt">number2 =</span> <span class="dv">2</span>, <span class="dt">number3 =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="writing-functions.html#cb120-1"></a><span class="co"># is equivalent to</span></span>
+<span id="cb120-2"><a href="writing-functions.html#cb120-2"></a><span class="kw">operations</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="writing-functions.html#cb122-1"></a><span class="kw">operations</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)  <span class="co"># we can still change the value of number3 if needed</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="the-ellipsis-argument-..." class="section level2">
+<h2><span class="header-section-number">23.4</span> The ellipsis argument: <code>...</code></h2>
+<p>The special argument <code>...</code> allows you to pass arguments from other undefined functions, <em>i.e.</em> allowing for an indefinite number of arguments inputs.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="writing-functions.html#cb124-1"></a>paste_anything_fun &lt;-<span class="st"> </span><span class="cf">function</span>(...) {</span>
+<span id="cb124-2"><a href="writing-functions.html#cb124-2"></a>    arguments &lt;-<span class="st"> </span><span class="kw">list</span>(...)</span>
+<span id="cb124-3"><a href="writing-functions.html#cb124-3"></a>    <span class="kw">paste0</span>(arguments)</span>
+<span id="cb124-4"><a href="writing-functions.html#cb124-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="writing-functions.html#cb125-1"></a><span class="kw">paste_anything_fun</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;want&quot;</span>, <span class="st">&quot;a break!&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;I&quot;        &quot;want&quot;    
+## [3] &quot;a break!&quot;</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="writing-functions.html#cb127-1"></a>percentages &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">mult =</span> <span class="dv">100</span>, ...) {</span>
+<span id="cb127-2"><a href="writing-functions.html#cb127-2"></a>    percent &lt;-<span class="st"> </span><span class="kw">round</span>(x <span class="op">*</span><span class="st"> </span>mult, ...)</span>
+<span id="cb127-3"><a href="writing-functions.html#cb127-3"></a>    <span class="kw">paste</span>(percent, <span class="st">&quot;%&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb127-4"><a href="writing-functions.html#cb127-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="writing-functions.html#cb128-1"></a><span class="kw">percentages</span>(<span class="kw">c</span>(<span class="fl">0.543</span>, <span class="fl">0.534</span>, <span class="fl">0.466</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;54%&quot; &quot;53%&quot; &quot;47%&quot;</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="writing-functions.html#cb130-1"></a><span class="co"># ?round</span></span>
+<span id="cb130-2"><a href="writing-functions.html#cb130-2"></a><span class="kw">percentages</span>(<span class="kw">c</span>(<span class="fl">0.543</span>, <span class="fl">0.534</span>, <span class="fl">0.466</span>), <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;54.3%&quot; &quot;53.4%&quot; &quot;46.6%&quot;</code></pre>
+<p>The special argument <code>...</code> allows you to pass on arguments to another function used inside your function. Here we use <code>...</code> to pass on arguments to <code>plot()</code> and <code>points()</code>.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="writing-functions.html#cb132-1"></a>plot.CO2 &lt;-<span class="st"> </span><span class="cf">function</span>(CO2, ...) {</span>
+<span id="cb132-2"><a href="writing-functions.html#cb132-2"></a>    <span class="kw">plot</span>(<span class="dt">x =</span> CO2<span class="op">$</span>conc, <span class="dt">y =</span> CO2<span class="op">$</span>uptake, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, ...)</span>
+<span id="cb132-3"><a href="writing-functions.html#cb132-3"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb132-4"><a href="writing-functions.html#cb132-4"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span>) {</span>
+<span id="cb132-5"><a href="writing-functions.html#cb132-5"></a>            <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</span>
+<span id="cb132-6"><a href="writing-functions.html#cb132-6"></a>                ...)</span>
+<span id="cb132-7"><a href="writing-functions.html#cb132-7"></a>        } <span class="cf">else</span> <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span>) {</span>
+<span id="cb132-8"><a href="writing-functions.html#cb132-8"></a>            <span class="kw">points</span>(CO2<span class="op">$</span>conc[i], CO2<span class="op">$</span>uptake[i], <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb132-9"><a href="writing-functions.html#cb132-9"></a>                <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, ...)</span>
+<span id="cb132-10"><a href="writing-functions.html#cb132-10"></a>        }</span>
+<span id="cb132-11"><a href="writing-functions.html#cb132-11"></a>    }</span>
+<span id="cb132-12"><a href="writing-functions.html#cb132-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="writing-functions.html#cb133-1"></a><span class="kw">plot.CO2</span>(CO2, <span class="dt">cex.lab =</span> <span class="fl">1.2</span>, <span class="dt">xlab =</span> <span class="st">&quot;CO2 concentration&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CO2 uptake&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="writing-functions.html#cb134-1"></a><span class="kw">plot.CO2</span>(CO2, <span class="dt">cex.lab =</span> <span class="fl">1.2</span>, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">xlab =</span> <span class="st">&quot;CO2 concentration&quot;</span>,</span>
+<span id="cb134-2"><a href="writing-functions.html#cb134-2"></a>    <span class="dt">ylab =</span> <span class="st">&quot;CO2 uptake&quot;</span>)</span></code></pre></div>
+<p><img src="book-en_files/figure-html/unnamed-chunk-90-1.png" width="480" /></p>
+</div>
+<div id="return-values" class="section level2">
+<h2><span class="header-section-number">23.5</span> Return values</h2>
+<p>The last expression evaluated in a <code>function</code> becomes the return value:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="writing-functions.html#cb135-1"></a>myfun &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb135-2"><a href="writing-functions.html#cb135-2"></a>    <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) {</span>
+<span id="cb135-3"><a href="writing-functions.html#cb135-3"></a>        <span class="dv">0</span></span>
+<span id="cb135-4"><a href="writing-functions.html#cb135-4"></a>    } <span class="cf">else</span> {</span>
+<span id="cb135-5"><a href="writing-functions.html#cb135-5"></a>        <span class="dv">10</span></span>
+<span id="cb135-6"><a href="writing-functions.html#cb135-6"></a>    }</span>
+<span id="cb135-7"><a href="writing-functions.html#cb135-7"></a>}</span>
+<span id="cb135-8"><a href="writing-functions.html#cb135-8"></a><span class="kw">myfun</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="writing-functions.html#cb137-1"></a><span class="kw">myfun</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p><code>function()</code> itself returns the last evaluated value even without including <code>return()</code></p>
+</div>
+<div id="return-values-1" class="section level2">
+<h2><span class="header-section-number">23.6</span> Return values</h2>
+<p>.small[
+It can be useful to explicitly <code>return()</code> if the routine should end early, jump out of the function and return a value.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="writing-functions.html#cb139-1"></a>simplefun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb139-2"><a href="writing-functions.html#cb139-2"></a>    <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb139-3"><a href="writing-functions.html#cb139-3"></a>        <span class="kw">return</span>(x)</span>
+<span id="cb139-4"><a href="writing-functions.html#cb139-4"></a>}</span></code></pre></div>
+<p><br>
+Functions can return only a single object (and text). But this is not a limitation because you can return a <code>list</code> containing any number of objects.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="writing-functions.html#cb140-1"></a>simplefun2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<span id="cb140-2"><a href="writing-functions.html#cb140-2"></a>    z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb140-3"><a href="writing-functions.html#cb140-3"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">result =</span> z, <span class="dt">x =</span> x, <span class="dt">y =</span> y))</span>
+<span id="cb140-4"><a href="writing-functions.html#cb140-4"></a>}</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="writing-functions.html#cb141-1"></a><span class="kw">simplefun2</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## $result
+## [1] 3
+## 
+## $x
+## [1] 1
+## 
+## $y
+## [1] 2</code></pre>
+</div>
+<div id="challenge" class="section level2">
+<h2><span class="header-section-number">23.7</span> Challenge</h2>
+<p>Using what you have just learned on functions and control flow, create a function named <code>bigsum</code> that takes two arguments <code>a</code> and <code>b</code> and:</p>
+<ol style="list-style-type: decimal">
+<li>Returns <span class="math inline">\(0\)</span> if the sum of <code>a</code> and <code>b</code> is strictly less than <span class="math inline">\(50\)</span>;</li>
+<li>Else, returns the sum of <code>a</code> and <code>b</code>.</li>
+</ol>
+<p><strong>Challenge 5: Solution</strong></p>
+<p>Using what you have just learned on functions and control flow, create a function named <code>bigsum</code> that takes two arguments <code>a</code> and <code>b</code> and:</p>
+<ol style="list-style-type: decimal">
+<li>Returns <code>0</code> if the sum of <code>a</code> and <code>b</code> is strictly less than <code>50</code>;</li>
+<li>Else, returns the sum of <code>a</code> and <code>b</code>.</li>
+</ol>
+<p><strong>Answer 1</strong></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="writing-functions.html#cb143-1"></a>bigsum &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</span>
+<span id="cb143-2"><a href="writing-functions.html#cb143-2"></a>    result &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb143-3"><a href="writing-functions.html#cb143-3"></a>    <span class="cf">if</span> (result <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span>) {</span>
+<span id="cb143-4"><a href="writing-functions.html#cb143-4"></a>        <span class="kw">return</span>(<span class="dv">0</span>)</span>
+<span id="cb143-5"><a href="writing-functions.html#cb143-5"></a>    } <span class="cf">else</span> {</span>
+<span id="cb143-6"><a href="writing-functions.html#cb143-6"></a>        <span class="kw">return</span>(result)</span>
+<span id="cb143-7"><a href="writing-functions.html#cb143-7"></a>    }</span>
+<span id="cb143-8"><a href="writing-functions.html#cb143-8"></a>}</span></code></pre></div>
+<p><strong>Answer 2</strong></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="writing-functions.html#cb144-1"></a>bigsum &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</span>
+<span id="cb144-2"><a href="writing-functions.html#cb144-2"></a>    result &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb144-3"><a href="writing-functions.html#cb144-3"></a>    <span class="cf">if</span> (result <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span>) {</span>
+<span id="cb144-4"><a href="writing-functions.html#cb144-4"></a>        <span class="dv">0</span></span>
+<span id="cb144-5"><a href="writing-functions.html#cb144-5"></a>    } <span class="cf">else</span> {</span>
+<span id="cb144-6"><a href="writing-functions.html#cb144-6"></a>        result</span>
+<span id="cb144-7"><a href="writing-functions.html#cb144-7"></a>    }</span>
+<span id="cb144-8"><a href="writing-functions.html#cb144-8"></a>}</span></code></pre></div>
+</div>
+<div id="accessibility-of-variables" class="section level2">
+<h2><span class="header-section-number">23.8</span> Accessibility of variables</h2>
+<p>It is essential to always keep in mind where your variables are, and whether they are defined and accessible:</p>
+<ol style="list-style-type: decimal">
+<li><p>Variables defined inside a function are not accessible outside from it!</p></li>
+<li><p>Variables defined outside a function are accessible inside, and are not modified, even if they have the same name.</p></li>
+</ol>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="writing-functions.html#cb145-1"></a>out_val &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb145-2"><a href="writing-functions.html#cb145-2"></a>vartest &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb145-3"><a href="writing-functions.html#cb145-3"></a>    in_val &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb145-4"><a href="writing-functions.html#cb145-4"></a>    <span class="kw">print</span>(in_val)</span>
+<span id="cb145-5"><a href="writing-functions.html#cb145-5"></a>    <span class="kw">print</span>(out_val)</span>
+<span id="cb145-6"><a href="writing-functions.html#cb145-6"></a>}</span>
+<span id="cb145-7"><a href="writing-functions.html#cb145-7"></a><span class="kw">vartest</span>()</span></code></pre></div>
+<pre><code>## [1] 4
+## [1] 3</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="writing-functions.html#cb147-1"></a>in_val</span></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;in_val&#39; not found</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="writing-functions.html#cb149-1"></a>out_val</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="writing-functions.html#cb151-1"></a>out_val_<span class="dv">2</span></span></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;out_val_2&#39; not found</code></pre>
+<p><em>What happens in the function club, stays in the function club.</em></p>
+</div>
+<div id="accessibility-of-variables-1" class="section level2">
+<h2><span class="header-section-number">23.9</span> Accessibility of variables</h2>
+<p>Be very careful when creating variables inside a conditional statement
+as the variable may never have been created and cause (sometimes
+unperceptible) errors.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="writing-functions.html#cb153-1"></a>var1 &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb153-2"><a href="writing-functions.html#cb153-2"></a>vartest &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb153-3"><a href="writing-functions.html#cb153-3"></a>    a &lt;-<span class="st"> </span><span class="dv">4</span>  <span class="co"># &#39;a&#39; is defined inside</span></span>
+<span id="cb153-4"><a href="writing-functions.html#cb153-4"></a>    <span class="kw">print</span>(a)  <span class="co"># print &#39;a&#39;</span></span>
+<span id="cb153-5"><a href="writing-functions.html#cb153-5"></a>    <span class="kw">print</span>(var1)  <span class="co"># print var1</span></span>
+<span id="cb153-6"><a href="writing-functions.html#cb153-6"></a>}</span>
+<span id="cb153-7"><a href="writing-functions.html#cb153-7"></a>a  <span class="co"># we cannot print &#39;a&#39; as it exists only inside the function</span></span></code></pre></div>
+<pre><code>## [1] 21.18018</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="writing-functions.html#cb155-1"></a><span class="kw">vartest</span>()  <span class="co"># calling vartest() will print a and var1</span></span></code></pre></div>
+<pre><code>## [1] 4
+## [1] 3</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="writing-functions.html#cb157-1"></a><span class="kw">rm</span>(var1)  <span class="co"># remove var1</span></span>
+<span id="cb157-2"><a href="writing-functions.html#cb157-2"></a><span class="kw">vartest</span>()  <span class="co"># calling the function again does not work anymore</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<pre><code>## Error in print(var1): object &#39;var1&#39; not found</code></pre>
+<p><em>Tip</em> It is good practice to define variables outside the conditions and then modify their values to avoid any problems.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="writing-functions.html#cb160-1"></a>a &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb160-2"><a href="writing-functions.html#cb160-2"></a><span class="cf">if</span> (a <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) {</span>
+<span id="cb160-3"><a href="writing-functions.html#cb160-3"></a>    b &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb160-4"><a href="writing-functions.html#cb160-4"></a>}</span>
+<span id="cb160-5"><a href="writing-functions.html#cb160-5"></a>a <span class="op">+</span><span class="st"> </span>b</span></code></pre></div>
+<p>If you had <code>b</code> already assigned in your environment, with a different
+value, you could have had a <em>bigger</em> problem!</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="writing-functions.html#cb161-1"></a><span class="co"># Error: object &#39;b&#39; not found</span></span></code></pre></div>
+</div>
+<div id="why-should-i-care-about-programming-practices" class="section level2">
+<h2><span class="header-section-number">23.10</span> Why should I care about programming practices?</h2>
+<p><br></p>
+<ul>
+<li>It makes your life easier;</li>
+<li>It helps you achieve greater readability and makes sharing and reusing your code a lot less painful;</li>
+<li>It helps reduce the time you will spend remembering and understanding your own code.</li>
+</ul>
+<p><strong>Keep a clean and nice code</strong></p>
+<p>Proper indentation and spacing is the first step to get an easy to read</p>
+<p>code:</p>
+<ul>
+<li>Use spaces between and after you operators</li>
+</ul>
+<p><code>x&gt;=1&amp;x&lt;=10</code> is more difficult to read then <code>x &gt;= 1 &amp; x &lt;= 10</code></p>
+<ul>
+<li>Use consistently the same assignation operator.</li>
+</ul>
+<p>&lt;- is often preferred. = is OK, but do not switch all the time between the two</p>
+<ul>
+<li><p>Use brackets when using flow control statements:</p>
+<ul>
+<li>Inside brackets, indent by <em>at least</em> two spaces;</li>
+<li>Put closing brackets on a separate line, except when preceding an <code>else</code> statement.</li>
+</ul></li>
+<li><p>Define each variable on its own line.</p></li>
+<li><p>Use <code>Cmd + I</code> or <code>Ctrl + I</code> in RStudio to indent the highlighted code automatically;</p></li>
+</ul>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="writing-functions.html#cb162-1"></a><span class="cf">if</span> ((a[x, y] <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(a[x, y] <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)) {</span>
+<span id="cb162-2"><a href="writing-functions.html#cb162-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Between 1 and 2&quot;</span>)</span>
+<span id="cb162-3"><a href="writing-functions.html#cb162-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="writing-functions.html#cb163-1"></a><span class="cf">if</span> ((a[x, y] <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(a[x, y] <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)) {</span>
+<span id="cb163-2"><a href="writing-functions.html#cb163-2"></a>    <span class="kw">print</span>(<span class="st">&quot;Between 1 and 2&quot;</span>)</span>
+<span id="cb163-3"><a href="writing-functions.html#cb163-3"></a>}</span></code></pre></div>
+<p>This code is not spaced, and therefore hard to read. All brackets are
+badly aligned, and it looks “messy”.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="writing-functions.html#cb164-1"></a>a &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb164-2"><a href="writing-functions.html#cb164-2"></a>b =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb164-3"><a href="writing-functions.html#cb164-3"></a><span class="cf">if</span> (a <span class="op">&lt;</span><span class="st"> </span>b) {</span>
+<span id="cb164-4"><a href="writing-functions.html#cb164-4"></a>    <span class="cf">if</span> (a <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb164-5"><a href="writing-functions.html#cb164-5"></a>        <span class="kw">print</span>(<span class="st">&quot;a zero&quot;</span>)</span>
+<span id="cb164-6"><a href="writing-functions.html#cb164-6"></a>} <span class="cf">else</span> {</span>
+<span id="cb164-7"><a href="writing-functions.html#cb164-7"></a>    <span class="cf">if</span> (b <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb164-8"><a href="writing-functions.html#cb164-8"></a>        <span class="kw">print</span>(<span class="st">&quot;b zero&quot;</span>)</span>
+<span id="cb164-9"><a href="writing-functions.html#cb164-9"></a>    } <span class="cf">else</span> <span class="kw">print</span>(b)</span>
+<span id="cb164-10"><a href="writing-functions.html#cb164-10"></a>}</span></code></pre></div>
+<p>On the left, code is not spaced, nor indented. All brackets are in the same line, and it looks “messy”. On the right, it looks more organized, no?</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="writing-functions.html#cb165-1"></a>a &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb165-2"><a href="writing-functions.html#cb165-2"></a>b &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb165-3"><a href="writing-functions.html#cb165-3"></a><span class="cf">if</span> (a <span class="op">&lt;</span><span class="st"> </span>b) {</span>
+<span id="cb165-4"><a href="writing-functions.html#cb165-4"></a>    <span class="cf">if</span> (a <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb165-5"><a href="writing-functions.html#cb165-5"></a>        <span class="kw">print</span>(<span class="st">&quot;a zero&quot;</span>)</span>
+<span id="cb165-6"><a href="writing-functions.html#cb165-6"></a>    }</span>
+<span id="cb165-7"><a href="writing-functions.html#cb165-7"></a>} <span class="cf">else</span> {</span>
+<span id="cb165-8"><a href="writing-functions.html#cb165-8"></a>    <span class="cf">if</span> (b <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb165-9"><a href="writing-functions.html#cb165-9"></a>        <span class="kw">print</span>(<span class="st">&quot;b zero&quot;</span>)</span>
+<span id="cb165-10"><a href="writing-functions.html#cb165-10"></a>    } <span class="cf">else</span> {</span>
+<span id="cb165-11"><a href="writing-functions.html#cb165-11"></a>        <span class="kw">print</span>(b)</span>
+<span id="cb165-12"><a href="writing-functions.html#cb165-12"></a>    }</span>
+<span id="cb165-13"><a href="writing-functions.html#cb165-13"></a>}</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="use-functions-to-simplify-your-code" class="section level2">
+<h2><span class="header-section-number">23.11</span> Use functions to simplify your code</h2>
+<p>Write your own function:
+1. When portion of the code is repeated more than a few times in your script;
+2. If only a part of the code changes and includes options for different arguments.</p>
+<p>This would also reduce the number of potential errors done by copy-pasting, and the time needed to correct them.</p>
+<p>Let’s modify the example from <strong>Challenge 3</strong> and suppose that all <span class="math inline">\(CO_2\)</span> uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.</p>
+<p>We could write this:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="writing-functions.html#cb167-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb167-2"><a href="writing-functions.html#cb167-2"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span>) {</span>
+<span id="cb167-3"><a href="writing-functions.html#cb167-3"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">-</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb167-4"><a href="writing-functions.html#cb167-4"></a>    }</span>
+<span id="cb167-5"><a href="writing-functions.html#cb167-5"></a>}</span>
+<span id="cb167-6"><a href="writing-functions.html#cb167-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb167-7"><a href="writing-functions.html#cb167-7"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span>) {</span>
+<span id="cb167-8"><a href="writing-functions.html#cb167-8"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">+</span><span class="st"> </span><span class="dv">50</span></span>
+<span id="cb167-9"><a href="writing-functions.html#cb167-9"></a>    }</span>
+<span id="cb167-10"><a href="writing-functions.html#cb167-10"></a>}</span></code></pre></div>
+<p>Or this:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="writing-functions.html#cb168-1"></a>recalibrate &lt;-<span class="st"> </span><span class="cf">function</span>(CO2, type, bias) {</span>
+<span id="cb168-2"><a href="writing-functions.html#cb168-2"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb168-3"><a href="writing-functions.html#cb168-3"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> </span>type) {</span>
+<span id="cb168-4"><a href="writing-functions.html#cb168-4"></a>            CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">+</span><span class="st"> </span>bias</span>
+<span id="cb168-5"><a href="writing-functions.html#cb168-5"></a>        }</span>
+<span id="cb168-6"><a href="writing-functions.html#cb168-6"></a>    }</span>
+<span id="cb168-7"><a href="writing-functions.html#cb168-7"></a>    <span class="kw">return</span>(CO2)</span>
+<span id="cb168-8"><a href="writing-functions.html#cb168-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="writing-functions.html#cb169-1"></a>newCO2 &lt;-<span class="st"> </span><span class="kw">recalibrate</span>(<span class="dt">CO2 =</span> CO2, <span class="dt">type =</span> <span class="st">&quot;Mississipi&quot;</span>, <span class="dt">bias =</span> <span class="dv">-20</span>)</span>
+<span id="cb169-2"><a href="writing-functions.html#cb169-2"></a>newCO2 &lt;-<span class="st"> </span><span class="kw">recalibrate</span>(newCO2, <span class="st">&quot;Quebec&quot;</span>, <span class="op">+</span><span class="dv">50</span>)</span></code></pre></div>
+</div>
+<div id="use-meaningful-names-for-functions" class="section level2">
+<h2><span class="header-section-number">23.12</span> Use meaningful names for functions</h2>
+<p>Same function as before, but with vague names:</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="writing-functions.html#cb170-1"></a>rc &lt;-<span class="st"> </span><span class="cf">function</span>(c, t, b) {</span>
+<span id="cb170-2"><a href="writing-functions.html#cb170-2"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(c)) {</span>
+<span id="cb170-3"><a href="writing-functions.html#cb170-3"></a>        <span class="cf">if</span> (c<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> </span>t) {</span>
+<span id="cb170-4"><a href="writing-functions.html#cb170-4"></a>            c<span class="op">$</span>uptake[i] &lt;-<span class="st"> </span>c<span class="op">$</span>uptake[i] <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb170-5"><a href="writing-functions.html#cb170-5"></a>        }</span>
+<span id="cb170-6"><a href="writing-functions.html#cb170-6"></a>    }</span>
+<span id="cb170-7"><a href="writing-functions.html#cb170-7"></a>    <span class="kw">return</span>(c)</span>
+<span id="cb170-8"><a href="writing-functions.html#cb170-8"></a>}</span></code></pre></div>
+<p>Whenever possible, avoid using names of existing <code>R</code> functions and variables to avoid confusion and conflits.</p>
+<div id="use-comments" class="section level3">
+<h3><span class="header-section-number">23.12.1</span> Use comments</h3>
+<p><br></p>
+<p>What is <code>c</code> and <code>rc</code>?</p>
+<p>That being said:</p>
+<p><br></p>
+<p><img src="https://pbs.twimg.com/media/Ea8JSbRXsAAwF1D?format=jpg&amp;name=large" /></p>
+<p><br>
+<br>
+Whenever possible, avoid using names of existing <code>R</code> functions and variables to avoid confusion and conflits.</p>
+</div>
+</div>
+<div id="use-comments-1" class="section level2">
+<h2><span class="header-section-number">23.13</span> Use comments: <code>#</code></h2>
+<p>.alert[Final tip]. Add comments to describe what your code does, how to use its arguments or a detailed step-by-step description of the function.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="writing-functions.html#cb171-1"></a><span class="co"># Recalibrates the CO2 dataset by modifying the CO2 uptake</span></span>
+<span id="cb171-2"><a href="writing-functions.html#cb171-2"></a><span class="co"># concentration by a fixed amount depending on the region</span></span>
+<span id="cb171-3"><a href="writing-functions.html#cb171-3"></a><span class="co"># of sampling.  Arguments CO2: the CO2 dataset type: the</span></span>
+<span id="cb171-4"><a href="writing-functions.html#cb171-4"></a><span class="co"># type (&#39;Mississippi&#39; or &#39;Quebec&#39;) that need to be</span></span>
+<span id="cb171-5"><a href="writing-functions.html#cb171-5"></a><span class="co"># recalibrated bias: the amount to add or remove to the</span></span>
+<span id="cb171-6"><a href="writing-functions.html#cb171-6"></a><span class="co"># concentration uptake</span></span>
+<span id="cb171-7"><a href="writing-functions.html#cb171-7"></a>recalibrate &lt;-<span class="st"> </span><span class="cf">function</span>(CO2, type, bias) {</span>
+<span id="cb171-8"><a href="writing-functions.html#cb171-8"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb171-9"><a href="writing-functions.html#cb171-9"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> </span>type) {</span>
+<span id="cb171-10"><a href="writing-functions.html#cb171-10"></a>            CO2<span class="op">$</span>uptake[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>uptake[i] <span class="op">+</span><span class="st"> </span>bias</span>
+<span id="cb171-11"><a href="writing-functions.html#cb171-11"></a>        }</span>
+<span id="cb171-12"><a href="writing-functions.html#cb171-12"></a>    }</span>
+<span id="cb171-13"><a href="writing-functions.html#cb171-13"></a>    <span class="kw">return</span>(CO2)</span>
+<span id="cb171-14"><a href="writing-functions.html#cb171-14"></a>}</span></code></pre></div>
+<p><strong>Challenge 6: Group exercise</strong></p>
+<p>Using what you learned, write an <code>if()</code> statement that tests whether a numeric variable <code>x</code> is <code>0</code>. If not, it assigns <span class="math inline">\(cos(x)/x\)</span> to <code>z</code>, otherwise it assigns <span class="math inline">\(1\)</span> to <code>z</code>.
+<br></p>
+<p>Create a function called <code>my_function()</code> that takes the variable <code>x</code> as argument and returns <code>z</code>.
+<br></p>
+<p>If we assign <span class="math inline">\(45\)</span>, <span class="math inline">\(20\)</span>, and <span class="math inline">\(0\)</span> to <code>x</code> respectively, which of the following options would represent the results?</p>
+<p><br></p>
+<p><strong>1.</strong> <span class="math inline">\(0.054\)</span>, <span class="math inline">\(0.012\)</span>, and <span class="math inline">\(0\)</span>; <br>
+<br>
+<strong>2.</strong> <span class="math inline">\(0.020\)</span>, <span class="math inline">\(0.054\)</span>, and <span class="math inline">\(1\)</span>; <br>
+<br>
+<strong>3.</strong> <span class="math inline">\(0.012\)</span>, <span class="math inline">\(0.020\)</span>, and <span class="math inline">\(1\)</span>. <br></p>
+<p><br></p>
+<p>In addition to this, discuss with your group about a function that you would like to create (it can or it may not be related to your research). Be prepared to briefly describe it to us!</p>
+<p>???</p>
+<p>This exercise should take place in breakout rooms within 10 minutes. After rejoining the main room, a poll should be opened to participants. Once you obtain the response from participants, show them the correct answer and code. You may request that one of the participants explain their answer before showing the results.</p>
+</div>
+<div id="group-exercise-solution" class="section level2">
+<h2><span class="header-section-number">23.14</span> Group exercise: Solution</h2>
+<p>Correct answer is option <strong>3</strong> ( <span class="math inline">\(0.12\)</span>, <span class="math inline">\(0.20\)</span>, and <span class="math inline">\(1\)</span> ).</p>
+<p><br></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="writing-functions.html#cb172-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb172-2"><a href="writing-functions.html#cb172-2"></a>    <span class="cf">if</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb172-3"><a href="writing-functions.html#cb172-3"></a>        z &lt;-<span class="st"> </span><span class="kw">cos</span>(x)<span class="op">/</span>x</span>
+<span id="cb172-4"><a href="writing-functions.html#cb172-4"></a>    } <span class="cf">else</span> {</span>
+<span id="cb172-5"><a href="writing-functions.html#cb172-5"></a>        z &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb172-6"><a href="writing-functions.html#cb172-6"></a>    }</span>
+<span id="cb172-7"><a href="writing-functions.html#cb172-7"></a>    <span class="kw">return</span>(z)</span>
+<span id="cb172-8"><a href="writing-functions.html#cb172-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="writing-functions.html#cb173-1"></a><span class="kw">my_function</span>(<span class="dv">45</span>)</span></code></pre></div>
+<pre><code>## [1] 0.01167382</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="writing-functions.html#cb175-1"></a><span class="kw">my_function</span>(<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0204041</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="writing-functions.html#cb177-1"></a><span class="kw">my_function</span>(<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All the content of the workshop series is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="challenge-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
