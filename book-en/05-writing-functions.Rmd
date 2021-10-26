@@ -1,29 +1,84 @@
-# Why write functions?
+# (PART\*) Programming {-}
 
-<br>
-
-Much of the heavy lifting in `R` is done by functions!
-
-<br>
-
-Functions are useful for:
+# Writing functions
 
 
-1. Performing a task repeatedly, but configurable;
-2. Making code more readable;
-3. Making code easier to modify and maintain;
-4. Sharing code between different analyses;
-5. Sharing code with other people;
-6. Modifying `R`’s built-in functionality.
+Imagine that we would like to rescale variables to the range of `0` to `1`.
+
+```{r echo = TRUE}
+# our.dataset has 4 variables 
+
+our.dataset <- data.frame(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+```
 
 
+The equation for rescaling variables into the simplex (0-1) is:
 
-## What is a function?
+$$x_{\text{new}} =  \frac{x_i - \text{min}(x)}{ \text{max}(x) - \text{min}(x)}$$
+We could rescale these four variables to `0` and `1` by doing the following:
 
-<br>
-<br>
+```{r echo = TRUE}
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$b <- (our.dataset$b - min(our.dataset$b, na.rm = TRUE)) / 
+  (max(our.dataset$b, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+our.dataset$c <- (our.dataset$c - min(our.dataset$c, na.rm = TRUE)) / 
+  (max(our.dataset$c, na.rm = TRUE) - min(our.dataset$c, na.rm = TRUE))
+our.dataset$d <- (our.dataset$d - min(our.dataset$d, na.rm = TRUE)) / 
+  (max(our.dataset$d, na.rm = TRUE) - min(our.dataset$d, na.rm = TRUE))
+```
 
-<center>
+
+**What if our dataset had 31 variables?**
+
+Repeating that equation and this chunk of code 31 times could become a tedious and inneficient process:
+
+```{r eval = FALSE}
+our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
+  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
+```
+
+
+But, we can see that, except from the *input*, the code was practically the same among the variables
+
+*The function here was deliberately hidden to not cause confusion among the participants*
+
+```{r eval = FALSE}
+# our
+# secret
+# hidden
+# function
+```
+
+```{r eval = FALSE}
+rescale01(our.dataset$a)
+rescale01(our.dataset$b)
+rescale01(our.dataset$c)
+rescale01(our.dataset$d)
+```
+
+####  Why write functions? #### 
+
+Much of the heavy lifting in R is done by functions. They are useful
+for:
+
+1- Performing a task repeatedly, but configurably;
+
+2- Making your code more readable;
+
+3- Make your code easier to modify and maintain;
+
+4- Sharing code between different analyses;
+
+5- Sharing code with other people;
+
+6- Modifying R's built-in functionality.
+
 ```{r flowchart9, echo=FALSE}
 library(DiagrammeR)
 #Create node data frame
@@ -60,8 +115,6 @@ render_graph(flowchart9,
              width = '95%', 
              height = 'auto')
 ```
-</center>
-
 
 ## Syntax of a function: `function()`
 
@@ -76,7 +129,6 @@ function_name <- function(argument1, argument2, ...) {
 - `argument`s take the defined values that can be used within the function;
 - `body` contains the statements that define what the function does;
 - `output` contains the returned value from the function. If `return()` is absent, then the last expression is returned. 
-
 
 ## Arguments of a `function()`
 
@@ -102,8 +154,6 @@ operations <- function(number1, number2, number3) {
 operations(1, 2, 3)
 ```
 
-
-
 **Challenge 4**
 
 Using what you learned previously on flow control, create a function `print_animal()` that takes an `animal` as argument and gives the following results:
@@ -124,7 +174,6 @@ Paws <- "cat"
 print_animal(Scruffy)
 print_animal(Paws)
 ```
-
 
 **Challenge 4: Solution**
 
@@ -175,11 +224,9 @@ operations(1, 2)
 operations(1, 2, 2) # we can still change the value of number3 if needed
 ```
 
-
 ## The ellipsis argument: `...`
 
-The special argument `...` allows you to pass arguments from other undefined functions, *i.e.* allowing for an indefinite number of arguments to be inputed.
-
+The special argument `...` allows you to pass arguments from other undefined functions, *i.e.* allowing for an indefinite number of arguments inputs. 
 
 ```{r echo=TRUE}
 paste_anything_fun <- function(...) {
@@ -193,8 +240,6 @@ paste_anything_fun("I",
                    "want", 
                    "a break!")
 ```
-
-
 
 ```{r echo=TRUE}
 percentages <- function(x, mult = 100, ...){
@@ -212,12 +257,7 @@ percentages(c(.543, .534, .466))
 percentages(c(.543, .534, .466), digits = 2)
 ``` 
 
-
-## The ellipsis argument: `...`
-
-
 The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
-
 
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
@@ -247,7 +287,6 @@ plot.CO2(CO2,
          ylab = "CO2 uptake")
 ```
 
-
 ```{r, echo = FALSE, fig.height = 2.5, fig.width = 5}
 plot.CO2 <- function(CO2, ...) {
   plot(x = CO2$conc, y = CO2$uptake, type = "n", ...)
@@ -265,9 +304,6 @@ plot.CO2(CO2,
          xlab="CO2 concentration", ylab="CO2 uptake")
 plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ```
-
-
-
 
 ## Return values
 
@@ -313,8 +349,6 @@ simplefun2 <- function(x, y) {
 }
 ```
 
-
-
 <br>
 
 ```{r, eval = FALSE}
@@ -326,8 +360,7 @@ simplefun2(1, 2)
 simplefun2(1, 2)
 ```
 
-
-**Challenge 5**
+## Challenge 
 
 Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
 
@@ -342,9 +375,6 @@ Using what you have just learned on functions and control flow, create a functio
 1. Returns `0` if the sum of `a` and `b` is strictly less than `50`;
 2. Else, returns the sum of `a` and `b`.
 
-<br>
-
-
 **Answer 1**
 
 ```{r}
@@ -357,8 +387,6 @@ bigsum <- function(a, b) {
   }
 }
 ```
-
-
 
 **Answer 2**
 
@@ -373,18 +401,13 @@ bigsum <- function(a, b) {
 }
 ```
 
-
-
-
 ## Accessibility of variables
 
 It is essential to always keep in mind where your variables are, and whether they are defined and accessible:
 
-1. Variables defined .alert[inside] a function are not accessible outside from it!
+1. Variables defined inside a function are not accessible outside from it!
 
-2. Variables defined .alert[outside] a function are accessible inside, and are not modified, even if they have the same name.
-
-
+2. Variables defined outside a function are accessible inside, and are not modified, even if they have the same name.
 
 ```{r, error = TRUE}
 out_val <- 3 
@@ -395,18 +418,11 @@ vartest <- function() {
 }
 vartest()
 ```
+
 ```{r, error = TRUE}
 in_val; out_val
 ```
 
-
-```{r}
-out_val_2 <- 3
-vartest <- function(out_val_2) {
-  print(out_val_2)
-}
-vartest(8)
-```
 ```{r, error = TRUE}
 out_val_2
 ```
@@ -414,6 +430,10 @@ out_val_2
 *What happens in the function club, stays in the function club.*
 
 ## Accessibility of variables
+
+Be very careful when creating variables inside a conditional statement
+as the variable may never have been created and cause (sometimes
+unperceptible) errors.
 
 ```{r, error = TRUE}
 var1 <- 3 
@@ -428,15 +448,6 @@ rm(var1)      # remove var1
 vartest()     # calling the function again does not work anymore
 ```
 
-
-## Accessibility of variables
-
-
-*Tip* Be very careful when creating variables inside a conditional statement as the variable may never have been created and cause (sometimes imperceptible) errors.
-<br>
-<br>
-<br>
-
 *Tip* It is good practice to define variables outside the conditions and then modify their values to avoid any problems.
 
 ```{r eval = FALSE}
@@ -447,21 +458,12 @@ if(a > 5) {
 a + b
 ```
 
+If you had `b` already assigned in your environment, with a different
+value, you could have had a *bigger* problem!
+
 ```{r eval = FALSE}
 # Error: object 'b' not found
 ```
-
-If you had `b` already assigned in your environment, with a different value, you could have had a .alert[bigger] problem!
-
-No error would have been shown and `a + b` would have meant another thing!]
-
-
-
-
-class: inverse, center, middle
-
-## Additional good programming practices
-
 
 ## Why should I care about programming practices?
 
@@ -471,37 +473,35 @@ class: inverse, center, middle
 - It helps you achieve greater readability and makes sharing and reusing your code a lot less painful;
 - It helps reduce the time you will spend remembering and understanding your own code.
 
-<br>
-<br>
-<br>
+**Keep a clean and nice code**
 
-**Pay attention to the next tips!**
+Proper indentation and spacing is the first step to get an easy to read
 
-## Keep a clean and nice code
+code:
 
-Proper indentation and spacing is the first step to get an easy to read code:
+-   Use spaces between and after you operators
 
-- Use **spaces** between and after your operators;
-  - `x>=1&x<=10` is more difficult to read then `x >= 1 & x <= 10`
-
-- Use consistently the same assignation operator;
-  - `<-` is often preferred. `=` is sometimes OK, but do not switch all the time between the two.
-
-- Use brackets and returns when using flow control statements;
-  - Inside brackets, indent by *at least* two returns;
-  - Put closing brackets on a separate line, except when preceding an `else` statement.
-
-- Define each variable on its own line;
+`x>=1&x<=10` is more difficult to read then `x >= 1 & x <= 10`
 
 
+-   Use consistently the same assignation operator. 
+
+<- is often preferred. = is OK, but do not switch all the time between the two
+
+
+-   Use brackets when using flow control statements:
+
+    -   Inside brackets, indent by *at least* two spaces;
+    -   Put closing brackets on a separate line, except when preceding an `else` statement.
+    
+    
+-   Define each variable on its own line.
 
 - Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically;
 
 ```{r, eval = FALSE}
 if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
 ```
-
-
 
 ```{r, eval = FALSE}
  if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
@@ -510,36 +510,17 @@ if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
 ```
 
 
+This code is not spaced, and therefore hard to read. All brackets are
+badly aligned, and it looks "messy".
 
-## Keep a clean and nice code
-
-On the left, code is not spaced, nor indented. All brackets are in the same line, and it looks "messy".
-
-<br>
-
-
-```{r}
+```{r, eval= FALSE}
 a<-4;b=3
 if(a<b){
 if(a==0)print("a zero")}else{
 if(b==0){print("b zero")}else print(b)}
 ```
-
-
-## Keep a clean and nice code
 
 On the left, code is not spaced, nor indented. All brackets are in the same line, and it looks "messy". On the right, it looks more organized, no?
-
-<br>
-
-
-```{r}
-a<-4;b=3
-if(a<b){
-if(a==0)print("a zero")}else{
-if(b==0){print("b zero")}else print(b)}
-```
-
 
 ```{r}
 a <- 4
@@ -557,9 +538,6 @@ if(a < b) {
 }
 ```
 
-
-
-
 ## Use functions to simplify your code
 
 Write your own function:
@@ -569,13 +547,9 @@ Write your own function:
 This would also reduce the number of potential errors done by copy-pasting, and the time needed to correct them.
 
 
-## Use functions to simplify your code
-
 Let's modify the example from **Challenge 3** and suppose that all $CO_2$ uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.
 
-
- We could write this:
-<br>
+We could write this:
 
 ```{r}
 for(i in 1:length(CO2[,1])) {
@@ -590,9 +564,6 @@ for(i in 1:length(CO2[,1])) {
 }
 ```
 
-
-
-
 Or this:
 
 ```{r eval = FALSE}
@@ -606,7 +577,6 @@ recalibrate <- function(CO2, type, bias) {
 }
 ```
 
-
 ```{r eval = FALSE}
 newCO2 <- recalibrate(CO2 = CO2, 
                       type = "Mississipi", 
@@ -614,9 +584,7 @@ newCO2 <- recalibrate(CO2 = CO2,
 newCO2 <- recalibrate(newCO2, "Quebec", +50)
 ```
 
-
 ## Use meaningful names for functions
-
 
 Same function as before, but with vague names:
 
@@ -631,6 +599,9 @@ rc <- function(c, t, b) {
 }
 ```
 
+Whenever possible, avoid using names of existing `R` functions and variables to avoid confusion and conflits.
+
+### Use comments
 
 <br>
 
@@ -642,14 +613,10 @@ That being said:
 <br>
 
 ![](https://pbs.twimg.com/media/Ea8JSbRXsAAwF1D?format=jpg&name=large)
-<br>
-<br>
-
 
 <br>
 <br>
 Whenever possible, avoid using names of existing `R` functions and variables to avoid confusion and conflits.
-
 
 ## Use comments: `#`
 
@@ -672,8 +639,6 @@ recalibrate <- function(CO2, type, bias) {
   return(CO2)
 }
 ```
-
-
 
 **Challenge 6: Group exercise**
 
@@ -722,3 +687,4 @@ my_function(45)
 my_function(20)
 my_function(0)
 ```
+
