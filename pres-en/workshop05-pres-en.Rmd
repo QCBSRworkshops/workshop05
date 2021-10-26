@@ -143,6 +143,8 @@ Program flow control can be simply defined as the order in which a program is ex
 <br>
 <br>
 
+--
+
 .center[
 #### Why is it advantageous to have structured programs?
 <br>
@@ -151,7 +153,7 @@ Program flow control can be simply defined as the order in which a program is ex
 
 - It **decreases the complexity** and time of the task at hand;
 - This logical structure also means that the code has **increased clarity**;
-- It also means that **many programmers can work on one program**.
+- It also improves collaborative efforts and helps **multiple programmers to work in the same program**.
 
 <br>
 <br>
@@ -1259,7 +1261,7 @@ for (i in 4:5) { # for i in 4 to 5
 ---
 # Nested `for()` loops within `for()` loops
 
-In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables as counters for each of your loops. Here we used `i` and `n`:
+In some cases, you may want to use nested loops to accomplish a task. When using nested loops, it is important to use different variables for each one of your loops. Here we used `i` and `n`:
 
 <br>
 .pull-left[

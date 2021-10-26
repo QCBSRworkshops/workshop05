@@ -1,45 +1,79 @@
+# Introduction to Control Flow
 
-# Control Flow
+The basis of computer programming in any language begins with **control flow**. 
 
-Program flow control can be simply defined as the order in which a
-program is executed.
+**Control flow** (or *flow of control*) is the order function calls, instructions, and statements are executed or evaluate when any program is running.
 
-**Why is it advantageous to have structured programs?**
+> Imagine that you would like to run an operation several times, until a condition is met. One option, is to rewrite the same code, while changing part of the syntax, that number of times you wish. Alternatively, we could write our code using *control flow*, and *iterate* through the same operation that will *evaluate* and *stop* until a certain condition is met. This last option usually implies in a much shorter, clearer and less complex form of writing code.
 
-- It decreases the complexity and time of the task at hand;
+It is advantageous, for any programmer, to think in terms of in terms of **control flow**, and therefore have structured programs, because:
 
-- This logical structure also means that the code has increased
-clarity;
+1. **The complexity and time of the task at hand is greatly decreased**;
 
-- It also means that many programmers can work on one program.
+2. **A logical structure also means that the code has increased clarity**;
 
-**This means increased productivity**
+3. **It also facilitates collaboration**, and therefore increases productivity.
 
-------------------------------------------------------------------------
+### Building blocks of control flow
 
-Flowcharts can be used to plan programs and represent their structure
+There are many building blocks of control flow programming:
 
-![](images/flowchart1.png){.align-center width="700"}
+- **Sequencing**, which executes or evaluates something sequentially;
+- **Selection**, which performs operations `ìf` or unless certain conditions are met; 
+- **Iteration**, which `repeat`s an operation `while`, `until` or `for` a determined number of times; 
+- **Procedural abstraction**, which involves a subroutine, nested call;
+- Recursion
+- **Concurrency**, which does several operations at the same time;
+- Exception handling and speculation
+- **Non-determinism**, which does an operation 
 
-## Representing structure
+# Using flowcharts
 
-The two basic building blocks of codes are the following:
+Control-flow diagrams can be used to plan and represent the structure of programs. The main elements program-flowcharts are:
 
-**Selection**
+- A processing step, represented by the *rectangular box*;
+- A decision step, usually denoted by a *diamond*; 
+- The start and end steps, denoted by *rounded-edge rectangles*;
+- *Arrows* indicating the direction and each step;
+- *Labels* naming elements of the flowchart.
 
-Program's execution determined by statements
+```{r flowchart1, echo=FALSE}
+library(DiagrammeR)
 
-```{r, echo = TRUE, eval = FALSE}
-if
-if else
-```
+#Create node data frame
+f1_nodes <- create_node_df(n = 4, #number of nodes
+                           type = 'a', #for grouping
+                           label = c("Start\nprogram", "Process\n(operations carried out\ne.g. data manipulation)", "Decision", "End\nprogram"), #words inside node
+                           shape = c("rectangle", "rectangle", 'diamond', 'rectangle'), #shape of node
+                           style = c('rounded', 'solid', 'solid', 'rounded'), #line style around nodes
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE, #whether node changes size based on label or is fixed
+                           color = 'mediumblue',
+                           height = 0.70
+                           )
 
-**Iteration**
 
-Repetition, where the statement will **loop** until a criteria is met
+#create edges
+##DiagrammeR does not handle NA in edge labels well, so NAs are ' ' here.
+f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
+                           to = c(2, 3, 2, 4),
+                           tailport = c("e", "e", "s", "e"),
+                           headport = c("w", "w", "s", "w"),
+                           label = c(' ', ' ', 'Boolean choice:\nTRUE or FALSE', ' '), #for text on edge
+                           fontsize = 10,
+                           color = 'dimgrey'
+                           )
 
-```{r, echo = TRUE, eval = FALSE}
-for
-while
-repeat
+#create flowchart
+flowchart1 <- create_graph(
+                    nodes_df = f1_nodes,
+                    edges_df = f1_edges,
+                    directed = TRUE, #arrows vs straight lines
+                    attr_theme = 'lr' #left to right specified
+                    )
+
+#display flowchart
+render_graph(flowchart1, width = '95%', height = 'auto')
+
 ```
