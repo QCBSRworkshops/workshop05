@@ -79,7 +79,7 @@ for:
 
 6- Modifying R's built-in functionality.
 
-```{r flowchart9, echo=FALSE}
+```{r flowchart9, echo=FALSE, purl=FALSE}
 library(DiagrammeR)
 #Create node data frame
 f9_nodes <- create_node_df(n = 5, #number of nodes
@@ -158,7 +158,7 @@ operations(1, 2, 3)
 
 Using what you learned previously on flow control, create a function `print_animal()` that takes an `animal` as argument and gives the following results:
 
-```{r, echo=F}
+```{r, echo=F, purl=FALSE}
 print_animal <- function(animal) {
   if (animal == "dog") {
     print("woof")

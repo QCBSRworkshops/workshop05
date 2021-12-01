@@ -12,7 +12,7 @@ Every time some operations have to be repeated, a *loop* may come in handy. Loop
 
 Here, we will learn the following types of *iteration* statements:
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
 for() {}
 while() {}
 repeat {}
@@ -22,7 +22,7 @@ We will also dive into the `apply()` family functions, which are interesting fun
 
 We will finally learn about two special statements that allow us to control iterations:
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
 break
 next
 ```
@@ -40,7 +40,7 @@ expression
 
 <center>
 
-```{r flowchart5for-loop, echo = FALSE}
+```{r flowchart5for-loop, echo = FALSE, purl=FALSE}
 #Create node data frame
 f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
@@ -123,7 +123,7 @@ x.style.display = "none";
 
 <div id="myDIV">
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE, purl=FALSE}
 for(a in c("Hello", 
            "R", 
            "Programmers")) {
@@ -133,7 +133,7 @@ for(a in c("Hello",
 
 <br>
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE, purl=FALSE}
 for(z in 1:4) {
   a <- rnorm(n = 1, 
              mean = 5 * z, 
@@ -168,7 +168,7 @@ for(m in 1:6) {
 <div class = "split-right">
 
 <center>
-```{r flowchart-extrafor-loop, echo = FALSE}
+```{r flowchart-extrafor-loop, echo = FALSE, purl=FALSE}
 #Create node data frame
 f5_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
@@ -276,7 +276,7 @@ The above example can be represented within the following flowchart:
 
 
 <center>
-```{r flowchart6for-loop2, echo=FALSE}
+```{r flowchart6for-loop2, echo=FALSE, purl=FALSE}
 #Create node data frame
 f6_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
@@ -360,7 +360,7 @@ Here are the first 40 outputs:
 <div class = "split">
 <div class = "split-left">
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, purl=FALSE}
 for(i in 1:10) { 
   print(CO2$conc[i]) 
 }
@@ -368,7 +368,7 @@ for(i in 1:10) {
 </div>
 
 <div class = "split-right">
-```{r, echo=FALSE}
+```{r, echo=FALSE, purl=FALSE}
 for (i in 11:20) { 
   print(CO2$conc[i]) 
 }
@@ -382,7 +382,7 @@ for (i in 11:20) {
 
 <div class = "split">
 <div class = "split-left">
-```{r, echo=FALSE}
+```{r, echo=FALSE, purl=FALSE}
 for (i in 21:30) { 
   print(CO2$conc[i]) 
 }
@@ -390,7 +390,7 @@ for (i in 21:30) {
 </div>
 
 <div class = "split-right">
-```{r, echo=FALSE}
+```{r, echo=FALSE, purl=FALSE}
 for (i in 31:40) { 
   print(CO2$conc[i]) 
 }
@@ -404,7 +404,7 @@ for (i in 31:40) {
 
 Now, let us obtain the CO2 concentration only for the sites that were sampled in Québec (Canada):
 
-```{r eval = FALSE}
+```{r eval = FALSE, purl=FALSE}
 for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
     print(CO2$conc[i]) # print the CO2 concentration
@@ -413,7 +413,7 @@ for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
 ```
 
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
 for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
     print(CO2$conc[i]) # print the CO2 concentration
@@ -730,7 +730,7 @@ for(val in x) {
 ```
 
 <center>
-```{r flowchart8next, echo=FALSE}
+```{r flowchart8next, echo=FALSE, purl=FALSE}
 #Create node data frame
 f8_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
@@ -775,7 +775,7 @@ render_graph(flowchart8, width = '95%', height = 'auto')
 
 The `break` statement is used inside a loop to terminate and exit the iteration when a certain condition is met. 
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
 for(val in x) {
   if(condition) { break }
   statement
@@ -783,7 +783,7 @@ for(val in x) {
 ```
 
 <center>
-```{r flowchart7break, echo=FALSE}
+```{r flowchart7break, echo=FALSE, purl=FALSE}
 #Create node data frame
 f7_nodes <- create_node_df(n = 6, #number of nodes
                            type = 'a', #for grouping
@@ -844,7 +844,7 @@ repeat {
 ```
 
 <center>
-```{r flowchart-repeat-loop, echo = FALSE}
+```{r flowchart-repeat-loop, echo = FALSE, purl=FALSE}
 #Create node data frame
 f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
@@ -907,7 +907,7 @@ repeat {
 }
 ```
 
-```{r eval = FALSE}
+```{r eval = FALSE, purl=FALSE}
 [1] "Press 'Esc' to stop me!"
 [1] "Press 'Esc' to stop me!"
 ...
@@ -921,14 +921,14 @@ repeat {
 
 Within the `while` loop, an expression happens **while** a condition is met.
 
-```{r eval = FALSE}
+```{r eval = FALSE, purl=FALSE}
 while(condition){
   expression
 }
 ```
 
 <center>
-```{r flowchart-while-loop, echo = FALSE}
+```{r flowchart-while-loop, echo = FALSE, purl=FALSE}
 #Create node data frame
 f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping

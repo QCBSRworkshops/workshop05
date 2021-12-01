@@ -22,7 +22,7 @@ if(condition) {
 </div>
 <div class = "uneven-split-right">
 <center>
-```{r flowchart2, echo=FALSE}
+```{r flowchart2, echo=FALSE, purl=FALSE}
 #Create node data frame
 f2_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
@@ -78,7 +78,7 @@ To achieve this, we can use the `if() {} else {}` statement and `ifelse()` funct
 <div class = "split">
 <div class = "uneven-split-left">
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
 if(condition) {
   expression 1
 } else {
@@ -86,7 +86,7 @@ if(condition) {
 }
 ```
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
 ifelse(condition, 
        expression 1, 
        expression 2
@@ -97,7 +97,7 @@ ifelse(condition,
 </div>
 <div class = "uneven-split-right">
 <center>
-```{r flowchart3, echo=FALSE}
+```{r flowchart3, echo=FALSE, purl=FALSE}
 #Create node data frame
 f3_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
@@ -177,7 +177,7 @@ While the `if()` and `if()` `else` statements leave you with exactly two options
 <div class = "split">
 <div class = "uneven-split-left">
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, purl=FALSE}
 if(test_expression1) {
   statement1
 } else if(test_expression2) {
@@ -193,7 +193,7 @@ if(test_expression1) {
 <div class = "uneven-split-right">
 <center>
 
-```{r flowchart4, echo=FALSE}
+```{r flowchart4, echo=FALSE, purl=FALSE}
 #note this one might turn out better in diagraph / DOT language, 'rank = same' seems broken without DOT
 #Create node data frame
 f4_nodes <- create_node_df(n = 9, #number of nodes

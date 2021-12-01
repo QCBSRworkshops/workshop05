@@ -37,7 +37,7 @@ Control-flow diagrams can be used to plan and represent the structure of program
 - *Arrows* indicating the direction and each step;
 - *Labels* naming elements of the flowchart.
 
-```{r flowchart1, echo=FALSE}
+```{r flowchart1, echo=FALSE, purl=FALSE}
 library(DiagrammeR)
 
 #Create node data frame
