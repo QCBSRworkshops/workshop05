@@ -33,6 +33,24 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareA
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
+# Contributors | Contributeurs et contributrices 
+
+This workshop was originally developed by Sylvain Christin, Cédric Frenette Dussault, and Dalal Hanna.
+
+Since 2014, several QCBS members contributed to consistently and collaboratively develop and update this workshop, as part of the *Learning and Development Award* from the Québec Centre for Biodiversity Science. They were:
+
+|      2022 - 2021 - 2020     |      2019 - 2018 - 2017     |      2016 - 2015 - 2014      |
+|:---------------------------:|:---------------------------:|:----------------------------:|
+| Pedro Henrique P. Braga  | Gabriel Muñoz | Johanna Bradie |
+| Gabriel Muñoz  | Katherine Hébert  | Sylvain Christin |
+| Kate Sheridan  | Pedro Henrique P. Braga | Ben Haller |
+| Parnian Pourtaherian  | Marie-Hélène Brice | Guillaume Larocque |
+|   |  | Pedro Henrique P. Braga |
+|   |  | Sebastien Portalier |
+|   |  | Jacob Ziegler |
+|   |  | Zofia Taranu |
+|   |  | Cédric Frenette Dussault |
+
 # Development status
 
 **Template** 
