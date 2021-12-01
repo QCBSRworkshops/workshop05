@@ -257,23 +257,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Let us consider that we have a <code>height</code> matrix containing the height (in metres) that was taken from five individuals (in rows) at four different times (as columns).</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="the-apply-family.html#cb57-1"></a>(height &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">20</span>, <span class="fl">1.5</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>##          [,1]     [,2]
-## [1,] 1.961209 1.575858
-## [2,] 1.614133 1.738137
-## [3,] 1.589980 1.757532
-## [4,] 1.896910 1.676712
-## [5,] 1.639510 1.622641
+## [1,] 1.602617 1.567942
+## [2,] 1.763067 1.674271
+## [3,] 1.776448 1.758305
+## [4,] 1.517711 1.832572
+## [5,] 1.904607 1.558280
 ##          [,3]     [,4]
-## [1,] 1.811767 1.805065
-## [2,] 1.786142 1.700917
-## [3,] 1.589793 1.598269
-## [4,] 1.816521 1.638786
-## [5,] 1.863404 1.729789</code></pre>
+## [1,] 1.640715 1.821064
+## [2,] 1.617285 1.939610
+## [3,] 1.958542 1.946926
+## [4,] 1.944512 1.695570
+## [5,] 1.915990 1.939251</code></pre>
 <p>We would like to obtain the average height at each time step.</p>
 <p>One option is to use a <code>for() {}</code> loop to iterate from column <code>1</code> to <code>4</code>, use the function <code>mean()</code> to calculate the average of the values, and sequentially store the output value in a vector.</p>
 <p>Alternatively, we can use the <code>apply()</code> function to set it to apply the <code>mean()</code> function to every column of the <code>height</code> matrix. See the example below:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="the-apply-family.html#cb59-1"></a><span class="kw">apply</span>(<span class="dt">X =</span> height, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean)</span></code></pre></div>
-<pre><code>## [1] 1.740348 1.674176 1.773526
-## [4] 1.694565</code></pre>
+<pre><code>## [1] 1.712890 1.678274 1.815409
+## [4] 1.868484</code></pre>
 <blockquote>
 <p>The <code>apply()</code> function begins with three arguments main arguments: <code>X</code>, which will take a matrix or a data frame; <code>FUN</code>, which can be any function that will be applied to the <code>MARGIN</code>s of <code>X</code>; and <code>MARGIN</code> which will take <code>1</code> for row-wise computations, or <code>2</code> for column-wise computations.</p>
 </blockquote>
@@ -291,13 +291,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 2.5
 ## 
 ## $Norm10
-## [1] 0.2340402
+## [1] 0.09043014
 ## 
 ## $Norm20
-## [1] 0.8827562
+## [1] 1.502636
 ## 
 ## $Norm100
-## [1] 4.884175</code></pre>
+## [1] 5.059754</code></pre>
 <blockquote>
 <p><code>lapply()</code> operations done in objects different from a <code>list</code> will be coerced to a <code>list</code> via <code>base::as.list()</code>.</p>
 </blockquote>
@@ -311,9 +311,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb64-4"><a href="the-apply-family.html#cb64-4"></a><span class="co"># Apply mean to each element of the list</span></span>
 <span id="cb64-5"><a href="the-apply-family.html#cb64-5"></a><span class="kw">sapply</span>(SimulatedData, mean)</span></code></pre></div>
 <pre><code>## SimpleSequence         Norm10 
-##      2.5000000      0.4614623 
+##      2.5000000     -0.5256240 
 ##         Norm20        Norm100 
-##      0.9827415      5.0175657</code></pre>
+##      0.7313753      4.9196727</code></pre>
 </div>
 <div id="mapply" class="section level2">
 <h2><span class="header-section-number">14.4</span> <code>mapply()</code></h2>

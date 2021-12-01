@@ -7,43 +7,6 @@ library(DiagrammeR)
 
 ##Section: 02-control-flow.R 
 
-library(DiagrammeR)
-
-#Create node data frame
-f1_nodes <- create_node_df(n = 4, #number of nodes
-                           type = 'a', #for grouping
-                           label = c("Start\nprogram", "Process\n(operations carried out\ne.g. data manipulation)", "Decision", "End\nprogram"), #words inside node
-                           shape = c("rectangle", "rectangle", 'diamond', 'rectangle'), #shape of node
-                           style = c('rounded', 'solid', 'solid', 'rounded'), #line style around nodes
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE, #whether node changes size based on label or is fixed
-                           color = 'mediumblue',
-                           height = 0.70
-                           )
-
-
-#create edges
-##DiagrammeR does not handle NA in edge labels well, so NAs are ' ' here.
-f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
-                           to = c(2, 3, 2, 4),
-                           tailport = c("e", "e", "s", "e"),
-                           headport = c("w", "w", "s", "w"),
-                           label = c(' ', ' ', 'Boolean choice:\nTRUE or FALSE', ' '), #for text on edge
-                           fontsize = 10,
-                           color = 'dimgrey'
-                           )
-
-#create flowchart
-flowchart1 <- create_graph(
-                    nodes_df = f1_nodes,
-                    edges_df = f1_edges,
-                    directed = TRUE, #arrows vs straight lines
-                    attr_theme = 'lr' #left to right specified
-                    )
-
-#display flowchart
-render_graph(flowchart1, width = '95%', height = 'auto')
 
 
 
@@ -53,88 +16,13 @@ if(condition) {
   expression
 }
 
-#Create node data frame
-f2_nodes <- create_node_df(n = 4, #number of nodes
-                           type = 'a', #for grouping
-                           label = c(" ", "Condition", "Expression", " "), 
-                           shape = c("circle", "diamond", 'rectangle', 'circle'), 
-                           style = c('rounded', 'solid', 'solid', 'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-                           )
 
 
-#create edges
-f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
-                           to = c(2, 3, 4, 4), 
-                           label = c(' ', '  if TRUE', '  if FALSE', ' '), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           tailport = c('s', 'w', 's'),
-                           headport = c('n', 'n', 'n')
-                           )
-
-#create flowchart
-flowchart2 <- create_graph(
-                    nodes_df = f2_nodes,
-                    edges_df = f2_edges,
-                    directed = TRUE, 
-                    attr_theme = 'tb' 
-                    )
-
-#display flowchart
-render_graph(flowchart2, width = '45%', height = 'auto')
-
-if(condition) {
-  expression 1
-} else {
-  expression 2
-}
-
-ifelse(condition,
-       expression 1,
-       expression 2
-)
-
-#Create node data frame
-f3_nodes <- create_node_df(n = 5, #number of nodes
-                           type = 'a', #for grouping
-                           label = c(" ", "Condition", "Expression 1\nif body", " ", "Expression 2\nelse body"), 
-                           shape = c("circle", "diamond", 'rectangle', 'circle', 'rectangle'), 
-                           style = c('rounded', 'solid', 'solid', 'filled', 'solid'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-                           )
 
 
-#create edges
-f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
-                           to = c(2, 3, 5, 4, 4), 
-                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           tailport = c('s', 'w', 's', 's', 's'), #where edge leaves node
-                           headport = c('n', 'n', 'n', 'n', 'n') #where arrow meets node
-                           )
 
-#create flowchart
-flowchart3 <- create_graph(
-                    nodes_df = f3_nodes,
-                    edges_df = f3_edges,
-                    directed = TRUE, 
-                    attr_theme = 'tb' 
-                    )
 
-#display flowchart
-render_graph(flowchart3, width = '50%', height = 'auto')
+
 
 options(width = 30)
 a <- 1:10
@@ -150,57 +38,9 @@ sqrt(ifelse(test = a >= 0,
             no = NA)
      )
 
-if(test_expression1) {
-  statement1
-} else if(test_expression2) {
-  statement2
-} else if(test_expression3) {
-  statement3
-} else {
-  statement4
-}
-
-#note this one might turn out better in diagraph / DOT language, 'rank = same' seems broken without DOT
-#Create node data frame
-f4_nodes <- create_node_df(n = 9, #number of nodes
-                           group = c('a','b','b','b','c','c','c','c','a'),
-                           label = c("Start", "Condition 1", "Condition 2", "Condition 3", 
-                                     "Expression 1", "Expression 2", "Expression 3", "Expression 4",  "End"), 
-                           shape = c("circle", "diamond", "diamond", "diamond", 
-                                     'rectangle', 'rectangle','rectangle', 'rectangle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 
-                                     'solid', 'solid', 'solid', 'solid', 'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 12,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-                           )
 
 
-#create edges
-f4_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8), #origin node id
-                           to = c(2, 3, 5, 4, 6, 7, 8, 9, 9, 9, 9), 
-                           label = c(' ', '  if FALSE', '  if TRUE', ' if FALSE', '  if TRUE', ' if FALSE', ' if TRUE',
-                                     ' ', ' ', ' ', ' '), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           rel = c('a','b','c', 'b', 'c', 'c', 'd', 'd', 'd', 'd,'),
-                           tailport = c('s', 'e', 's', 'e', 's', 'e', 's'), #where edge leaves node
-                           headport = c('n', 'n', 'n', 'n', 'n', 'n', 'n') #where arrow meets node
-                           )
 
-#create flowchart
-flowchart4 <- create_graph(
-                    nodes_df = f4_nodes,
-                    edges_df = f4_edges,
-                    directed = TRUE,
-                    attr_theme = 'tb'
-                    )
-
-#display flowchart
-render_graph(flowchart4, width = '75%', height = 'auto')
 
 if(2+2) == 4
 print("Arithmetic works.")
@@ -251,49 +91,6 @@ for(val in 1:3) {
 
 ##Section: 04-iteration.R 
 
-for() {}
-while() {}
-repeat {}
-
-break
-next
-
-#Create node data frame
-f5_nodes <- create_node_df(n = 4, #number of nodes
-                           type = 'a', #for grouping
-                           label = c(" ", "Last item\nreached?", "expression\nfor() \nbody", "  "), 
-                           shape = c("circle", "diamond", 'rectangle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-)
-
-
-#create edges
-f5_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
-                           to = c(2, 3, 4, 2), 
-                           label = c(' ', ' if FALSE', '  if TRUE, exit loop', ' '), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           tailport = c('s', 'w', 'e', 'e'),
-                           headport = c('n', 'w', 'n', 's')
-)
-
-#create flowchart
-flowchart5 <- create_graph(
-  nodes_df = f5_nodes,
-  edges_df = f5_edges,
-  directed = TRUE, 
-  attr_theme = 'tb' 
-)
-
-#display flowchart
-render_graph(flowchart5, width = '35%', height = 'auto')
-
 for(a in c("Hello",
            "R",
            "Programmers")) {
@@ -307,75 +104,16 @@ for(z in 1:4) {
   print(a)
 }
 
-for(a in c("Hello", 
-           "R", 
-           "Programmers")) {
-  print(a)
-}
 
-for(z in 1:4) {
-  a <- rnorm(n = 1, 
-             mean = 5 * z, 
-             sd = 2)
-  print(a)
-}
+
+
 
 y <- 2
 for(m in 1:6) {
   print(y*m)
 }
 
-#Create node data frame
-f5_nodes <- create_node_df(n = 5, #number of nodes
-                           type = 'a', #for grouping
-                           label = c("Start", 
-                                     "y = 2", 
-                                     "for m in 1:6\nis m > 6?",
-                                     "print(y*m)", 
-                                     "Exit"), 
-                           shape = c("circle", 
-                                     "parallelogram", 
-                                     "diamond",
-                                     "parallelogram", 
-                                     'circle'), 
-                           style = c('solid', 
-                                     'solid', 
-                                     'solid', 
-                                     'solid', 
-                                     'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-)
 
-
-#create edges
-f5_edges <- create_edge_df(from = c(1, 2, 3, 3, 4), #origin node id
-                           to = c(2, 3, 4, 5, 3), 
-                           label = c(' ',
-                                     ' ',
-                                     ' if FALSE', 
-                                     ' if TRUE', 
-                                     ' '), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           tailport = c('s', 's', 'w', 'e', 'e'),
-                           headport = c('n', 'n', 'w', 'n', 's')
-)
-
-#create flowchart
-flowchart5 <- create_graph(
-  nodes_df = f5_nodes,
-  edges_df = f5_edges,
-  directed = TRUE, 
-  attr_theme = 'tb' 
-)
-
-#display flowchart
-render_graph(flowchart5, width = '60%', height = 'auto')
 
 (elements <- list(a = 1:3, 
                   b = 4:10, 
@@ -396,58 +134,7 @@ for(val in x) {
 }
 print(count)
 
-#Create node data frame
-f6_nodes <- create_node_df(n = 6, #number of nodes
-                           type = 'a', #for grouping
-                           label = c("Start",
-                                     "x",
-                                     "Last VAL\nin X?", 
-                                     "Is VAL even?", 
-                                     'count = count + 1',
-                                     "print\ncount"), 
-                           shape = c("circle",
-                                     "parallelogram",
-                                     "diamond", 
-                                     'diamond', 
-                                     'parallelogram', 
-                                     'circle'), 
-                           style = c('solid',
-                                     'solid',
-                                     'solid', 
-                                     'solid', 
-                                     'solid',
-                                     'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-)
 
-
-#create edges
-f6_edges <- create_edge_df(from = c(1, 2, 3, 3, 4, 5, 4), #origin node id
-                           to = c(2, 3, 4, 6, 5, 3, 3), 
-                           label = c(' ', ' ', '  if FALSE', ' if TRUE', ' if TRUE', ' ', ' if FALSE'), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = FALSE,
-                           tailport = c('e', 'e', 'e', 's', 'e', 'n', 'n'),
-                           headport = c('w', 'w', 'w', 'n', 'w', 'n', 'n')
-)
-
-#create flowchart
-flowchart6 <- create_graph(
-  nodes_df = f6_nodes,
-  edges_df = f6_edges,
-  directed = TRUE, 
-  attr_theme = 'lr' 
-)
-
-#display flowchart
-render_graph(flowchart6, 
-             width = '90%', 
-             height = 'auto')
 
 data(CO2) # This loads the built in dataset
 
@@ -457,33 +144,17 @@ for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
   print(CO2$conc[i]) # print the CO2 concentration
 }
 
-for(i in 1:10) { 
-  print(CO2$conc[i]) 
-}
 
-for (i in 11:20) { 
-  print(CO2$conc[i]) 
-}
 
-for (i in 21:30) { 
-  print(CO2$conc[i]) 
-}
 
-for (i in 31:40) { 
-  print(CO2$conc[i]) 
-}
 
-for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
-  if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
-    print(CO2$conc[i]) # print the CO2 concentration
-  }
-}
 
-for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
-  if(CO2$Type[i] == "Quebec") { # if the type is "Quebec"
-    print(CO2$conc[i]) # print the CO2 concentration
-  }
-}
+
+
+
+
+
+
 
 for (i in 1:11) { 
   if(CO2$Type[i] == "Quebec") { 
@@ -594,90 +265,11 @@ for(val in x) {
   statement
 }
 
-#Create node data frame
-f8_nodes <- create_node_df(n = 5, #number of nodes
-                           type = 'a', #for grouping
-                           label = c("Start", "Reached last \nval in X?\n\nfor()", 
-                                     "Is condition \nTRUE?\n\nif()",
-                                     'statement\nbody', "End"), 
-                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-)
 
 
-#create edges
-f8_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
-                           to = c(2, 3, 4, 2, 5, 2), 
-                           label = c(' ', ' if FALSE', '  if FALSE', ' ', 'if TRUE, then exit', ' if TRUE, then next'), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = FALSE,
-                           tailport = c('e', 'e', 'e', 's', 'n', 's'),
-                           headport = c('w', 'w', 'nw', 's', 'w', 's')
-)
-
-#create flowchart
-flowchart8 <- create_graph(
-  nodes_df = f8_nodes,
-  edges_df = f8_edges,
-  directed = TRUE, 
-  attr_theme = 'lr' 
-)
-
-#display flowchart
-render_graph(flowchart8, width = '95%', height = 'auto')
-
-for(val in x) {
-  if(condition) { break }
-  statement
-}
-
-#Create node data frame
-f7_nodes <- create_node_df(n = 6, #number of nodes
-                           type = 'a', #for grouping
-                           label = c("Start", 
-                                     "Reached last \nval in X?\n\nfor()", 
-                                     "Is condition \nTRUE? \n\nif()",
-                                     'statement\nbody', 
-                                     "End", 
-                                     " "), 
-                           shape = c("circle", "diamond", 'diamond', 'rectangle', 'circle', 'circle'), 
-                           style = c('solid', 'solid', 'solid', 'solid', 'filled', 'invis'), 
-                           fontname = 'Helvetica',
-                           fontsize = 13,
-                           fixedsize = 'false',
-                           color = 'mediumblue',
-                           width = .1,
-                           penwidth = 1.5
-)
 
 
-#create edges
-f7_edges <- create_edge_df(from = c(1, 2, 3, 4, 2, 3), #origin node id
-                           to = c(2, 3, 4, 2, 5, 5), 
-                           label = c(' ', ' if FALSE\nfor x', '  if FALSE', ' ', 'if TRUE, then exit', ' if TRUE, then break', ' '), 
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = FALSE,
-                           tailport = c('e', 'e', 's', 'w', 'n', 'e'),
-                           headport = c('w', 'w', 'n', 's', 'w', 'w')
-)
 
-#create flowchart
-flowchart7 <- create_graph(
-  nodes_df = f7_nodes,
-  edges_df = f7_edges,
-  directed = TRUE, 
-  attr_theme = 'lr' 
-)
-
-#display flowchart
-render_graph(flowchart7, width = '95%', height = 'auto')
 
 repeat {
   expression
@@ -686,119 +278,17 @@ repeat {
   } break
 }
 
-#Create node data frame
-f5_nodes <- create_node_df(n = 4, #number of nodes
-                           type = 'a', #for grouping
-                           label = c(" ", 
-                                     "Expression",
-                                     "Condition\nif()",
-                                     "Exit"), 
-                           shape = c("circle",
-                                     "rectangle", 
-                                     'diamond', 
-                                     'circle'), 
-                           style = c('solid', 
-                                     'solid', 
-                                     'solid',
-                                     'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-)
 
-
-#create edges
-f5_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
-                           to = c(2, 3, 2, 4), 
-                           label = c(' ', 
-                                     ' ', 
-                                     ' if FALSE\nrepeat', 
-                                     ' if TRUE\nbreak'),
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           tailport = c('s', 'e', 'w', 's'),
-                           headport = c('n', 'e', 'w', 'n')
-)
-
-#create flowchart
-flowchart5 <- create_graph(
-  nodes_df = f5_nodes,
-  edges_df = f5_edges,
-  directed = TRUE, 
-  attr_theme = 'tb' 
-)
-
-#display flowchart
-render_graph(flowchart5, 
-             width = '35%', 
-             height = '40%')
 
 repeat {
   print("Press 'Esc' to stop me!")
 }
 
-[1] "Press 'Esc' to stop me!"
-[1] "Press 'Esc' to stop me!"
-...
-...
-[1] "Press 'Esc' to stop me!"
-
-while(condition){
-  expression
-}
-
-#Create node data frame
-f5_nodes <- create_node_df(n = 4, #number of nodes
-                           type = 'a', #for grouping
-                           label = c(" ", 
-                                     "Condition\nbeing met?",
-                                     "Expression",
-                                     "Exit"), 
-                           shape = c("circle",
-                                     "diamond", 
-                                     'rectangle', 
-                                     'circle'), 
-                           style = c('solid', 
-                                     'solid', 
-                                     'solid',
-                                     'filled'), 
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE,
-                           color = 'mediumblue',
-                           width = .1
-)
 
 
-#create edges
-f5_edges <- create_edge_df(from = c(1, 2, 3, 2), #origin node id
-                           to = c(2, 3, 2, 4), 
-                           label = c(' ', 
-                                     ' while TRUE', 
-                                     ' ', 
-                                     ' if FALSE\nexit'),
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           decorate = TRUE,
-                           tailport = c('s', 's', 'w', 'e'),
-                           headport = c('n', 'n', 'w', 'n')
-)
 
-#create flowchart
-flowchart5 <- create_graph(
-  nodes_df = f5_nodes,
-  edges_df = f5_edges,
-  directed = TRUE, 
-  attr_theme = 'tb' 
-)
 
-#display flowchart
-render_graph(flowchart5, 
-             width = '80%', 
-             height = 'auto')
+
 
 count <- 0
 
@@ -936,40 +426,7 @@ rescale01(our.dataset$b)
 rescale01(our.dataset$c)
 rescale01(our.dataset$d)
 
-library(DiagrammeR)
-#Create node data frame
-f9_nodes <- create_node_df(n = 5, #number of nodes
-                           group = c('a', 'a', 'a', 'b', 'c'),
-                           label = c("Argument 1", "Argument 2",
-                                     "Argument 3", "Data processing\nFunction", 'Return value'), 
-                           shape = c("none", "none", 'none', 'rectangle', 'none'), #shape of node
-                           style = c('none', 'none', 'none', 'rounded', 'none'), #line style around nodes
-                           fontname = 'Helvetica',
-                           fontsize = 10,
-                           fixedsize = FALSE, #whether node changes size based on label or is fixed
-                           color = 'mediumblue'
-                           )
-#create edges
-##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
-f9_edges <- create_edge_df(from = c(1, 2, 3, 4), #origin node id
-                           to = c(4, 4, 4, 5),
-                           style = c('solid', 'solid', 'solid', 'dashed'),
-                           fontsize = 10,
-                           color = 'dimgrey',
-                           headport = c('w', 'w', 'w', 'w'),
-                           tailport = c('e', 'e', 'e', 'e')
-                           )
-#create flowchart
-flowchart9 <- create_graph(
-                    nodes_df = f9_nodes,
-                    edges_df = f9_edges,
-                    directed = TRUE, #arrows vs straight lines
-                    attr_theme = 'lr' #left to right specified
-                    )
-#display flowchart
-render_graph(flowchart9, 
-             width = '95%', 
-             height = 'auto')
+
 
 operations <- function(number1, number2, number3) {
   result <- (number1 + number2) * number3
@@ -978,13 +435,7 @@ operations <- function(number1, number2, number3) {
 
 operations(1, 2, 3)
 
-print_animal <- function(animal) {
-  if (animal == "dog") {
-    print("woof")
-  } else if (animal == "cat") {
-    print("meow")
-  }
-}
+
 
 Scruffy <- "dog"
 Paws <- "cat"
