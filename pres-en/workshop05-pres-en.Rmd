@@ -37,6 +37,93 @@ class: inverse, center, middle
 
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)
 
+
+---
+
+<p style="font-size:60%">
+
+.center[
+**Contributors to the development of this workshop**
+
+by modifying and improving its content as part of the <br> *Le*arning *a*nd *D*evelopment *A*ward
+]
+
+.pull-left[
+.right[
+ **2022** - **2021** - **2020**
+ 
+[Pedro Henrique P. Braga]()
+
+[Gabriel Muñoz]()
+
+[Parnian Pourtaherian]()
+
+[Kate Sheridan]()
+
+<br>
+
+**2019** - **2018** - **2017**
+
+[Katherine Hébert]()
+
+[Pedro Henrique P. Braga]()
+
+[Gabriel Muñoz]()
+
+[Marie-Hélène Brice]()
+
+]
+]
+
+.pull-right[
+.left[
+
+**2016** - **2015** - **2014**
+
+[Johanna Bradie]()
+
+[Sylvain Christin]()
+
+[Zofia Taranu]()
+
+[Ben Haller]()
+
+[Pedro Henrique P. Braga]()
+
+[Sebastien Portalier]()
+
+[Jacob Ziegler]()
+
+[Zofia Taranu]()
+
+[Cédric Frenette Dussault]()
+
+]
+]
+
+</p>
+
+---
+
+# Requirements
+
+#### Material
+
+To follow this workshop, you are required to have downloaded and installed the latest [RStudio](https://rstudio.com/products/rstudio/download/#download) and [R](https://cran.rstudio.com/) versions.
+
+All workshop materials are found at [r.qcbs.ca/workshops/r-workshop-05/](https://r.qcbs.ca/workshops/r-workshop-05/).
+
+--
+
+<br>
+
+#### Recommendations
+
+1. Create and manage your own new script;
+2. Refrain from always referring to the pre-built code; *i.e. get your hands dirty!*
+3. Avoid copy-pasting or running the code directly from the script;
+4. **_Interact_** with the presenters!
+
 ---
 # Learning Objectives
 
@@ -427,9 +514,9 @@ sqrt(ifelse(test = a >= 0,
 ```
 ]
 ---
-# Nested `if()` `else` statement
+### Nested `if()` `else` statement
 
-While the `if()` and `if()` `else` statements leave you with exactly two options, nested `if()` `else` statement allows you consider more alternatives.
+While the `if()` and `if()` `else` statements restrict the outcomes to two, nested `if()` `else` statements allow you to add more conditional outcomes.
 
 
 .pull-left[
@@ -621,7 +708,7 @@ for(val in 1:3) {
 ---
 # Iteration
 
-Every time some operations have to be repeated, a loop may come in handy.
+Every time certain operations have to be repeated, a loop may come in handy.
 
 <br>
 
@@ -1905,7 +1992,8 @@ render_graph(flowchart5,
 
 .pull-left[
 .small[
-**Again**, remember our code that used the `next` statement to print the total counts of $\text{CO}_{2}$ concentrations taken for *chilled* treatments?
+**Remember** that we used the `next` statement to print the total counts of $\text{CO}_{2}$ concentrations taken for *chilled* treatments?
+]
 
 ```{r eval = FALSE}
 count <- 0
@@ -1915,12 +2003,12 @@ for(i in 1:nrow(CO2)) {
 }
 print(count)
 ```
-]
+
 ]
 
 .pull-right[
 .small[
-It could had been equivalently written using `repeat` and `break`:
+We could have equivalently used `repeat` and `break`:
 ```{r eval = FALSE}
 count <- 0
 i <- 0
@@ -1936,18 +2024,19 @@ print(count)
 ]
 
 .small[
-Or, using a `while` loop:
+And also, we could have built a `while` loop:
+
 ```{r eval = FALSE}
 i <- 0
 count <- 0
-while(i < nrow(CO2))
-{
+while(i < nrow(CO2)) {
   i <- i + 1
   if(CO2$Treatment[i] == "nonchilled") next
   count <- count + 1
 }
 print(count)
 ```
+
 ]
 
 ---
@@ -2017,7 +2106,7 @@ our.dataset <- data.frame(
 
 .pull-right[
 
-The equation for doing that is:
+The equation for doing this is:
 
 $$x_{\text{new}} =  \frac{x_i - \text{min}(x)}{ \text{max}(x) - \text{min}(x)}$$
 ]
@@ -2069,7 +2158,7 @@ The equation for doing that is:
 $$x_{\text{new}} =  \frac{x_i - \text{min}(x)}{ \text{max}(x) - \text{min}(x)}$$
 ]
 
-Repeating that equation and this chunk of code 31 times could be a bit tedious:
+Repeating that equation and this chunk of code 31 times could be a _bit_ tedious:
 .small[
 ```{r eval = FALSE}
 our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
@@ -2080,7 +2169,7 @@ our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) /
 
 --
 
-But, we can see that, except from the *input*, the code was pratically the same among the variables. We can then use our ninja abilities and **create a function** that will do that task for us:
+But, we can see that, except from the *input*, the code was similar across the lines. We can use our _ninja_ abilities and **create a function** that will perform our task:
 
 .small[
 .pull-left[
@@ -2110,11 +2199,11 @@ The function here was deliberately hidden to not cause confusion among the parti
 
 <br>
 
-.center[Much of the heavy lifting in `R` is done by functions!]
+.center[**Much of the heavy lifting in `R` is done by functions!**]
 
 <br>
 
-Functions are useful for:
+**Functions are useful** for:
 
 .pull-left3[
 1. Performing a task repeatedly, but configurably;
@@ -2343,7 +2432,7 @@ percentages(c(.543, .534, .466), digits = 2)
 ---
 # The ellipsis argument: `...`
 .small[
-The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
+The special argument `...` allows arguments from another function to be implicitly passed inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
 ]
 .xsmall[
 ```{r, eval = FALSE}
@@ -2479,7 +2568,7 @@ Using what you have just learned on functions and control flow, create a functio
 
 Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
 
-1. Returns `0` if the sum of `a` and `b` is strictly less than `50`;
+1. Returns $0$ if the sum of `a` and `b` is strictly less than `50`;
 2. Else, returns the sum of `a` and `b`.
 
 <br>
@@ -2605,14 +2694,14 @@ a + b
 
 .small[If you had `b` already assigned in your environment, with a different value, you could have had a .alert[bigger] problem!
 
-No error would have been shown and `a + b` would have meant another thing!]
+No error would have been shown and `a + b` would have meant something different!]
 
 ]
 ]
 
 ---
 
-class: inverse, center, middle
+class: inverse, centre, middle
 
 # Additional good programming practices
 
