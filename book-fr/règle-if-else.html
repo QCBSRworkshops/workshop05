@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Workshop 5: Programming in R</title>
+  <title>Chapter 6 Règle if else | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 6 Règle if else | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 6 Règle if else | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-
-
+<link rel="prev" href="règle-if.html"/>
+<link rel="next" href="décisions-à-conditions-multiples.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programmation en <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path=""><a href="#objectifs-dapprentissage"><i class="fa fa-check"></i><b>0.4</b> Objectifs d’apprentissage</a></li>
+<li class="chapter" data-level="0.4" data-path="03-decision-making.html"><a href="#objectifs-dapprentissage"><i class="fa fa-check"></i><b>0.4</b> Objectifs d’apprentissage</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html"><i class="fa fa-check"></i><b>1</b> Préparation de l’atelier</a><ul>
 <li class="chapter" data-level="" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html#accès-au-matériel-de-latelier"><i class="fa fa-check"></i>Accès au matériel de l’atelier</a></li>
@@ -251,11 +251,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="règle-if-else" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> <strong>Règle</strong> <code>if else</code></h1>
+<p>La directive <code>if</code> n’effectue une opération que si une condition est remplie. Cependant, on peut être intéressé non seulement par la spécification de l’expression qui doit être effectuée lorsque la <code>condition</code> requise est VRAIE (<code>TRUE</code>), mais aussi par l’<code>expression</code> qui doit être effectuée lorsque la <code>condition</code> est FAUSSE (<code>FALSE</code>).</p>
+<p>Pour ce faire, nous pouvons utiliser l’instruction <code>if() {} else {}</code> et la fonction <code>ifelse()</code>.</p>
+<div class="split">
+<div class="uneven-split-left">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="règle-if-else.html#cb3-1"></a><span class="cf">if</span>(condition) {</span>
+<span id="cb3-2"><a href="règle-if-else.html#cb3-2"></a>  expression <span class="dv">1</span></span>
+<span id="cb3-3"><a href="règle-if-else.html#cb3-3"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-4"><a href="règle-if-else.html#cb3-4"></a>  expression <span class="dv">2</span></span>
+<span id="cb3-5"><a href="règle-if-else.html#cb3-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="règle-if-else.html#cb4-1"></a><span class="kw">ifelse</span>(condition, </span>
+<span id="cb4-2"><a href="règle-if-else.html#cb4-2"></a>       expression <span class="dv">1</span>, </span>
+<span id="cb4-3"><a href="règle-if-else.html#cb4-3"></a>       expression <span class="dv">2</span></span>
+<span id="cb4-4"><a href="règle-if-else.html#cb4-4"></a>)</span></code></pre></div>
+</div>
+<div class="uneven-split-right">
+<center>
+<div id="htmlwidget-4c633e9c9fbd4559ad95" style="width:50%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4c633e9c9fbd4559ad95">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"4\" [headport = \"n\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</center>
+</div>
+</div>
 </div>
 <hr>
 <center> 
@@ -268,8 +286,8 @@ the table of contents to find the page you are looking for.</p>
           </div>
         </div>
       </div>
-
-
+<a href="règle-if.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="décisions-à-conditions-multiples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

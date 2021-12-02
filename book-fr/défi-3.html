@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Workshop 5: Programming in R</title>
+  <title>Chapter 21 Défi 3 | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 21 Défi 3 | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 21 Défi 3 | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-
-
+<link rel="prev" href="exemples-avec-des-instructions-modifiées.html"/>
+<link rel="next" href="modifier-un-graphique-en-utilisant-for-et-if..html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
 </ul></li>
 <li class="part"><span><b>Programmation en <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path=""><a href="#objectifs-dapprentissage"><i class="fa fa-check"></i><b>0.4</b> Objectifs d’apprentissage</a></li>
+<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#objectifs-dapprentissage"><i class="fa fa-check"></i><b>0.4</b> Objectifs d’apprentissage</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html"><i class="fa fa-check"></i><b>1</b> Préparation de l’atelier</a><ul>
 <li class="chapter" data-level="" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html#accès-au-matériel-de-latelier"><i class="fa fa-check"></i>Accès au matériel de l’atelier</a></li>
@@ -251,11 +251,44 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="défi-3" class="section level1">
+<h1><span class="header-section-number">Chapter 21</span> Défi 3</h1>
+<p>Vous avez réalisé qu’un autre de vos outils ne fonctionnait pas correctement !</p>
+<p>Sur les sites du <strong>Mississippi</strong>, les <strong>concentrations</strong> inférieures à 300 étaient mesurées correctement, mais les concentrations égales ou supérieures à 300 étaient surestimées de 20 unités !</p>
+<p>Votre <em>mission</em> est d’utiliser une boucle pour corriger ces mesures pour tous les sites du Mississippi.</p>
+<div class="puzzle">
+<p><strong>Indice.</strong> Assurez-vous de recharger les données de <span class="math inline">\(\text{CO}_{2}\)</span> afin que nous travaillions avec les données brutes pour le reste de l’exercice :</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="défi-3.html#cb93-1"></a><span class="kw">data</span>(CO2)</span></code></pre></div>
+</div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<button onclick="myFunction()">
+Solution pour le défi 3
+</button>
+<div id="myDIV">
+<p>Défi 3 : Réponse</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="défi-3.html#cb94-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb94-2"><a href="défi-3.html#cb94-2"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span>) {</span>
+<span id="cb94-3"><a href="défi-3.html#cb94-3"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>conc[i] <span class="op">&lt;</span><span class="st"> </span><span class="dv">300</span>)</span>
+<span id="cb94-4"><a href="défi-3.html#cb94-4"></a>            <span class="cf">next</span></span>
+<span id="cb94-5"><a href="défi-3.html#cb94-5"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">-</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb94-6"><a href="défi-3.html#cb94-6"></a>    }</span>
+<span id="cb94-7"><a href="défi-3.html#cb94-7"></a>}</span></code></pre></div>
+<p>Nous aurions également pu l’écrire de cette façon, qui est plus concise et plus claire.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="défi-3.html#cb95-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb95-2"><a href="défi-3.html#cb95-2"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span> <span class="op">&amp;&amp;</span><span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">&gt;=</span><span class="st"> </span><span class="dv">300</span>) {</span>
+<span id="cb95-3"><a href="défi-3.html#cb95-3"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">-</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb95-4"><a href="défi-3.html#cb95-4"></a>    }</span>
+<span id="cb95-5"><a href="défi-3.html#cb95-5"></a>}</span></code></pre></div>
+</div>
 </div>
 <hr>
 <center> 
@@ -268,8 +301,8 @@ the table of contents to find the page you are looking for.</p>
           </div>
         </div>
       </div>
-
-
+<a href="exemples-avec-des-instructions-modifiées.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modifier-un-graphique-en-utilisant-for-et-if..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
