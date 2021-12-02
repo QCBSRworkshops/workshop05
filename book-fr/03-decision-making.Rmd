@@ -1,0 +1,391 @@
+# (PART\*) Prise de décision {-}
+
+# Prise de décision
+
+Il n'est pas rare que nous souhaitions effectuer des opérations *conditionnellement* - ou en d'autres termes, effectuer différentes opérations en fonction du résultat d'un test de conditions souhaitées.
+
+Nous pouvons utiliser `if() {}`, `if() {} else {}` et `ifelse()` pour nous aider dans ce processus de *sélection*.
+
+# Règle `if`
+
+Dans l'exemple ci-dessous, l'`expression` n'est exécutée que si la `condition` testée est "VRAIE" (ou `TRUE`).
+
+<div class = "split">
+<div class = "uneven-split-left">
+
+```{r, echo = TRUE, eval = FALSE}
+if(condition) {
+  expression
+}
+```
+
+</div>
+<div class = "uneven-split-right">
+<center>
+```{r flowchart2, echo=FALSE, purl=FALSE}
+#Create node data frame
+f2_nodes <- create_node_df(n = 4, #number of nodes
+                           type = 'a', #for grouping
+                           label = c(" ", "Condition", "Expression", " "), 
+                           shape = c("circle", "diamond", 'rectangle', 'circle'), 
+                           style = c('rounded', 'solid', 'solid', 'filled'), 
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
+
+
+#create edges
+f2_edges <- create_edge_df(from = c(1, 2, 2, 3), #origin node id
+                           to = c(2, 3, 4, 4), 
+                           label = c(' ', '  if TRUE', '  if FALSE', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           tailport = c('s', 'w', 's'),
+                           headport = c('n', 'n', 'n')
+                           )
+
+#create flowchart
+flowchart2 <- create_graph(
+                    nodes_df = f2_nodes,
+                    edges_df = f2_edges,
+                    directed = TRUE, 
+                    attr_theme = 'tb' 
+                    )
+
+#display flowchart
+render_graph(flowchart2, width = '45%', height = 'auto')
+```
+</center>
+</div>
+</div>
+
+::: explanation
+
+Notez que lorsque la `condition` est FAUSSE (`FALSE`), rien ne se passe et le programme passe à l'étape suivante.
+
+:::
+
+# **Règle** `if else` 
+
+La directive `if` n'effectue une opération que si une condition est remplie. Cependant, on peut être intéressé non seulement par la spécification de l'expression qui doit être effectuée lorsque la `condition` requise est VRAIE (`TRUE`), mais aussi par l'`expression` qui doit être effectuée lorsque la `condition` est FAUSSE (`FALSE`).
+
+Pour ce faire, nous pouvons utiliser l'instruction `if() {} else {}` et la fonction `ifelse()`.
+
+<div class = "split">
+<div class = "uneven-split-left">
+
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
+if(condition) {
+  expression 1
+} else {
+  expression 2
+}
+```
+
+```{r, echo = TRUE, eval = FALSE, purl=FALSE}
+ifelse(condition, 
+       expression 1, 
+       expression 2
+)
+```
+
+
+</div>
+<div class = "uneven-split-right">
+<center>
+```{r flowchart3, echo=FALSE, purl=FALSE}
+#Create node data frame
+f3_nodes <- create_node_df(n = 5, #number of nodes
+                           type = 'a', #for grouping
+                           label = c(" ", "Condition", "Expression 1\nif body", " ", "Expression 2\nelse body"), 
+                           shape = c("circle", "diamond", 'rectangle', 'circle', 'rectangle'), 
+                           style = c('rounded', 'solid', 'solid', 'filled', 'solid'), 
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
+
+
+#create edges
+f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
+                           to = c(2, 3, 5, 4, 4), 
+                           label = c(' ', ' if TRUE', '  if FALSE', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           tailport = c('s', 'w', 's', 's', 's'), #where edge leaves node
+                           headport = c('n', 'n', 'n', 'n', 'n') #where arrow meets node
+                           )
+
+#create flowchart
+flowchart3 <- create_graph(
+                    nodes_df = f3_nodes,
+                    edges_df = f3_edges,
+                    directed = TRUE, 
+                    attr_theme = 'tb' 
+                    )
+
+#display flowchart
+render_graph(flowchart3, width = '50%', height = 'auto')
+```
+</center>
+</div>
+</div>
+
+# Décisions à conditions multiples
+
+Alors que les opérations simples `if` et `if else` testent des conditions uniques, nous pouvons faire des opérations plus complexes, qui testent des conditions multiples.
+
+Avec la fonction `ifelse()`, nous pouvons tester un vecteur de conditions et/ou appliquer des fonctions uniquement sous certaines conditions. Voir les exemples ci-dessous :
+
+<div class = "split">
+<div class = "split-left">
+
+```{r, echo = c(-1) }
+options(width = 30)
+a <- 1:10
+
+ifelse(test = a > 5, 
+       yes = "oui", 
+       no = "non")
+```
+
+</div>
+<div class = "uneven-split-right">
+
+```{r}
+a <- (-4):5
+
+sqrt(ifelse(test = a >= 0, 
+            yes = a,
+            no = NA)
+     )
+```
+
+</div>
+</div>
+
+Alors que les instructions `if() {}` et `if() {} else {}` vous laissent avec exactement deux options, l'instruction `if() {} else if() {}` imbriquée vous permet d'envisager plus d'alternatives.
+
+# Décisions à conditions multiples
+
+
+<div class = "split">
+<div class = "uneven-split-left">
+
+```{r, eval = FALSE, purl=FALSE}
+if(test_expression1) {
+  statement1
+} else if(test_expression2) {
+  statement2
+} else if(test_expression3) {
+  statement3
+} else {
+  statement4
+}
+```
+
+</div>
+<div class = "uneven-split-right">
+<center>
+
+```{r flowchart4, echo=FALSE, purl=FALSE}
+#note this one might turn out better in diagraph / DOT language, 'rank = same' seems broken without DOT
+#Create node data frame
+f4_nodes <- create_node_df(n = 9, #number of nodes
+                           group = c('a','b','b','b','c','c','c','c','a'),
+                           label = c("Start", "Condition 1", "Condition 2", "Condition 3", 
+                                     "Expression 1", "Expression 2", "Expression 3", "Expression 4",  "End"), 
+                           shape = c("circle", "diamond", "diamond", "diamond", 
+                                     'rectangle', 'rectangle','rectangle', 'rectangle', 'circle'), 
+                           style = c('solid', 'solid', 'solid', 'solid', 
+                                     'solid', 'solid', 'solid', 'solid', 'filled'), 
+                           fontname = 'Helvetica',
+                           fontsize = 12,
+                           fixedsize = FALSE,
+                           color = 'mediumblue',
+                           width = .1
+                           )
+
+
+#create edges
+f4_edges <- create_edge_df(from = c(1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8), #origin node id
+                           to = c(2, 3, 5, 4, 6, 7, 8, 9, 9, 9, 9), 
+                           label = c(' ', '  if FALSE', '  if TRUE', ' if FALSE', '  if TRUE', ' if FALSE', ' if TRUE',
+                                     ' ', ' ', ' ', ' '), 
+                           fontsize = 10,
+                           color = 'dimgrey',
+                           decorate = TRUE,
+                           rel = c('a','b','c', 'b', 'c', 'c', 'd', 'd', 'd', 'd,'),
+                           tailport = c('s', 'e', 's', 'e', 's', 'e', 's'), #where edge leaves node
+                           headport = c('n', 'n', 'n', 'n', 'n', 'n', 'n') #where arrow meets node
+                           )
+
+#create flowchart
+flowchart4 <- create_graph(
+                    nodes_df = f4_nodes,
+                    edges_df = f4_edges,
+                    directed = TRUE,
+                    attr_theme = 'tb'
+                    )
+
+#display flowchart
+render_graph(flowchart4, width = '75%', height = 'auto')
+```
+
+</center>
+</div>
+</div>
+
+# Attention à l'analyse des déclarations
+
+::: noway
+
+A votre avis, que se passera-t-il si nous essayons le code ci-dessous ?
+
+<div class = "split">
+<div class = "split-left">
+
+```{r bad-ifelse, eval = FALSE}
+if(2+2) == 4 
+print("L'arithmétique fonctionne.")
+else 
+print("Houston, we have a problem.")
+```
+
+</div>
+<div class = "split-right">
+
+```{r bad-ifelse-out, echo = FALSE, error = TRUE}
+if(2+2) == 4 
+print("L'arithmétique fonctionne.")
+else
+print("Houston, we have a problem.")
+```
+
+</div>
+</div>
+
+Cela ne fonctionne pas car `R` évalue la première ligne et ne sait pas que vous allez utiliser une instruction `else`.
+
+:::
+
+::: explanation
+
+Utilisez des accolades `{ }` pour que `R` sache qu'il doit s'attendre à d'autres entrées. Essayez :
+
+```{r}
+if(2+2 == 4) {
+  print("L'arithmétique fonctionne.")
+} else {
+  print("Houston, we have a problem.")
+}
+```
+
+:::
+
+# Défi 1
+
+Bienvenue à notre premier défi ! Pour le relever, vous utiliserez le bloc de code ci-dessous, et vous devrez :
+
+<div class = "split">
+<div class = "uneven-split-left">
+
+1. Utilisez une commande `if()` pour afficher `“meow”` si `Minou` est un `“chat”`.
+2. Utilisez une commande `if()`  `else` pour afficher `“woof”` si un objet a la valeur `“chien”`, et `“meow”` si non. Essayez ceci sur les objets `Pitou` et `Filou`.
+3. Utilisez la fonction `ifelse` pour afficher `“woof”` pour les `animaux` qui sont des chiens et `“meow”` pour les `animaux` qui sont des chats.
+
+</div>
+<div class = "uneven-split-right">
+
+```{r, echo = TRUE, eval = TRUE}
+Minou <- "chat"
+Pitou <- "chien"
+Filou <- "chat"
+
+animaux <- c(Minou, Pitou, Filou)
+```
+
+</div>
+</div>
+
+::: explanation 
+
+Voici une feuille de triche avec les opérateurs logiques qui peuvent vous aider à réaliser cet exercice : 
+
+| Opérateur | Signification |
+| :-------------: | :-------------: |
+| `==`  | égal à  |
+| `!=`  | pas égal à  |
+| `<`   | plus petit que  |
+| `<=`  | plus petit que ou égal à  |
+| `>`   | plus grand que  |
+| `>=`  | plus grand que ou égal à  |
+| `x&y` | `x` ET `y` |
+| `x`&#124;`y`  | `x` OU `y`  |
+| `isTRUE(x)`  | est-ce que `X` est vrai? |
+
+:::
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+ 
+<button onclick="myFunction()">Solution for Challenge 1</button>
+ 
+<div id="myDIV">
+
+1. Utilisez une commande `if()` pour afficher `“meow”` si `Minou` est un `“chat”`.
+
+```{r}
+if(Minou == 'chat') {
+  print("meow")
+}
+```
+
+2\.Utilisez une commande `if`  `else` pour afficher `“woof”` si un objet a la valeur `“chien”`, et `“meow”` si non. Essayez ceci sur les objets `Pitou` et `Filou`.
+
+```{r}
+x = Minou
+# x = Pitou
+if(x == 'chat') {
+  print("meow")
+} else {
+  print("woof")
+}
+```
+
+
+3\. Utilisez la fonction `ifelse()` pour afficher `“woof”` pour les `animaux` qui sont des chiens et `“meow”` pour les `animaux` qui sont des chats.
+
+```{r}
+animaux <- c(Minou, Pitou, Filou)
+ifelse(animaux == 'chien', "woof", "meow")
+```
+
+or
+
+```{r}
+for(val in 1:3) {
+  if(animaux[val] == "chat") {
+    print("meow")
+  }else if(animaux[val] == "chien") {
+    print("woof")
+  }else print("quoi?")
+}
+```
+
+</div>

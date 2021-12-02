@@ -1,0 +1,34 @@
+# (PART\*) Programmation en `R` {-}
+
+## Objectifs d'apprentissage
+
+Cet atelier se concentre sur la programmation de base en R.
+
+Vous apprendrez à utiliser les méthodes du flux de contrôle (boucles `for`, fonctions de la famille `if`, `while`, `repeat` et `apply()`) pour éviter la répétition du code, faciliter l'organisation et effectuer des simulations. 
+
+Vous apprendrez également à écrire vos propres fonctions,
+et des astuces pour programmer efficacement.
+
+1. Reconnaître le **flux de contrôle** ;
+2. Se familiariser avec les tests de conditions et les itérations ;
+3. Développer vos premières fonctions en `R` ;
+4. Découvrir comment accélérer votre code ;
+5. Démonstration de paquets `R` utiles pour les biologistes.
+
+# Préparation de l'atelier
+
+Pour vous préparer à cet atelier, vous devez télécharger et installer les premières versions de RStudio et de R. 
+
+Tout le matériel de l'atelier se trouve dans le [repositoire Github de cet atelier](github.com/QCBSRworkshops/workshop05). Cela inclut un [script `R`] (https://qcbsrworkshops.github.io/fr/workshop05/workshop05-fr/workshop05-fr.R), qui contient tous les morceaux de code présentés dans ce livre.
+
+Pour reproduire les diagrammes inclus dans cet atelier, vous aurez besoin du paquetage `DiagrammeR`. Vous pouvez l'installer et le charger avec la commande suivante :
+
+```{r, echo = TRUE, eval = FALSE}
+install.packages("DiagrammeR")
+
+library(DiagrammeR)
+```
+
+### Accès au matériel de l'atelier {-}
+
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.R)

@@ -1,0 +1,79 @@
+# Introduction au flux de contrôle
+
+La base de la programmation informatique, quel que soit le langage, commence par le **flux de contrôle**. 
+
+Le **flux de contrôle** (ou *control flow*) est l'ordre dans lequel les appels de fonction, les instructions et les instructions sont exécutés ou évalués lorsqu'un programme est en cours d'exécution.
+
+> Imaginez que vous souhaitiez exécuter une opération plusieurs fois, jusqu'à ce qu'une condition soit remplie. Une option, est de réécrire le même code, en changeant une partie de la syntaxe, le nombre de fois que vous le souhaitez. Une autre solution consiste à écrire notre code en utilisant le *flux de contrôle*, et à *iterer* à travers la même opération qui *évaluera* et *s'arrêtera* jusqu'à ce qu'une certaine condition soit remplie. Cette dernière option implique généralement une forme d'écriture du code beaucoup plus courte, plus claire et moins complexe.
+
+Il est avantageux, pour tout programmeur et programmeuse, de penser en termes de **flux de contrôle**, et donc d'avoir des programmes structurés, car :
+
+1. **La complexité et le temps de la tâche à accomplir sont grandement diminués** ;
+
+2. **Une structure logique signifie également que le code a une clarté accrue** ;
+
+3. **Cela facilite également la collaboration**, et augmente donc la productivité.
+
+### Building blocks of control flow
+
+Il existe de nombreux éléments constitutifs de la programmation par flux de contrôle :
+
+- **Séquencement**, qui exécute ou évalue quelque chose de manière séquentielle ;
+- **Sélection**, qui effectue des opérations `if` ou à moins que certaines conditions soient remplies ; 
+- L'itération**, qui répète une opération `while`, `until` ou `for` un nombre déterminé de fois ; 
+- **L'abstraction procédurale**, qui implique une sous-routine, un appel imbriqué ;
+- Récursion ;
+- **Concurrence**, qui effectue plusieurs opérations en même temps ;
+- Traitement des exceptions et la spéculation ;
+- **Non-déterminisme**.
+
+# Utilisation des diagrammes de flux
+
+Les diagrammes de flux de contrôle peuvent être utilisés pour planifier et représenter la structure des programmes. Les principaux éléments des organigrammes de contrôle sont :
+
+- Une étape de traitement, représentée par la *boîte rectangulaire* ;
+- Une étape de décision, généralement désignée par un *diamant* ; 
+- Les étapes de début et de fin, représentées par des *rectangles à bords arrondis* ;
+- *Flèches* indiquant la direction et chaque étape ;
+- Des *étiquettes* désignant les éléments de l'organigramme.
+
+```{r flowchart1, echo=FALSE, purl=FALSE}
+library(DiagrammeR)
+
+#Create node data frame
+f1_nodes <- create_node_df(n = 4, #number of nodes
+                           type = 'a', #for grouping
+                           label = c("Start\nprogram", "Process\n(operations carried out\ne.g. data manipulation)", "Decision", "End\nprogram"), #words inside node
+                           shape = c("rectangle", "rectangle", 'diamond', 'rectangle'), #shape of node
+                           style = c('rounded', 'solid', 'solid', 'rounded'), #line style around nodes
+                           fontname = 'Helvetica',
+                           fontsize = 10,
+                           fixedsize = FALSE, #whether node changes size based on label or is fixed
+                           color = 'mediumblue',
+                           height = 0.70
+                           )
+
+
+#create edges
+##DiagrammeR does not handle NA in edge labels well, so NAs are ' ' here.
+f1_edges <- create_edge_df(from = c(1, 2, 3, 3), #origin node id
+                           to = c(2, 3, 2, 4),
+                           tailport = c("e", "e", "s", "e"),
+                           headport = c("w", "w", "s", "w"),
+                           label = c(' ', ' ', 'Boolean choice:\nTRUE or FALSE', ' '), #for text on edge
+                           fontsize = 10,
+                           color = 'dimgrey'
+                           )
+
+#create flowchart
+flowchart1 <- create_graph(
+                    nodes_df = f1_nodes,
+                    edges_df = f1_edges,
+                    directed = TRUE, #arrows vs straight lines
+                    attr_theme = 'lr' #left to right specified
+                    )
+
+#display flowchart
+render_graph(flowchart1, width = '95%', height = 'auto')
+
+```
