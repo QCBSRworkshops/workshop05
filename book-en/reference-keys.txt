@@ -47,7 +47,6 @@ return-values
 return-values-1
 challenge
 accessibility-of-variables
-accessibility-of-variables-1
 why-should-i-care-about-programming-practices
 use-functions-to-simplify-your-code
 use-meaningful-names-for-functions
