@@ -17,6 +17,23 @@ et des astuces pour programmer efficacement.
 
 # Préparation de l'atelier
 
+```{r eval=FALSE, echo=FALSE, purl=TRUE}
+##### Avis ###
+###                                                                             #
+### Ceci est un script généré automatiquement basé sur les morceaux de code du  #
+### livre pour cet atelier.                                                     #
+###                                                                             #
+### Il est minimalement annoté pour permettre aux participants de fournir leurs #
+### commentaires : une pratique que nous encourageons vivement.                 #
+###                                                                             #
+### Notez que les solutions aux défis sont également incluses dans ce script.   #
+### Lorsque vous résolvez les défis par vous-méme, essayez de ne pas parcourir  #
+### le code et de regarder les solutions.                                       #
+###                                                                             # 
+### Bon codage !                                                               #
+
+```
+
 Pour vous préparer à cet atelier, vous devez télécharger et installer les premières versions de RStudio et de R. 
 
 Tout le matériel de l'atelier se trouve dans le [repositoire Github de cet atelier](github.com/QCBSRworkshops/workshop05). Cela inclut un [script `R`] (https://qcbsrworkshops.github.io/fr/workshop05/workshop05-fr/workshop05-fr.R), qui contient tous les morceaux de code présentés dans ce livre.
