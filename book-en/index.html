@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
@@ -50,12 +49,13 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
 
 
 <style type="text/css">
@@ -140,81 +140,81 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
 
 <li class="divider"></li>
-<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a><ul>
-<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
-<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+<li class="part"><span><b>QCBS R Workshop Series<span></span></b></span></li>
+<li><a href="index.html#preface">Preface<span></span></a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>0.1</b> Code of conduct<span></span></a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour<span></span></a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors<span></span></a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Programming in <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives</a></li>
+<li class="part"><span><b>Programming in <code>R</code><span></span></b></span><ul>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="#learning-objectives"><i class="fa fa-check"></i><b>0.4</b> Learning objectives<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop</a><ul>
-<li class="chapter" data-level="" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html#accessing-the-workshop-material"><i class="fa fa-check"></i>Accessing the workshop material</a></li>
+<li class="chapter" data-level="1" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>1</b> Preparing for the workshop<span></span></a><ul>
+<li><a href="preparing-for-the-workshop.html#accessing-the-workshop-material">Accessing the workshop material<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html"><i class="fa fa-check"></i><b>2</b> Introduction to Control Flow</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>2.0.1</b> Building blocks of control flow</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html"><i class="fa fa-check"></i><b>2</b> Introduction to Control Flow<span></span></a><ul>
+<li class="chapter" data-level="2.0.1" data-path="introduction-to-control-flow.html"><a href="introduction-to-control-flow.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>2.0.1</b> Building blocks of control flow<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="using-flowcharts.html"><a href="using-flowcharts.html"><i class="fa fa-check"></i><b>3</b> Using flowcharts</a></li>
-<li class="part"><span><b>Decision making</b></span></li>
-<li class="chapter" data-level="4" data-path="decision-making.html"><a href="decision-making.html"><i class="fa fa-check"></i><b>4</b> Decision making</a></li>
-<li class="chapter" data-level="5" data-path="if-statement.html"><a href="if-statement.html"><i class="fa fa-check"></i><b>5</b> <code>if</code> <strong>statement</strong></a></li>
-<li class="chapter" data-level="6" data-path="if-else-statement.html"><a href="if-else-statement.html"><i class="fa fa-check"></i><b>6</b> <code>if else</code> <strong>statement</strong></a></li>
-<li class="chapter" data-level="7" data-path="multiple-condition-decisions.html"><a href="multiple-condition-decisions.html"><i class="fa fa-check"></i><b>7</b> Multiple condition decisions</a></li>
-<li class="chapter" data-level="8" data-path="caution-with-parsing-statements.html"><a href="caution-with-parsing-statements.html"><i class="fa fa-check"></i><b>8</b> Caution with parsing statements</a></li>
-<li class="chapter" data-level="9" data-path="challenge-1.html"><a href="challenge-1.html"><i class="fa fa-check"></i><b>9</b> Challenge 1</a></li>
-<li class="part"><span><b>Iteration</b></span></li>
-<li class="chapter" data-level="10" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>10</b> Iteration</a></li>
-<li class="chapter" data-level="11" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>11</b> <code>for</code> loops</a></li>
-<li class="chapter" data-level="12" data-path="examples-using-for.html"><a href="examples-using-for.html"><i class="fa fa-check"></i><b>12</b> Examples using <code>for</code></a><ul>
-<li class="chapter" data-level="12.1" data-path="examples-using-for.html"><a href="examples-using-for.html#simple-for-loop"><i class="fa fa-check"></i><b>12.1</b> Simple <code>for</code> loop</a></li>
-<li class="chapter" data-level="12.2" data-path="examples-using-for.html"><a href="examples-using-for.html#for-loops-on-different-classes"><i class="fa fa-check"></i><b>12.2</b> <code>for</code> loops on different classes</a></li>
-<li class="chapter" data-level="12.3" data-path="examples-using-for.html"><a href="examples-using-for.html#for-and-if-together"><i class="fa fa-check"></i><b>12.3</b> <code>for</code> and <code>if</code> together</a></li>
-<li class="chapter" data-level="12.4" data-path="examples-using-for.html"><a href="examples-using-for.html#for-with-a-real-dataset"><i class="fa fa-check"></i><b>12.4</b> <code>for</code> with a real dataset</a></li>
+<li class="chapter" data-level="3" data-path="using-flowcharts.html"><a href="using-flowcharts.html"><i class="fa fa-check"></i><b>3</b> Using flowcharts<span></span></a></li>
+<li class="part"><span><b>Decision making<span></span></b></span></li>
+<li class="chapter" data-level="4" data-path="decision-making.html"><a href="decision-making.html"><i class="fa fa-check"></i><b>4</b> Decision making<span></span></a></li>
+<li class="chapter" data-level="5" data-path="if-statement.html"><a href="if-statement.html"><i class="fa fa-check"></i><b>5</b> <code>if</code> <strong>statement</strong><span></span></a></li>
+<li class="chapter" data-level="6" data-path="if-else-statement.html"><a href="if-else-statement.html"><i class="fa fa-check"></i><b>6</b> <code>if else</code> <strong>statement</strong><span></span></a></li>
+<li class="chapter" data-level="7" data-path="multiple-condition-decisions.html"><a href="multiple-condition-decisions.html"><i class="fa fa-check"></i><b>7</b> Multiple condition decisions<span></span></a></li>
+<li class="chapter" data-level="8" data-path="caution-with-parsing-statements.html"><a href="caution-with-parsing-statements.html"><i class="fa fa-check"></i><b>8</b> Caution with parsing statements<span></span></a></li>
+<li class="chapter" data-level="9" data-path="challenge-1.html"><a href="challenge-1.html"><i class="fa fa-check"></i><b>9</b> Challenge 1<span></span></a></li>
+<li class="part"><span><b>Iteration<span></span></b></span></li>
+<li class="chapter" data-level="10" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>10</b> Iteration<span></span></a></li>
+<li class="chapter" data-level="11" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>11</b> <code>for</code> loops<span></span></a></li>
+<li class="chapter" data-level="12" data-path="examples-using-for.html"><a href="examples-using-for.html"><i class="fa fa-check"></i><b>12</b> Examples using <code>for</code><span></span></a><ul>
+<li class="chapter" data-level="12.1" data-path="examples-using-for.html"><a href="examples-using-for.html#simple-for-loop"><i class="fa fa-check"></i><b>12.1</b> Simple <code>for</code> loop<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="examples-using-for.html"><a href="examples-using-for.html#for-loops-on-different-classes"><i class="fa fa-check"></i><b>12.2</b> <code>for</code> loops on different classes<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="examples-using-for.html"><a href="examples-using-for.html#for-and-if-together"><i class="fa fa-check"></i><b>12.3</b> <code>for</code> and <code>if</code> together<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="examples-using-for.html"><a href="examples-using-for.html#for-with-a-real-dataset"><i class="fa fa-check"></i><b>12.4</b> <code>for</code> with a real dataset<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="for-loops-within-for-loops.html"><a href="for-loops-within-for-loops.html"><i class="fa fa-check"></i><b>13</b> <code>for</code> loops within <code>for</code> loops</a></li>
-<li class="chapter" data-level="14" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>14</b> The <code>apply()</code> family</a><ul>
-<li class="chapter" data-level="14.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>14.1</b> <code>apply()</code></a></li>
-<li class="chapter" data-level="14.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply"><i class="fa fa-check"></i><b>14.2</b> <code>lapply()</code></a></li>
-<li class="chapter" data-level="14.3" data-path="the-apply-family.html"><a href="the-apply-family.html#sapply"><i class="fa fa-check"></i><b>14.3</b> <code>sapply()</code></a></li>
-<li class="chapter" data-level="14.4" data-path="the-apply-family.html"><a href="the-apply-family.html#mapply"><i class="fa fa-check"></i><b>14.4</b> <code>mapply()</code></a></li>
-<li class="chapter" data-level="14.5" data-path="the-apply-family.html"><a href="the-apply-family.html#tapply"><i class="fa fa-check"></i><b>14.5</b> <code>tapply()</code></a></li>
+<li class="chapter" data-level="13" data-path="for-loops-within-for-loops.html"><a href="for-loops-within-for-loops.html"><i class="fa fa-check"></i><b>13</b> <code>for</code> loops within <code>for</code> loops<span></span></a></li>
+<li class="chapter" data-level="14" data-path="the-apply-family.html"><a href="the-apply-family.html"><i class="fa fa-check"></i><b>14</b> The <code>apply()</code> family<span></span></a><ul>
+<li class="chapter" data-level="14.1" data-path="the-apply-family.html"><a href="the-apply-family.html#apply"><i class="fa fa-check"></i><b>14.1</b> <code>apply()</code><span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="the-apply-family.html"><a href="the-apply-family.html#lapply"><i class="fa fa-check"></i><b>14.2</b> <code>lapply()</code><span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="the-apply-family.html"><a href="the-apply-family.html#sapply"><i class="fa fa-check"></i><b>14.3</b> <code>sapply()</code><span></span></a></li>
+<li class="chapter" data-level="14.4" data-path="the-apply-family.html"><a href="the-apply-family.html#mapply"><i class="fa fa-check"></i><b>14.4</b> <code>mapply()</code><span></span></a></li>
+<li class="chapter" data-level="14.5" data-path="the-apply-family.html"><a href="the-apply-family.html#tapply"><i class="fa fa-check"></i><b>14.5</b> <code>tapply()</code><span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="challenge-2.html"><a href="challenge-2.html"><i class="fa fa-check"></i><b>15</b> Challenge 2</a></li>
-<li class="chapter" data-level="16" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html"><i class="fa fa-check"></i><b>16</b> Modifying iterations: <code>break</code>, <code>next</code> and <code>while</code></a><ul>
-<li class="chapter" data-level="16.1" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html#next"><i class="fa fa-check"></i><b>16.1</b> <code>next</code></a></li>
-<li class="chapter" data-level="16.2" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html#break"><i class="fa fa-check"></i><b>16.2</b> <code>break</code></a></li>
+<li class="chapter" data-level="15" data-path="challenge-2.html"><a href="challenge-2.html"><i class="fa fa-check"></i><b>15</b> Challenge 2<span></span></a></li>
+<li class="chapter" data-level="16" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html"><i class="fa fa-check"></i><b>16</b> Modifying iterations: <code>break</code>, <code>next</code> and <code>while</code><span></span></a><ul>
+<li class="chapter" data-level="16.1" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html#next"><i class="fa fa-check"></i><b>16.1</b> <code>next</code><span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="modifying-iterations-break-next-and-while.html"><a href="modifying-iterations-break-next-and-while.html#break"><i class="fa fa-check"></i><b>16.2</b> <code>break</code><span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="repeat-loops.html"><a href="repeat-loops.html"><i class="fa fa-check"></i><b>17</b> <code>repeat</code> loops</a></li>
-<li class="chapter" data-level="18" data-path="while-loops.html"><a href="while-loops.html"><i class="fa fa-check"></i><b>18</b> <code>while</code> loops</a></li>
-<li class="chapter" data-level="19" data-path="examples-with-modifying-statements.html"><a href="examples-with-modifying-statements.html"><i class="fa fa-check"></i><b>19</b> Examples with modifying statements</a></li>
-<li class="chapter" data-level="20" data-path="challenge-3.html"><a href="challenge-3.html"><i class="fa fa-check"></i><b>20</b> Challenge 3</a></li>
-<li class="chapter" data-level="21" data-path="edit-a-plot-using-for-and-if.html"><a href="edit-a-plot-using-for-and-if.html"><i class="fa fa-check"></i><b>21</b> Edit a plot using <code>for</code> and <code>if</code></a></li>
-<li class="chapter" data-level="22" data-path="challenge-4.html"><a href="challenge-4.html"><i class="fa fa-check"></i><b>22</b> Challenge 4</a></li>
-<li class="part"><span><b>Programming</b></span></li>
-<li class="chapter" data-level="23" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>23</b> Writing functions</a></li>
-<li class="chapter" data-level="24" data-path="why-write-functions.html"><a href="why-write-functions.html"><i class="fa fa-check"></i><b>24</b> Why write functions?</a></li>
-<li class="chapter" data-level="25" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html"><i class="fa fa-check"></i><b>25</b> Syntax of a function: <code>function()</code></a><ul>
-<li class="chapter" data-level="25.1" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#arguments-of-a-function"><i class="fa fa-check"></i><b>25.1</b> Arguments of a <code>function()</code></a></li>
-<li class="chapter" data-level="25.2" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>25.2</b> Default argument values in a function</a></li>
-<li class="chapter" data-level="25.3" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>25.3</b> The ellipsis argument: <code>...</code></a></li>
-<li class="chapter" data-level="25.4" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#return-values"><i class="fa fa-check"></i><b>25.4</b> Return values</a></li>
-<li class="chapter" data-level="25.5" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#return-values-1"><i class="fa fa-check"></i><b>25.5</b> Return values</a></li>
-<li class="chapter" data-level="25.6" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#challenge"><i class="fa fa-check"></i><b>25.6</b> Challenge</a></li>
+<li class="chapter" data-level="17" data-path="repeat-loops.html"><a href="repeat-loops.html"><i class="fa fa-check"></i><b>17</b> <code>repeat</code> loops<span></span></a></li>
+<li class="chapter" data-level="18" data-path="while-loops.html"><a href="while-loops.html"><i class="fa fa-check"></i><b>18</b> <code>while</code> loops<span></span></a></li>
+<li class="chapter" data-level="19" data-path="examples-with-modifying-statements.html"><a href="examples-with-modifying-statements.html"><i class="fa fa-check"></i><b>19</b> Examples with modifying statements<span></span></a></li>
+<li class="chapter" data-level="20" data-path="challenge-3.html"><a href="challenge-3.html"><i class="fa fa-check"></i><b>20</b> Challenge 3<span></span></a></li>
+<li class="chapter" data-level="21" data-path="edit-a-plot-using-for-and-if.html"><a href="edit-a-plot-using-for-and-if.html"><i class="fa fa-check"></i><b>21</b> Edit a plot using <code>for</code> and <code>if</code><span></span></a></li>
+<li class="chapter" data-level="22" data-path="challenge-4.html"><a href="challenge-4.html"><i class="fa fa-check"></i><b>22</b> Challenge 4<span></span></a></li>
+<li class="part"><span><b>Programming<span></span></b></span></li>
+<li class="chapter" data-level="23" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>23</b> Writing functions<span></span></a></li>
+<li class="chapter" data-level="24" data-path="why-write-functions.html"><a href="why-write-functions.html"><i class="fa fa-check"></i><b>24</b> Why write functions?<span></span></a></li>
+<li class="chapter" data-level="25" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html"><i class="fa fa-check"></i><b>25</b> Syntax of a function: <code>function()</code><span></span></a><ul>
+<li class="chapter" data-level="25.1" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#arguments-of-a-function"><i class="fa fa-check"></i><b>25.1</b> Arguments of a <code>function()</code><span></span></a></li>
+<li class="chapter" data-level="25.2" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>25.2</b> Default argument values in a function<span></span></a></li>
+<li class="chapter" data-level="25.3" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>25.3</b> The ellipsis argument: <code>...</code><span></span></a></li>
+<li class="chapter" data-level="25.4" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#return-values"><i class="fa fa-check"></i><b>25.4</b> Return values<span></span></a></li>
+<li class="chapter" data-level="25.5" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#return-values-1"><i class="fa fa-check"></i><b>25.5</b> Return values<span></span></a></li>
+<li class="chapter" data-level="25.6" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#challenge"><i class="fa fa-check"></i><b>25.6</b> Challenge<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html"><i class="fa fa-check"></i><b>26</b> Accessibility of variables</a><ul>
-<li class="chapter" data-level="26.1" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>26.1</b> Why should I care about programming practices?</a></li>
-<li class="chapter" data-level="26.2" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>26.2</b> Use functions to simplify your code</a></li>
-<li class="chapter" data-level="26.3" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>26.3</b> Use meaningful names for functions</a><ul>
-<li class="chapter" data-level="26.3.1" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-comments"><i class="fa fa-check"></i><b>26.3.1</b> Use comments</a></li>
+<li class="chapter" data-level="26" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html"><i class="fa fa-check"></i><b>26</b> Accessibility of variables<span></span></a><ul>
+<li class="chapter" data-level="26.1" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>26.1</b> Why should I care about programming practices?<span></span></a></li>
+<li class="chapter" data-level="26.2" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>26.2</b> Use functions to simplify your code<span></span></a></li>
+<li class="chapter" data-level="26.3" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>26.3</b> Use meaningful names for functions<span></span></a><ul>
+<li class="chapter" data-level="26.3.1" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-comments"><i class="fa fa-check"></i><b>26.3.1</b> Use comments<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="26.4" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-comments-1"><i class="fa fa-check"></i><b>26.4</b> Use comments: <code>#</code></a></li>
-<li class="chapter" data-level="26.5" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#group-exercise-solution"><i class="fa fa-check"></i><b>26.5</b> Group exercise: Solution</a></li>
+<li class="chapter" data-level="26.4" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-comments-1"><i class="fa fa-check"></i><b>26.4</b> Use comments: <code>#</code><span></span></a></li>
+<li class="chapter" data-level="26.5" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#group-exercise-solution"><i class="fa fa-check"></i><b>26.5</b> Group exercise: Solution<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
 
@@ -254,21 +254,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Workshop 5: Programming in <code>R</code></h1>
 <h2 class="subtitle"><em>QCBS R Workshop Series</em></h2>
 <p class="author"><em>Developed and maintained by the contributors of the QCBS R Workshop Series<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date"><em>2021-12-02 02:04:38</em></p>
+<p class="date"><em>2022-03-23 22:34:58</em></p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The <strong>QCBS R Workshop Series</strong> is a series of 10 workshops that walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.</p>
 <p>The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed on the main Github page.</p>
-<div id="code-of-conduct" class="section level2">
-<h2><span class="header-section-number">0.1</span> Code of conduct</h2>
+<div id="code-of-conduct" class="section level2 hasAnchor">
+<h2><span class="header-section-number">0.1</span> Code of conduct<a href="index.html#code-of-conduct" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The QCBS R Workshop Series and the QCBS R Symposium are venues dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity.</p>
 <p>Participants, presenters and organizers of the workshop series and other related activities accept this Code of Conduct when being present at any workshop-related activities.</p>
 <p>We do not tolerate behaviour that is disrespectful or that excludes, intimidates, or causes discomfort to others.</p>
 <p>We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.</p>
 <p>It applies to all spaces managed by or affiliated with the workshop, including, but not limited to, workshops, email lists, and online forums such as GitHub, Slack and Twitter.</p>
-<div id="expected-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Expected behaviour</h3>
+<div id="expected-behaviour" class="section level3 hasAnchor">
+<h3><span class="header-section-number">0.1.1</span> Expected behaviour<a href="index.html#expected-behaviour" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All participants are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all workshop events and platforms:</p>
 <ul>
 <li>Use welcoming and inclusive language</li>
@@ -278,8 +278,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Show courtesy and respect towards other community members</li>
 </ul>
 </div>
-<div id="unacceptable-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour</h3>
+<div id="unacceptable-behaviour" class="section level3 hasAnchor">
+<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour<a href="index.html#unacceptable-behaviour" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Examples of unacceptable behaviour by participants at any workshop event/platform include:</p>
 <ul>
 <li>written or verbal comments which have the effect of excluding people on the - basis of membership of any specific group;</li>
@@ -296,15 +296,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="contributors" class="section level2">
-<h2><span class="header-section-number">0.2</span> Contributors</h2>
+<div id="contributors" class="section level2 hasAnchor">
+<h2><span class="header-section-number">0.2</span> Contributors<a href="index.html#contributors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Since 2014, several QCBS members contributed to consistently and collaboratively develop and update this workshop, as part of the Learning and Development Award from the Québec Centre for Biodiversity Science. They were:</p>
 <p>Contributed with changes to the presentation: Pedro Henrique Pereira Braga, Parnian Pourtaherian, Kate Sheridan, Katherine Hébert, Gabriel Muñoz, Marie-Hélène Brice</p>
 <p>Contributed with changes to the written material: Pedro Henrique Pereira Braga, Gabriel Muñoz</p>
 <p>Contributed by reporting issues and suggesting modifications:</p>
 </div>
-<div id="contributing" class="section level2">
-<h2><span class="header-section-number">0.3</span> Contributing</h2>
+<div id="contributing" class="section level2 hasAnchor">
+<h2><span class="header-section-number">0.3</span> Contributing<a href="index.html#contributing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Under construction.</p>
 
 </div>
@@ -312,7 +312,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h2><span class="header-section-number">0.4</span> Learning objectives</h2>
+<h2><span class="header-section-number">0.4</span> Learning objectives<a href="#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This workshop focuses on basic programming in R.</p>
 <p>You will learn how to use control flow (<code>for</code> loops, <code>if</code>, <code>while</code>, <code>repeat</code>, and <code>apply()</code> family functions) methods to prevent code repetition, facilitate organization and run
 simulations.</p>
