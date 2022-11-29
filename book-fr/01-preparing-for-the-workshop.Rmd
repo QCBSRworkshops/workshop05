@@ -1,6 +1,6 @@
 # (PART\*) Programmation en `R` {-}
 
-## Objectifs d'apprentissage
+# Objectifs d'apprentissage
 
 Cet atelier se concentre sur la programmation de base en R.
 
