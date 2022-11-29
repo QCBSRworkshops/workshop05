@@ -81,6 +81,7 @@ for:
 
 ```{r flowchart9, echo=FALSE, purl=FALSE}
 library(DiagrammeR)
+
 #Create node data frame
 f9_nodes <- create_node_df(n = 5, #number of nodes
                            group = c('a', 'a', 'a', 'b', 'c'),
