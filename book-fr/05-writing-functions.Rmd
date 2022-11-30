@@ -1,91 +1,32 @@
 # (PART\*) Programming {-}
 
-# Writing functions
+# Écrire des fonctions
 
+## Pourquoi écrire une fonction ?
 
-Imagine that we would like to rescale variables to the range of `0` to `1`.
+Le gros du travail dans R est fait par des fonctions. Elles sont utiles pour:
 
-```{r echo = TRUE}
-# our.dataset has 4 variables 
+1. Répéter une même tâche, mais en changeant ses paramètres;
 
-our.dataset <- data.frame(
-  a = rnorm(10),
-  b = rnorm(10),
-  c = rnorm(10),
-  d = rnorm(10)
-)
-```
+2. Rendre votre code plus lisible;
 
+3. Rendre votre code plus facile à modifier et à maintenir;
 
-The equation for rescaling variables into the simplex (0-1) is:
+4. Partager du code entre différentes analyses;
 
-$$x_{\text{new}} =  \frac{x_i - \text{min}(x)}{ \text{max}(x) - \text{min}(x)}$$
-We could rescale these four variables to `0` and `1` by doing the following:
+5. Partager votre code avec d'autres personnes;
 
-```{r echo = TRUE}
-our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
-  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
-our.dataset$b <- (our.dataset$b - min(our.dataset$b, na.rm = TRUE)) / 
-  (max(our.dataset$b, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
-our.dataset$c <- (our.dataset$c - min(our.dataset$c, na.rm = TRUE)) / 
-  (max(our.dataset$c, na.rm = TRUE) - min(our.dataset$c, na.rm = TRUE))
-our.dataset$d <- (our.dataset$d - min(our.dataset$d, na.rm = TRUE)) / 
-  (max(our.dataset$d, na.rm = TRUE) - min(our.dataset$d, na.rm = TRUE))
-```
+6. Modifier les fonctionnalités par défaut de R.
 
-
-**What if our dataset had 31 variables?**
-
-Repeating that equation and this chunk of code 31 times could become a tedious and inneficient process:
-
-```{r eval = FALSE}
-our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
-  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
-```
-
-
-But, we can see that, except from the *input*, the code was practically the same among the variables
-
-*The function here was deliberately hidden to not cause confusion among the participants*
-
-```{r eval = FALSE}
-# our
-# secret
-# hidden
-# function
-```
-
-```{r eval = FALSE}
-rescale01(our.dataset$a)
-rescale01(our.dataset$b)
-rescale01(our.dataset$c)
-rescale01(our.dataset$d)
-```
-
-# Why write functions?
-
-Much of the heavy lifting in R is done by functions. They are useful
-for:
-
-1- Performing a task repeatedly, but configurably;
-
-2- Making your code more readable;
-
-3- Make your code easier to modify and maintain;
-
-4- Sharing code between different analyses;
-
-5- Sharing code with other people;
-
-6- Modifying R's built-in functionality.
 
 ```{r flowchart9, echo=FALSE, purl=FALSE}
 library(DiagrammeR)
+
 #Create node data frame
 f9_nodes <- create_node_df(n = 5, #number of nodes
                            group = c('a', 'a', 'a', 'b', 'c'),
                            label = c("Argument 1", "Argument 2",
-                                     "Argument 3", "Data processing\nFunction", 'Return value'), 
+                                     "Argument 3", "Traitement des données", 'Résultat'), 
                            shape = c("none", "none", 'none', 'rectangle', 'none'), #shape of node
                            style = c('none', 'none', 'none', 'rounded', 'none'), #line style around nodes
                            fontname = 'Helvetica',
@@ -93,6 +34,8 @@ f9_nodes <- create_node_df(n = 5, #number of nodes
                            fixedsize = FALSE, #whether node changes size based on label or is fixed
                            color = 'mediumblue'
                            )
+
+
 #create edges
 ##DiagrammeR doesn't handle NA's in edge labels well, so NAs are ' ' here.
 f9_edges <- create_edge_df(from = c(1, 2, 3, 4), #origin node id
@@ -103,6 +46,7 @@ f9_edges <- create_edge_df(from = c(1, 2, 3, 4), #origin node id
                            headport = c('w', 'w', 'w', 'w'),
                            tailport = c('e', 'e', 'e', 'e')
                            )
+
 #create flowchart
 flowchart9 <- create_graph(
                     nodes_df = f9_nodes,
@@ -110,43 +54,39 @@ flowchart9 <- create_graph(
                     directed = TRUE, #arrows vs straight lines
                     attr_theme = 'lr' #left to right specified
                     )
+
 #display flowchart
 render_graph(flowchart9, 
              width = '95%', 
              height = 'auto')
 ```
 
-# Syntax of a function: `function()`
+# Syntaxe d'une fonction
 
 ```r
 function_name <- function(argument1, argument2, ...) {
-  body  # What we want the function to do
-  return(values)  # Optional
+  expression...  # Ce que la fonction fait
+  return(valeur)  # Optionnel, pour sortir le résultat de la fonction
 }
 ```
 
-- `function_name` is the name of the function, and will be stored in the `R` environemnt as an object with this name;
-- `argument`s take the defined values that can be used within the function;
-- `body` contains the statements that define what the function does;
-- `output` contains the returned value from the function. If `return()` is absent, then the last expression is returned. 
-
-## Arguments of a `function()`
+## Arguments d'une fonction
 
 ```r
 function_name <- function(argument1, argument2, ...) {
-  body  # What we want the function to do
-  return(values)  # Optional
+  expression...
+  return(valeur)
 }
 ```
 
-Arguments are the *input* values of your function and will have the information your function needs to be able to perform correctly.
+Les arguments sont les données fournies en entrée à votre fonction et contiennent l'information nécessaire pour que la fonction opère correctement.
 
-A function can have between zero and an infinity of arguments. See the following example:
+Une fonction peut avoir entre 0 et une infinité d'arguments. Par exemple:
 
 ```{r}
-operations <- function(number1, number2, number3) {
-  result <- (number1 + number2) * number3
-  print(result)
+operations <- function(numero_1, numero_2, numero_3) {
+  resultat <- (numero_1 + numero_2) * numero_3
+  print(resultat)
 }
 ```
 
@@ -154,124 +94,73 @@ operations <- function(number1, number2, number3) {
 operations(1, 2, 3)
 ```
 
-**Challenge 4**
+**Exercice 5**
 
-Using what you learned previously on flow control, create a function `print_animal()` that takes an `animal` as argument and gives the following results:
+En utilisant ce que vous avez appris précédemment sur le contrôle de flux, créez une fonction `print_animal()` qui prend un `animal` comme argument et donne les résultats suivants :
 
 ```{r, echo=F, purl=FALSE}
 print_animal <- function(animal) {
-  if (animal == "dog") {
+  if (animal == "chien") {
     print("woof")
-  } else if (animal == "cat") {
-    print("meow")
+  } else if (animal == "chat") {
+    print("miaou")
   }
 }
 ```
 
 ```{r}
-Scruffy <- "dog"
-Paws <- "cat"
-print_animal(Scruffy)
-print_animal(Paws)
+Pitou <- "chien"
+Minou <- "chat"
+print_animal(Pitou)
+print_animal(Minou)
 ```
 
-**Challenge 4: Solution**
+**Exercice 5: Solution**
 
 Using what you learned previously on flow control, create a function `print_animal()` that takes an `animal` as argument and gives the following results:
 
-```{r, echo=F}
+```{r}
 print_animal <- function(animal) {
-  if(animal == "dog") {
+  if (animal == "chien") {
     print("woof")
-  } else if(animal == "cat") {
-    print("meow")
+  } else if (animal == "chat") {
+    print("miaou")
   }
 }
 ```
 
-```{r}
-Scruffy <- "dog"
-Paws <- "cat"
-print_animal(Scruffy)
-print_animal(Paws)
-```
+## Valeurs par défaut dans une fonction
 
+Les arguments peuvent aussi être optionnels, auquel cas on peut leur donner une valeur par défaut.
+
+Ceci peut s'avérer utile si on utilise souvent une fonction avec les mêmes paramètres, mais qu'on veut tout de même garder la possibilité de changer leur valeur si nécessaire.
 
 ```{r}
-print_animal <- function(animal) {
-  if(animal == "dog") {
-    print("woof")
-  } else if(animal == "cat") {
-    print("meow")
-  }
+operations <- function(numero_1, numero_2, numero_3 = 3) {
+  resultat <- (numero_1 + numero_2) * numero_3
+  print(resultat)
 }
-```
-
-## Default argument values in a function
-
-Arguments can be provided with a **default value**, or even be optional.
-
-**Default values** are useful when using a function with the same settings. The flexibility to depart from default values is still there, if needed.
-
-```{r}
-operations <- function(number1, number2, number3 = 3) {
-  result <- (number1 + number2) * number3
-  print(result)
-}
-operations(number1 = 1, number2 = 2, number3 = 3) 
-# is equivalent to
+operations(1, 2, 3) # est équivalent à
 operations(1, 2)
-operations(1, 2, 2) # we can still change the value of number3 if needed
+operations(1, 2, 2) # on peut toujours changer la valeur de numero_3
 ```
 
-## The ellipsis argument: `...`
+## Argument spécial `...`
 
-The special argument `...` allows you to pass arguments from other undefined functions, *i.e.* allowing for an indefinite number of arguments inputs. 
-
-```{r echo=TRUE}
-paste_anything_fun <- function(...) {
-  arguments <- list(...)
-  paste0(arguments)
-}
-```
-
-```{r echo=TRUE}
-paste_anything_fun("I", 
-                   "want", 
-                   "a break!")
-```
-
-```{r echo=TRUE}
-percentages <- function(x, mult = 100, ...){
- percent <- round(x * mult, ...)
- paste(percent, "%", sep = "")
-}
-```
-
-```{r echo=TRUE}
-percentages(c(.543, .534, .466))
-``` 
-
-```{r echo=TRUE}
-# ?round
-percentages(c(.543, .534, .466), digits = 2)
-``` 
-
-The special argument `...` allows you to pass on arguments to another function used inside your function. Here we use `...` to pass on arguments to `plot()` and `points()`.
+L'argument spécial `...` vous permet de passer des arguments à une autre fonction utilisée à l'intérieur de votre fonction. Ici, on utilise `...` pour passer des arguments à `plot()` et `points()`.
 
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
-  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...)
-  for(i in 1:length(CO2[,1])){
-     if(CO2$Type[i] == "Quebec") {
+  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) # On utilise ... pour passer les arguments a plot().
+  for (i in 1:length(CO2[,1])){
+     if (CO2$Type[i] == "Quebec") {
        points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
-     } else if(CO2$Type[i] == "Mississippi") {
+     } else if (CO2$Type[i] == "Mississippi") {
        points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
      }
   }
 }
 ```
-
 
 ```{r, eval = FALSE}
 plot.CO2(CO2, 
@@ -305,9 +194,29 @@ plot.CO2(CO2,
 plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 ```
 
-## Return values
 
-The last expression evaluated in a `function` becomes the return value:
+L'argument spécial `...` permet d'entrer un nombre indéfini d'arguments.
+
+```{r}
+sum2 <- function(...){
+  args <- list(...)
+  result <- 0
+  for (i in args)  {
+    result <- result + i
+  }
+  return (result)
+}
+```
+
+
+```{r}
+sum2(2, 3)
+sum2(2, 4, 5, 7688, 1)
+```
+
+## Valeurs de retour
+
+La dernière expression évaluée dans une `fonction` devient la valeur de sortie.
 
 ```{r}
 myfun <- function(x) {
@@ -321,13 +230,12 @@ myfun(5)
 myfun(15)
 ```
 
-`function()` itself returns the last evaluated value even without including `return()` 
+`function()` sort la dernière valeur évaluée, même sans inclure la fonction `return()`.
 
 
-## Return values
+## Valeurs de retour
 
-.small[
-It can be useful to explicitly `return()` if the routine should end early, jump out of the function and return a value.
+Utiliser `return()` de façon explicite peut être utile si la boucle doit terminer tôt, sortir de la fonction, et sortir une valeur.
 
 ```{r}
 simplefun1 <- function(x) {
@@ -337,7 +245,7 @@ simplefun1 <- function(x) {
 ```
 
 <br>
-Functions can return only a single object (and text). But this is not a limitation because you can return a `list` containing any number of objects.
+Un seul objet (ou texte) de retour peut être renvoyé par une fonction. Par contre, ceci n'est pas une limite: on peut renovoyer une `liste` contenant plusieurs objets.
 
 
 ```{r echo = TRUE}
@@ -360,40 +268,41 @@ simplefun2(1, 2)
 simplefun2(1, 2)
 ```
 
-## Challenge 
+## Exercice 6
 
-Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
+En utilisant vos nouvelles connaissances de fonctions et de structures de contrôle, créez une fonction `bigsum()` qui prend 2 arguments `a` et `b`, et:
 
-1. Returns $0$ if the sum of `a` and `b` is strictly less than $50$;
-2. Else, returns the sum of `a` and `b`.
+1. Sort `0` si la somme de `a` et `b` est strictement inférieure à 50;
+2. Sinon, sort la somme de `a` et `b`.
 
 
-**Challenge 5: Solution**
+**Exercice 6: Solution**
 
-Using what you have just learned on functions and control flow, create a function named `bigsum` that takes two arguments `a` and `b` and:
+En utilisant vos nouvelles connaissances de fonctions et de structures de contrôle, créez une fonction `bigsum()` qui prend 2 arguments `a` et `b`, et:
 
-1. Returns `0` if the sum of `a` and `b` is strictly less than `50`;
-2. Else, returns the sum of `a` and `b`.
+1. Sort `0` si la somme de `a` et `b` est strictement inférieure à 50;
+2. Sinon, sort la somme de `a` et `b`.
 
-**Answer 1**
+**Solution 1**
 
 ```{r}
 bigsum <- function(a, b) {
   result <- a + b
-  if(result < 50) {
+  if (result < 50) {
     return(0)
   } else {
-    return(result)
+    return (result)
   }
 }
 ```
 
-**Answer 2**
+
+**Solution 2**
 
 ```{r}
 bigsum <- function(a, b) {
   result <- a + b
-  if(result < 50) {
+  if (result < 50) {
   0
   } else {
   result
@@ -401,153 +310,112 @@ bigsum <- function(a, b) {
 }
 ```
 
-# Accessibility of variables
+# Accessibilité des variables
 
-It is essential to always keep in mind where your variables are, and whether they are defined and accessible:
+Il est essentiel de pouvoir situer nos variables, et de savoir si elles sont définies et accessibles.
 
-1. Variables defined inside a function are not accessible outside from it!
+1. Les variables définies *à l'intérieur* d'une fonction ne sont pas accessibles à l'extérieur de la fonction!
 
-2. Variables defined outside a function are accessible inside, and are not modified, even if they have the same name.
+2. Les variables définies *à l'extérieur* d'une fonction sont accessibles à l'intérieur, mais ce n'est jamais une bonne idée! Votre fonction ne fonctionnera plus si la variable extérieure est effacée!
+
+Faites très attention lorsque vous créez des variables à l'intérieur d'une condition, car la variable pourrait ne jamais être créée et causer des erreurs (parfois imperceptibles).
 
 ```{r, error = TRUE}
-out_val <- 3 
+var1 <- 3     # 'var1' est définie à l'extérieur de la fonction
 vartest <- function() {
-  in_val <- 4  
-  print(in_val)
-  print(out_val)
+  a <- 4      # 'a' est définie a l'intérieur
+  print(a)    # affiche 'a'
+  print(var1) # affiche 'var1'
 }
-vartest()
+
+a             # on ne peut pas afficher 'a', car 'a' n'existe qu'à l'intérieur de la fonction
+
+vartest()     # cvartest() affiche 'a' et 'var1'
+
+rm(var1)      # supprime 'var1'
+vartest()     # la fonction ne fonctionne plus, car 'var1' n'existe plus!
 ```
 
-```{r, error = TRUE}
-in_val; out_val
-```
+Utilisez des arguments!
 
-```{r, error = TRUE}
-out_val_2
-```
+De plus, à l'intérieur d'une fonction, les noms d'arguments remplaceront les noms des autres variables.
 
-*What happens in the function club, stays in the function club.*
-
-Be very careful when creating variables inside a conditional statement
-as the variable may never have been created and cause (sometimes
-unperceptible) errors.
-
-```{r, error = TRUE}
-var1 <- 3 
-vartest <- function() {
-  a <- 4      # 'a' is defined inside
-  print(a)    # print 'a'
-  print(var1) # print var1
+```{r}
+var1 <- 3     # var1 est définie à l'extérieur de la fonction
+vartest <- function(var1) {
+  print(var1) # affiche var1
 }
-a             # we cannot print 'a' as it exists only inside the function
-vartest()     # calling vartest() will print a and var1
-rm(var1)      # remove var1
-vartest()     # calling the function again does not work anymore
+
+vartest(8)    # Dans notre fonction, var1 est maintenant notre argument et prend sa valeur
+
+var1          # var1 a toujours la même valeur à l'extérieur de la fonction
 ```
 
-*Tip* It is good practice to define variables outside the conditions and then modify their values to avoid any problems.
+Une bonne pratique serait de définir les variables à l'extérieur de la condition, puis ensuite de modifier leurs valeurs pour éviter ces problèmes.
 
 ```{r eval = FALSE}
 a <- 3
-if(a > 5) {
+if (a > 5) {
   b <- 2
 }
+
 a + b
 ```
-
-If you had `b` already assigned in your environment, with a different
-value, you could have had a *bigger* problem!
 
 ```{r eval = FALSE}
 # Error: object 'b' not found
 ```
+<br>
+Si `b` avait déjà une valeur différente assignée dans l'environnement, on aurait un gros problème!
 
-## Why should I care about programming practices?
+R ne trouverait pas d'erreur, et la valeur de `a + b` serait entièrement différente!
+
+# Bonnes pratiques de programmation
+
+## Pourquoi devrais-je me soucier sur les bonnes pratiques de programmation?
 
 <br>
 
-- It makes your life easier;
-- It helps you achieve greater readability and makes sharing and reusing your code a lot less painful;
-- It helps reduce the time you will spend remembering and understanding your own code.
+- Pour vous faciliter la vie;
+- Pour améliorer la lisibilité et faciliter le partage et la réutilisation de votre code;
+- Pour réduire le temps que vous passeriez à essayer de comprendre votre code.
 
-**Keep a clean and nice code**
+**Gardez un code beau et propre**
 
-Proper indentation and spacing is the first step to get an easy to read
+Les indentations et les espaces sont une première étape vers un code lisible:
 
-code:
+-   Utilisez des espaces avant et après vos opérateurs;
 
--   Use spaces between and after you operators
-
-`x>=1&x<=10` is more difficult to read then `x >= 1 & x <= 10`
+`x>=1&x<=10` est plus difficile à lire que `x >= 1 & x <= 10`
 
 
--   Use consistently the same assignation operator. 
+-   Utilisez toujours le même opérateur d'assignation.
 
-<- is often preferred. = is OK, but do not switch all the time between the two
+`<-` est préférable. Vous pouvez utiliser `=` (parfois), mais ne changez pas entre les deux;
 
 
--   Use brackets when using flow control statements:
+-   Utilisez des crochets pour encadrer vos structures de contrôle de flux:
 
-    -   Inside brackets, indent by *at least* two spaces;
-    -   Put closing brackets on a separate line, except when preceding an `else` statement.
+    -   À l'intérieur des crochets, faites une indentation *d'au moins* 2 espaces;
+    -   Les crochets de fermeture occupent généralement leur propre ligne, sauf s'ils précèdent une condition `else`.
     
     
--   Define each variable on its own line.
+-   Définissez chaque variable sur sa propre ligne;
 
-- Use `Cmd + I` or `Ctrl + I` in RStudio to indent the highlighted code automatically;
-
-```{r, eval = FALSE}
-if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
-```
-
-```{r, eval = FALSE}
- if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
-    print("Between 1 and 2")
-  }
-```
+-   Utilisez `Cmd + I` ou `Ctrl + I` dans RStudio pour indenter automatiquement le code mis en évidence.
 
 
-This code is not spaced, and therefore hard to read. All brackets are
-badly aligned, and it looks "messy".
+## Utilisez des fonctions pour simplifier le code
 
-```{r, eval= FALSE}
-a<-4;b=3
-if(a<b){
-if(a==0)print("a zero")}else{
-if(b==0){print("b zero")}else print(b)}
-```
+Écrivez une fonction:
+1. Quand une portion du code est répété à plus de 2 reprises dans ton script;
+2. Quand seulement une partie du code change et inclut des options pour différents arguments.
 
-On the left, code is not spaced, nor indented. All brackets are in the same line, and it looks "messy". On the right, it looks more organized, no?
+Ceci vous aidera à réduire le nombre d'erreurs de copier/coller, et réduira le temps passé à les corriger.
 
-```{r}
-a <- 4
-b <- 3
-if(a < b) {
-  if(a == 0) {
-    print("a zero")
-  }
-} else {
-  if(b == 0) {
-    print("b zero")
-  } else {
-    print(b)
-  }
-}
-```
+Modifions l'exemple de l'**Exercice 3** et supposons que toutes les concentrations de $CO_2$ du Mississipi étaient surestimées de 20 et que celles du Québec étaient sous-estimées de 50.
 
-## Use functions to simplify your code
-
-Write your own function:
-1. When portion of the code is repeated more than a few times in your script;
-2. If only a part of the code changes and includes options for different arguments.
-
-This would also reduce the number of potential errors done by copy-pasting, and the time needed to correct them.
-
-
-Let's modify the example from **Challenge 3** and suppose that all $CO_2$ uptake from Mississipi plants was overestimated by 20 and Quebec underestimated by 50.
-
-We could write this:
+On pourrait écrire ceci:
 
 ```{r}
 for(i in 1:length(CO2[,1])) {
@@ -562,7 +430,7 @@ for(i in 1:length(CO2[,1])) {
 }
 ```
 
-Or this:
+Ou ceci:
 
 ```{r eval = FALSE}
 recalibrate <- function(CO2, type, bias) {
@@ -582,9 +450,9 @@ newCO2 <- recalibrate(CO2 = CO2,
 newCO2 <- recalibrate(newCO2, "Quebec", +50)
 ```
 
-## Use meaningful names for functions
+## Noms de fonctions informatifs
 
-Same function as before, but with vague names:
+Voici notre fonction de l'exemple précédent avec un nom vague.
 
 ```{r, eval = FALSE, echo = TRUE}
 rc <- function(c, t, b) {
@@ -597,77 +465,51 @@ rc <- function(c, t, b) {
 }
 ```
 
-Whenever possible, avoid using names of existing `R` functions and variables to avoid confusion and conflits.
+Qu-est ce que `rc` et `c`?
 
-### Use comments
+Quand possible, évitez d'utiliser des noms de fonctions R et de variables qui existent déjà pour éviter la confusion et les conflits.
 
-<br>
+## Utilisez des commentaires: `#`
 
-What is `c` and `rc`?
-
-
-That being said:
-
-<br>
-
-![](https://pbs.twimg.com/media/Ea8JSbRXsAAwF1D?format=jpg&name=large)
-
-<br>
-<br>
-Whenever possible, avoid using names of existing `R` functions and variables to avoid confusion and conflits.
-
-## Use comments: `#`
-
-.alert[Final tip]. Add comments to describe what your code does, how to use its arguments or a detailed step-by-step description of the function.
+Ajoutez des commentaires pour décrire tout ce que votre code fait, que ce soit le but de la fonction, comment utiliser ses arguments, ou une description détaillée de la fonction étape par étape.
 
 
 ```{r}
-# Recalibrates the CO2 dataset by modifying the CO2 uptake concentration
-# by a fixed amount depending on the region of sampling.
+# Recalibre le jeu de données CO2 en modifiant la concentration de CO2
+# d'une valeur fixe selon la region
 # Arguments
 # CO2: the CO2 dataset
-# type: the type ("Mississippi" or "Quebec") that need to be recalibrated
-# bias: the amount to add or remove to the concentration uptake
+# type: the type ("Mississippi" or "Quebec") that need to be recalibrated.
+# bias: the amount to add or remove to the concentration
 recalibrate <- function(CO2, type, bias) {
-  for(i in 1:nrow(CO2)) {
+  for (i in 1:nrow(CO2)) {
     if(CO2$Type[i] == type) {
-      CO2$uptake[i] <- CO2$uptake[i] + bias
+      CO2$conc[i] <- CO2$conc[i] + bias
     }
   }
   return(CO2)
 }
 ```
 
-**Challenge 6: Group exercise**
+## Exercice de groupe
 
-Using what you learned, write an `if()` statement that tests whether a numeric variable `x` is `0`. If not, it assigns $cos(x)/x$ to `z`, otherwise it assigns $1$ to `z`.
+En utilisant ce que vous avez appris, écrivez une déclaration `if()` qui vérifie si une variable numérique `x` est égale à zéro. Si ce n'est pas le cas, elle attribue $cos(x)/x$ à `z`, sinon elle attribue $1$ à `z`.
+
+Créez une fonction appelée `ma_fonction()` qui prend la variable `x` en argument et retourne `z`.
+
+Si nous attribuons respectivement $45$, $20$ et $0$ à `x`, laquelle des options suivantes représenterait les résultats ?
+
+
+**1.** $0.054$, $0.012$, et $0$; <br>
 <br>
-
-Create a function called `my_function()` that takes the variable `x` as argument and returns `z`.
+**2.** $0.020$, $0.054$, et $1$; <br>
 <br>
-
-If we assign $45$, $20$, and $0$ to `x` respectively, which of the following options would represent the results?
-
-<br>
-
-**1.** $0.054$, $0.012$, and $0$; <br>
-<br>
-**2.** $0.020$, $0.054$, and $1$; <br>
-<br>
-**3.** $0.012$, $0.020$, and $1$. <br>
-
-<br>
-
-In addition to this, discuss with your group about a function that you would like to create (it can or it may not be related to your research). Be prepared to briefly describe it to us!
-
-???
-
-This exercise should take place in breakout rooms within 10 minutes. After rejoining the main room, a poll should be opened to participants. Once you obtain the response from participants, show them the correct answer and code. You may request that one of the participants explain their answer before showing the results.
+**3.** $0.012$, $0.020$, et $1$. <br>
 
 
-## Group exercise: Solution
+**Exercice de groupe: Solution**
 
-Correct answer is option **3** ( $0.12$, $0.20$, and $1$ ).
+La bonne réponse est l'option **3** ( $0.012$, $0.020$ et $1$ ).
 
 <br>
 

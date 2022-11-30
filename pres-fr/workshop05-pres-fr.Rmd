@@ -36,9 +36,89 @@ class: inverse, center, middle
 
 # À propos de cet atelier
 
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_atelier5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=diapos&message=05&color=red&logo=html5)](https://r.qcbs.ca/workshop05/pres-fr/workshop05-pres-fr.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=05&color=9cf&logo=github)](https://r.qcbs.ca/workshop05/book-fr/index.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=05&color=2a50b8&logo=r)](https://r.qcbs.ca/workshop05/book-fr/workshop05-script-fr.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=flat-square&label=r.qcbs.ca&message=05&color=brightgreen)](https://r.qcbs.ca/fr/workshops/r-workshop-05/)
+
 
 ---
+.center[
+**Contributeurs et contributrices au développement de cet atelier**
+
+en modifiant et en améliorant son contenu dans le cadre du <br>_**Le**arning **a**nd **D**evelopment **A**ward_ du **CSBQ**:
+]
+
+.pull-left[
+.right[
+ **2022** - **2021** - **2020**
+ 
+Pedro Henrique P. Braga
+
+Gabriel Muñoz
+
+Parnian Pourtaherian
+
+Kate Sheridan
+
+<br>
+
+**2019** - **2018** - **2017**
+
+Katherine Hébert
+
+Pedro Henrique P. Braga
+
+Gabriel Muñoz
+
+Marie-Hélène Brice
+
+]
+]
+
+.pull-right[
+.left[
+
+**2016** - **2015** - **2014**
+
+Johanna Bradie
+
+Sylvain Christin
+
+Zofia Taranu
+
+Ben Haller
+
+Pedro Henrique P. Braga
+
+Sebastien Portalier
+
+Jacob Ziegler
+
+Zofia Taranu
+
+Cédric Frenette Dussault
+
+]
+]
+
+</p>
+
+---
+
+# Exigences
+
+#### Matériel
+
+Pour suivre cet atelier, vous devez avoir téléchargé et installé la dernière version des logiciels [RStudio](https://rstudio.com/products/rstudio/download/#download) et [R](https://cran.rstudio.com/).
+
+<br>
+
+Tout le matériel pour cet atelier se retrouve au
+[r.qcbs.ca/fr/workshops/r-workshop-05/](https://r.qcbs.ca/fr/workshops/r-workshop-05/).
+
+---
+
 # Objectifs d'apprentissage
 
 ##### 1. Prendre connaissance de **structures de contrôle**
@@ -57,10 +137,10 @@ class: inverse, center, middle
 ![:scale 90%](images/matrix.png)
 
 ---
-# Révision : Vecteurs
+# Rappel : Vecteurs
 
 <br>
-.center[Souvenez-vous de l'[atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#55) ?]
+.center[Souvenez-vous de l'[atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#47) ?]
 
 <br>
 
@@ -92,9 +172,9 @@ bool_vector
 ```
 
 ---
-# Révision : Tableaux de données
+# Rappel : Data frame
 
-Nous pouvons commencer par créer des vecteurs multiples (petit rappel : [Atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#55)) :
+Nous pouvons commencer par créer des vecteurs multiples (petit rappel : [Atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#54)) :
 
 ```{r}
   siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
@@ -113,7 +193,7 @@ Nous les combinons ensuite en utilisant la fonction `data.frame()`.
 ```
 
 ---
-# Listes
+# Rappel : Listes
 
 Nous pouvons également créer des listes en combinant les vecteurs que nous avons créés auparavant.
 
@@ -341,7 +421,7 @@ if(condition) {
 #Create node data frame
 f3_nodes <- create_node_df(n = 5, #number of nodes
                            type = 'a', #for grouping
-                           label = c(" ", "Condition", "l'expression 1\nif", " ", "l'expression 2\nelse"), 
+                           label = c(" ", "Condition", "Expression 1\nif", " ", "Expression 2\nelse"), 
                            shape = c("circle", "diamond", 'rectangle', 'circle', 'rectangle'), 
                            style = c('rounded', 'solid', 'solid', 'filled', 'solid'), 
                            fontname = 'Helvetica',
@@ -358,7 +438,9 @@ f3_edges <- create_edge_df(from = c(1, 2, 2, 3, 5), #origin node id
                            label = c(' ', ' if TRUE', '  if FALSE', ' '), 
                            fontsize = 10,
                            color = 'dimgrey',
-                           decorate = TRUE
+                           decorate = TRUE,
+                           tailport = c('s', 'w', 's', 's', 's'), #where edge leaves node
+                           headport = c('n', 'n', 'n', 'n', 'n') #where arrow meets node
                            )
 
 #create flowchart
@@ -1662,7 +1744,7 @@ L'argument spécial `...` vous permet de passer des arguments à une autre fonct
 .xsmall[
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
-  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) # On utilise ... pour passer les arguments a plot().
+  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) #<<
   for (i in 1:length(CO2[,1])){
      if (CO2$Type[i] == "Quebec") {
        points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
@@ -2106,13 +2188,15 @@ Créez une fonction appelée `ma_fonction()` qui prend la variable `x` en argume
 
 Si nous attribuons respectivement $45$, $20$ et $0$ à `x`, laquelle des options suivantes représenterait les résultats ?
 
-<br>
-
 **1.** $0.054$, $0.012$, et $0$; <br>
 <br>
 **2.** $0.020$, $0.054$, et $1$; <br>
 <br>
 **3.** $0.012$, $0.020$, et $1$. <br>
+
+<br>
+
+En complément de l'exercice, discutez avec votre groupe d'une fonction que vous aimeriez créer (elle peut être liée ou non à votre recherche). Soyez prêts à nous la décrire brièvement!
 
 ???
 
@@ -2121,7 +2205,7 @@ Cet exercice doit avoir lieu dans les salles de réunion dans un délai de 10 mi
 ---
 # Exercice de groupe : Solution ![:cube]()
 
-La bonne réponse est l'option **3** ( $0.12$, $0.20$, et $1$ ).
+La bonne réponse est l'option **3** ( $0.012$, $0.020$, et $1$ ).
 
 <br>
 

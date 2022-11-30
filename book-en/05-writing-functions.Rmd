@@ -67,20 +67,21 @@ rescale01(our.dataset$d)
 Much of the heavy lifting in R is done by functions. They are useful
 for:
 
-1- Performing a task repeatedly, but configurably;
+1. Performing a task repeatedly, but configurably;
 
-2- Making your code more readable;
+2. Making your code more readable;
 
-3- Make your code easier to modify and maintain;
+3. Make your code easier to modify and maintain;
 
-4- Sharing code between different analyses;
+4. Sharing code between different analyses;
 
-5- Sharing code with other people;
+5. Sharing code with other people;
 
-6- Modifying R's built-in functionality.
+6. Modifying R's built-in functionality.
 
 ```{r flowchart9, echo=FALSE, purl=FALSE}
 library(DiagrammeR)
+
 #Create node data frame
 f9_nodes <- create_node_df(n = 5, #number of nodes
                            group = c('a', 'a', 'a', 'b', 'c'),
@@ -520,7 +521,7 @@ if(b==0){print("b zero")}else print(b)}
 
 On the left, code is not spaced, nor indented. All brackets are in the same line, and it looks "messy". On the right, it looks more organized, no?
 
-```{r}
+```{r, eval= FALSE}
 a <- 4
 b <- 3
 if(a < b) {

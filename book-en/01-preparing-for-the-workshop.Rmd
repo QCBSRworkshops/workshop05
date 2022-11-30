@@ -1,6 +1,6 @@
 # (PART\*) Programming in `R` {-}
 
-## Learning objectives
+# Learning objectives
 
 This workshop focuses on basic programming in R.
 

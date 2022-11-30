@@ -23,6 +23,8 @@ if(condition) {
 <div class = "uneven-split-right">
 <center>
 ```{r flowchart2, echo=FALSE, purl=FALSE}
+library(DiagrammeR)
+
 #Create node data frame
 f2_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping

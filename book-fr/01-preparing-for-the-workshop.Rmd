@@ -1,6 +1,6 @@
 # (PART\*) Programmation en `R` {-}
 
-## Objectifs d'apprentissage
+# Objectifs d'apprentissage
 
 Cet atelier se concentre sur la programmation de base en R.
 
@@ -30,7 +30,7 @@ et des astuces pour programmer efficacement.
 ### Lorsque vous résolvez les défis par vous-méme, essayez de ne pas parcourir  #
 ### le code et de regarder les solutions.                                       #
 ###                                                                             # 
-### Bon codage !                                                               #
+### Bon codage !                                                                #
 
 ```
 

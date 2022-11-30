@@ -41,6 +41,8 @@ expression
 <center>
 
 ```{r flowchart5for-loop, echo = FALSE, purl=FALSE}
+library(DiagrammeR)
+
 #Create node data frame
 f5_nodes <- create_node_df(n = 4, #number of nodes
                            type = 'a', #for grouping
