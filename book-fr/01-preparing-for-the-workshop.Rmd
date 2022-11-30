@@ -30,7 +30,7 @@ et des astuces pour programmer efficacement.
 ### Lorsque vous résolvez les défis par vous-méme, essayez de ne pas parcourir  #
 ### le code et de regarder les solutions.                                       #
 ###                                                                             # 
-### Bon codage !                                                               #
+### Bon codage !                                                                #
 
 ```
 
