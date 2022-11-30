@@ -36,7 +36,73 @@ class: inverse, center, middle
 
 # À propos de cet atelier
 
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_atelier5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-fr/workshop05-fr.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=diapos&message=05&color=red&logo=html5)](https://r.qcbs.ca/workshop05/pres-fr/workshop05-pres-fr.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=05&color=9cf&logo=github)](https://r.qcbs.ca/workshop05/book-fr/index.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=05&color=2a50b8&logo=r)](https://r.qcbs.ca/workshop05/book-fr/workshop05-script-fr.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=flat-square&label=r.qcbs.ca&message=05&color=brightgreen)](https://r.qcbs.ca/fr/workshops/r-workshop-05/)
+
+
+---
+.center[
+**Contributeurs et contributrices au développement de cet atelier**
+
+en modifiant et en améliorant son contenu dans le cadre du <br>_**Le**arning **a**nd **D**evelopment **A**ward_ du **CSBQ**:
+]
+
+.pull-left[
+.right[
+ **2022** - **2021** - **2020**
+ 
+Pedro Henrique P. Braga
+
+Gabriel Muñoz
+
+Parnian Pourtaherian
+
+Kate Sheridan
+
+<br>
+
+**2019** - **2018** - **2017**
+
+Katherine Hébert
+
+Pedro Henrique P. Braga
+
+Gabriel Muñoz
+
+Marie-Hélène Brice
+
+]
+]
+
+.pull-right[
+.left[
+
+**2016** - **2015** - **2014**
+
+Johanna Bradie
+
+Sylvain Christin
+
+Zofia Taranu
+
+Ben Haller
+
+Pedro Henrique P. Braga
+
+Sebastien Portalier
+
+Jacob Ziegler
+
+Zofia Taranu
+
+Cédric Frenette Dussault
+
+]
+]
+
+</p>
 
 ---
 
