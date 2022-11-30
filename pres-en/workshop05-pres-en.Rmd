@@ -2977,7 +2977,7 @@ This exercise should take place in breakout rooms within 10 minutes. After rejoi
 ---
 # Group exercise: Solution ![:cube]()
 
-Correct answer is option **3** ( $0.12$, $0.20$, and $1$ ).
+Correct answer is option **3** ( $0.012$, $0.020$, and $1$ ).
 
 <br>
 

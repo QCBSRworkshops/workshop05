@@ -2106,13 +2106,15 @@ Créez une fonction appelée `ma_fonction()` qui prend la variable `x` en argume
 
 Si nous attribuons respectivement $45$, $20$ et $0$ à `x`, laquelle des options suivantes représenterait les résultats ?
 
-<br>
-
 **1.** $0.054$, $0.012$, et $0$; <br>
 <br>
 **2.** $0.020$, $0.054$, et $1$; <br>
 <br>
 **3.** $0.012$, $0.020$, et $1$. <br>
+
+<br>
+
+En complément de l'exercice, discutez avec votre groupe d'une fonction que vous aimeriez créer (elle peut être liée ou non à votre recherche). Soyez prêts à nous la décrire brièvement!
 
 ???
 
@@ -2121,7 +2123,7 @@ Cet exercice doit avoir lieu dans les salles de réunion dans un délai de 10 mi
 ---
 # Exercice de groupe : Solution ![:cube]()
 
-La bonne réponse est l'option **3** ( $0.12$, $0.20$, et $1$ ).
+La bonne réponse est l'option **3** ( $0.012$, $0.020$, et $1$ ).
 
 <br>
 
