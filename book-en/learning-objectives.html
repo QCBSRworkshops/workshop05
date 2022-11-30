@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Modifying iterations: break, next and while | Workshop 5: Programming in R</title>
+  <title>Chapter 1 Learning objectives | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Modifying iterations: break, next and while | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 1 Learning objectives | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Modifying iterations: break, next and while | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 1 Learning objectives | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="challenge-2.html"/>
-<link rel="next" href="repeat-loops.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="preparing-for-the-workshop.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -249,37 +249,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="modifying-iterations-break-next-and-while" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 17</span> Modifying iterations: <code>break</code>, <code>next</code> and <code>while</code><a href="modifying-iterations-break-next-and-while.html#modifying-iterations-break-next-and-while" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In <code>R</code>, a standard looping sequence may be modified with the <code>break</code>, <code>next</code> and <code>while</code> statements.</p>
-<div id="next" class="section level2 hasAnchor">
-<h2><span class="header-section-number">17.1</span> <code>next</code><a href="modifying-iterations-break-next-and-while.html#next" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>next</code> allows us to skip an iteration if a certain condition is met. It is used inside the loop and is usually joined by the <code>if</code> statement, as shown below:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="modifying-iterations-break-next-and-while.html#cb75-1"></a><span class="cf">for</span> (val <span class="cf">in</span> x) {</span>
-<span id="cb75-2"><a href="modifying-iterations-break-next-and-while.html#cb75-2"></a>    <span class="cf">if</span> (condition) {</span>
-<span id="cb75-3"><a href="modifying-iterations-break-next-and-while.html#cb75-3"></a>        <span class="cf">next</span></span>
-<span id="cb75-4"><a href="modifying-iterations-break-next-and-while.html#cb75-4"></a>    }</span>
-<span id="cb75-5"><a href="modifying-iterations-break-next-and-while.html#cb75-5"></a>    statement</span>
-<span id="cb75-6"><a href="modifying-iterations-break-next-and-while.html#cb75-6"></a>}</span></code></pre></div>
-<center>
-<div id="htmlwidget-36b3554f4ee9052afea3" style="width:95%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-36b3554f4ee9052afea3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Reached last \nval in X?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition \nTRUE?\n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"statement\nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"nw\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n\"2\"->\"5\" [label = \"if TRUE, then exit\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"2\" [label = \" if TRUE, then next\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</center>
-</div>
-<div id="break" class="section level2 hasAnchor">
-<h2><span class="header-section-number">17.2</span> <code>break</code><a href="modifying-iterations-break-next-and-while.html#break" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>break</code> statement is used inside a loop to terminate and exit the iteration when a certain condition is met.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="modifying-iterations-break-next-and-while.html#cb76-1"></a><span class="cf">for</span> (val <span class="cf">in</span> x) {</span>
-<span id="cb76-2"><a href="modifying-iterations-break-next-and-while.html#cb76-2"></a>    <span class="cf">if</span> (condition) {</span>
-<span id="cb76-3"><a href="modifying-iterations-break-next-and-while.html#cb76-3"></a>        <span class="cf">break</span></span>
-<span id="cb76-4"><a href="modifying-iterations-break-next-and-while.html#cb76-4"></a>    }</span>
-<span id="cb76-5"><a href="modifying-iterations-break-next-and-while.html#cb76-5"></a>    statement</span>
-<span id="cb76-6"><a href="modifying-iterations-break-next-and-while.html#cb76-6"></a>}</span></code></pre></div>
-<center>
-<div id="htmlwidget-3f760c3eed531c9b3382" style="width:95%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3f760c3eed531c9b3382">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Start\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Reached last \nval in X?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Is condition \nTRUE? \n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"statement\nbody\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"End\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \" \", shape = \"circle\", style = \"invis\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\nfor x\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"n\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"w\", headport = \"s\"] \n\"2\"->\"5\" [label = \"if TRUE, then exit\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"5\" [label = \" if TRUE, then break\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</center>
-</div>
+<div id="learning-objectives" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 1</span> Learning objectives<a href="learning-objectives.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This workshop focuses on basic programming in R.</p>
+<p>You will learn how to use control flow (<code>for</code> loops, <code>if</code>, <code>while</code>, <code>repeat</code>, and <code>apply()</code> family functions) methods to prevent code repetition, facilitate organization and run
+simulations.</p>
+<p>You will also learn to write your own functions,
+and tips to program efficiently.</p>
+<ol style="list-style-type: decimal">
+<li>Recognizing <strong>control flow</strong>;</li>
+<li>Getting comfortable with testing conditions and performing iterations;</li>
+<li>Developing your first functions in <code>R</code>;</li>
+<li>Discovering how to accelerate your code;</li>
+<li>Demonstrating useful <code>R</code> packages for biologists.</li>
+</ol>
 </div>
 <hr>
 <center> 
@@ -292,8 +275,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="challenge-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="repeat-loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="preparing-for-the-workshop.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

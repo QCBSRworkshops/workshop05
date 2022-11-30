@@ -3,6 +3,7 @@ expected-behaviour
 unacceptable-behaviour
 contributors
 contributing
+learning-objectives
 preparing-for-the-workshop
 introduction-to-control-flow
 building-blocks-of-control-flow
