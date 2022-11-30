@@ -137,10 +137,10 @@ class: inverse, center, middle
 ![:scale 90%](images/matrix.png)
 
 ---
-# Révision : Vecteurs
+# Rappel : Vecteurs
 
 <br>
-.center[Souvenez-vous de l'[atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#55) ?]
+.center[Souvenez-vous de l'[atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#47) ?]
 
 <br>
 
@@ -172,9 +172,9 @@ bool_vector
 ```
 
 ---
-# Révision : Tableaux de données
+# Rappel : Data frame
 
-Nous pouvons commencer par créer des vecteurs multiples (petit rappel : [Atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#55)) :
+Nous pouvons commencer par créer des vecteurs multiples (petit rappel : [Atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#54)) :
 
 ```{r}
   siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
@@ -193,7 +193,7 @@ Nous les combinons ensuite en utilisant la fonction `data.frame()`.
 ```
 
 ---
-# Listes
+# Rappel : Listes
 
 Nous pouvons également créer des listes en combinant les vecteurs que nous avons créés auparavant.
 

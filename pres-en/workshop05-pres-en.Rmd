@@ -143,7 +143,7 @@ class: inverse, center, middle
 # Review
 
 ---
-# Objects
+# Review: Objects
 
 ![:scale 90%](images/matrix.png)
 
@@ -152,7 +152,7 @@ class: inverse, center, middle
 
 <br>
 
-.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)?]
+.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#53)?]
 
 <br>
 
@@ -187,7 +187,7 @@ bool_vector
 ---
 # Review: Data frames
 
-We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
+We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#72)):
 
 ```{r}
 siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
