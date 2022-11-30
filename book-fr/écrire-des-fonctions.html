@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Règle if else | Workshop 5: Programming in R</title>
+  <title>Chapter 25 Écrire des fonctions | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Règle if else | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 25 Écrire des fonctions | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Règle if else | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 25 Écrire des fonctions | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="règle-if.html"/>
-<link rel="next" href="décisions-à-conditions-multiples.html"/>
+<link rel="prev" href="défi-4.html"/>
+<link rel="next" href="syntaxe-dune-fonction.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -250,28 +250,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="règle-if-else" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 7</span> <strong>Règle</strong> <code>if else</code><a href="règle-if-else.html#règle-if-else" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>La directive <code>if</code> n’effectue une opération que si une condition est remplie. Cependant, on peut être intéressé non seulement par la spécification de l’expression qui doit être effectuée lorsque la <code>condition</code> requise est VRAIE (<code>TRUE</code>), mais aussi par l’<code>expression</code> qui doit être effectuée lorsque la <code>condition</code> est FAUSSE (<code>FALSE</code>).</p>
-<p>Pour ce faire, nous pouvons utiliser l’instruction <code>if() {} else {}</code> et la fonction <code>ifelse()</code>.</p>
-<div class="split">
-<div class="uneven-split-left">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="règle-if-else.html#cb3-1"></a><span class="cf">if</span>(condition) {</span>
-<span id="cb3-2"><a href="règle-if-else.html#cb3-2"></a>  expression <span class="dv">1</span></span>
-<span id="cb3-3"><a href="règle-if-else.html#cb3-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb3-4"><a href="règle-if-else.html#cb3-4"></a>  expression <span class="dv">2</span></span>
-<span id="cb3-5"><a href="règle-if-else.html#cb3-5"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="règle-if-else.html#cb4-1"></a><span class="kw">ifelse</span>(condition, </span>
-<span id="cb4-2"><a href="règle-if-else.html#cb4-2"></a>       expression <span class="dv">1</span>, </span>
-<span id="cb4-3"><a href="règle-if-else.html#cb4-3"></a>       expression <span class="dv">2</span></span>
-<span id="cb4-4"><a href="règle-if-else.html#cb4-4"></a>)</span></code></pre></div>
-</div>
-<div class="uneven-split-right">
-<center>
-<div id="htmlwidget-8babbea5ec19458a1baf" style="width:50%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8babbea5ec19458a1baf">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"4\" [headport = \"n\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</center>
-</div>
+<div id="écrire-des-fonctions" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 25</span> Écrire des fonctions<a href="écrire-des-fonctions.html#écrire-des-fonctions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pourquoi-écrire-une-fonction" class="section level2 hasAnchor">
+<h2><span class="header-section-number">25.1</span> Pourquoi écrire une fonction ?<a href="écrire-des-fonctions.html#pourquoi-écrire-une-fonction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Le gros du travail dans R est fait par des fonctions. Elles sont utiles pour:</p>
+<ol style="list-style-type: decimal">
+<li><p>Répéter une même tâche, mais en changeant ses paramètres;</p></li>
+<li><p>Rendre votre code plus lisible;</p></li>
+<li><p>Rendre votre code plus facile à modifier et à maintenir;</p></li>
+<li><p>Partager du code entre différentes analyses;</p></li>
+<li><p>Partager votre code avec d’autres personnes;</p></li>
+<li><p>Modifier les fonctionnalités par défaut de R.</p></li>
+</ol>
+<div id="htmlwidget-7ef0b5794cce2011d16c" style="width:95%;height:auto;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ef0b5794cce2011d16c">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Argument 1\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Argument 2\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Argument 3\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Traitement des données\", group = \"b\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Résultat\", group = \"c\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"2\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"3\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"4\"->\"5\" [style = \"dashed\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <hr>
@@ -285,8 +278,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="règle-if.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="décisions-à-conditions-multiples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="défi-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="syntaxe-dune-fonction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

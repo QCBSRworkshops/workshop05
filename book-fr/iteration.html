@@ -4,24 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Iteration | Workshop 5: Programming in R</title>
+  <title>Chapter 12 Iteration | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Iteration | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 12 Iteration | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Iteration | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 12 Iteration | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
 
-<meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
+<meta name="author" content="Développé et entretenu par les contributeurs et les contributrices de la Série d’ateliers R du CSBQ." />
 
 
 
@@ -50,12 +49,13 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
 
 
 <style type="text/css">
@@ -140,80 +140,79 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
 
 <li class="divider"></li>
-<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a><ul>
-<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
-<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+<li class="part"><span><b>Série d’ateliers R du CSBQ</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-de-conduite"><i class="fa fa-check"></i><b>0.1</b> Code de conduite</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#comportement-attendu"><i class="fa fa-check"></i><b>0.1.1</b> Comportement attendu</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#comportements-inacceptables"><i class="fa fa-check"></i><b>0.1.2</b> Comportements inacceptables</a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!</a></li>
 </ul></li>
-<li class="part"><span><b>Programmation en <code>R</code></b></span><ul>
-<li class="chapter" data-level="0.4" data-path="04-iteration.html"><a href="#objectifs-dapprentissage"><i class="fa fa-check"></i><b>0.4</b> Objectifs d’apprentissage</a></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html"><i class="fa fa-check"></i><b>1</b> Préparation de l’atelier</a><ul>
+<li class="part"><span><b>Programmation en <code>R</code></b></span></li>
+<li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage</a></li>
+<li class="chapter" data-level="2" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html"><i class="fa fa-check"></i><b>2</b> Préparation de l’atelier</a><ul>
 <li class="chapter" data-level="" data-path="préparation-de-latelier.html"><a href="préparation-de-latelier.html#accès-au-matériel-de-latelier"><i class="fa fa-check"></i>Accès au matériel de l’atelier</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-au-flux-de-contrôle.html"><a href="introduction-au-flux-de-contrôle.html"><i class="fa fa-check"></i><b>2</b> Introduction au flux de contrôle</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="introduction-au-flux-de-contrôle.html"><a href="introduction-au-flux-de-contrôle.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>2.0.1</b> Building blocks of control flow</a></li>
+<li class="chapter" data-level="3" data-path="introduction-au-flux-de-contrôle.html"><a href="introduction-au-flux-de-contrôle.html"><i class="fa fa-check"></i><b>3</b> Introduction au flux de contrôle</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="introduction-au-flux-de-contrôle.html"><a href="introduction-au-flux-de-contrôle.html#building-blocks-of-control-flow"><i class="fa fa-check"></i><b>3.0.1</b> Building blocks of control flow</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="utilisation-des-diagrammes-de-flux.html"><a href="utilisation-des-diagrammes-de-flux.html"><i class="fa fa-check"></i><b>3</b> Utilisation des diagrammes de flux</a></li>
+<li class="chapter" data-level="4" data-path="utilisation-des-diagrammes-de-flux.html"><a href="utilisation-des-diagrammes-de-flux.html"><i class="fa fa-check"></i><b>4</b> Utilisation des diagrammes de flux</a></li>
 <li class="part"><span><b>Prise de décision</b></span></li>
-<li class="chapter" data-level="4" data-path="prise-de-décision.html"><a href="prise-de-décision.html"><i class="fa fa-check"></i><b>4</b> Prise de décision</a></li>
-<li class="chapter" data-level="5" data-path="règle-if.html"><a href="règle-if.html"><i class="fa fa-check"></i><b>5</b> Règle <code>if</code></a></li>
-<li class="chapter" data-level="6" data-path="règle-if-else.html"><a href="règle-if-else.html"><i class="fa fa-check"></i><b>6</b> <strong>Règle</strong> <code>if else</code></a></li>
-<li class="chapter" data-level="7" data-path="décisions-à-conditions-multiples.html"><a href="décisions-à-conditions-multiples.html"><i class="fa fa-check"></i><b>7</b> Décisions à conditions multiples</a></li>
-<li class="chapter" data-level="8" data-path="décisions-à-conditions-multiples-1.html"><a href="décisions-à-conditions-multiples-1.html"><i class="fa fa-check"></i><b>8</b> Décisions à conditions multiples</a></li>
-<li class="chapter" data-level="9" data-path="attention-à-lanalyse-des-déclarations.html"><a href="attention-à-lanalyse-des-déclarations.html"><i class="fa fa-check"></i><b>9</b> Attention à l’analyse des déclarations</a></li>
-<li class="chapter" data-level="10" data-path="défi-1.html"><a href="défi-1.html"><i class="fa fa-check"></i><b>10</b> Défi 1</a></li>
+<li class="chapter" data-level="5" data-path="prise-de-décision.html"><a href="prise-de-décision.html"><i class="fa fa-check"></i><b>5</b> Prise de décision</a></li>
+<li class="chapter" data-level="6" data-path="règle-if.html"><a href="règle-if.html"><i class="fa fa-check"></i><b>6</b> Règle <code>if</code></a></li>
+<li class="chapter" data-level="7" data-path="règle-if-else.html"><a href="règle-if-else.html"><i class="fa fa-check"></i><b>7</b> <strong>Règle</strong> <code>if else</code></a></li>
+<li class="chapter" data-level="8" data-path="décisions-à-conditions-multiples.html"><a href="décisions-à-conditions-multiples.html"><i class="fa fa-check"></i><b>8</b> Décisions à conditions multiples</a></li>
+<li class="chapter" data-level="9" data-path="décisions-à-conditions-multiples-1.html"><a href="décisions-à-conditions-multiples-1.html"><i class="fa fa-check"></i><b>9</b> Décisions à conditions multiples</a></li>
+<li class="chapter" data-level="10" data-path="attention-à-lanalyse-des-déclarations.html"><a href="attention-à-lanalyse-des-déclarations.html"><i class="fa fa-check"></i><b>10</b> Attention à l’analyse des déclarations</a></li>
+<li class="chapter" data-level="11" data-path="défi-1.html"><a href="défi-1.html"><i class="fa fa-check"></i><b>11</b> Défi 1</a></li>
 <li class="part"><span><b>Iteration</b></span></li>
-<li class="chapter" data-level="11" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>11</b> Iteration</a></li>
-<li class="chapter" data-level="12" data-path="boucles-for.html"><a href="boucles-for.html"><i class="fa fa-check"></i><b>12</b> Boucles `for</a></li>
-<li class="chapter" data-level="13" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html"><i class="fa fa-check"></i><b>13</b> Exemples d’utilisation de <code>for</code>.</a><ul>
-<li class="chapter" data-level="13.1" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#la-boucle-for-simple"><i class="fa fa-check"></i><b>13.1</b> La boucle <code>for</code> simple</a></li>
-<li class="chapter" data-level="13.2" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#boucles-for-sur-différentes-classes"><i class="fa fa-check"></i><b>13.2</b> Boucles <code>for</code> sur différentes classes</a></li>
-<li class="chapter" data-level="13.3" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#for-et-if-ensemble"><i class="fa fa-check"></i><b>13.3</b> <code>for</code> et <code>if</code> ensemble</a></li>
-<li class="chapter" data-level="13.4" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#for-avec-un-jeu-de-données-réel"><i class="fa fa-check"></i><b>13.4</b> <code>for</code> avec un jeu de données réel</a></li>
+<li class="chapter" data-level="12" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>12</b> Iteration</a></li>
+<li class="chapter" data-level="13" data-path="boucles-for.html"><a href="boucles-for.html"><i class="fa fa-check"></i><b>13</b> Boucles `for</a></li>
+<li class="chapter" data-level="14" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html"><i class="fa fa-check"></i><b>14</b> Exemples d’utilisation de <code>for</code>.</a><ul>
+<li class="chapter" data-level="14.1" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#la-boucle-for-simple"><i class="fa fa-check"></i><b>14.1</b> La boucle <code>for</code> simple</a></li>
+<li class="chapter" data-level="14.2" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#boucles-for-sur-différentes-classes"><i class="fa fa-check"></i><b>14.2</b> Boucles <code>for</code> sur différentes classes</a></li>
+<li class="chapter" data-level="14.3" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#for-et-if-ensemble"><i class="fa fa-check"></i><b>14.3</b> <code>for</code> et <code>if</code> ensemble</a></li>
+<li class="chapter" data-level="14.4" data-path="exemples-dutilisation-de-for..html"><a href="exemples-dutilisation-de-for..html#for-avec-un-jeu-de-données-réel"><i class="fa fa-check"></i><b>14.4</b> <code>for</code> avec un jeu de données réel</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="boucles-for-dans-des-boucles-for..html"><a href="boucles-for-dans-des-boucles-for..html"><i class="fa fa-check"></i><b>14</b> Boucles “for” dans des boucles “for”.</a></li>
-<li class="chapter" data-level="15" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html"><i class="fa fa-check"></i><b>15</b> La famille des fonctions <code>apply()</code>.</a><ul>
-<li class="chapter" data-level="15.1" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#apply"><i class="fa fa-check"></i><b>15.1</b> <code>apply()</code></a></li>
-<li class="chapter" data-level="15.2" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#lapply"><i class="fa fa-check"></i><b>15.2</b> <code>lapply()</code></a></li>
-<li class="chapter" data-level="15.3" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#sapply"><i class="fa fa-check"></i><b>15.3</b> <code>sapply()</code></a></li>
-<li class="chapter" data-level="15.4" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#mapply"><i class="fa fa-check"></i><b>15.4</b> <code>mapply()</code></a></li>
-<li class="chapter" data-level="15.5" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#tapply"><i class="fa fa-check"></i><b>15.5</b> <code>tapply()</code></a></li>
+<li class="chapter" data-level="15" data-path="boucles-for-dans-des-boucles-for..html"><a href="boucles-for-dans-des-boucles-for..html"><i class="fa fa-check"></i><b>15</b> Boucles “for” dans des boucles “for”.</a></li>
+<li class="chapter" data-level="16" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html"><i class="fa fa-check"></i><b>16</b> La famille des fonctions <code>apply()</code>.</a><ul>
+<li class="chapter" data-level="16.1" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#apply"><i class="fa fa-check"></i><b>16.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="16.2" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#lapply"><i class="fa fa-check"></i><b>16.2</b> <code>lapply()</code></a></li>
+<li class="chapter" data-level="16.3" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#sapply"><i class="fa fa-check"></i><b>16.3</b> <code>sapply()</code></a></li>
+<li class="chapter" data-level="16.4" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#mapply"><i class="fa fa-check"></i><b>16.4</b> <code>mapply()</code></a></li>
+<li class="chapter" data-level="16.5" data-path="la-famille-des-fonctions-apply..html"><a href="la-famille-des-fonctions-apply..html#tapply"><i class="fa fa-check"></i><b>16.5</b> <code>tapply()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="défi-2.html"><a href="défi-2.html"><i class="fa fa-check"></i><b>16</b> Défi 2</a></li>
-<li class="chapter" data-level="17" data-path="modifier-les-itérations-breaknext-et-while..html"><a href="modifier-les-itérations-breaknext-et-while..html"><i class="fa fa-check"></i><b>17</b> Modifier les itérations : <code>break',</code>next’ et `while’.</a><ul>
-<li class="chapter" data-level="17.1" data-path="modifier-les-itérations-breaknext-et-while..html"><a href="modifier-les-itérations-breaknext-et-while..html#next"><i class="fa fa-check"></i><b>17.1</b> <code>next</code></a></li>
-<li class="chapter" data-level="17.2" data-path="modifier-les-itérations-breaknext-et-while..html"><a href="modifier-les-itérations-breaknext-et-while..html#break"><i class="fa fa-check"></i><b>17.2</b> <code>break</code></a></li>
+<li class="chapter" data-level="17" data-path="défi-2.html"><a href="défi-2.html"><i class="fa fa-check"></i><b>17</b> Défi 2</a></li>
+<li class="chapter" data-level="18" data-path="modifier-les-itérations-breaknext-et-while..html"><a href="modifier-les-itérations-breaknext-et-while..html"><i class="fa fa-check"></i><b>18</b> Modifier les itérations : <code>break',</code>next’ et `while’.</a><ul>
+<li class="chapter" data-level="18.1" data-path="modifier-les-itérations-breaknext-et-while..html"><a href="modifier-les-itérations-breaknext-et-while..html#next"><i class="fa fa-check"></i><b>18.1</b> <code>next</code></a></li>
+<li class="chapter" data-level="18.2" data-path="modifier-les-itérations-breaknext-et-while..html"><a href="modifier-les-itérations-breaknext-et-while..html#break"><i class="fa fa-check"></i><b>18.2</b> <code>break</code></a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="boucles-repeat.html"><a href="boucles-repeat.html"><i class="fa fa-check"></i><b>18</b> Boucles `repeat</a></li>
-<li class="chapter" data-level="19" data-path="les-boucles-while..html"><a href="les-boucles-while..html"><i class="fa fa-check"></i><b>19</b> Les boucles <code>while</code>.</a></li>
-<li class="chapter" data-level="20" data-path="exemples-avec-des-instructions-modifiées.html"><a href="exemples-avec-des-instructions-modifiées.html"><i class="fa fa-check"></i><b>20</b> Exemples avec des instructions modifiées</a></li>
-<li class="chapter" data-level="21" data-path="défi-3.html"><a href="défi-3.html"><i class="fa fa-check"></i><b>21</b> Défi 3</a></li>
-<li class="chapter" data-level="22" data-path="modifier-un-graphique-en-utilisant-for-et-if..html"><a href="modifier-un-graphique-en-utilisant-for-et-if..html"><i class="fa fa-check"></i><b>22</b> Modifier un graphique en utilisant <code>for</code> et <code>if</code>.</a></li>
-<li class="chapter" data-level="23" data-path="défi-4.html"><a href="défi-4.html"><i class="fa fa-check"></i><b>23</b> Défi 4</a></li>
+<li class="chapter" data-level="19" data-path="boucles-repeat.html"><a href="boucles-repeat.html"><i class="fa fa-check"></i><b>19</b> Boucles `repeat</a></li>
+<li class="chapter" data-level="20" data-path="les-boucles-while..html"><a href="les-boucles-while..html"><i class="fa fa-check"></i><b>20</b> Les boucles <code>while</code>.</a></li>
+<li class="chapter" data-level="21" data-path="exemples-avec-des-instructions-modifiées.html"><a href="exemples-avec-des-instructions-modifiées.html"><i class="fa fa-check"></i><b>21</b> Exemples avec des instructions modifiées</a></li>
+<li class="chapter" data-level="22" data-path="défi-3.html"><a href="défi-3.html"><i class="fa fa-check"></i><b>22</b> Défi 3</a></li>
+<li class="chapter" data-level="23" data-path="modifier-un-graphique-en-utilisant-for-et-if..html"><a href="modifier-un-graphique-en-utilisant-for-et-if..html"><i class="fa fa-check"></i><b>23</b> Modifier un graphique en utilisant <code>for</code> et <code>if</code>.</a></li>
+<li class="chapter" data-level="24" data-path="défi-4.html"><a href="défi-4.html"><i class="fa fa-check"></i><b>24</b> Défi 4</a></li>
 <li class="part"><span><b>Programming</b></span></li>
-<li class="chapter" data-level="24" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>24</b> Writing functions</a></li>
-<li class="chapter" data-level="25" data-path="why-write-functions.html"><a href="why-write-functions.html"><i class="fa fa-check"></i><b>25</b> Why write functions?</a></li>
-<li class="chapter" data-level="26" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html"><i class="fa fa-check"></i><b>26</b> Syntax of a function: <code>function()</code></a><ul>
-<li class="chapter" data-level="26.1" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#arguments-of-a-function"><i class="fa fa-check"></i><b>26.1</b> Arguments of a <code>function()</code></a></li>
-<li class="chapter" data-level="26.2" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#default-argument-values-in-a-function"><i class="fa fa-check"></i><b>26.2</b> Default argument values in a function</a></li>
-<li class="chapter" data-level="26.3" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#the-ellipsis-argument-..."><i class="fa fa-check"></i><b>26.3</b> The ellipsis argument: <code>...</code></a></li>
-<li class="chapter" data-level="26.4" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#return-values"><i class="fa fa-check"></i><b>26.4</b> Return values</a></li>
-<li class="chapter" data-level="26.5" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#return-values-1"><i class="fa fa-check"></i><b>26.5</b> Return values</a></li>
-<li class="chapter" data-level="26.6" data-path="syntax-of-a-function-function.html"><a href="syntax-of-a-function-function.html#challenge"><i class="fa fa-check"></i><b>26.6</b> Challenge</a></li>
+<li class="chapter" data-level="25" data-path="écrire-des-fonctions.html"><a href="écrire-des-fonctions.html"><i class="fa fa-check"></i><b>25</b> Écrire des fonctions</a><ul>
+<li class="chapter" data-level="25.1" data-path="écrire-des-fonctions.html"><a href="écrire-des-fonctions.html#pourquoi-écrire-une-fonction"><i class="fa fa-check"></i><b>25.1</b> Pourquoi écrire une fonction ?</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html"><i class="fa fa-check"></i><b>27</b> Accessibility of variables</a><ul>
-<li class="chapter" data-level="27.1" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#why-should-i-care-about-programming-practices"><i class="fa fa-check"></i><b>27.1</b> Why should I care about programming practices?</a></li>
-<li class="chapter" data-level="27.2" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-functions-to-simplify-your-code"><i class="fa fa-check"></i><b>27.2</b> Use functions to simplify your code</a></li>
-<li class="chapter" data-level="27.3" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-meaningful-names-for-functions"><i class="fa fa-check"></i><b>27.3</b> Use meaningful names for functions</a><ul>
-<li class="chapter" data-level="27.3.1" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-comments"><i class="fa fa-check"></i><b>27.3.1</b> Use comments</a></li>
+<li class="chapter" data-level="26" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html"><i class="fa fa-check"></i><b>26</b> Syntaxe d’une fonction</a><ul>
+<li class="chapter" data-level="26.1" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html#arguments-dune-fonction"><i class="fa fa-check"></i><b>26.1</b> Arguments d’une fonction</a></li>
+<li class="chapter" data-level="26.2" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html#valeurs-par-défaut-dans-une-fonction"><i class="fa fa-check"></i><b>26.2</b> Valeurs par défaut dans une fonction</a></li>
+<li class="chapter" data-level="26.3" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html#argument-spécial-..."><i class="fa fa-check"></i><b>26.3</b> Argument spécial <code>...</code></a></li>
+<li class="chapter" data-level="26.4" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html#valeurs-de-retour"><i class="fa fa-check"></i><b>26.4</b> Valeurs de retour</a></li>
+<li class="chapter" data-level="26.5" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html#valeurs-de-retour-1"><i class="fa fa-check"></i><b>26.5</b> Valeurs de retour</a></li>
+<li class="chapter" data-level="26.6" data-path="syntaxe-dune-fonction.html"><a href="syntaxe-dune-fonction.html#exercice-6"><i class="fa fa-check"></i><b>26.6</b> Exercice 6</a></li>
 </ul></li>
-<li class="chapter" data-level="27.4" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#use-comments-1"><i class="fa fa-check"></i><b>27.4</b> Use comments: <code>#</code></a></li>
-<li class="chapter" data-level="27.5" data-path="accessibility-of-variables.html"><a href="accessibility-of-variables.html#group-exercise-solution"><i class="fa fa-check"></i><b>27.5</b> Group exercise: Solution</a></li>
+<li class="chapter" data-level="27" data-path="accessibilité-des-variables.html"><a href="accessibilité-des-variables.html"><i class="fa fa-check"></i><b>27</b> Accessibilité des variables</a></li>
+<li class="chapter" data-level="28" data-path="bonnes-pratiques-de-programmation.html"><a href="bonnes-pratiques-de-programmation.html"><i class="fa fa-check"></i><b>28</b> Bonnes pratiques de programmation</a><ul>
+<li class="chapter" data-level="28.1" data-path="bonnes-pratiques-de-programmation.html"><a href="bonnes-pratiques-de-programmation.html#pourquoi-devrais-je-me-soucier-sur-les-bonnes-pratiques-de-programmation"><i class="fa fa-check"></i><b>28.1</b> Pourquoi devrais-je me soucier sur les bonnes pratiques de programmation?</a></li>
+<li class="chapter" data-level="28.2" data-path="bonnes-pratiques-de-programmation.html"><a href="bonnes-pratiques-de-programmation.html#utilisez-des-fonctions-pour-simplifier-le-code"><i class="fa fa-check"></i><b>28.2</b> Utilisez des fonctions pour simplifier le code</a></li>
+<li class="chapter" data-level="28.3" data-path="bonnes-pratiques-de-programmation.html"><a href="bonnes-pratiques-de-programmation.html#noms-de-fonctions-informatifs"><i class="fa fa-check"></i><b>28.3</b> Noms de fonctions informatifs</a></li>
+<li class="chapter" data-level="28.4" data-path="bonnes-pratiques-de-programmation.html"><a href="bonnes-pratiques-de-programmation.html#utilisez-des-commentaires"><i class="fa fa-check"></i><b>28.4</b> Utilisez des commentaires: <code>#</code></a></li>
+<li class="chapter" data-level="28.5" data-path="bonnes-pratiques-de-programmation.html"><a href="bonnes-pratiques-de-programmation.html#exercice-de-groupe"><i class="fa fa-check"></i><b>28.5</b> Exercice de groupe</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -251,8 +250,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="iteration" class="section level1">
-<h1><span class="header-section-number">Chapter 11</span> Iteration</h1>
+<div id="iteration" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 12</span> Iteration<a href="iteration.html#iteration" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Chaque fois que certaines opérations doivent être répétées, une <em>boucle</em> peut s’avérer utile. Les boucles sont utiles pour :</p>
 <ul>
 <li>Faire quelque chose pour chaque élément d’un objet ;</li>
@@ -342,7 +341,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

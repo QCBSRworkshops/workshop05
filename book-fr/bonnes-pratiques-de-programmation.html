@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Règle if else | Workshop 5: Programming in R</title>
+  <title>Chapter 28 Bonnes pratiques de programmation | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Règle if else | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 28 Bonnes pratiques de programmation | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Règle if else | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 28 Bonnes pratiques de programmation | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="règle-if.html"/>
-<link rel="next" href="décisions-à-conditions-multiples.html"/>
+<link rel="prev" href="accessibilité-des-variables.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -250,28 +250,125 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="règle-if-else" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 7</span> <strong>Règle</strong> <code>if else</code><a href="règle-if-else.html#règle-if-else" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>La directive <code>if</code> n’effectue une opération que si une condition est remplie. Cependant, on peut être intéressé non seulement par la spécification de l’expression qui doit être effectuée lorsque la <code>condition</code> requise est VRAIE (<code>TRUE</code>), mais aussi par l’<code>expression</code> qui doit être effectuée lorsque la <code>condition</code> est FAUSSE (<code>FALSE</code>).</p>
-<p>Pour ce faire, nous pouvons utiliser l’instruction <code>if() {} else {}</code> et la fonction <code>ifelse()</code>.</p>
-<div class="split">
-<div class="uneven-split-left">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="règle-if-else.html#cb3-1"></a><span class="cf">if</span>(condition) {</span>
-<span id="cb3-2"><a href="règle-if-else.html#cb3-2"></a>  expression <span class="dv">1</span></span>
-<span id="cb3-3"><a href="règle-if-else.html#cb3-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb3-4"><a href="règle-if-else.html#cb3-4"></a>  expression <span class="dv">2</span></span>
-<span id="cb3-5"><a href="règle-if-else.html#cb3-5"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="règle-if-else.html#cb4-1"></a><span class="kw">ifelse</span>(condition, </span>
-<span id="cb4-2"><a href="règle-if-else.html#cb4-2"></a>       expression <span class="dv">1</span>, </span>
-<span id="cb4-3"><a href="règle-if-else.html#cb4-3"></a>       expression <span class="dv">2</span></span>
-<span id="cb4-4"><a href="règle-if-else.html#cb4-4"></a>)</span></code></pre></div>
+<div id="bonnes-pratiques-de-programmation" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 28</span> Bonnes pratiques de programmation<a href="bonnes-pratiques-de-programmation.html#bonnes-pratiques-de-programmation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pourquoi-devrais-je-me-soucier-sur-les-bonnes-pratiques-de-programmation" class="section level2 hasAnchor">
+<h2><span class="header-section-number">28.1</span> Pourquoi devrais-je me soucier sur les bonnes pratiques de programmation?<a href="bonnes-pratiques-de-programmation.html#pourquoi-devrais-je-me-soucier-sur-les-bonnes-pratiques-de-programmation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<ul>
+<li>Pour vous faciliter la vie;</li>
+<li>Pour améliorer la lisibilité et faciliter le partage et la réutilisation de votre code;</li>
+<li>Pour réduire le temps que vous passeriez à essayer de comprendre votre code.</li>
+</ul>
+<p><strong>Gardez un code beau et propre</strong></p>
+<p>Les indentations et les espaces sont une première étape vers un code lisible:</p>
+<ul>
+<li>Utilisez des espaces avant et après vos opérateurs;</li>
+</ul>
+<p><code>x&gt;=1&amp;x&lt;=10</code> est plus difficile à lire que <code>x &gt;= 1 &amp; x &lt;= 10</code></p>
+<ul>
+<li>Utilisez toujours le même opérateur d’assignation.</li>
+</ul>
+<p><code>&lt;-</code> est préférable. Vous pouvez utiliser <code>=</code> (parfois), mais ne changez pas entre les deux;</p>
+<ul>
+<li><p>Utilisez des crochets pour encadrer vos structures de contrôle de flux:</p>
+<ul>
+<li>À l’intérieur des crochets, faites une indentation <em>d’au moins</em> 2 espaces;</li>
+<li>Les crochets de fermeture occupent généralement leur propre ligne, sauf s’ils précèdent une condition <code>else</code>.</li>
+</ul></li>
+<li><p>Définissez chaque variable sur sa propre ligne;</p></li>
+<li><p>Utilisez <code>Cmd + I</code> ou <code>Ctrl + I</code> dans RStudio pour indenter automatiquement le code mis en évidence.</p></li>
+</ul>
 </div>
-<div class="uneven-split-right">
-<center>
-<div id="htmlwidget-8babbea5ec19458a1baf" style="width:50%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8babbea5ec19458a1baf">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"4\" [headport = \"n\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</center>
+<div id="utilisez-des-fonctions-pour-simplifier-le-code" class="section level2 hasAnchor">
+<h2><span class="header-section-number">28.2</span> Utilisez des fonctions pour simplifier le code<a href="bonnes-pratiques-de-programmation.html#utilisez-des-fonctions-pour-simplifier-le-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Écrivez une fonction:
+1. Quand une portion du code est répété à plus de 2 reprises dans ton script;
+2. Quand seulement une partie du code change et inclut des options pour différents arguments.</p>
+<p>Ceci vous aidera à réduire le nombre d’erreurs de copier/coller, et réduira le temps passé à les corriger.</p>
+<p>Modifions l’exemple de l’<strong>Exercice 3</strong> et supposons que toutes les concentrations de <span class="math inline">\(CO_2\)</span> du Mississipi étaient surestimées de 20 et que celles du Québec étaient sous-estimées de 50.</p>
+<p>On pourrait écrire ceci:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="bonnes-pratiques-de-programmation.html#cb146-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb146-2"><a href="bonnes-pratiques-de-programmation.html#cb146-2"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Mississippi&quot;</span>) {</span>
+<span id="cb146-3"><a href="bonnes-pratiques-de-programmation.html#cb146-3"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">-</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb146-4"><a href="bonnes-pratiques-de-programmation.html#cb146-4"></a>    }</span>
+<span id="cb146-5"><a href="bonnes-pratiques-de-programmation.html#cb146-5"></a>}</span>
+<span id="cb146-6"><a href="bonnes-pratiques-de-programmation.html#cb146-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(CO2[, <span class="dv">1</span>])) {</span>
+<span id="cb146-7"><a href="bonnes-pratiques-de-programmation.html#cb146-7"></a>    <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> &quot;Quebec&quot;</span>) {</span>
+<span id="cb146-8"><a href="bonnes-pratiques-de-programmation.html#cb146-8"></a>        CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">+</span><span class="st"> </span><span class="dv">50</span></span>
+<span id="cb146-9"><a href="bonnes-pratiques-de-programmation.html#cb146-9"></a>    }</span>
+<span id="cb146-10"><a href="bonnes-pratiques-de-programmation.html#cb146-10"></a>}</span></code></pre></div>
+<p>Ou ceci:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="bonnes-pratiques-de-programmation.html#cb147-1"></a>recalibrate &lt;-<span class="st"> </span><span class="cf">function</span>(CO2, type, bias) {</span>
+<span id="cb147-2"><a href="bonnes-pratiques-de-programmation.html#cb147-2"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb147-3"><a href="bonnes-pratiques-de-programmation.html#cb147-3"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> </span>type) {</span>
+<span id="cb147-4"><a href="bonnes-pratiques-de-programmation.html#cb147-4"></a>            CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">+</span><span class="st"> </span>bias</span>
+<span id="cb147-5"><a href="bonnes-pratiques-de-programmation.html#cb147-5"></a>        }</span>
+<span id="cb147-6"><a href="bonnes-pratiques-de-programmation.html#cb147-6"></a>    }</span>
+<span id="cb147-7"><a href="bonnes-pratiques-de-programmation.html#cb147-7"></a>    <span class="kw">return</span>(CO2)</span>
+<span id="cb147-8"><a href="bonnes-pratiques-de-programmation.html#cb147-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="bonnes-pratiques-de-programmation.html#cb148-1"></a>newCO2 &lt;-<span class="st"> </span><span class="kw">recalibrate</span>(<span class="dt">CO2 =</span> CO2, <span class="dt">type =</span> <span class="st">&quot;Mississipi&quot;</span>, <span class="dt">bias =</span> <span class="dv">-20</span>)</span>
+<span id="cb148-2"><a href="bonnes-pratiques-de-programmation.html#cb148-2"></a>newCO2 &lt;-<span class="st"> </span><span class="kw">recalibrate</span>(newCO2, <span class="st">&quot;Quebec&quot;</span>, <span class="op">+</span><span class="dv">50</span>)</span></code></pre></div>
 </div>
+<div id="noms-de-fonctions-informatifs" class="section level2 hasAnchor">
+<h2><span class="header-section-number">28.3</span> Noms de fonctions informatifs<a href="bonnes-pratiques-de-programmation.html#noms-de-fonctions-informatifs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Voici notre fonction de l’exemple précédent avec un nom vague.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="bonnes-pratiques-de-programmation.html#cb149-1"></a>rc &lt;-<span class="st"> </span><span class="cf">function</span>(c, t, b) {</span>
+<span id="cb149-2"><a href="bonnes-pratiques-de-programmation.html#cb149-2"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(c)) {</span>
+<span id="cb149-3"><a href="bonnes-pratiques-de-programmation.html#cb149-3"></a>        <span class="cf">if</span> (c<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> </span>t) {</span>
+<span id="cb149-4"><a href="bonnes-pratiques-de-programmation.html#cb149-4"></a>            c<span class="op">$</span>uptake[i] &lt;-<span class="st"> </span>c<span class="op">$</span>uptake[i] <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb149-5"><a href="bonnes-pratiques-de-programmation.html#cb149-5"></a>        }</span>
+<span id="cb149-6"><a href="bonnes-pratiques-de-programmation.html#cb149-6"></a>    }</span>
+<span id="cb149-7"><a href="bonnes-pratiques-de-programmation.html#cb149-7"></a>    <span class="kw">return</span>(c)</span>
+<span id="cb149-8"><a href="bonnes-pratiques-de-programmation.html#cb149-8"></a>}</span></code></pre></div>
+<p>Qu-est ce que <code>rc</code> et <code>c</code>?</p>
+<p>Quand possible, évitez d’utiliser des noms de fonctions R et de variables qui existent déjà pour éviter la confusion et les conflits.</p>
+</div>
+<div id="utilisez-des-commentaires" class="section level2 hasAnchor">
+<h2><span class="header-section-number">28.4</span> Utilisez des commentaires: <code>#</code><a href="bonnes-pratiques-de-programmation.html#utilisez-des-commentaires" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ajoutez des commentaires pour décrire tout ce que votre code fait, que ce soit le but de la fonction, comment utiliser ses arguments, ou une description détaillée de la fonction étape par étape.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="bonnes-pratiques-de-programmation.html#cb150-1"></a><span class="co"># Recalibre le jeu de données CO2 en modifiant la</span></span>
+<span id="cb150-2"><a href="bonnes-pratiques-de-programmation.html#cb150-2"></a><span class="co"># concentration de CO2 d&#39;une valeur fixe selon la region</span></span>
+<span id="cb150-3"><a href="bonnes-pratiques-de-programmation.html#cb150-3"></a><span class="co"># Arguments CO2: the CO2 dataset type: the type</span></span>
+<span id="cb150-4"><a href="bonnes-pratiques-de-programmation.html#cb150-4"></a><span class="co"># (&#39;Mississippi&#39; or &#39;Quebec&#39;) that need to be recalibrated.</span></span>
+<span id="cb150-5"><a href="bonnes-pratiques-de-programmation.html#cb150-5"></a><span class="co"># bias: the amount to add or remove to the concentration</span></span>
+<span id="cb150-6"><a href="bonnes-pratiques-de-programmation.html#cb150-6"></a>recalibrate &lt;-<span class="st"> </span><span class="cf">function</span>(CO2, type, bias) {</span>
+<span id="cb150-7"><a href="bonnes-pratiques-de-programmation.html#cb150-7"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(CO2)) {</span>
+<span id="cb150-8"><a href="bonnes-pratiques-de-programmation.html#cb150-8"></a>        <span class="cf">if</span> (CO2<span class="op">$</span>Type[i] <span class="op">==</span><span class="st"> </span>type) {</span>
+<span id="cb150-9"><a href="bonnes-pratiques-de-programmation.html#cb150-9"></a>            CO2<span class="op">$</span>conc[i] &lt;-<span class="st"> </span>CO2<span class="op">$</span>conc[i] <span class="op">+</span><span class="st"> </span>bias</span>
+<span id="cb150-10"><a href="bonnes-pratiques-de-programmation.html#cb150-10"></a>        }</span>
+<span id="cb150-11"><a href="bonnes-pratiques-de-programmation.html#cb150-11"></a>    }</span>
+<span id="cb150-12"><a href="bonnes-pratiques-de-programmation.html#cb150-12"></a>    <span class="kw">return</span>(CO2)</span>
+<span id="cb150-13"><a href="bonnes-pratiques-de-programmation.html#cb150-13"></a>}</span></code></pre></div>
+</div>
+<div id="exercice-de-groupe" class="section level2 hasAnchor">
+<h2><span class="header-section-number">28.5</span> Exercice de groupe<a href="bonnes-pratiques-de-programmation.html#exercice-de-groupe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En utilisant ce que vous avez appris, écrivez une déclaration <code>if()</code> qui vérifie si une variable numérique <code>x</code> est égale à zéro. Si ce n’est pas le cas, elle attribue <span class="math inline">\(cos(x)/x\)</span> à <code>z</code>, sinon elle attribue <span class="math inline">\(1\)</span> à <code>z</code>.</p>
+<p>Créez une fonction appelée <code>ma_fonction()</code> qui prend la variable <code>x</code> en argument et retourne <code>z</code>.</p>
+<p>Si nous attribuons respectivement <span class="math inline">\(45\)</span>, <span class="math inline">\(20\)</span> et <span class="math inline">\(0\)</span> à <code>x</code>, laquelle des options suivantes représenterait les résultats ?</p>
+<p><strong>1.</strong> <span class="math inline">\(0.054\)</span>, <span class="math inline">\(0.012\)</span>, et <span class="math inline">\(0\)</span>; <br>
+<br>
+<strong>2.</strong> <span class="math inline">\(0.020\)</span>, <span class="math inline">\(0.054\)</span>, et <span class="math inline">\(1\)</span>; <br>
+<br>
+<strong>3.</strong> <span class="math inline">\(0.012\)</span>, <span class="math inline">\(0.020\)</span>, et <span class="math inline">\(1\)</span>. <br></p>
+<p><strong>Exercice de groupe: Solution</strong></p>
+<p>La bonne réponse est l’option <strong>3</strong> ( <span class="math inline">\(0.012\)</span>, <span class="math inline">\(0.020\)</span> et <span class="math inline">\(1\)</span> ).</p>
+<p><br></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="bonnes-pratiques-de-programmation.html#cb151-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb151-2"><a href="bonnes-pratiques-de-programmation.html#cb151-2"></a>    <span class="cf">if</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb151-3"><a href="bonnes-pratiques-de-programmation.html#cb151-3"></a>        z &lt;-<span class="st"> </span><span class="kw">cos</span>(x)<span class="op">/</span>x</span>
+<span id="cb151-4"><a href="bonnes-pratiques-de-programmation.html#cb151-4"></a>    } <span class="cf">else</span> {</span>
+<span id="cb151-5"><a href="bonnes-pratiques-de-programmation.html#cb151-5"></a>        z &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb151-6"><a href="bonnes-pratiques-de-programmation.html#cb151-6"></a>    }</span>
+<span id="cb151-7"><a href="bonnes-pratiques-de-programmation.html#cb151-7"></a>    <span class="kw">return</span>(z)</span>
+<span id="cb151-8"><a href="bonnes-pratiques-de-programmation.html#cb151-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="bonnes-pratiques-de-programmation.html#cb152-1"></a><span class="kw">my_function</span>(<span class="dv">45</span>)</span></code></pre></div>
+<pre><code>## [1] 0.01167382</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="bonnes-pratiques-de-programmation.html#cb154-1"></a><span class="kw">my_function</span>(<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0204041</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="bonnes-pratiques-de-programmation.html#cb156-1"></a><span class="kw">my_function</span>(<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+
 </div>
 </div>
 <hr>
@@ -285,8 +382,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="règle-if.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="décisions-à-conditions-multiples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="accessibilité-des-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

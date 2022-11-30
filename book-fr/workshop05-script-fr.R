@@ -1,5 +1,20 @@
 ##Section: 01-preparing-for-the-workshop.R 
 
+###Avis ###
+#                                                                            #
+#Ceci est un script généré automatiquement basé sur les morceaux de code du  #
+#livre pour cet atelier.                                                     #
+#                                                                            #
+#Il est minimalement annoté pour permettre aux participants de fournir leurs #
+#commentaires : une pratique que nous encourageons vivement.                 #
+#                                                                            #
+#Notez que les solutions aux défis sont également incluses dans ce script.   #
+#Lorsque vous résolvez les défis par vous-méme, essayez de ne pas parcourir  #
+#le code et de regarder les solutions.                                       #
+#                                                                            #
+#Bon codage !                                                                #
+
+
 install.packages("DiagrammeR")
 
 library(DiagrammeR)
@@ -394,108 +409,42 @@ for (i in 1:nrow(CO2)){
 
 ##Section: 05-writing-functions.R 
 
-# our.dataset has 4 variables 
-
-our.dataset <- data.frame(
-  a = rnorm(10),
-  b = rnorm(10),
-  c = rnorm(10),
-  d = rnorm(10)
-)
-
-our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) / 
-  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
-our.dataset$b <- (our.dataset$b - min(our.dataset$b, na.rm = TRUE)) / 
-  (max(our.dataset$b, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
-our.dataset$c <- (our.dataset$c - min(our.dataset$c, na.rm = TRUE)) / 
-  (max(our.dataset$c, na.rm = TRUE) - min(our.dataset$c, na.rm = TRUE))
-our.dataset$d <- (our.dataset$d - min(our.dataset$d, na.rm = TRUE)) / 
-  (max(our.dataset$d, na.rm = TRUE) - min(our.dataset$d, na.rm = TRUE))
-
-our.dataset$a <- (our.dataset$a - min(our.dataset$a, na.rm = TRUE)) /
-  (max(our.dataset$a, na.rm = TRUE) - min(our.dataset$a, na.rm = TRUE))
-
-# our
-# secret
-# hidden
-# function
-
-rescale01(our.dataset$a)
-rescale01(our.dataset$b)
-rescale01(our.dataset$c)
-rescale01(our.dataset$d)
-
-
-
-operations <- function(number1, number2, number3) {
-  result <- (number1 + number2) * number3
-  print(result)
+operations <- function(numero_1, numero_2, numero_3) {
+  resultat <- (numero_1 + numero_2) * numero_3
+  print(resultat)
 }
 
 operations(1, 2, 3)
 
 
 
-Scruffy <- "dog"
-Paws <- "cat"
-print_animal(Scruffy)
-print_animal(Paws)
+Pitou <- "chien"
+Minou <- "chat"
+print_animal(Pitou)
+print_animal(Minou)
 
 print_animal <- function(animal) {
-  if(animal == "dog") {
+  if (animal == "chien") {
     print("woof")
-  } else if(animal == "cat") {
-    print("meow")
+  } else if (animal == "chat") {
+    print("miaou")
   }
 }
 
-Scruffy <- "dog"
-Paws <- "cat"
-print_animal(Scruffy)
-print_animal(Paws)
-
-print_animal <- function(animal) {
-  if(animal == "dog") {
-    print("woof")
-  } else if(animal == "cat") {
-    print("meow")
-  }
+operations <- function(numero_1, numero_2, numero_3 = 3) {
+  resultat <- (numero_1 + numero_2) * numero_3
+  print(resultat)
 }
-
-operations <- function(number1, number2, number3 = 3) {
-  result <- (number1 + number2) * number3
-  print(result)
-}
-operations(number1 = 1, number2 = 2, number3 = 3) 
-# is equivalent to
+operations(1, 2, 3) # est équivalent à
 operations(1, 2)
-operations(1, 2, 2) # we can still change the value of number3 if needed
-
-paste_anything_fun <- function(...) {
-  arguments <- list(...)
-  paste0(arguments)
-}
-
-paste_anything_fun("I", 
-                   "want", 
-                   "a break!")
-
-percentages <- function(x, mult = 100, ...){
- percent <- round(x * mult, ...)
- paste(percent, "%", sep = "")
-}
-
-percentages(c(.543, .534, .466))
-
-# ?round
-percentages(c(.543, .534, .466), digits = 2)
+operations(1, 2, 2) # on peut toujours changer la valeur de numero_3
 
 plot.CO2 <- function(CO2, ...) {
-  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...)
-  for(i in 1:length(CO2[,1])){
-     if(CO2$Type[i] == "Quebec") {
+  plot(x=CO2$conc, y=CO2$uptake, type="n", ...) # On utilise ... pour passer les arguments a plot().
+  for (i in 1:length(CO2[,1])){
+     if (CO2$Type[i] == "Quebec") {
        points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
-     } else if(CO2$Type[i] == "Mississippi") {
+     } else if (CO2$Type[i] == "Mississippi") {
        points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
      }
   }
@@ -527,6 +476,18 @@ plot.CO2(CO2,
          xlab="CO2 concentration", ylab="CO2 uptake")
 plot.CO2(CO2, cex.lab=1.2, xlab="CO2 concentration", ylab="CO2 uptake", pch=20)
 
+sum2 <- function(...){
+  args <- list(...)
+  result <- 0
+  for (i in args)  {
+    result <- result + i
+  }
+  return (result)
+}
+
+sum2(2, 3)
+sum2(2, 4, 5, 7688, 1)
+
 myfun <- function(x) {
   if(x < 10) {
     0
@@ -555,77 +516,53 @@ simplefun2(1, 2)
 
 bigsum <- function(a, b) {
   result <- a + b
-  if(result < 50) {
+  if (result < 50) {
     return(0)
   } else {
-    return(result)
+    return (result)
   }
 }
 
 bigsum <- function(a, b) {
   result <- a + b
-  if(result < 50) {
+  if (result < 50) {
   0
   } else {
   result
   }
 }
 
-out_val <- 3 
+var1 <- 3     # 'var1' est définie à l'extérieur de la fonction
 vartest <- function() {
-  in_val <- 4  
-  print(in_val)
-  print(out_val)
+  a <- 4      # 'a' est définie a l'intérieur
+  print(a)    # affiche 'a'
+  print(var1) # affiche 'var1'
 }
-vartest()
 
-in_val; out_val
+a             # on ne peut pas afficher 'a', car 'a' n'existe qu'à l'intérieur de la fonction
 
-out_val_2
+vartest()     # cvartest() affiche 'a' et 'var1'
 
-var1 <- 3 
-vartest <- function() {
-  a <- 4      # 'a' is defined inside
-  print(a)    # print 'a'
-  print(var1) # print var1
+rm(var1)      # supprime 'var1'
+vartest()     # la fonction ne fonctionne plus, car 'var1' n'existe plus!
+
+var1 <- 3     # var1 est définie à l'extérieur de la fonction
+vartest <- function(var1) {
+  print(var1) # affiche var1
 }
-a             # we cannot print 'a' as it exists only inside the function
-vartest()     # calling vartest() will print a and var1
-rm(var1)      # remove var1
-vartest()     # calling the function again does not work anymore
+
+vartest(8)    # Dans notre fonction, var1 est maintenant notre argument et prend sa valeur
+
+var1          # var1 a toujours la même valeur à l'extérieur de la fonction
 
 a <- 3
-if(a > 5) {
+if (a > 5) {
   b <- 2
 }
+
 a + b
 
 # Error: object 'b' not found
-
-if((a[x,y]>1.0)&(a[x,y]<2.0)){print("Between 1 and 2")}
-
- if((a[x, y] > 1.0) & (a[x, y] < 2.0)){
-    print("Between 1 and 2")
-  }
-
-a<-4;b=3
-if(a<b){
-if(a==0)print("a zero")}else{
-if(b==0){print("b zero")}else print(b)}
-
-a <- 4
-b <- 3
-if(a < b) {
-  if(a == 0) {
-    print("a zero")
-  }
-} else {
-  if(b == 0) {
-    print("b zero")
-  } else {
-    print(b)
-  }
-}
 
 for(i in 1:length(CO2[,1])) {
   if(CO2$Type[i] == "Mississippi") {
@@ -661,16 +598,16 @@ rc <- function(c, t, b) {
   return(c)
 }
 
-# Recalibrates the CO2 dataset by modifying the CO2 uptake concentration
-# by a fixed amount depending on the region of sampling.
+# Recalibre le jeu de données CO2 en modifiant la concentration de CO2
+# d'une valeur fixe selon la region
 # Arguments
 # CO2: the CO2 dataset
-# type: the type ("Mississippi" or "Quebec") that need to be recalibrated
-# bias: the amount to add or remove to the concentration uptake
+# type: the type ("Mississippi" or "Quebec") that need to be recalibrated.
+# bias: the amount to add or remove to the concentration
 recalibrate <- function(CO2, type, bias) {
-  for(i in 1:nrow(CO2)) {
+  for (i in 1:nrow(CO2)) {
     if(CO2$Type[i] == type) {
-      CO2$uptake[i] <- CO2$uptake[i] + bias
+      CO2$conc[i] <- CO2$conc[i] + bias
     }
   }
   return(CO2)

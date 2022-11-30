@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Règle if else | Workshop 5: Programming in R</title>
+  <title>Chapter 27 Accessibilité des variables | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Règle if else | Workshop 5: Programming in R" />
+  <meta property="og:title" content="Chapter 27 Accessibilité des variables | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Introduction to Programming in R" />
   <meta name="github-repo" content="qcbsRworkshops/workshop05" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Règle if else | Workshop 5: Programming in R" />
+  <meta name="twitter:title" content="Chapter 27 Accessibilité des variables | Workshop 5: Programming in R" />
   
   <meta name="twitter:description" content="Introduction to Programming in R" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops/assets/images/logo/csbq_logo_accueil.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="règle-if.html"/>
-<link rel="next" href="décisions-à-conditions-multiples.html"/>
+<link rel="prev" href="syntaxe-dune-fonction.html"/>
+<link rel="next" href="bonnes-pratiques-de-programmation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -250,29 +250,52 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="règle-if-else" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 7</span> <strong>Règle</strong> <code>if else</code><a href="règle-if-else.html#règle-if-else" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>La directive <code>if</code> n’effectue une opération que si une condition est remplie. Cependant, on peut être intéressé non seulement par la spécification de l’expression qui doit être effectuée lorsque la <code>condition</code> requise est VRAIE (<code>TRUE</code>), mais aussi par l’<code>expression</code> qui doit être effectuée lorsque la <code>condition</code> est FAUSSE (<code>FALSE</code>).</p>
-<p>Pour ce faire, nous pouvons utiliser l’instruction <code>if() {} else {}</code> et la fonction <code>ifelse()</code>.</p>
-<div class="split">
-<div class="uneven-split-left">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="règle-if-else.html#cb3-1"></a><span class="cf">if</span>(condition) {</span>
-<span id="cb3-2"><a href="règle-if-else.html#cb3-2"></a>  expression <span class="dv">1</span></span>
-<span id="cb3-3"><a href="règle-if-else.html#cb3-3"></a>} <span class="cf">else</span> {</span>
-<span id="cb3-4"><a href="règle-if-else.html#cb3-4"></a>  expression <span class="dv">2</span></span>
-<span id="cb3-5"><a href="règle-if-else.html#cb3-5"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="règle-if-else.html#cb4-1"></a><span class="kw">ifelse</span>(condition, </span>
-<span id="cb4-2"><a href="règle-if-else.html#cb4-2"></a>       expression <span class="dv">1</span>, </span>
-<span id="cb4-3"><a href="règle-if-else.html#cb4-3"></a>       expression <span class="dv">2</span></span>
-<span id="cb4-4"><a href="règle-if-else.html#cb4-4"></a>)</span></code></pre></div>
-</div>
-<div class="uneven-split-right">
-<center>
-<div id="htmlwidget-8babbea5ec19458a1baf" style="width:50%;height:auto;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8babbea5ec19458a1baf">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse body\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"4\" [headport = \"n\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</center>
-</div>
-</div>
+<div id="accessibilité-des-variables" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 27</span> Accessibilité des variables<a href="accessibilité-des-variables.html#accessibilité-des-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Il est essentiel de pouvoir situer nos variables, et de savoir si elles sont définies et accessibles.</p>
+<ol style="list-style-type: decimal">
+<li><p>Les variables définies <em>à l’intérieur</em> d’une fonction ne sont pas accessibles à l’extérieur de la fonction!</p></li>
+<li><p>Les variables définies <em>à l’extérieur</em> d’une fonction sont accessibles à l’intérieur, mais ce n’est jamais une bonne idée! Votre fonction ne fonctionnera plus si la variable extérieure est effacée!</p></li>
+</ol>
+<p>Faites très attention lorsque vous créez des variables à l’intérieur d’une condition, car la variable pourrait ne jamais être créée et causer des erreurs (parfois imperceptibles).</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="accessibilité-des-variables.html#cb133-1"></a>var1 &lt;-<span class="st"> </span><span class="dv">3</span>  <span class="co"># &#39;var1&#39; est définie à l&#39;extérieur de la fonction</span></span>
+<span id="cb133-2"><a href="accessibilité-des-variables.html#cb133-2"></a>vartest &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb133-3"><a href="accessibilité-des-variables.html#cb133-3"></a>    a &lt;-<span class="st"> </span><span class="dv">4</span>  <span class="co"># &#39;a&#39; est définie a l&#39;intérieur</span></span>
+<span id="cb133-4"><a href="accessibilité-des-variables.html#cb133-4"></a>    <span class="kw">print</span>(a)  <span class="co"># affiche &#39;a&#39;</span></span>
+<span id="cb133-5"><a href="accessibilité-des-variables.html#cb133-5"></a>    <span class="kw">print</span>(var1)  <span class="co"># affiche &#39;var1&#39;</span></span>
+<span id="cb133-6"><a href="accessibilité-des-variables.html#cb133-6"></a>}</span>
+<span id="cb133-7"><a href="accessibilité-des-variables.html#cb133-7"></a></span>
+<span id="cb133-8"><a href="accessibilité-des-variables.html#cb133-8"></a>a  <span class="co"># on ne peut pas afficher &#39;a&#39;, car &#39;a&#39; n&#39;existe qu&#39;à l&#39;intérieur de la fonction</span></span></code></pre></div>
+<pre><code>## [1] 19.47551</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="accessibilité-des-variables.html#cb135-1"></a><span class="kw">vartest</span>()  <span class="co"># cvartest() affiche &#39;a&#39; et &#39;var1&#39;</span></span></code></pre></div>
+<pre><code>## [1] 4
+## [1] 3</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="accessibilité-des-variables.html#cb137-1"></a><span class="kw">rm</span>(var1)  <span class="co"># supprime &#39;var1&#39;</span></span>
+<span id="cb137-2"><a href="accessibilité-des-variables.html#cb137-2"></a><span class="kw">vartest</span>()  <span class="co"># la fonction ne fonctionne plus, car &#39;var1&#39; n&#39;existe plus!</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<pre><code>## Error in print(var1): object &#39;var1&#39; not found</code></pre>
+<p>Utilisez des arguments!</p>
+<p>De plus, à l’intérieur d’une fonction, les noms d’arguments remplaceront les noms des autres variables.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="accessibilité-des-variables.html#cb140-1"></a>var1 &lt;-<span class="st"> </span><span class="dv">3</span>  <span class="co"># var1 est définie à l&#39;extérieur de la fonction</span></span>
+<span id="cb140-2"><a href="accessibilité-des-variables.html#cb140-2"></a>vartest &lt;-<span class="st"> </span><span class="cf">function</span>(var1) {</span>
+<span id="cb140-3"><a href="accessibilité-des-variables.html#cb140-3"></a>    <span class="kw">print</span>(var1)  <span class="co"># affiche var1</span></span>
+<span id="cb140-4"><a href="accessibilité-des-variables.html#cb140-4"></a>}</span>
+<span id="cb140-5"><a href="accessibilité-des-variables.html#cb140-5"></a></span>
+<span id="cb140-6"><a href="accessibilité-des-variables.html#cb140-6"></a><span class="kw">vartest</span>(<span class="dv">8</span>)  <span class="co"># Dans notre fonction, var1 est maintenant notre argument et prend sa valeur</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="accessibilité-des-variables.html#cb142-1"></a>var1  <span class="co"># var1 a toujours la même valeur à l&#39;extérieur de la fonction</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Une bonne pratique serait de définir les variables à l’extérieur de la condition, puis ensuite de modifier leurs valeurs pour éviter ces problèmes.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="accessibilité-des-variables.html#cb144-1"></a>a &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb144-2"><a href="accessibilité-des-variables.html#cb144-2"></a><span class="cf">if</span> (a <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) {</span>
+<span id="cb144-3"><a href="accessibilité-des-variables.html#cb144-3"></a>    b &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb144-4"><a href="accessibilité-des-variables.html#cb144-4"></a>}</span>
+<span id="cb144-5"><a href="accessibilité-des-variables.html#cb144-5"></a></span>
+<span id="cb144-6"><a href="accessibilité-des-variables.html#cb144-6"></a>a <span class="op">+</span><span class="st"> </span>b</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="accessibilité-des-variables.html#cb145-1"></a><span class="co"># Error: object &#39;b&#39; not found</span></span></code></pre></div>
+<p><br>
+Si <code>b</code> avait déjà une valeur différente assignée dans l’environnement, on aurait un gros problème!</p>
+<p>R ne trouverait pas d’erreur, et la valeur de <code>a + b</code> serait entièrement différente!</p>
 </div>
 <hr>
 <center> 
@@ -285,8 +308,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="règle-if.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="décisions-à-conditions-multiples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="syntaxe-dune-fonction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bonnes-pratiques-de-programmation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
