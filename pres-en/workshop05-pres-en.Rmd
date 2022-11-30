@@ -2439,12 +2439,12 @@ The special argument `...` allows arguments from another function to be implicit
 .xsmall[
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
-  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...)
+  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...) #<<
   for(i in 1:length(CO2[,1])){
      if(CO2$Type[i] == "Quebec") {
-       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
+       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
      } else if(CO2$Type[i] == "Mississippi") {
-       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
+       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...) #<<
      }
   }
 }
