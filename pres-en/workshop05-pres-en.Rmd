@@ -379,7 +379,7 @@ This roadmap appears at the beginning of each control flow tool to let participa
 
 .pull-left[
 
-**`if()` statement**
+**`if() {}` statement**
 
 ```R
 if(condition) {
@@ -432,7 +432,7 @@ render_graph(flowchart2, width = '45%', height = 'auto')
 
 .pull-right[
 
-**`if()` `else` statement**
+**`if() {} else {}` statement**
 
 ```r
 if(condition) {
@@ -488,7 +488,7 @@ render_graph(flowchart3, width = '50%', height = 'auto')
 
 <br>
 
-- `if()` and `if()` `else` test a single condition.
+- `if()` and `if() {} else {}` test a single condition (_i.e._, takes one element).
 - You can also use the `ifelse()` function to:
     - test a vector of conditions;
     - apply a function only under certain conditions.
@@ -516,9 +516,9 @@ sqrt(ifelse(test = a >= 0,
 ```
 ]
 ---
-### Nested `if()` `else` statement
+### Nested `if() {} else {}` statement
 
-While the `if()` and `if()` `else` statements restrict the outcomes to two, nested `if()` `else` statements allow you to add more conditional outcomes.
+While the `if()` and `if() {} else {}` statements restrict the outcomes to two, nested `if() {} else {}` statements allow you to add more conditional outcomes.
 
 
 .pull-left[
