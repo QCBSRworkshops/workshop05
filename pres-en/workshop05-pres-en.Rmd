@@ -1043,7 +1043,7 @@ render_graph(flowchart5, width = '60%', height = 'auto')
 .pull-right[
 We will apply the following example into our flow chart! 
 
-Here, every instance of `m` is being replaced by each number between `1` and `7`, until it reaches the last element of the sequence:
+Here, every instance of `m` is being replaced by each number between `1` and `6`, until it reaches the last element of the sequence:
 
 ```{r eval = FALSE}
 y <- 2
