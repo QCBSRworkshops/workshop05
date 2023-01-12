@@ -35,13 +35,13 @@ class: inverse, center, middle
 
 # About this workshop
 
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=05&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop5) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.html) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=05&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.pdf) [![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=05&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop05/workshop05-en/workshop05-en.R)
-
-
----
-
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=slides&message=05&color=red&logo=html5)](https://r.qcbs.ca/workshop05/pres-en/workshop05-pres-en.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=05&color=9cf&logo=github)](https://r.qcbs.ca/workshop05/book-en/index.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=05&color=2a50b8&logo=r)](https://r.qcbs.ca/workshop05/book-en/workshop05-script-en.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=flat-square&label=r.qcbs.ca&message=05&color=brightgreen)](https://r.qcbs.ca/workshops/r-workshop-05)
 <p style="font-size:60%">
 
+---
 .center[
 **Contributors to the development of this workshop**
 
@@ -52,25 +52,25 @@ by modifying and improving its content as part of the <br> *Le*arning *a*nd *D*e
 .right[
  **2022** - **2021** - **2020**
  
-[Pedro Henrique P. Braga]()
+Pedro Henrique P. Braga
 
-[Gabriel Muñoz]()
+Gabriel Muñoz
 
-[Parnian Pourtaherian]()
+Parnian Pourtaherian
 
-[Kate Sheridan]()
+Kate Sheridan
 
 <br>
 
 **2019** - **2018** - **2017**
 
-[Katherine Hébert]()
+Katherine Hébert
 
-[Pedro Henrique P. Braga]()
+Pedro Henrique P. Braga
 
-[Gabriel Muñoz]()
+Gabriel Muñoz
 
-[Marie-Hélène Brice]()
+Marie-Hélène Brice
 
 ]
 ]
@@ -80,23 +80,23 @@ by modifying and improving its content as part of the <br> *Le*arning *a*nd *D*e
 
 **2016** - **2015** - **2014**
 
-[Johanna Bradie]()
+Johanna Bradie
 
-[Sylvain Christin]()
+Sylvain Christin
 
-[Zofia Taranu]()
+Zofia Taranu
 
-[Ben Haller]()
+Ben Haller
 
-[Pedro Henrique P. Braga]()
+Pedro Henrique P. Braga
 
-[Sebastien Portalier]()
+Sebastien Portalier
 
-[Jacob Ziegler]()
+Jacob Ziegler
 
-[Zofia Taranu]()
+Zofia Taranu
 
-[Cédric Frenette Dussault]()
+Cédric Frenette Dussault
 
 ]
 ]
@@ -110,6 +110,8 @@ by modifying and improving its content as part of the <br> *Le*arning *a*nd *D*e
 #### Material
 
 To follow this workshop, you are required to have downloaded and installed the latest [RStudio](https://rstudio.com/products/rstudio/download/#download) and [R](https://cran.rstudio.com/) versions.
+
+<br>
 
 All workshop materials are found at [r.qcbs.ca/workshops/r-workshop-05/](https://r.qcbs.ca/workshops/r-workshop-05/).
 
@@ -141,7 +143,7 @@ class: inverse, center, middle
 # Review
 
 ---
-# Objects
+# Review: Objects
 
 ![:scale 90%](images/matrix.png)
 
@@ -150,7 +152,7 @@ class: inverse, center, middle
 
 <br>
 
-.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)?]
+.center[Recall [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#53)?]
 
 <br>
 
@@ -185,7 +187,7 @@ bool_vector
 ---
 # Review: Data frames
 
-We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#55)):
+We can begin by creating multiple vectors (remember [Workshop #1](https://qcbsrworkshops.github.io/workshop01/workshop01-en/workshop01-en.html#72)):
 
 ```{r}
 siteID <- c("A1.01", "A1.02", "B1.01", "B1.02")
@@ -2437,12 +2439,12 @@ The special argument `...` allows arguments from another function to be implicit
 .xsmall[
 ```{r, eval = FALSE}
 plot.CO2 <- function(CO2, ...) {
-  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...)
+  plot(x=CO2$conc, y = CO2$uptake, type = "n", ...) #<<
   for(i in 1:length(CO2[,1])){
      if(CO2$Type[i] == "Quebec") {
-       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
+       points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...) #<<
      } else if(CO2$Type[i] == "Mississippi") {
-       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
+       points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...) #<<
      }
   }
 }
@@ -2977,7 +2979,7 @@ This exercise should take place in breakout rooms within 10 minutes. After rejoi
 ---
 # Group exercise: Solution ![:cube]()
 
-Correct answer is option **3** ( $0.12$, $0.20$, and $1$ ).
+Correct answer is option **3** ( $0.012$, $0.020$, and $1$ ).
 
 <br>
 
