@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 La famille des fonctions apply(). | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 La famille des fonctions apply(). | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
@@ -51,7 +51,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
@@ -267,23 +267,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Considérons que nous avons une matrice <code>height</code> contenant la hauteur (en mètres) qui a été prise sur cinq individus (en lignes) à quatre moments différents (en colonnes).</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="la-famille-des-fonctions-apply..html#cb57-1" aria-hidden="true" tabindex="-1"></a>(height <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">20</span>, <span class="fl">1.5</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>##          [,1]     [,2]
-## [1,] 1.827233 1.796202
-## [2,] 1.906160 1.877375
-## [3,] 1.511770 1.503711
-## [4,] 1.890455 1.692829
-## [5,] 1.805941 1.605992
+## [1,] 1.678401 1.767051
+## [2,] 1.995152 1.831650
+## [3,] 1.597731 1.500258
+## [4,] 1.760200 1.973591
+## [5,] 1.574786 1.675590
 ##          [,3]     [,4]
-## [1,] 1.614887 1.979585
-## [2,] 1.790664 1.939626
-## [3,] 1.793847 1.809130
-## [4,] 1.789997 1.708536
-## [5,] 1.835671 1.592633</code></pre>
+## [1,] 1.570455 1.721713
+## [2,] 1.736305 1.536088
+## [3,] 1.631592 1.728510
+## [4,] 1.977070 1.624321
+## [5,] 1.980734 1.833997</code></pre>
 <p>Nous aimerions obtenir la hauteur moyenne à chaque pas de temps.</p>
 <p>Une option consiste à utiliser une boucle <code>for() {}</code> pour itérer de la colonne <code>1</code> à <code>4</code>, utiliser la fonction <code>mean()</code> pour calculer la moyenne des valeurs, et stocker séquentiellement la valeur de sortie dans un vecteur.</p>
 <p>On peut aussi utiliser la fonction <code>apply()</code> pour qu’elle applique la fonction <code>mean()</code> à chaque colonne de la matrice <code>height</code>. Voir l’exemple ci-dessous :</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="la-famille-des-fonctions-apply..html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="at">X =</span> height, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> mean)</span></code></pre></div>
-<pre><code>## [1] 1.788312 1.695222 1.765013
-## [4] 1.805902</code></pre>
+<pre><code>## [1] 1.721254 1.749628 1.779231
+## [4] 1.688926</code></pre>
 <blockquote>
 <p>La fonction <code>apply()</code> commence avec trois arguments principaux : <code>X</code>, qui prendra une matrice ou un cadre de données ; <code>FUN</code>, qui peut être n’importe quelle fonction qui sera appliquée aux <code>MARGIN</code>s de <code>X</code> ; et <code>MARGIN</code> qui prendra <code>1</code> pour les calculs en ligne, ou <code>2</code> pour les calculs en colonne.</p>
 </blockquote>
@@ -301,13 +301,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 2.5
 ## 
 ## $Norm10
-## [1] 0.1027971
+## [1] -0.3236717
 ## 
 ## $Norm20
-## [1] 0.7711168
+## [1] 0.9114632
 ## 
 ## $Norm100
-## [1] 5.083474</code></pre>
+## [1] 5.046767</code></pre>
 <blockquote>
 <p>Les opérations <code>lapply()</code> effectuées dans des objets différents d’une <code>list</code> seront converties en <code>list</code> via <code>base::as.list()</code>.</p>
 </blockquote>
@@ -321,9 +321,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb64-4"><a href="la-famille-des-fonctions-apply..html#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply mean to each element of the list</span></span>
 <span id="cb64-5"><a href="la-famille-des-fonctions-apply..html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(SimulatedData, mean)</span></code></pre></div>
 <pre><code>## SimpleSequence         Norm10 
-##      2.5000000     -0.2224508 
+##      2.5000000     -0.2745324 
 ##         Norm20        Norm100 
-##      1.1752383      5.1007243</code></pre>
+##      1.2050524      5.2401935</code></pre>
 </div>
 <div id="mapply" class="section level2 hasAnchor" number="16.4">
 <h2><span class="header-section-number">16.4</span> <code>mapply()</code><a href="la-famille-des-fonctions-apply..html#mapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
