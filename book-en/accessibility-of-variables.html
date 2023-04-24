@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 27 Accessibility of variables | Workshop 5: Programming in R</title>
   <meta name="description" content="Introduction to Programming in R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 27 Accessibility of variables | Workshop 5: Programming in R" />
   <meta property="og:type" content="book" />
@@ -51,7 +51,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
@@ -291,14 +291,14 @@ unperceptible) errors.</p>
 <span id="cb153-5"><a href="accessibility-of-variables.html#cb153-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(var1)  <span class="co"># print var1</span></span>
 <span id="cb153-6"><a href="accessibility-of-variables.html#cb153-6" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb153-7"><a href="accessibility-of-variables.html#cb153-7" aria-hidden="true" tabindex="-1"></a>a  <span class="co"># we cannot print &#39;a&#39; as it exists only inside the function</span></span></code></pre></div>
-<pre><code>## [1] 22.35561</code></pre>
+<pre><code>## [1] 19.96041</code></pre>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="accessibility-of-variables.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vartest</span>()  <span class="co"># calling vartest() will print a and var1</span></span></code></pre></div>
 <pre><code>## [1] 4
 ## [1] 3</code></pre>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="accessibility-of-variables.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(var1)  <span class="co"># remove var1</span></span>
 <span id="cb157-2"><a href="accessibility-of-variables.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vartest</span>()  <span class="co"># calling the function again does not work anymore</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<pre><code>## Error in print(var1): object &#39;var1&#39; not found</code></pre>
+<pre><code>## Error in vartest(): object &#39;var1&#39; not found</code></pre>
 <p><em>Tip</em> It is good practice to define variables outside the conditions and then modify their values to avoid any problems.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="accessibility-of-variables.html#cb160-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
 <span id="cb160-2"><a href="accessibility-of-variables.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
