@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Atelier 5: Programmation en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Centre des sciences de la biodiversité du Québec" />
+    <script src="assets/header-attrs-2.21/header-attrs.js"></script>
+    <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="assets/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+    <script src="assets/viz-1.8.2/viz.js"></script>
+    <link href="assets/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="assets/grViz-binding-1.0.9/grViz.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+    <link rel="stylesheet" href="qcbsR.css" type="text/css" />
+    <link rel="stylesheet" href="qcbsR-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Atelier 5: Programmation en R
+]
+.subtitle[
+## Série d’ateliers R du CSBQ
+]
+.author[
+### Centre des sciences de la biodiversité du Québec
+]
+
+---
+
+
+
+
+
+class: inverse, center, middle
+
+# À propos de cet atelier
+
+[![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=diapos&amp;message=05&amp;color=red&amp;logo=html5)](https://r.qcbs.ca/workshop05/pres-fr/workshop05-pres-fr.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=livre&amp;message=05&amp;color=9cf&amp;logo=github)](https://r.qcbs.ca/workshop05/book-fr/index.html)
+[![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=script&amp;message=05&amp;color=2a50b8&amp;logo=r)](https://r.qcbs.ca/workshop05/book-fr/workshop05-script-fr.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop05) [![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=r.qcbs.ca&amp;message=05&amp;color=brightgreen)](https://r.qcbs.ca/fr/workshops/r-workshop-05/)
+
+
+---
+.center[
+**Contributeurs et contributrices au développement de cet atelier**
+
+en modifiant et en améliorant son contenu dans le cadre du &lt;br&gt;_**Le**arning **a**nd **D**evelopment **A**ward_ du **CSBQ**:
+]
+
+.pull-left[
+.right[
+ **2022** - **2021** - **2020**
+ 
+Pedro Henrique P. Braga
+
+Gabriel Muñoz
+
+Parnian Pourtaherian
+
+Kate Sheridan
+
+&lt;br&gt;
+
+**2019** - **2018** - **2017**
+
+Katherine Hébert
+
+Pedro Henrique P. Braga
+
+Gabriel Muñoz
+
+Marie-Hélène Brice
+
+]
+]
+
+.pull-right[
+.left[
+
+**2016** - **2015** - **2014**
+
+Johanna Bradie
+
+Sylvain Christin
+
+Zofia Taranu
+
+Ben Haller
+
+Pedro Henrique P. Braga
+
+Sebastien Portalier
+
+Jacob Ziegler
+
+Zofia Taranu
+
+Cédric Frenette Dussault
+
+]
+]
+
+&lt;/p&gt;
+
+---
+
+# Exigences
+
+#### Matériel
+
+Pour suivre cet atelier, vous devez avoir téléchargé et installé la dernière version des logiciels [RStudio](https://rstudio.com/products/rstudio/download/#download) et [R](https://cran.rstudio.com/).
+
+&lt;br&gt;
+
+Tout le matériel pour cet atelier se retrouve au
+[r.qcbs.ca/fr/workshops/r-workshop-05/](https://r.qcbs.ca/fr/workshops/r-workshop-05/).
+
+---
+
+# Objectifs d'apprentissage
+
+##### 1. Prendre connaissance de **structures de contrôle**
+##### 2. Écrire des fonctions dans `R`
+##### 3. Réduire le temps d’exécution des codes
+##### 4. Paquets `R` utiles
+
+---
+class: inverse, center, middle
+
+# Rappel
+
+---
+# Rappel : Objets
+
+![:scale 90%](images/matrix.png)
+
+---
+# Rappel : Vecteurs
+
+&lt;br&gt;
+.center[Souvenez-vous de l'[atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#47) ?]
+
+&lt;br&gt;
+
+.pull-left[
+##### Vecteurs numériques 
+
+
+```r
+  num.vector &lt;- c(1, 4, 3, 
+                  9, 32, -4)
+  num.vector
+# [1]  1  4  3  9 32 -4
+```
+]
+.pull-right[
+##### Vecteur de caractères
+
+
+```r
+char_vector &lt;- c("bleu", 
+                 "rouge", 
+                 "vert")
+char_vector
+# [1] "bleu"  "rouge" "vert"
+```
+]
+
+##### Vecteur logique
+
+
+```r
+bool_vector &lt;- c(TRUE, TRUE, FALSE) # ou c(T, T, F)
+bool_vector
+# [1]  TRUE  TRUE FALSE
+```
+
+---
+# Rappel : Data frame
+
+Nous pouvons commencer par créer des vecteurs multiples (petit rappel : [Atelier n°1](https://qcbsrworkshops.github.io/workshop01/workshop01-fr/workshop01-fr.html#54)) :
+
+
+```r
+  siteID &lt;- c("A1.01", "A1.02", "B1.01", "B1.02")
+  soil_pH &lt;- c(5.6, 7.3, 4.1, 6.0)
+  num.sp &lt;- c(17, 23, 15, 7)
+  treatment &lt;- c("Fert", "Fert", "No_fert", "No_fert")
+```
+
+Nous les combinons ensuite en utilisant la fonction `data.frame()`.
+
+
+```r
+  my.first.df &lt;- data.frame(siteID, soil_pH, num.sp, treatment)
+```
+
+```r
+  my.first.df
+#   siteID soil_pH num.sp treatment
+# 1  A1.01     5.6     17      Fert
+# 2  A1.02     7.3     23      Fert
+# 3  B1.01     4.1     15   No_fert
+# 4  B1.02     6.0      7   No_fert
+```
+
+---
+# Rappel : Listes
+
+Nous pouvons également créer des listes en combinant les vecteurs que nous avons créés auparavant.
+
+
+```r
+  my.first.list &lt;- list(siteID, soil_pH, num.sp, treatment)
+```
+
+
+```r
+  my.first.list
+# [[1]]
+# [1] "A1.01" "A1.02" "B1.01" "B1.02"
+# 
+# [[2]]
+# [1] 5.6 7.3 4.1 6.0
+# 
+# [[3]]
+# [1] 17 23 15  7
+# 
+# [[4]]
+# [1] "Fert"    "Fert"    "No_fert" "No_fert"
+```
+
+---
+class: inverse, center, middle
+
+# Contrôle de flux
+
+---
+# Contrôle de flux
+
+En programmation, le **contrôle de flux** (en anglais, *control flow*) est simplement l'ordre dans lequel le programme est exécuté.
+
+&lt;br&gt; 
+
+#### Pourquoi est-il avantageux de structurer nos programmes?
+
+&lt;br&gt;
+
+- On **réduit la complexité** et la durée de la tâche;
+- Une structure logique **améliore la clarté** du code;
+- **Plusieurs programmeurs peuvent alors travailler sur un même programme**.
+
+&lt;br&gt;
+&lt;br&gt;
+
+.large[.center[**Tout ceci augmente la productivité!**]]
+
+---
+# Contrôle de flux
+
+On peut utiliser des **organigrammes** pour planifier et représenter la structure des programmes.
+
+&lt;br&gt;
+
+&lt;center&gt;
+<div id="htmlwidget-33e8763137c9c99d42f2" style="width:95%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-33e8763137c9c99d42f2">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Début\n du programme\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Processus \n(opérations effectuées \ne.g., manipulation des données)\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Décision\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Fin\n du programme\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", height = \"0.7\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [tailport = \"e\", headport = \"w\", label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n\"2\"->\"3\" [tailport = \"e\", headport = \"w\", label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"2\" [tailport = \"s\", headport = \"s\", label = \"Choix booléen:\nTRUE ou FALSE\", fontsize = \"10\", color = \"dimgrey\"] \n\"3\"->\"4\" [tailport = \"e\", headport = \"w\", label = \" \", fontsize = \"10\", color = \"dimgrey\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+---
+# Représenter la structure
+
+Les deux composantes de base de programmation sont:
+
+.pull-left[
+
+#### La sélection
+
+Exécuter des commandes **conditionnellement** en utilisant:
+
+```r
+if() {}
+if() {} else {}
+```
+
+]
+
+.pull-right[
+
+#### L'itération
+
+Répéter l'exécution d'une commande **en boucle** tant qu'une condition n'est pas satisfaite.
+
+```r
+for() {}
+while() {}
+repeat {}
+```
+]
+
+Les clauses de sélection et d'itéraction peuvent également être contrôlées par des procedures de terminaison et de saut :
+
+#### Terminaison et saut
+
+```r
+break
+next
+```
+---
+
+# Route pour le flux de contrôle
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+.alert[**les clauses `if` et `if` `else`**] &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `for`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**les clauses `break` et `next`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `repeat`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `while`**
+]
+
+???
+
+Cette feuille de route apparaît au début de chaque outil de flux de contrôle pour faire savoir aux participants ce qui se passe dans la section flux de contrôle.
+
+---
+# Prise de décisions
+
+.pull-left[
+
+**Condition `if()`**
+
+```R
+if(condition) {
+  expression
+}
+```
+
+&lt;center&gt;
+
+<div id="htmlwidget-7044cd355a75de70c1f3" style="width:45%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-7044cd355a75de70c1f3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"2\"->\"4\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+]
+
+.pull-right[
+
+**Commande `if` `else`**
+
+```r
+if(condition) {
+  expression 1
+} else {
+  expression 2
+}
+```
+
+&lt;center&gt;
+<div id="htmlwidget-dacb053c59bdef3c98bd" style="width:50%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-dacb053c59bdef3c98bd">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", shape = \"circle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression 1\nif\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \" \", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Expression 2\nelse\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"3\"->\"4\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"4\" [headport = \"n\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+]
+
+---
+### Comment peut-on tester plus qu'une condition?
+
+&lt;br&gt;
+
+- `if()` et `if()` `else` testent une seule condition;
+- Mais, on peut aussi utiliser la fonction `ifelse()` pour:
+    - tester un vecteur de conditions;
+    - exécuter une opération selon certaines conditions.
+
+&lt;br&gt;
+.pull-left[
+
+```r
+a &lt;- 1:10
+
+ifelse(test = a &gt; 5, 
+       yes = "oui", 
+       no = "non")
+#  [1] "non" "non" "non" "non"
+#  [5] "non" "oui" "oui" "oui"
+#  [9] "oui" "oui"
+```
+]
+
+.pull-right[
+
+```r
+a &lt;- (-4):5
+
+sqrt(ifelse(test = a &gt;= 0, 
+            yes = a,
+            no = NA)
+     )
+#  [1]       NA       NA
+#  [3]       NA       NA
+#  [5] 0.000000 1.000000
+#  [7] 1.414214 1.732051
+#  [9] 2.000000 2.236068
+```
+]
+---
+# Commandes `if()` `else` nichées
+
+.pull-left[
+.small[
+
+Alors que les instructions `if()` et `if()` `else` vous laissent exactement deux options, l'instruction imbriquée `if()` `else` vous permet d'envisager d'autres alternatives:
+
+&lt;br&gt;
+
+```r
+if (test_expression1) {
+Procedure 1
+} else if (test_expression2) {
+Procedure 2
+} else if (test_expression3) {
+Procedure 3
+} else {
+Procedure 4
+}
+```
+]]
+
+.pull-right[
+&lt;center&gt;
+<div id="htmlwidget-7b7cd03498fee5796e44" style="width:75%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-7b7cd03498fee5796e44">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \" \", group = \"a\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Condition 1\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Condition 2\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Condition 3\", group = \"b\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Procedure 1\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Procedure 2\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Procedure 3\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"Procedure 4\", group = \"c\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \" \", group = \"a\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"12\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"2\"->\"5\" [label = \"  if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"sw\", headport = \"n\"] \n\"3\"->\"4\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"3\"->\"6\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"sw\", headport = \"n\"] \n\"4\"->\"7\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"se\", headport = \"n\"] \n\"4\"->\"8\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"5\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"6\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"7\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n\"8\"->\"9\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", decorate = \"TRUE\", decorate = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+]
+
+---
+# Atttention aux règles d'expression de `R` !
+
+Que pensez-vous qu'il arrivera si nous essayons le code ci-dessous ?
+
+.pull-left[.small[
+
+```r
+if(2+2) == 4 
+print("Ouf, tout va bien!")
+else 
+print("C'est la fin du monde!")
+```
+]]
+
+--
+
+.pull-right[.small[
+
+```
+# Error: &lt;text&gt;:1:9: unexpected '=='
+# 1: if(2+2) ==
+#             ^
+```
+]]
+
+.center[.alert[Cela ne fonctionne pas parce que `R` évalue la première ligne et ne sait pas que vous allez utiliser `else`.]]
+
+&lt;br&gt;
+
+Utilisez les parenthèses bouclées `{}` afin que `R` sache qu'il faut s'attendre à plus de commandes. Essayez :
+
+
+```r
+*if(2+2 == 4) {
+  print("Ouf, tout va bien!")
+*} else {
+  print("C'est la fin du monde!")
+*} 
+# [1] "Ouf, tout va bien!"
+```
+
+---
+# Exercice 1 ![:cube]()
+
+Considérez les objets suivants :
+
+
+```r
+Minou &lt;- "chat"
+Pitou &lt;- "chien"
+Filou &lt;- "chat"
+animaux &lt;- c(Minou, Pitou, Filou)
+```
+
+1. Utilisez une commande `if()` pour afficher `“meow”` si `Minou` est un `“chat”`.
+2. Utilisez une commande `if()`  `else` pour afficher `“woof”` si un objet a la valeur `“chien”`, et `“meow”` si non. Essayez ceci sur les objets `Pitou` et `Filou`.
+3. Utilisez la fonction `ifelse` pour afficher `“woof”` pour les `animaux` qui sont des chiens et `“meow”` pour les `animaux` qui sont des chats.
+
+---
+# Exercice 1 - Solution ![:cube]()
+
+1. Utilisez une commande `if()` pour afficher `“meow”` si `Minou` est un `“chat”`.
+
+```r
+if(Minou == 'chat') {
+  print("meow")
+}
+# [1] "meow"
+```
+
+2\.Utilisez une commande `if`  `else` pour afficher `“woof”` si un objet a la valeur `“chien”`, et `“meow”` si non. Essayez ceci sur les objets `Pitou` et `Filou`.
+
+
+```r
+x = Minou
+# x = Pitou
+if(x == 'chat') {
+  print("meow")
+} else {
+  print("woof")
+}
+# [1] "meow"
+```
+
+---
+# Exercice 1 - Solution ![:cube]()
+
+3\. Utilisez la fonction `ifelse()` pour afficher `“woof”` pour les `animaux` qui sont des chiens et `“meow”` pour les `animaux` qui sont des chats.
+
+
+```r
+animaux &lt;- c(Minou, Pitou, Filou)
+
+ifelse(animaux == 'chien', "woof", "meow")
+# [1] "meow" "woof" "meow"
+```
+
+Ou
+
+
+```r
+for(val in 1:3) {
+  if(animaux[val] == "chat") {
+    print("meow")
+  }else if(animaux[val] == "chien") {
+    print("woof")
+  }else print("quoi?")
+}
+# [1] "meow"
+# [1] "woof"
+# [1] "meow"
+```
+
+---
+# Rappel : opérateurs logiques
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+| Opérateur | Signification |
+| :-------------: | :-------------: |
+| `==`  | égal à  |
+| `!=`  | pas égal à  |
+| `&lt;`   | plus petit que  |
+| `&lt;=`  | plus petit que ou égal à  |
+| `&gt;`   | plus grand que  |
+| `&gt;=`  | plus grand que ou égal à  |
+| `x&amp;y` | `x` ET `y` |
+| `x`&amp;#124;`y`  | `x` OU `y`  |
+| `isTRUE(x)`  | est-ce que `X` est vrai? |
+
+
+---
+# Itération
+
+Une boucle permet de répéter une ou plusieurs opérations.
+
+&lt;br&gt;
+
+Les boucles sont utiles pour:
+- faire quelque chose pour chaque élément d'un objet;
+- faire quelque chose jusqu'à la fin des données à traiter;
+- faire quelque chose pour chaque fichier dans un répertoire;
+- faire quelque chose qui peut échouer, jusqu'à ce que ça fonctionne;
+- faire des calculs itératifs jusqu'à convergence.
+
+---
+
+# Route pour le flux de contrôle
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+**les clauses `if` et `if` `else`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+.alert[**la boucle `for`**] &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**les clauses `break` et `next`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `repeat`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `while`**
+]
+
+
+---
+# Boucles `for()`
+
+Une boucle `for()` exécute un nombre fixe d'itérations:
+
+```R
+for(i in séquence) {
+  expression
+  }
+```
+
+&lt;center&gt;
+<div id="htmlwidget-35aebda6c37f8e938799" style="width:35%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-35aebda6c37f8e938799">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"TB\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Début\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Est-ce que le \ndernier élément \na été atteint ?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Expression\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Sortie\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"s\", headport = \"n\"] \n\"2\"->\"3\" [label = \" if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"w\", headport = \"w\"] \n\"2\"->\"4\" [label = \"  if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"TRUE\", tailport = \"e\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+---
+# La boucle `for()`
+
+La lettre `i` peut être remplacée par n'importe quelle nom de variable, ou même une liste de vecteurs.
+
+```r
+# Essayez les commandes ci-dessous et observez les résultats:
+
+for (a in c("Bonjour", "programmeurs", "en R")) {
+  print(a)
+}
+
+for (z in 1:30) {
+  a &lt;- rnorm(n = 1, mean = 5, sd = 2)
+  print(a)
+}
+
+elements &lt;- list(1:3, 4:10)
+for (element in elements) {
+  print(element)
+}
+```
+
+---
+# Boucle `for()`
+
+&lt;br&gt;
+
+.pull-left[
+Dans l'exemple générique ci-dessous, `R` exécuterait l'expression 5 fois, chacune d'elles en remplaçant séquentiellement `i` par des nombres de 1 à 5 :
+
+```r
+for(i in 1:5) {
+  expression
+}
+```
+
+L'`expression` peut être n'importe quoi :
+.small[
+```r
+print(i + 1)
+```
+```r
+vector.a[i] &lt;- 1 + i
+```
+```r
+matrix.b[i, 1] &lt;- matrix.a[i, 1] * 2
+```
+]
+]
+
+--
+.pull-right[
+Dans cet exemple, chaque instance de `m` est remplacé par chaque chiffre entre `1` et `7`, jusqu'au dernier élément de la séquence:
+
+```r
+for(m in 1:7) {
+  print(m*2)
+}
+```
+
+.small[
+
+```
+# [1] 2
+# [1] 4
+# [1] 6
+# [1] 8
+# [1] 10
+# [1] 12
+# [1] 14
+```
+]
+]
+
+---
+# Boucle `for()`
+.small[
+.pull-left[
+Nous allons effectuer des opérations pour les éléments pairs à l'intérieur de `x` en utilisant l'opérateur modulo (`%%`) :
+```r
+x &lt;- c(2, 5, 3, 9, 6)
+count &lt;- 0
+```
+]
+]
+.small[
+.pull-right[
+
+```r
+for(val in x) {
+  if(val %% 2 == 0) {
+    count &lt;- count + 1
+  }
+}
+print(count)
+```
+]
+]
+
+
+&lt;center&gt;
+<div id="htmlwidget-0754e9ecdb98becc5e6c" style="width:90%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-0754e9ecdb98becc5e6c">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"x\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Dernière valeur\ndans x?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Est-ce que \nvaleur est paire?\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"count = count + 1\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Fin\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"imprimer\ncount\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" if FALSE\nfor X\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"6\" [label = \"  if TRUE,\nsortir de la boucle\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"w\"] \n\"3\"->\"4\" [label = \" if TRUE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"5\" [label = \"if FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"ne\", headport = \"w\"] \n\"4\"->\"5\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"s\"] \n\"5\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"n\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+---
+# Boucle `for()`
+
+Les boucles `for()` sont souvent utilisées pour exécuter des opérations successivement sur un jeu de données. Nous utiliserons des boucles pour exécuter des fonctions sur le jeu de données `CO2`, qui est intégré dans R.
+
+```R
+data(CO2) # This loads the built in dataset
+
+for(i in 1:length(CO2[,1])) { # for each row in the CO2 dataset
+  print(CO2$conc[i]) # print the CO2 concentration
+}
+```
+--
+
+.small[
+Les 40 premiers résultats :
+.pull-left[.pull-left[
+
+```
+# [1] 95
+# [1] 175
+# [1] 250
+# [1] 350
+# [1] 500
+# [1] 675
+# [1] 1000
+# [1] 95
+# [1] 175
+# [1] 250
+```
+]
+
+.pull-right[
+
+```
+# [1] 350
+# [1] 500
+# [1] 675
+# [1] 1000
+# [1] 95
+# [1] 175
+# [1] 250
+# [1] 350
+# [1] 500
+# [1] 675
+```
+]
+]
+
+.pull-right[.pull-left[
+
+```
+# [1] 1000
+# [1] 95
+# [1] 175
+# [1] 250
+# [1] 350
+# [1] 500
+# [1] 675
+# [1] 1000
+# [1] 95
+# [1] 175
+```
+]
+
+.pull-right[
+
+```
+# [1] 250
+# [1] 350
+# [1] 500
+# [1] 675
+# [1] 1000
+# [1] 95
+# [1] 175
+# [1] 250
+# [1] 350
+# [1] 500
+```
+]
+]
+]
+
+---
+# Boucle `for()`
+
+.alert[Truc 1]. Pour exécuter une boucle sur chaque ligne d'un jeu de donnée, on utilise la fonction `nrow()`
+
+```r
+for (i in 1:nrow(CO2)) { # pour chaque ligne du jeu de données CO2
+  print(CO2$conc[i]) # affiche les concentrations de CO2
+}
+```
+
+.alert[Truc 2]. On peut aussi itérer des opérations sur les éléments d'une colonne.
+
+```r
+for (p in CO2$conc) { # pour chacune des valeurs de concentration de CO2
+  print(p) # afficher cette valeur
+}
+```
+
+---
+# Boucle `for()`
+
+L'expression dans la boucle peut peut contenir plusieurs lignes de commandes différentes.
+
+```r
+for (i in 4:5) { # pour i de 4 à 5
+  print(colnames(CO2)[i])
+  print(mean(CO2[,i])) # affiche les moyennes de cette colonne
+}
+```
+
+Sortie:
+
+```
+# [1] "conc"
+# [1] 435
+# [1] "uptake"
+# [1] 27.2131
+```
+---
+# Boucles `for()` nichées
+
+Dans certains cas, des boucles nichées peuvent être utiles pour accomplir une tâche. Dans ce cas, il est important d'utiliser un nom de variable d'itération différent pour chaque boucle. Ici, on utilise `i` et `n`:
+.pull-left[
+```r
+for (i in 1:3) {
+  for (n in 1:3) {
+    print (i*n)
+  }
+}
+```
+]
+.pull-right[
+
+```r
+# Sortie
+# [1] 1
+# [1] 2
+# [1] 3
+# [1] 2
+# [1] 4
+# [1] 6
+# [1] 3
+# [1] 6
+# [1] 9
+```
+]
+
+---
+# Encore mieux: la famille `apply()`
+
+La famille de fonctions `apply()` consistent de fonctions vectorisées qui permettent **d'éviter de créer des boucles de façon explicite**.
+
+`apply()` applique des fonctions sur une **matrice**.
+.small[
+.pull-left[
+
+```r
+(hauteur &lt;- matrix(c(1:10, 21:30),
+            nrow = 5,
+            ncol = 4))
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    6   21   26
+# [2,]    2    7   22   27
+# [3,]    3    8   23   28
+# [4,]    4    9   24   29
+# [5,]    5   10   25   30
+```
+]
+]
+.pull-right[
+
+```r
+apply(X = hauteur,
+      MARGIN = 1,
+      FUN = mean)
+# [1] 13.5 14.5 15.5 16.5 17.5
+```
+
+```r
+?apply
+```
+]
+
+???
+
+Bien qu'il soit important de couvrir les diapositives de la famille de fonctions `apply()`, le présentateur devrait envisager de les passer plus rapidement afin de s'assurer qu'il reste suffisamment de temps pour les sections plus importantes (c'est-à-dire le reste des composants du flux de contrôle, la section d'écriture des fonctions, ainsi que les exercices).
+
+---
+# `lapply()`
+
+`lapply()` applique une fonction sur chaque élément d'une `liste`.
+
+`lapply()` fonctionne aussi sur d'autres objets, comme des **trames de données (“dataframe”)** ou des **vecteurs**.
+
+La sortie est une `liste` (d'où le “`l`” dans `lapply`) ayant le même nombre d'éléments que l'objet d'entrée.
+
+&lt;br&gt;
+
+.pull-left[
+
+```r
+SimulatedData &lt;- list(
+  SimpleSequence = 1:4,
+  Norm10 = rnorm(10),
+  Norm20 = rnorm(20, 1),
+  Norm100 = rnorm(100, 5))
+
+# Applique mean() sur chaque 
+# élément de la liste
+lapply(SimulatedData, mean)
+```
+]
+.small[
+.pull-right[
+
+```
+# $SimpleSequence
+# [1] 2.5
+# 
+# $Norm10
+# [1] 0.4455422
+# 
+# $Norm20
+# [1] 0.9268967
+# 
+# $Norm100
+# [1] 4.930958
+```
+]
+]
+
+---
+# `sapply()`
+
+`sapply()` est une fonction ‘wrapper’ pour `lapply()`, qui produit une sortie simplifiée en `vecteur`, au lieu d'une `liste`.
+
+.small[
+
+```r
+SimulatedData &lt;- list(SimpleSequence = 1:4,
+             Norm10 = rnorm(10),
+             Norm20 = rnorm(20, 1),
+             Norm100 = rnorm(100, 5))
+```
+
+```r
+# Applique mean() sur chaque élément de la liste
+sapply(SimulatedData, mean)
+# SimpleSequence         Norm10 
+#      2.5000000     -0.4417098 
+#         Norm20        Norm100 
+#      1.0566332      5.1840988
+```
+]
+
+---
+# `mapply()`
+
+`mapply()` est une version multivariée de `sapply()`.
+
+`mapply()` applique une fonction sur le premier élément de chaque argument, ensuite sur le deuxième élément, et ainsi de suite. Par exemple:
+
+&lt;br&gt;
+
+```r
+lilySeeds &lt;- c(80, 65, 89, 23, 21)
+poppySeeds &lt;- c(20, 35, 11, 77, 79)
+```
+
+```r
+# Output
+mapply(sum, lilySeeds, poppySeeds)
+# [1] 100 100 100 100 100
+```
+
+---
+# `tapply()`
+
+`tapply()` applique une fonction sur des sous-ensembles d'un vecteur.
+
+`tapply()` est surtout utilisé quand un jeu de données contient différents groupes (*i*.*e*. niveaux ou facteurs), et lorsqu'on veut appliquer une fonction sur chaque groupe.
+
+&lt;br&gt;
+.pull-left[
+.small[
+
+```r
+mtcars[1:10, c("hp", "cyl")]
+#                    hp cyl
+# Mazda RX4         110   6
+# Mazda RX4 Wag     110   6
+# Datsun 710         93   4
+# Hornet 4 Drive    110   6
+# Hornet Sportabout 175   8
+# Valiant           105   6
+# Duster 360        245   8
+# Merc 240D          62   4
+# Merc 230           95   4
+# Merc 280          123   6
+```
+]
+]
+.pull-right[
+.small[
+
+```r
+# Moyenne de hp par cylindres
+tapply(mtcars$hp, 
+       mtcars$cyl,
+       FUN = mean)
+#         4         6         8 
+#  82.63636 122.28571 209.21429
+```
+]
+]
+---
+# Exercice 2 ![:cube]()
+
+En revenant du terrain, vous vous êtes rendu compte que votre outil de mesure de l'absorption de `\(\text{CO}_{2}\)` n'était pas correctement calibré sur les sites du Québec et que toutes les mesures sont de 2 unités supérieures à ce qu'elles devraient être.
+
+1. Utilisez une boucle pour corriger les mesures pour tous les sites aux Québec.
+
+2. Utilisez une méthode vectorisée pour calculer la moyenne de l'absorption de `\(\text{CO}_{2}\)` dans les deux groupes de sites.
+
+&gt; Pour cela, vous devez charger l'ensemble de données `\(\text{CO}_{2}\)` en utilisant `data(CO2)`, et ensuite utiliser l'objet `CO2`.
+
+---
+# Exercice 2 : Solution ![:cube]()
+
+
+1. Utiliser `for()` et `if()` pour corriger les mesures:
+
+```r
+for (i in 1:dim(CO2)[1]) {
+  if(CO2$Type[i] == "Quebec") {
+    CO2$uptake[i] &lt;- CO2$uptake[i] - 2
+  }
+}
+```
+
+2. Utiliser `tapply()` pour calculer la moyenne de chaque groupe de sites:
+
+```r
+tapply(CO2$uptake, CO2$Type, mean)
+#      Quebec Mississippi 
+#    31.54286    20.88333
+```
+---
+# Modifications aux boucles
+
+Habituellement, les boucles itèrent successivement jusqu'à leur fin.
+
+Il est parfois intéressant de modifier ce comportement.
+
+Par exemple, on peut arrêter l'exécution de la boucle quand une certaine condition est satisfaite ou quand l'itération a atteint un certain élément.
+
+On peut aussi sauter certains éléments selon certaines conditions, ou arrêter l'itération pour passer à la boucle suivante.
+
+Pour ceci, on introduit `break`, `next` and `while`.
+
+---
+# Route pour le flux de contrôle
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+**les clauses `if` et `if` `else`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `for`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+.alert[**les clauses `break` et `next`**] &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `repeat`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `while`**
+]
+
+---
+
+# Modifier l'itération: `break`
+
+```r
+for(val in x) {
+  if(condition) { break }
+  expression
+}
+```
+&lt;br&gt;
+&lt;center&gt;
+<div id="htmlwidget-53ffb97e88694c13e6b7" style="width:95%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-53ffb97e88694c13e6b7">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Début\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"La dernière valeur\nde x a été \natteinte?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Est-ce que la\ncondition est \nTRUE? \n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Expression\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Fin\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \" \", shape = \"circle\", style = \"invis\", fontname = \"Helvetica\", fontsize = \"13\", fixedsize = \"false\", color = \"mediumblue\", width = \"0.1\", penwidth = \"1.5\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" si FALSE\nfor x\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  si FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"n\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"w\", headport = \"s\"] \n\"2\"->\"5\" [label = \"si TRUE, sortez\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"5\" [label = \" si TRUE, break\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+---
+# Modifier l'itération: `next`
+
+```r
+for(val in x) {
+  if(condition) { next }
+  expression
+}
+```
+
+&lt;br&gt;
+&lt;center&gt;
+<div id="htmlwidget-8573eeafde10c8b39713" style="width:95%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-8573eeafde10c8b39713">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Début\", shape = \"circle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Dernière valeur de \nx atteinte?\n\nfor()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Est-ce que la condition est \nTRUE?\n\nif()\", shape = \"diamond\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Expression\", shape = \"rectangle\", style = \"solid\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Fin\", shape = \"circle\", style = \"filled\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", width = \"0.1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"2\"->\"3\" [label = \" si FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"w\"] \n\"3\"->\"4\" [label = \"  si FALSE\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"e\", headport = \"nw\"] \n\"4\"->\"2\" [label = \" \", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n\"2\"->\"5\" [label = \"si TRUE, sortez\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"n\", headport = \"w\"] \n\"3\"->\"2\" [label = \" si TRUE, next\", fontsize = \"10\", color = \"dimgrey\", decorate = \"FALSE\", tailport = \"s\", headport = \"s\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+---
+# Modifier l'itération: `next`
+
+Affiche les concentrations `\(CO_{2}\)` pour les traitements “chilled” et garder le compte du nombre d'itérations accomplies.
+
+```r
+count &lt;- 0
+
+for (i in 1:nrow(CO2)) {
+  if (CO2$Treatment[i] == "nonchilled") next
+  # Passer à l'itération suivante si c'est "nonchilled"
+  count &lt;- count + 1
+  print(CO2$conc[i])
+}
+print(count) # Affiche le nombre d'itérations accomplies.
+```
+
+
+```
+# [1] 42
+```
+
+
+```r
+sum(CO2$Treatment == "nonchilled")
+# [1] 42
+```
+---
+# Route pour le flux de contrôle
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+**les clauses `if` et `if` `else`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `for`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**les clauses `break` et `next`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+.alert[**la boucle `repeat`**] &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `while`**
+]
+
+
+---
+# Modifier l'itération: `repeat`
+
+On pourrait aussi accomplir ceci avec une boucle `repeat` et `break`:
+
+
+```r
+count &lt;- 0
+i &lt;- 0
+repeat {
+      i &lt;- i + 1
+      if (CO2$Treatment[i] == "nonchilled") next  # sauter cette itération
+      count &lt;- count + 1
+      print(CO2$conc[i])
+      if (i == nrow(CO2)) break     # rompre la boucle
+    }
+print(count)
+```
+---
+# Route pour le flux de contrôle
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+**les clauses `if` et `if` `else`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `for`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**les clauses `break` et `next`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+**la boucle `repeat`** &lt;br&gt;
+
+![:faic](arrow-down) &lt;br&gt;
+
+.alert[**la boucle `while`**]
+]
+
+---
+# Modifier l'itération: `while`
+
+On pourrait aussi utiliser une boucle `while`:
+
+
+```r
+i &lt;- 0
+count &lt;- 0
+while (i &lt; nrow(CO2))
+{
+  i &lt;- i + 1
+  if (CO2$Treatment[i] == "nonchilled") next  # sauter cette itération
+  count &lt;- count + 1
+  print(CO2$conc[i])
+}
+print(count)
+```
+
+---
+# Exercice 3 ![:cube]()
+
+Vous vous êtes rendu compte qu'un autre de vos outils ne fonctionnait pas correctement !
+
+Aux sites situés au Mississippi, les concentrations de moins de 300 sont bien mesurés, mais les concentrations de plus de 300 étaient surestimées par 20 unités !
+
+Votre *mission* est d'écrire une boucle pour corriger ces mesures pour les sites du Mississippi.
+
+.alert[Truc]. Assurez-vous de charger les données originales avant de faire l'exercice:
+
+
+```r
+data(CO2)
+```
+
+
+---
+# Exercice 3 : Solution ![:cube]()
+
+
+```r
+for (i in 1:nrow(CO2)) {
+  if(CO2$Type[i] == "Mississippi") {
+    if(CO2$conc[i] &lt; 300) next
+    CO2$conc[i] &lt;- CO2$conc[i] - 20
+  }
+}
+```
+&lt;br&gt;
+
+.comment[Note: On peut écrire ceci de façon plus claire et concise:]
+
+```r
+for (i in 1:nrow(CO2)) {
+  if(CO2$Type[i] == "Mississippi" &amp;&amp; CO2$conc[i] &gt;= 300) {
+    CO2$conc[i] &lt;- CO2$conc[i] - 20
+  }
+}
+```
+
+---
+# Visualization de données avec `for()` et `if()`
+
+Créons un graphique **uptake** *versus* **concentration** avec des points de couleurs différentes, ouù chaque couleur est associé à un type (*Quebec* ou *Mississippi*) et à un **treatment** (*chilled* ou *nonchilled*):
+
+.xsmall[
+
+```r
+plot(x = CO2$conc, y = CO2$uptake, type = "n", 
+     cex.lab = 1.4, cex.axis = 1.5, 
+     cex.main = 1.5, cex.sub = 1.5,
+     xlab = "CO2 concentration", ylab = "CO2 uptake")
+
+# type = "n" dit à R de ne pas afficher les points
+
+for (i in 1:length(CO2[,1])) {
+  if (CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "nonchilled") {
+    points(CO2$conc[i], CO2$uptake[i], col = "red")
+  }
+  if (CO2$Type[i] == "Quebec" &amp; CO2$Treatment[i] == "chilled") {
+    points(CO2$conc[i], CO2$uptake[i], col = "blue")
+  }
+  if (CO2$Type[i] == "Mississippi" &amp; CO2$Treatment[i] == "nonchilled") {
+    points(CO2$conc[i], CO2$uptake[i], col = "orange")
+  }
+  if (CO2$Type[i] == "Mississippi" &amp; CO2$Treatment[i] == "chilled") {
+    points(CO2$conc[i], CO2$uptake[i], col = "green")
+  }
+}
+```
+]
+
+---
+# Visualization de données avec `for()` et `if()`
+
+&lt;img src="workshop05-pres-fr_files/figure-html/unnamed-chunk-47-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+---
+# Exercice 4 ![:cube]()
+&lt;br&gt;
+
+Créez un graphique **concentration** vs **uptake**, où chaque plante est représentée par des points de `\(\color{red}{\text{cou}}\color{blue}{\text{le}}\color{green}{\text{ur}}\)` différentes.
+
+&lt;br&gt;
+
+.alert[Points bonus] si vous utilisez des boucles nichées!
+
+&lt;br&gt;
+
+.comment[
+Étapes : &lt;br&gt;
+1. Créez un plot vide ; &lt;br&gt;
+2. Créez une liste de plantes (indice : `?unique`) ; &lt;br&gt;
+3. Remplissez la parcelle en utilisant les instructions `for()` et `if()`.
+]
+
+---
+# Exercice 4: Solution ![:cube]()
+
+.small[
+
+```r
+plot(x = CO2$conc, y = CO2$uptake, type = "n", cex.lab=1.4,
+     xlab = "CO2 concentration", ylab = "CO2 uptake")
+
+plants &lt;- unique(CO2$Plant)
+
+for (i in 1:nrow(CO2)){
+  for (p in 1:length(plants)) {
+    if (CO2$Plant[i] == plants[p]) {
+      points(CO2$conc[i], CO2$uptake[i], col = p)
+}}}
+```
+
+&lt;img src="workshop05-pres-fr_files/figure-html/unnamed-chunk-48-1.png" width="432" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: inverse, center, middle
+
+# Écrire des fonctions
+
+---
+# Pourquoi écrire une fonction ?
+
+Le gros du travail dans `R` est fait par des fonctions. Elles sont utiles pour:
+
+1. Répéter une même tâche, mais en changeant ses paramètres;
+2. Rendre votre code plus lisible;
+3. Rendre votre code plus facile à modifier et à maintenir;
+4. Partager du code entre différentes analyses;
+5. Partager votre code avec d'autres personnes;
+6. Modifier les fonctionnalités par défaut de `R`.
+
+---
+# Mais qu'est-ce qu'une fonction ?
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;center&gt;
+<div id="htmlwidget-37906c73da6ce598b7e3" style="width:95%;height:auto;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-37906c73da6ce598b7e3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Argument 1\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Argument 2\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Argument 3\", group = \"a\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Traitement des données\", group = \"b\", shape = \"rectangle\", style = \"rounded\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Résultat\", group = \"c\", shape = \"none\", style = \"none\", fontname = \"Helvetica\", fontsize = \"10\", fixedsize = \"FALSE\", color = \"mediumblue\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"2\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"3\"->\"4\" [style = \"solid\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n\"4\"->\"5\" [style = \"dashed\", fontsize = \"10\", color = \"dimgrey\", headport = \"w\", tailport = \"e\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+---
+# Syntaxe d'une fonction
+
+```r
+function_name &lt;- function(argument1, argument2, ...) {
+  expression...  # Ce que la fonction fait
+  return(valeur)  # Optionnel, pour sortir le résultat de la fonction
+}
+```
+
+---
+# Arguments d'une fonction
+
+```r
+function_name &lt;- function(argument1, argument2, ...) {
+  expression...
+  return(valeur)
+}
+```
+
+Les arguments sont les données fournies en entrée à votre fonction et contiennent l'information nécessaire pour que la fonction opère correctement.
+
+Une fonction peut avoir entre 0 et une infinité d'arguments. Par exemple:
+.small[
+
+```r
+operations &lt;- function(numero_1, numero_2, numero_3) {
+  resultat &lt;- (numero_1 + numero_2) * numero_3
+  print(resultat)
+}
+```
+
+```r
+operations(1, 2, 3)
+# [1] 9
+```
+]
+---
+# Exercice 5 ![:cube]()
+
+En utilisant ce que vous avez appris précédemment sur le contrôle de flux, créez une fonction `print_animal()` qui prend un `animal` comme argument et donne les résultats suivants :
+
+
+
+
+```r
+Pitou &lt;- "chien"
+
+Minou &lt;- "chat"
+
+print_animal(Pitou)
+# [1] "woof"
+
+print_animal(Minou)
+# [1] "miaou"
+```
+
+
+---
+# Challenge 5: Solution ![:cube]()
+
+```r
+print_animal &lt;- function(animal) {
+  if (animal == "chien") {
+    print("woof")
+  } else if (animal == "chat") {
+    print("miaou")
+  }
+}
+```
+
+
+&lt;br&gt;
+&lt;br&gt;
+---
+# Valeurs par défaut dans une fonction
+
+Les arguments peuvent aussi être optionnels, auquel cas on peut leur donner une valeur par défaut.
+
+Ceci peut s'avérer utile si on utilise souvent une fonction avec les mêmes paramètres, mais qu'on veut tout de même garder la possibilité de changer leur valeur si nécessaire.
+
+
+```r
+operations &lt;- function(numero_1, numero_2, numero_3 = 3) {
+  resultat &lt;- (numero_1 + numero_2) * numero_3
+  print(resultat)
+}
+
+operations(1, 2, 3) # est équivalent à
+# [1] 9
+operations(1, 2)
+# [1] 9
+operations(1, 2, 2) # on peut toujours changer la valeur de numero_3
+# [1] 6
+```
+
+---
+# Argument `...`
+
+L'argument spécial `...` vous permet de passer des arguments à une autre fonction utilisée à l'intérieur de votre fonction. Ici, on utilise `...` pour passer des arguments à `plot()` et à `points()`.
+.xsmall[
+
+```r
+plot.CO2 &lt;- function(CO2, ...) {
+* plot(x=CO2$conc, y=CO2$uptake, type="n", ...)
+  for (i in 1:length(CO2[,1])){
+     if (CO2$Type[i] == "Quebec") {
+*      points(CO2$conc[i], CO2$uptake[i], col = "red", type = "p", ...)
+     } else if (CO2$Type[i] == "Mississippi") {
+*      points(CO2$conc[i], CO2$uptake[i], col = "blue", type = "p", ...)
+     }
+  }
+}
+```
+
+```r
+plot.CO2(CO2, cex.lab=1.2, xlab="Concentration CO2", ylab="CO2 uptake")
+plot.CO2(CO2, cex.lab=1.2, xlab="Concentration CO2", ylab="CO2 uptake", pch=20)
+```
+]
+
+---
+# Argument `...`
+
+L'argument spécial `...` vous permet de passer des arguments à une autre fonction utilisée à l'intérieur de votre fonction. Ici, on utilise `...` pour passer des arguments à `plot()` et à `points()`.
+
+&lt;img src="workshop05-pres-fr_files/figure-html/unnamed-chunk-56-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+---
+# Argument `...`
+
+L'argument spécial `...` permet d'entrer un nombre indéfini d'arguments.
+
+
+```r
+sum2 &lt;- function(...){
+* args &lt;- list(...)
+  result &lt;- 0
+  for (i in args)  {
+    result &lt;- result + i
+  }
+  return (result)
+}
+```
+
+
+```r
+sum2(2, 3)
+# [1] 5
+sum2(2, 4, 5, 7688, 1)
+# [1] 7700
+```
+
+---
+# Valeurs de retour
+
+La dernière expression évaluée dans une `fonction` devient la valeur de sortie.
+
+
+```r
+myfun &lt;- function(x) {
+  if (x &lt; 10) {
+    0
+  } else {
+    10
+  }
+}
+```
+
+
+```r
+myfun(5)
+# [1] 0
+myfun(15)
+# [1] 10
+```
+
+.comment[`function()` sort la dernière valeur évaluée, même sans inclure la fonction `return()`.]
+
+---
+# Valeurs de retour
+
+.small[
+Utiliser `return()` de façon explicite peut être utile si la boucle doit terminer tôt, sortir de la fonction, et sortir une valeur.
+
+
+```r
+simplefun1 &lt;- function(x) {
+  if (x&lt;0)
+  return(x)
+}
+```
+&lt;br&gt;
+Un seul objet (ou texte) de retour peut être renvoyé par une fonction. Par contre, ceci n'est pas une limite: on peut renovoyer une `liste` contenant plusieurs objets.
+
+.pull-left[
+
+```r
+simplefun2 &lt;- function(x, y) {
+  z &lt;- x + y
+  return(list("result" = z,
+              "x" = x,
+              "y" = y))
+}
+```
+]
+
+.pull-right[
+.pull-left[
+&lt;br&gt;
+.small[
+
+```r
+simplefun2(1, 2)
+```
+]
+]
+.pull-right[
+
+```
+# $result
+# [1] 3
+# 
+# $x
+# [1] 1
+# 
+# $y
+# [1] 2
+```
+]
+]
+]
+---
+# Exercice 6 ![:cube]()
+
+&lt;br&gt;
+En utilisant vos nouvelles connaissances de fonctions et de structures de contrôle, créez une fonction `bigsum()` qui prend 2 arguments `a` et `b`, et:
+
+1. Sort `0` si la somme de `a` et `b` est strictement inférieure à 50;
+2. Sinon, sort la somme de `a` et `b`.
+
+---
+# Exercice 6: Solution ![:cube]()
+
+&lt;br&gt;&lt;br&gt;
+
+.pull-left[
+**Solution 1**
+```r
+bigsum &lt;- function(a, b) {
+  result &lt;- a + b
+  if (result &lt; 50) {
+    return(0)
+  } else {
+    return (result)
+  }
+}
+```
+]
+
+.pull-right[
+**Solution 2**
+```r
+bigsum &lt;- function(a, b) {
+  result &lt;- a + b
+  if (result &lt; 50) {
+  0
+  } else {
+  result
+  }
+}
+```
+]
+
+
+---
+# Accessibilité des variables
+
+Il est essentiel de pouvoir situer nos variables, et de savoir si elles sont définies et accessibles.
+
+![:faic](arrow-right) Les variables définies .alert[à l'intérieur] d'une fonction ne sont pas accessibles à l'extérieur de la fonction!
+
+![:faic](arrow-right) Les variables définies .alert[à l'extérieur] d'une fonction sont accessibles à l'intérieur, mais ce n'est jamais une bonne idée! Votre fonction ne fonctionnera plus si la variable extérieure est effacée!
+
+---
+# Accessibilité des variables
+
+
+```r
+var1 &lt;- 3     # 'var1' est définie à l'extérieur de la fonction
+vartest &lt;- function() {
+  a &lt;- 4      # 'a' est définie a l'intérieur
+  print(a)    # affiche 'a'
+  print(var1) # affiche 'var1'
+}
+
+a             # on ne peut pas afficher 'a', car 'a' n'existe qu'à l'intérieur de la fonction
+#  [1] -4 -3 -2 -1  0  1  2  3
+#  [9]  4  5
+
+vartest()     # cvartest() affiche 'a' et 'var1'
+# [1] 4
+# [1] 3
+
+rm(var1)      # supprime 'var1'
+vartest()     # la fonction ne fonctionne plus, car 'var1' n'existe plus!
+# [1] 4
+# Error in vartest(): object 'var1' not found
+```
+
+---
+# Accessibilité des variables
+
+.alert[Truc obligatoire.] Utilisez donc des arguments!
+
+De plus, à l'intérieur d'une fonction, les noms d'arguments remplaceront les noms des autres variables.
+
+
+```r
+var1 &lt;- 3     # var1 est définie à l'extérieur de la fonction
+vartest &lt;- function(var1) {
+  print(var1) # affiche var1
+}
+
+vartest(8)    # Dans notre fonction, var1 est maintenant notre argument et prend sa valeur
+# [1] 8
+
+var1          # var1 a toujours la même valeur à l'extérieur de la fonction
+# [1] 3
+```
+
+---
+# Accessibilité des variables
+
+.pull-left[
+&lt;br&gt;
+.alert[Truc.] Faites très attention lorsque vous créez des variables à l'intérieur d'une condition, car la variable pourrait ne jamais être créée et causer des erreurs (parfois imperceptibles).
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+.alert[Truc.] Une bonne pratique serait de définir les variables à l'extérieur de la condition, puis ensuite de modifier leurs valeurs pour éviter ces problèmes.
+]
+.small[
+.pull-right[
+
+```r
+a &lt;- 3
+if (a &gt; 5) {
+  b &lt;- 2
+}
+
+a + b
+```
+
+
+```r
+# Error: object 'b' not found
+```
+&lt;br&gt;
+.small[Si `b` avait déjà une valeur différente assignée dans l'environnement, on aurait .alert[gros] problème!
+
+R ne trouverait pas d'erreur, et la valeur de `a + b` serait entièrement différente!]
+
+]
+]
+
+---
+class: inverse, center, middle
+
+# Bonnes pratiques de programmation
+
+---
+# Pourquoi devrais-je me soucier sur les bonnes pratiques de programmation?
+
+&lt;br&gt;
+- Pour vous faciliter la vie;
+- Pour améliorer la lisibilité et faciliter le partage et la réutilisation de votre code;
+- Pour réduire le temps que vous passeriez à essayer de comprendre votre code.
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[.large[Faites attention aux conseils suivants!]]
+
+---
+# Gardez un code beau et propre
+
+Les indentations et les espaces sont une première étape vers un code lisible:
+
+- Utilisez des **espaces** avant et après vos opérateurs;
+- Utilisez toujours le même opérateur d'assignation. 
+  - `&lt;-` est préférable. Vous pouvez utiliser `=` (parfois), mais ne changez pas entre les deux;
+- Utilisez des crochets pour encadrer vos structures de contrôle de flux:
+&lt;br&gt;
+  - À l'intérieur des crochets, faites une indentation *d'au moins* 2 espaces;
+  - Les crochets de fermeture occupent généralement leur propre ligne, sauf s'ils précèdent une condition `else`.
+  &lt;br&gt;
+- Définissez chaque variable sur sa propre ligne;
+- Utilisez `Cmd + I` ou `Ctrl + I` dans `RStudio` pour indenter automatiquement le code mis en évidence.
+
+
+---
+# Gardez un code beau et propre
+
+À gauche, le code n'est pas espacé. Tous les crochets sont sur une ligne, et le code paraît malpropre.
+
+.small[
+.pull-left2[
+```r
+a&lt;-4;b=3
+if(a&lt;b){
+if(a==0)print("a zero")}else{
+if(b==0){print("b zero")}else print(b)}
+```
+]
+]
+---
+# Gardez un code beau et propre
+
+À gauche, le code n'est pas espacé. Tous les crochets sont sur une ligne, et le code paraît malpropre. Le code à droite paraît mieux organisé, non?
+.small[
+.pull-left2[
+```r
+a&lt;-4;b=3
+if(a&lt;b){
+if(a==0)print("a zero")}else{
+if(b==0){print("b zero")}else print(b)}
+```
+]
+.pull-right2[
+```r
+a &lt;- 4
+b &lt;- 3
+if(a &lt; b){
+  if(a == 0) {
+    print("a zero")
+  }
+} else {
+  if(b == 0){
+    print("b zero")
+  } else {
+    print(b)
+  }
+}
+```
+]
+]
+
+---
+# Utilisez des fonctions pour simplifier le code
+
+Écrivez une fonction:
+1. Quand une portion du code est répété à plus de 2 reprises dans ton script;
+2. Quand seulement une partie du code change et inclut des options pour différents arguments.
+
+Ceci vous aidera à réduire le nombre d'erreurs de copier/coller, et réduira le temps passé à les corriger.
+
+---
+# Utilisez des fonctions pour simplifier le code
+
+Modifions l'exemple de l'**Exercice 3** et supposons que toutes les concentrations de `\(CO_2\)` du Mississipi étaient surestimées de 20 et que celles du Québec étaient sous-estimées de 50.
+
+.small[ .pull-left[
+ On pourrait écrire ceci:
+&lt;br&gt;
+```r
+for (i in 1:length(CO2[,1])) {
+  if(CO2$Type[i] == "Mississippi") {
+    CO2$conc[i] &lt;- CO2$conc[i] - 20
+  }
+}
+for (i in 1:length(CO2[,1])) {
+  if(CO2$Type[i] == "Quebec") {
+    CO2$conc[i] &lt;- CO2$conc[i] + 50
+  }
+}
+```
+]
+
+.pull-right[
+Ou ceci:
+
+```r
+recalibrate &lt;- function(CO2, type, bias){
+  for (i in 1:nrow(CO2)) {
+    if(CO2$Type[i] == type) {
+      CO2$conc[i] &lt;- CO2$conc[i] + bias
+    }
+  }
+  return(CO2)
+}
+
+```
+.xsmall[
+
+```r
+newCO2 &lt;- recalibrate(CO2 = CO2, 
+                      type = "Mississipi", 
+                      bias = -20)
+newCO2 &lt;- recalibrate(newCO2, "Quebec", +50)
+```
+]
+]
+]
+---
+# Noms de fonctions informatifs
+
+Voici notre fonction de l'exemple précédent avec un nom vague.
+.pull-left[
+```r
+rc &lt;- function(c, t, b) {
+  for (i in 1:nrow(c)) {
+    if(c$Type[i] == t) {
+      c$conc[i] &lt;- c$conc[i] + b
+    }
+  }
+  return (c)
+}
+```
+]
+.pull-right[
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[.alert[Qu-est ce que `c` et `rc`?]]
+]
+
+.comment[Quand possible, évitez d'utiliser des noms de fonctions `R` et de variables qui existent déjà pour éviter la confusion et les conflits.]
+
+---
+# Utilisez des commentaires
+
+.alert[Truc final]. Ajoutez des commentaires pour décrire tout ce que votre code fait, que ce soit le but de la fonction, comment utiliser ses arguments, ou une description détaillée de la fonction étape par étape.
+
+.small[
+```r
+# Recalibre le jeu de données CO2 en modifiant la concentration de CO2
+# d'une valeur fixe selon la region
+
+# Arguments
+# CO2: the CO2 dataset
+# type: the type ("Mississippi" or "Quebec") that need to be recalibrated.
+# bias: the amount to add or remove to the concentration
+
+recalibrate &lt;- function(CO2, type, bias) {
+  for (i in 1:nrow(CO2)) {
+    if(CO2$Type[i] == type) {
+      CO2$conc[i] &lt;- CO2$conc[i] + bias
+    }
+  }
+  return(CO2)
+}
+```
+]
+
+---
+# Exercice de groupe
+
+En utilisant ce que vous avez appris, écrivez une déclaration `if()` qui vérifie si une variable numérique `x` est égale à zéro. Si ce n'est pas le cas, elle attribue `\(cos(x)/x\)` à `z`, sinon elle attribue `\(1\)` à `z`.
+&lt;br&gt;
+
+Créez une fonction appelée `ma_fonction()` qui prend la variable `x` en argument et retourne `z`.
+&lt;br&gt;
+
+Si nous attribuons respectivement `\(45\)`, `\(20\)` et `\(0\)` à `x`, laquelle des options suivantes représenterait les résultats ?
+
+**1.** `\(0.054\)`, `\(0.012\)`, et `\(0\)`; &lt;br&gt;
+&lt;br&gt;
+**2.** `\(0.020\)`, `\(0.054\)`, et `\(1\)`; &lt;br&gt;
+&lt;br&gt;
+**3.** `\(0.012\)`, `\(0.020\)`, et `\(1\)`. &lt;br&gt;
+
+&lt;br&gt;
+
+En complément de l'exercice, discutez avec votre groupe d'une fonction que vous aimeriez créer (elle peut être liée ou non à votre recherche). Soyez prêts à nous la décrire brièvement!
+
+???
+
+Cet exercice doit avoir lieu dans les salles de réunion dans un délai de 10 minutes. Après avoir rejoint la salle principale, un sondage doit être ouvert aux participants. Une fois que vous avez obtenu la réponse des participants, montrez-leur la bonne réponse et le bon code. Vous pouvez demander à l'un des participants d'expliquer sa réponse avant de montrer les résultats.
+
+---
+# Exercice de groupe : Solution ![:cube]()
+
+La bonne réponse est l'option **3** ( `\(0.012\)`, `\(0.020\)`, et `\(1\)` ).
+
+&lt;br&gt;
+
+
+```r
+ma_fonction &lt;- function(x) {
+  if(x != 0) {
+  z &lt;- cos(x)/x
+  } else { z &lt;- 1 }
+  return(z)
+}
+```
+
+
+```r
+ma_fonction(45)
+# [1] 0.01167382
+
+ma_fonction(20)
+# [1] 0.0204041
+
+ma_fonction(0)
+# [1] 1
+```
+---
+class: inverse, center, bottom
+
+# Merci d'avoir participé à cet atelier!
+
+![:scale 50%](images/qcbs_logo.png)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="qcbsR-macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
