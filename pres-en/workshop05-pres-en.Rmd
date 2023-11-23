@@ -379,7 +379,7 @@ This roadmap appears at the beginning of each control flow tool to let participa
 
 .pull-left[
 
-**`if()` statement**
+**`if() {}` statement**
 
 ```R
 if(condition) {
@@ -432,7 +432,7 @@ render_graph(flowchart2, width = '45%', height = 'auto')
 
 .pull-right[
 
-**`if()` `else` statement**
+**`if() {} else {}` statement**
 
 ```r
 if(condition) {
@@ -488,7 +488,7 @@ render_graph(flowchart3, width = '50%', height = 'auto')
 
 <br>
 
-- `if()` and `if()` `else` test a single condition.
+- `if()` and `if() {} else {}` test a single condition (_i.e._, takes one element).
 - You can also use the `ifelse()` function to:
     - test a vector of conditions;
     - apply a function only under certain conditions.
@@ -516,9 +516,9 @@ sqrt(ifelse(test = a >= 0,
 ```
 ]
 ---
-### Nested `if()` `else` statement
+### Nested `if() {} else {}` statement
 
-While the `if()` and `if()` `else` statements restrict the outcomes to two, nested `if()` `else` statements allow you to add more conditional outcomes.
+While the `if()` and `if() {} else {}` statements restrict the outcomes to two, nested `if() {} else {}` statements allow you to add more conditional outcomes.
 
 
 .pull-left[
@@ -583,6 +583,7 @@ render_graph(flowchart4, width = '75%', height = 'auto')
 ```
 </center>
 ]
+
 ---
 # Beware of `R`’s expression parsing!
 
@@ -638,7 +639,7 @@ animals <- c(Paws, Scruffy, Sassy)
 
 .pull-left[
 1. Use an `if()` statement to print “meow” if `Paws` is a “cat”.
-2. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+2. Use an `if() {} else {}` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 3. Use the `ifelse()` function to display `“woof”` for `animals` that are dogs and `“meow”` for `animals` that are cats.
 ]
 
@@ -671,7 +672,7 @@ if(Paws == 'cat') {
 }
 ```
 
-2\. Use an `if()`  `else` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
+2\. Use an `if() {} else {}` statement to print `“woof”` if you supply an object that is a `“dog”` and `“meow”` if it is not. Try it out with `Paws` and `Scruffy`.
 
 ```{r}
 x = Paws
@@ -694,7 +695,7 @@ animals <- c(Paws, Scruffy, Sassy)
 ifelse(animals == 'dog', "woof", "meow")
 ```
 
-.center[Or]
+.center[Or, you can combine an iteration with your condition testing:]
 
 ```{r}
 for(val in 1:3) {
@@ -704,6 +705,8 @@ for(val in 1:3) {
     print("woof")
   } else print("what?")
 }
+
+# More on this soon!
 ```
 
 
@@ -748,9 +751,9 @@ Loops are good for:
 
 ]
 ---
-# `for()` loop
+# `for() {}` loop
 
-A `for()` loop works in the following way:
+A `for() {}` loop works in the following way:
 
 ```r
 for(i in sequence) {
@@ -798,9 +801,9 @@ render_graph(flowchart5, width = '35%', height = 'auto')
 </center>
 
 ---
-# `for()` loop
+# `for() {}` loop
 
-A `for()` loop works in the following way:
+A `for() {}` loop works in the following way:
 
 ```r
 for(i in sequence) {
@@ -861,9 +864,9 @@ for(z in 1:4) {
 ]
 
 ---
-# `for()` loop
+# `for() {}` loop
 
-A `for()` loop works in the following way:
+A `for() {}` loop works in the following way:
 
 ```r
 for(i in sequence) {
@@ -871,7 +874,7 @@ for(i in sequence) {
   }
 ```
 
-As expected, you can use `for()` loops in different object types and classes, such as a `list`:
+As expected, you can use `for() {}` loops in different object types and classes, such as a `list`:
 
 .pull-left[
 .xsmall[
@@ -894,7 +897,7 @@ for(element in elements) {
 ]
 ]
 ---
-# `for()` loop
+# `for() {}` loop
 
 .pull-left[
 .center[Remember our flowchart?
@@ -969,7 +972,7 @@ for(m in 1:6) {
 ]
 ]
 ---
-# `for()` loop
+# `for() {}` loop
 
 .pull-left[
 .center[Remember our flowchart?
@@ -1040,7 +1043,7 @@ render_graph(flowchart5, width = '60%', height = 'auto')
 .pull-right[
 We will apply the following example into our flow chart! 
 
-Here, every instance of `m` is being replaced by each number between `1` and `7`, until it reaches the last element of the sequence:
+Here, every instance of `m` is being replaced by each number between `1` and `6`, until it reaches the last element of the sequence:
 
 ```{r eval = FALSE}
 y <- 2
@@ -1059,7 +1062,7 @@ for(m in 1:6) {
 ]
 ]
 ---
-# `for()` loop
+# `for() {}` loop
 
 .small[
 .pull-left[
@@ -1142,9 +1145,9 @@ render_graph(flowchart6,
 
 
 ---
-# `for()` loop
+# `for() {}` loop
 
-`for()` loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in `R`.
+`for() {}` loops are often used to loop over a dataset. We will use loops to perform functions on the `CO2` dataset which is built in `R`.
 
 ```R
 data(CO2) # This loads the built in dataset
@@ -1193,7 +1196,7 @@ for (i in 31:40) {
 ]
 
 ---
-# `for()` loop
+# `for() {}` loop
 
 Another example:
 
@@ -1252,7 +1255,7 @@ for (i in 34:42) {
 ]
 
 ---
-# `for()` loop
+# `for() {}` loop
 
 .pull-left[
 
@@ -1290,7 +1293,7 @@ for (i in 21:40) {
 ]
 ]
 ---
-# `for()` loop
+# `for() {}` loop
 
 .pull-left[
 
@@ -1327,7 +1330,7 @@ for (i in 21:40) {
 ]
 ]
 ---
-# `for()` loop
+# `for() {}` loop
 
 The expression within the loop can be almost anything and is usually a compound statement containing many commands.
 
@@ -1533,7 +1536,7 @@ Now, you must do the following:
 # Challenge 2: Solution ![:cube]()
 
 
-1.Using `for()` and `if()` to correct the measurements:
+1.Using `for() {}` and `if() {}` to correct the measurements:
 ```{r echo=TRUE}
 for(i in 1:dim(CO2)[1]) {
   if(CO2$Type[i] == "Quebec") {
@@ -1755,9 +1758,9 @@ sum(CO2$Treatment == "chilled")
 
 ]
 ---
-# Modifying iterations: `repeat` loop
+# Modifying iterations: `repeat {}` loop
 
-Under `repeat`, a task is performed until it is deliberately stopped:
+Under `repeat {}`, a task is performed until it is deliberately stopped:
 
 .pull-left[
 .small[
@@ -1854,7 +1857,7 @@ render_graph(flowchart5,
 ]
 ]
 ---
-# Modifying iterations: `repeat` loop
+# Modifying iterations: `repeat {}` loop
 
 .pull-left[
 .small[
@@ -1876,7 +1879,7 @@ print(count)
 
 .pull-right[
 .small[
-It could had been equivalently written using `repeat` and `break`:
+It could had been equivalently written using `repeat {}` and `break`:
 ```{r echo = TRUE}
 count <- 0
 i <- 0
@@ -1920,9 +1923,9 @@ print(count)
 
 ]
 ---
-# Modifying iterations: `while` loop
+# Modifying iterations: `while() {}` loop
 
-Within the `while` loop, an expression happens **while** a condition is met.
+Within the `while() {}` loop, an expression happens **while** a condition is met.
 .pull-left[
 ```{r eval = FALSE}
 while(condition){
@@ -1990,7 +1993,7 @@ render_graph(flowchart5,
 ]
 
 ---
-# Modifying iterations: `while` loop
+# Modifying iterations: `while() {}` loop
 
 .pull-left[
 .small[
@@ -2010,7 +2013,7 @@ print(count)
 
 .pull-right[
 .small[
-We could have equivalently used `repeat` and `break`:
+We could have equivalently used `repeat() {}` and `break`:
 ```{r eval = FALSE}
 count <- 0
 i <- 0
@@ -2026,7 +2029,7 @@ print(count)
 ]
 
 .small[
-And also, we could have built a `while` loop:
+And also, we could have built a `while() {}` loop:
 
 ```{r eval = FALSE}
 i <- 0
